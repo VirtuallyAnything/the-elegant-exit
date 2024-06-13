@@ -2,22 +2,25 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
-public partial class PlayerData : Resource
+namespace tee
 {
-	[Export] private Godot.Collections.Array<PlayerAttack> _availableAttacks;
-	private int[] _partyMembers;
-	private float _socialStandingOverall;
-	private int _socialBattery = 100;
-
-	public Godot.Collections.Array<PlayerAttack> AvailableAttacks
+	public partial class PlayerData : Resource
 	{
-		get{return _availableAttacks;}
-		set{_availableAttacks = value;}
-	}
+		[Export] private Godot.Collections.Array<PlayerAttack> _availableAttacks;
+		private int[] _partyMembers;
+		private float _socialStandingOverall;
+		private int _socialBattery = 100;
 
-	public int SocialBattery
-	{
-		get{return _socialBattery;}
-		set{_socialBattery = value;}
+		public Godot.Collections.Array<PlayerAttack> AvailableAttacks
+		{
+			get { return _availableAttacks; }
+			set { _availableAttacks = value; }
+		}
+
+		public int SocialBattery
+		{
+			get { return _socialBattery; }
+			set { _socialBattery = value; }
+		}
 	}
 }

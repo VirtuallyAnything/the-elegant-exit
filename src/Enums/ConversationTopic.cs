@@ -1,17 +1,20 @@
 using Godot;
 using System;
 
-public enum ConversationTopic
+namespace tee
 {
-	None,
-	Sport,
-	Weather,
-	Economy,
-	Politics,
-	Art,
-	Gossip,
-	PartyGossip,
-	Food,
-	Drink
+	public enum ConversationTopic
+	{
+		None,
+		Sport,
+		Weather,
+		Economy,
+		Politics,
+		Art,
+		Gossip,
+		PartyGossip,
+		Food,
+		Drink
 
+	}
 }

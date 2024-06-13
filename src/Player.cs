@@ -1,21 +1,25 @@
 using Godot;
 using System;
 
-public partial class Player : Node
+namespace tee
 {
-	[Export] private PlayerData _data;
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
+	public partial class Player : Node
 	{
-		
-	}
+		[Export] private PlayerData _data;
+		// Called when the node enters the scene tree for the first time.
+		public override void _Ready()
+		{
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
-	}
+		}
 
-	public void Attack(int attackNumber){
+		// Called every frame. 'delta' is the elapsed time since the previous frame.
+		public override void _Process(double delta)
+		{
+		}
 
+		public void Attack(int attackNumber)
+		{
+
+		}
 	}
 }

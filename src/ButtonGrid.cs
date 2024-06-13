@@ -1,24 +1,31 @@
 using Godot;
 using System;
 
-public partial class ButtonGrid : GridContainer
+namespace tee
 {
-	private Godot.Collections.Array<Button> _childButtons = new();
-	public Godot.Collections.Array<Button> ChildButtons{
-		get{return _childButtons;}
-	}
-	public override void _Ready()
+	public partial class ButtonGrid : GridContainer
 	{
-	}
-
-	public void DisableAllButtons(){
-		foreach(Button button in _childButtons){
-			button.Disabled = true;
+		private Godot.Collections.Array<Button> _childButtons = new();
+		public Godot.Collections.Array<Button> ChildButtons
+		{
+			get { return _childButtons; }
 		}
-	}
+		public override void _Ready()
+		{
+		}
 
-	public void Add(Button button){
-		AddChild(button);
-		_childButtons.Add(button);
+		public void DisableAllButtons()
+		{
+			foreach (Button button in _childButtons)
+			{
+				button.Disabled = true;
+			}
+		}
+
+		public void Add(Button button)
+		{
+			AddChild(button);
+			_childButtons.Add(button);
+		}
 	}
 }

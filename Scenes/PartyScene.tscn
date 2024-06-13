@@ -1,8 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://dmfp5lawyswyl"]
+[gd_scene load_steps=12 format=3 uid="uid://dmfp5lawyswyl"]
 
 [ext_resource type="Script" path="res://src/PartyScene.cs" id="1_mj4je"]
 [ext_resource type="Texture2D" uid="uid://bkucbxxb4rwh0" path="res://Assets/Sprites/Environment_test.png" id="2_mq7b2"]
-[ext_resource type="PackedScene" uid="uid://cv7lwki55h2ma" path="res://Scenes/EncounterScene.tscn" id="2_v5x6g"]
 [ext_resource type="PackedScene" uid="uid://d21hljw8t080d" path="res://Scenes/Subscenes/SocialBattery.tscn" id="4_8rkpa"]
 [ext_resource type="Texture2D" uid="uid://d3hx3upwa0rgm" path="res://Assets/Sprites/door.png" id="4_wxte6"]
 [ext_resource type="Script" path="res://src/Movement.cs" id="5_u7m7i"]
@@ -30,8 +29,6 @@ _socialBattery = NodePath("GroundFloor/Characters/CharacterBody2D5/Camera2D/Text
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 process_mode = 4
 visible = false
-
-[node name="EncounterScene" parent="CanvasLayer" instance=ExtResource("2_v5x6g")]
 
 [node name="GroundFloor" type="Node2D" parent="."]
 

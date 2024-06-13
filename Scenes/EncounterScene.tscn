@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cv7lwki55h2ma"]
+[gd_scene load_steps=18 format=3 uid="uid://cv7lwki55h2ma"]
 
 [ext_resource type="Texture2D" uid="uid://brhg2uwb0p3lt" path="res://Assets/Sprites/TestSprites.png" id="1_jm4g5"]
 [ext_resource type="Script" path="res://src/EncounterScene.cs" id="1_qerod"]
@@ -6,7 +6,6 @@
 [ext_resource type="Resource" uid="uid://d0bu2gll3u4xb" path="res://GameDataResources/Attacks/PlayerData.tres" id="3_8fkin"]
 [ext_resource type="Script" path="res://src/AttackButton.cs" id="4_jop31"]
 [ext_resource type="Script" path="res://src/VisibilityChanger.cs" id="5_flu7k"]
-[ext_resource type="Script" path="res://src/SlideMask.cs" id="7_2qx5t"]
 [ext_resource type="ButtonGroup" uid="uid://c8kg3f3dogyuv" path="res://AttackButtonGroup.tres" id="7_dq33r"]
 [ext_resource type="Texture2D" uid="uid://dloj826coufuu" path="res://Assets/Sprites/Avatar_JP.png" id="7_kbgav"]
 [ext_resource type="PackedScene" uid="uid://d21hljw8t080d" path="res://Scenes/Subscenes/SocialBattery.tscn" id="9_vlhst"]
@@ -74,7 +73,7 @@ grow_vertical = 2
 script = ExtResource("1_qerod")
 _playerSprite = NodePath("PlayerSprite")
 _enemySprite = NodePath("EnemySprite")
-_attackButtons = [NodePath("Panel/VBoxContainer/Button"), NodePath("Panel/VBoxContainer/Button2"), NodePath("Panel/VBoxContainer/Button3")]
+_attackButtons = [NodePath("VBoxContainer/Button"), NodePath("VBoxContainer/Button2"), NodePath("VBoxContainer/Button3")]
 _animationPlayer = NodePath("AnimationPlayer")
 _dialogueLine = NodePath("DialogLine")
 _socialBatteryProgress = NodePath("TextureProgressBar")
@@ -141,23 +140,16 @@ offset_right = 1361.0
 offset_bottom = 1029.0
 text = "Leave Fight"
 
-[node name="Panel" type="ColorRect" parent="."]
-clip_children = 1
-layout_mode = 0
-offset_top = 682.0
-offset_right = 1000.0
-offset_bottom = 982.0
-script = ExtResource("7_2qx5t")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 clip_children = 1
 custom_minimum_size = Vector2(300, 100)
 layout_mode = 2
+offset_top = 682.0
 offset_right = 1000.0
-offset_bottom = 300.0
+offset_bottom = 982.0
 grow_vertical = 0
 
-[node name="Button" type="Button" parent="Panel/VBoxContainer" node_paths=PackedStringArray("TopicGrid")]
+[node name="Button" type="Button" parent="VBoxContainer" node_paths=PackedStringArray("TopicGrid")]
 custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
 toggle_mode = true
@@ -166,57 +158,57 @@ text = "Attack 1"
 script = ExtResource("4_jop31")
 TopicGrid = NodePath("../HSplitContainer/TopicGrid")
 
-[node name="HSplitContainer" type="HSplitContainer" parent="Panel/VBoxContainer"]
+[node name="HSplitContainer" type="HSplitContainer" parent="VBoxContainer"]
 visible = false
 layout_mode = 2
 script = ExtResource("5_flu7k")
 
-[node name="GridContainer" type="GridContainer" parent="Panel/VBoxContainer/HSplitContainer"]
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer/HSplitContainer"]
 clip_contents = true
 layout_mode = 2
 size_flags_vertical = 3
 columns = 2
 
-[node name="TextureRect" type="TextureRect" parent="Panel/VBoxContainer/HSplitContainer/GridContainer"]
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/HSplitContainer/GridContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 texture = ExtResource("7_kbgav")
 expand_mode = 2
 stretch_mode = 4
 
-[node name="Label2" type="Label" parent="Panel/VBoxContainer/HSplitContainer/GridContainer"]
+[node name="Label2" type="Label" parent="VBoxContainer/HSplitContainer/GridContainer"]
 layout_mode = 2
 text = "Social Standing:
 "
 
-[node name="TextureRect2" type="TextureRect" parent="Panel/VBoxContainer/HSplitContainer/GridContainer"]
+[node name="TextureRect2" type="TextureRect" parent="VBoxContainer/HSplitContainer/GridContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 texture = ExtResource("7_kbgav")
 expand_mode = 2
 stretch_mode = 4
 
-[node name="Label3" type="Label" parent="Panel/VBoxContainer/HSplitContainer/GridContainer"]
+[node name="Label3" type="Label" parent="VBoxContainer/HSplitContainer/GridContainer"]
 layout_mode = 2
 text = "Social Battery:"
 
-[node name="TextureRect3" type="TextureRect" parent="Panel/VBoxContainer/HSplitContainer/GridContainer"]
+[node name="TextureRect3" type="TextureRect" parent="VBoxContainer/HSplitContainer/GridContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 texture = ExtResource("7_kbgav")
 expand_mode = 2
 stretch_mode = 4
 
-[node name="Label" type="Label" parent="Panel/VBoxContainer/HSplitContainer/GridContainer"]
+[node name="Label" type="Label" parent="VBoxContainer/HSplitContainer/GridContainer"]
 layout_mode = 2
 text = "Conversation Interest:"
 
-[node name="TopicGrid" type="GridContainer" parent="Panel/VBoxContainer/HSplitContainer"]
+[node name="TopicGrid" type="GridContainer" parent="VBoxContainer/HSplitContainer"]
 layout_mode = 2
 columns = 2
 script = ExtResource("11_2jdkf")
 
-[node name="Button2" type="Button" parent="Panel/VBoxContainer" node_paths=PackedStringArray("TopicGrid")]
+[node name="Button2" type="Button" parent="VBoxContainer" node_paths=PackedStringArray("TopicGrid")]
 custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
 toggle_mode = true
@@ -225,56 +217,57 @@ text = "Attack 1"
 script = ExtResource("4_jop31")
 TopicGrid = NodePath("../HSplitContainer2/TopicGrid")
 
-[node name="HSplitContainer2" type="HSplitContainer" parent="Panel/VBoxContainer"]
+[node name="HSplitContainer2" type="HSplitContainer" parent="VBoxContainer"]
 visible = false
 layout_mode = 2
 script = ExtResource("5_flu7k")
 
-[node name="GridContainer2" type="GridContainer" parent="Panel/VBoxContainer/HSplitContainer2"]
+[node name="GridContainer2" type="GridContainer" parent="VBoxContainer/HSplitContainer2"]
 clip_contents = true
 layout_mode = 2
 size_flags_vertical = 3
 columns = 2
 
-[node name="TextureRect" type="TextureRect" parent="Panel/VBoxContainer/HSplitContainer2/GridContainer2"]
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/HSplitContainer2/GridContainer2"]
 layout_mode = 2
 size_flags_vertical = 3
 texture = ExtResource("7_kbgav")
 expand_mode = 2
 stretch_mode = 4
 
-[node name="Label2" type="Label" parent="Panel/VBoxContainer/HSplitContainer2/GridContainer2"]
+[node name="Label2" type="Label" parent="VBoxContainer/HSplitContainer2/GridContainer2"]
 layout_mode = 2
 text = "Social Standing:
 "
 
-[node name="TextureRect2" type="TextureRect" parent="Panel/VBoxContainer/HSplitContainer2/GridContainer2"]
+[node name="TextureRect2" type="TextureRect" parent="VBoxContainer/HSplitContainer2/GridContainer2"]
 layout_mode = 2
 size_flags_vertical = 3
 texture = ExtResource("7_kbgav")
 expand_mode = 2
 stretch_mode = 4
 
-[node name="Label3" type="Label" parent="Panel/VBoxContainer/HSplitContainer2/GridContainer2"]
+[node name="Label3" type="Label" parent="VBoxContainer/HSplitContainer2/GridContainer2"]
 layout_mode = 2
 text = "Social Battery:"
 
-[node name="TextureRect3" type="TextureRect" parent="Panel/VBoxContainer/HSplitContainer2/GridContainer2"]
+[node name="TextureRect3" type="TextureRect" parent="VBoxContainer/HSplitContainer2/GridContainer2"]
 layout_mode = 2
 size_flags_vertical = 3
 texture = ExtResource("7_kbgav")
 expand_mode = 2
 stretch_mode = 4
 
-[node name="Label" type="Label" parent="Panel/VBoxContainer/HSplitContainer2/GridContainer2"]
+[node name="Label" type="Label" parent="VBoxContainer/HSplitContainer2/GridContainer2"]
 layout_mode = 2
 text = "Conversation Interest:"
 
-[node name="TopicGrid" type="GridContainer" parent="Panel/VBoxContainer/HSplitContainer2"]
+[node name="TopicGrid" type="GridContainer" parent="VBoxContainer/HSplitContainer2"]
 layout_mode = 2
 columns = 2
+script = ExtResource("11_2jdkf")
 
-[node name="Button3" type="Button" parent="Panel/VBoxContainer" node_paths=PackedStringArray("TopicGrid")]
+[node name="Button3" type="Button" parent="VBoxContainer" node_paths=PackedStringArray("TopicGrid")]
 custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
 toggle_mode = true
@@ -283,55 +276,56 @@ text = "Attack 1"
 script = ExtResource("4_jop31")
 TopicGrid = NodePath("../HSplitContainer3/TopicGrid")
 
-[node name="HSplitContainer3" type="HSplitContainer" parent="Panel/VBoxContainer"]
+[node name="HSplitContainer3" type="HSplitContainer" parent="VBoxContainer"]
 visible = false
 layout_mode = 2
 script = ExtResource("5_flu7k")
 
-[node name="GridContainer3" type="GridContainer" parent="Panel/VBoxContainer/HSplitContainer3"]
+[node name="GridContainer3" type="GridContainer" parent="VBoxContainer/HSplitContainer3"]
 clip_contents = true
 layout_mode = 2
 size_flags_vertical = 3
 columns = 2
 
-[node name="TextureRect" type="TextureRect" parent="Panel/VBoxContainer/HSplitContainer3/GridContainer3"]
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/HSplitContainer3/GridContainer3"]
 layout_mode = 2
 size_flags_vertical = 3
 texture = ExtResource("7_kbgav")
 expand_mode = 2
 stretch_mode = 4
 
-[node name="Label2" type="Label" parent="Panel/VBoxContainer/HSplitContainer3/GridContainer3"]
+[node name="Label2" type="Label" parent="VBoxContainer/HSplitContainer3/GridContainer3"]
 layout_mode = 2
 text = "Social Standing:
 "
 
-[node name="TextureRect2" type="TextureRect" parent="Panel/VBoxContainer/HSplitContainer3/GridContainer3"]
+[node name="TextureRect2" type="TextureRect" parent="VBoxContainer/HSplitContainer3/GridContainer3"]
 layout_mode = 2
 size_flags_vertical = 3
 texture = ExtResource("7_kbgav")
 expand_mode = 2
 stretch_mode = 4
 
-[node name="Label3" type="Label" parent="Panel/VBoxContainer/HSplitContainer3/GridContainer3"]
+[node name="Label3" type="Label" parent="VBoxContainer/HSplitContainer3/GridContainer3"]
 layout_mode = 2
 text = "Social Battery:"
 
-[node name="TextureRect3" type="TextureRect" parent="Panel/VBoxContainer/HSplitContainer3/GridContainer3"]
+[node name="TextureRect3" type="TextureRect" parent="VBoxContainer/HSplitContainer3/GridContainer3"]
 layout_mode = 2
 size_flags_vertical = 3
 texture = ExtResource("7_kbgav")
 expand_mode = 2
 stretch_mode = 4
 
-[node name="Label" type="Label" parent="Panel/VBoxContainer/HSplitContainer3/GridContainer3"]
+[node name="Label" type="Label" parent="VBoxContainer/HSplitContainer3/GridContainer3"]
 layout_mode = 2
 text = "Conversation Interest:"
 
-[node name="TopicGrid" type="GridContainer" parent="Panel/VBoxContainer/HSplitContainer3"]
+[node name="TopicGrid" type="GridContainer" parent="VBoxContainer/HSplitContainer3"]
 layout_mode = 2
 columns = 2
+script = ExtResource("11_2jdkf")
 
-[connection signal="toggled" from="Panel/VBoxContainer/Button" to="Panel/VBoxContainer/HSplitContainer" method="ShowContainer"]
-[connection signal="toggled" from="Panel/VBoxContainer/Button2" to="Panel/VBoxContainer/HSplitContainer2" method="ShowContainer"]
-[connection signal="toggled" from="Panel/VBoxContainer/Button3" to="Panel/VBoxContainer/HSplitContainer3" method="ShowContainer"]
+[connection signal="toggled" from="VBoxContainer/Button" to="VBoxContainer/HSplitContainer" method="ShowContainer"]
+[connection signal="toggled" from="VBoxContainer/Button2" to="VBoxContainer/HSplitContainer2" method="ShowContainer"]
+[connection signal="toggled" from="VBoxContainer/Button3" to="VBoxContainer/HSplitContainer3" method="ShowContainer"]

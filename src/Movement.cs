@@ -2,7 +2,6 @@ using Godot;
 using System;
 using System.Diagnostics;
 
-[GlobalClass]
 public partial class Movement : CharacterBody2D
 {
 	[Export] private NavigationAgent2D _agent;
