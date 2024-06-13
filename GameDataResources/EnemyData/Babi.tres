@@ -1,0 +1,15 @@
+[gd_resource type="Resource" load_steps=5 format=3 uid="uid://dgmh740a8kil7"]
+
+[ext_resource type="Texture2D" uid="uid://cxykjoqtv188j" path="res://Assets/Sprites/BabiIcon.png" id="1_o5vv7"]
+[ext_resource type="Resource" uid="uid://dwmihg6b8f44u" path="res://GameDataResources/Attacks/EnemyAttacks/Smalltalk.tres" id="1_yj1bd"]
+[ext_resource type="Texture2D" uid="uid://dgds5ddni47ev" path="res://Assets/Sprites/Babi_Sprite.png" id="2_bsecl"]
+[ext_resource type="Script" path="res://src/EnemyData.cs" id="3_kdnd3"]
+
+[resource]
+script = ExtResource("3_kdnd3")
+DisplayName = "Babi"
+EnemyAttacks = Array[Resource]([ExtResource("1_yj1bd")])
+Icon = ExtResource("1_o5vv7")
+Sprite = ExtResource("2_bsecl")
+ConversationInterest = 20
+TopicPreferences = Array[int]([2, 6, 8, 9, 7])

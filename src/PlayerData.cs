@@ -22,5 +22,10 @@ namespace tee
 			get { return _socialBattery; }
 			set { _socialBattery = value; }
 		}
+
+		public float SocialStandingOverall{
+			get{return _socialStandingOverall;}
+			set{_socialStandingOverall = value;}
+		}
 	}
 }

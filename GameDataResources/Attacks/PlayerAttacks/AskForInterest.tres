@@ -1,11 +1,11 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://0jqdbyw83i7v"]
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://cbqcfkv2twa4n"]
 
-[ext_resource type="Script" path="res://src/PlayerAttack.cs" id="1_5kp4x"]
+[ext_resource type="Script" path="res://src/PlayerAttack.cs" id="1_4u75q"]
 
 [resource]
-script = ExtResource("1_5kp4x")
+script = ExtResource("1_4u75q")
 _topicRelatedQuotes = {
-0: ":)",
+0: "What are you into?",
 1: "",
 2: "",
 3: "",
@@ -20,12 +20,12 @@ SocialStandingChangeLike = 1.0
 SocialStandingChangeDislike = 1.0
 MentalCapacityChangeLike = 0.0
 MentalCapacityChangeDislike = 0.0
-ConversationInterestChangeLike = -2.0
-ConversationInterestChangeDislike = -2.0
+ConversationInterestChangeLike = 3.0
+ConversationInterestChangeDislike = 3.0
 SocialBatteryChangeLike = 0
 SocialBatteryChangeDislike = 0
 EnableTopicChoice = false
 IsFromItem = false
 UnlockedTopics = []
-AttackName = "Nod and Smile"
+AttackName = "Ask For Interest"
 Animation = ""

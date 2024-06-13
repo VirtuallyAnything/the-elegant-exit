@@ -7,7 +7,7 @@
 [ext_resource type="Script" path="res://src/Movement.cs" id="5_u7m7i"]
 [ext_resource type="Texture2D" uid="uid://cvmv3sr1jrvrj" path="res://Assets/Sprites/PersonIcon.png" id="6_iic4b"]
 [ext_resource type="Script" path="res://src/Enemy.cs" id="7_kk71b"]
-[ext_resource type="Resource" uid="uid://bqgn3w6aagdea" path="res://GameDataResources/EnemyData/NeighborDave.tres" id="8_chnix"]
+[ext_resource type="Resource" uid="uid://dgmh740a8kil7" path="res://GameDataResources/EnemyData/Babi.tres" id="8_g1nty"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_ky745"]
 vertices = PackedVector2Array(2207, 125, 2207, 623, 1934, 245, 1934, 224, 1933, 506, 1934, 528, 901, 409, 901, 659, 553, 659, 554, 159, 900, 159, 901, 387, 1934, 125, 1865, 224, 1866, 245, 1551, 508, 1551, 445, 1865, 445, 1865, 509, 1934, 623, 1865, 528, 1865, 624, 1649, 624, 1629, 623, 1551, 528, 1649, 692, 1629, 692, 1551, 623, 1241, 771, 1405, 771, 1405, 815, 1865, 692, 1865, 937, 1474, 937, 1474, 836, 1525, 692, 1474, 815, 1405, 836, 1405, 862, 1153, 862, 1153, 771, 1219, 771, 1219, 703, 969, 703, 969, 554, 1121, 554, 1091, 485, 969, 485, 969, 409, 1126, 451, 969, 387, 969, 125, 1194, 125, 1194, 383, 1159, 421, 1262, 411, 1262, 124, 1865, 124, 1483, 377, 1866, 376, 1483, 508, 1208, 467, 1483, 528, 1241, 703, 1174, 499, 1483, 639, 1421, 703, 1474, 744)
@@ -310,6 +310,6 @@ offset_bottom = -397.0
 position = Vector2(328, 563)
 script = ExtResource("7_kk71b")
 _triggerRange = 100.0
-_enemyData = ExtResource("8_chnix")
+_enemyData = ExtResource("8_g1nty")
 
 [connection signal="velocity_computed" from="GroundFloor/Characters/CharacterBody2D5/NavigationAgent2D" to="GroundFloor/Characters/CharacterBody2D5" method="OnNavigationAgent2DVelocityComputed"]

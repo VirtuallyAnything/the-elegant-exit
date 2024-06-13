@@ -1,0 +1,31 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://c3fig235sju03"]
+
+[ext_resource type="Script" path="res://src/PlayerAttack.cs" id="1_tal61"]
+
+[resource]
+script = ExtResource("1_tal61")
+_topicRelatedQuotes = {
+0: "",
+1: "",
+2: "My cousin Jake started microdosing adaptogens to biohack his circadian rhythm, absolute game-changer for his intermittent fasting routine. I personally have been focusing on hygge-inspired minimalism, although I consider shifting to wabi-sabi aesthetics. Have you ever tried that?",
+3: "Last month during the heated bull run, I decided to leverage my hodling by YOLO-ing into a FOMO-driven altcoin pump. I liquidated my blue-chip stonks to buy the dip on a low-cap moonshot, but to my dismay the coin rug-pulled just as I was about to HODL into a whale dump.",
+4: "McCasey’s bid for governor is falling to shambles. He filibustered through stump speeches pandering to PACs while dodging gerrymandering gaffes. Despite his attempts at pork-barrel promises his platform collapsed under the weight polling pivots and caucus chaos.",
+5: "",
+6: "",
+7: "",
+8: "",
+9: ""
+}
+SocialStandingChangeLike = 2.0
+SocialStandingChangeDislike = -1.0
+MentalCapacityChangeLike = 1.0
+MentalCapacityChangeDislike = 0.0
+ConversationInterestChangeLike = -3.0
+ConversationInterestChangeDislike = -8.0
+SocialBatteryChangeLike = 0
+SocialBatteryChangeDislike = 0
+EnableTopicChoice = true
+IsFromItem = false
+UnlockedTopics = [3, 4, 2]
+AttackName = "Talk Shop"
+Animation = ""

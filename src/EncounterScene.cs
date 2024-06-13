@@ -1,6 +1,9 @@
 using Godot;
 using System;
 using Godot.Collections;
+using System.Threading.Tasks;
+using System.Net;
+using System.Runtime.CompilerServices;
 
 namespace tee
 {
@@ -11,11 +14,15 @@ namespace tee
 		public static event EncounterSceneHandler PlayerTurnAnimationComplete;
 		public static event EncounterSceneHandler EnemyTurnAnimationComplete;
 		[Export] private Sprite2D _playerSprite;
+		[Export] private Color _playerDialogueColor;
 		[Export] private Sprite2D _enemySprite;
+		[Export] private Color _enemyDialogueColor;
 		[Export] private Array<AttackButton> _attackButtons;
 		[Export] private AnimationPlayer _animationPlayer;
 		[Export] private Label _dialogueLine;
-		[Export] private Container _dialogueBox;
+		[Export] private Label _mentalCapacityValue;
+		[Export] private Label _conversationInterestValue;
+		[Export] private Label _socialStandingValue;
 		[Export] private TextureProgressBar _socialBatteryProgress;
 		[Export] private Button _leaveButton;
 		private AttackButton _currentlySelectedButton;
@@ -44,11 +51,16 @@ namespace tee
 		{
 			_currentEnemy = enemyData;
 			_enemySprite.Texture = enemyData.Sprite;
-			_enemySprite.Hframes = 6;
-			_enemySprite.Vframes = 3;
 			_dialogueLine.Text = "";
-			_socialBatteryProgress.Value = GameManager.PlayerData.SocialBattery;
+			_dialogueLine.Modulate = _enemyDialogueColor;
+			_socialBatteryProgress.Value = GameManager.SocialBattery;
 			SetupCompleted?.Invoke();
+		}
+
+		public void DisableAttackButtons(bool areDisabled){
+			for(int i = 0; i < _attackButtons.Count; i++){
+				_attackButtons[i].Disabled = areDisabled;
+			}
 		}
 
 		private void SetCurrentlySelectedButton(AttackButton button)
@@ -61,38 +73,40 @@ namespace tee
 			_currentlySelectedButton.SetupButton(attack);
 		}
 
-		public void PlayCombatAnimation(PlayerAttack attack)
+		public async void PlayCombatAnimation(PlayerAttack attack, ConversationTopic topic)
 		{
-			_dialogueLine.Text = attack.Dialogue;
+			_dialogueLine.Text = attack.GetQuoteForTopic(topic);
+			_dialogueLine.Modulate = _playerDialogueColor;
 			Tween tween = _dialogueLine.CreateTween();
 			int textLength = _dialogueLine.Text.Length;
+			float animationLength = textLength * .05f;
 			PropertyTweener propTweener = tween.TweenProperty(
-				_dialogueLine, $"{Label.PropertyName.VisibleCharacters}", textLength, .05f * textLength);
+				_dialogueLine, $"{Label.PropertyName.VisibleCharacters}", textLength, animationLength);
 			propTweener.From(0);
-			tween.TweenCallback(Callable.From(() => PlayAnimationsForAttack(attack)));
-			//_animationPlayer.Play("PlayerTurn");
+			await ToSignal(GetTree().CreateTimer(animationLength * 2), SceneTreeTimer.SignalName.Timeout);
+			PlayAnimationsForAttack(attack);
 		}
 
 		public void PlayCombatAnimation(EnemyAttack attack)
 		{
-			_dialogueLine.Text = attack.Dialogue;
+			_dialogueLine.Text = attack.PickRandomQuote();
+			_dialogueLine.Modulate = _enemyDialogueColor;
 			Tween tween = _dialogueLine.CreateTween();
 			int textLength = _dialogueLine.Text.Length;
 			PropertyTweener propTweener = tween.TweenProperty(
 				_dialogueLine, $"{Label.PropertyName.VisibleCharacters}", textLength, .05f * textLength);
 			propTweener.From(0);
 			tween.TweenCallback(Callable.From(() => PlayAnimationsForAttack(attack)));
-			//_animationPlayer.Play("PlayerTurn");
 		}
 
 		private void PlayAnimationsForAttack(PlayerAttack playerAttack)
 		{
 
-			if (playerAttack.InterestChange < 0)
+			if (playerAttack.ConversationInterestChangeLike < 0)
 			{
 				// Play Negative Feedback Animation
 			}
-			else if (playerAttack.InterestChange > 0)
+			else if (playerAttack.ConversationInterestChangeLike > 0)
 			{
 				//Play Positive Feedback Animation
 			}
@@ -134,6 +148,9 @@ namespace tee
 				_socialBatteryProgress, $"{TextureProgressBar.PropertyName.Value}", socialBatteryNew, 1f);
 			propTweener.From(_socialBatteryProgress.Value);
 
+			_mentalCapacityValue.Text = $"{mentalCapacityNew}";
+			_socialStandingValue.Text = $"{socialStandingNew}";
+			_conversationInterestValue.Text = $"{interestNew}";
 		}
 	}
 }

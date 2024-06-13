@@ -4,12 +4,27 @@
 
 [resource]
 script = ExtResource("1_v587u")
+_topicRelatedQuotes = {
+1: "",
+2: "",
+3: "",
+4: "",
+5: "",
+6: "",
+7: "",
+8: "",
+9: ""
+}
 SocialStandingChangeLike = 0.0
 SocialStandingChangeDislike = 0.0
-InterestChange = 0.0
+MentalCapacityChangeLike = 0.0
+MentalCapacityChangeDislike = 0.0
+ConversationInterestChangeLike = 0.0
+ConversationInterestChangeDislike = 0.0
+SocialBatteryChangeLike = 0
+SocialBatteryChangeDislike = 0
 EnableTopicChoice = true
 IsFromItem = false
 UnlockedTopics = [2, 3, 5]
 AttackName = "Mirror Expression"
-Dialogue = "Mirror Expression"
 Animation = ""

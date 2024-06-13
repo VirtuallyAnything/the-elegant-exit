@@ -1,0 +1,31 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://clsno7agx4m40"]
+
+[ext_resource type="Script" path="res://src/PlayerAttack.cs" id="1_pb2xw"]
+
+[resource]
+script = ExtResource("1_pb2xw")
+_topicRelatedQuotes = {
+0: "",
+1: "The Netherlands won a record at this year’s football cup. Most defeats in semi-finals of any sports team.",
+2: "",
+3: "",
+4: "",
+5: "It’s amazing that Leonardo da Vinci could paint and invent and still had time to be a crime-fighting turtle.",
+6: "The latest scandal around Elon Musk is called Elon-Gate. The affair is really dragging on.",
+7: "",
+8: "",
+9: ""
+}
+SocialStandingChangeLike = 1.0
+SocialStandingChangeDislike = -1.0
+MentalCapacityChangeLike = 0.0
+MentalCapacityChangeDislike = 0.0
+ConversationInterestChangeLike = -5.0
+ConversationInterestChangeDislike = -3.0
+SocialBatteryChangeLike = 0
+SocialBatteryChangeDislike = 0
+EnableTopicChoice = true
+IsFromItem = false
+UnlockedTopics = [1, 5, 6]
+AttackName = "Funny Anecdote"
+Animation = ""

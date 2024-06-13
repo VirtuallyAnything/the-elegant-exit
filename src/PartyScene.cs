@@ -10,12 +10,12 @@ namespace tee
 		{
 			SceneManager.CanvasLayer = GetChild<CanvasLayer>(0);
 			SceneManager.PartyScene = this;
-			_socialBattery.Value = GameManager.PlayerData.SocialBattery;
+			_socialBattery.Value = GameManager.SocialBattery;
 		}
 
 		public void OnSceneReentered()
 		{
-			_socialBattery.Value = GameManager.PlayerData.SocialBattery;
+			_socialBattery.Value = GameManager.SocialBattery;
 		}
 	}
 }

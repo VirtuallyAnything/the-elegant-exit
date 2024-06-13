@@ -4,9 +4,12 @@
 
 [resource]
 script = ExtResource("1_hcd7m")
-SocialStandingChange = 0.0
-InterestChange = 0.0
+SocialStandingChangeLike = 0.5
+SocialStandingChangeDislike = -0.5
+InterestChange = -3.0
 EnableTopicChoice = false
+IsFromItem = false
+UnlockedTopics = []
 AttackName = "Inquiring Question"
 Dialogue = "Inquiring Question"
 Animation = ""

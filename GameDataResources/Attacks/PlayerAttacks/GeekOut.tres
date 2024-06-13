@@ -1,0 +1,31 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://deqcorb47srom"]
+
+[ext_resource type="Script" path="res://src/PlayerAttack.cs" id="1_whrrp"]
+
+[resource]
+script = ExtResource("1_whrrp")
+_topicRelatedQuotes = {
+0: "",
+1: "",
+2: "",
+3: "",
+4: "",
+5: "",
+6: "",
+7: "",
+8: "",
+9: ""
+}
+SocialStandingChangeLike = 2.0
+SocialStandingChangeDislike = 2.0
+MentalCapacityChangeLike = -2.0
+MentalCapacityChangeDislike = -2.0
+ConversationInterestChangeLike = -10.0
+ConversationInterestChangeDislike = -10.0
+SocialBatteryChangeLike = -5
+SocialBatteryChangeDislike = -5
+EnableTopicChoice = false
+IsFromItem = false
+UnlockedTopics = []
+AttackName = "Geek Out"
+Animation = ""

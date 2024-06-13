@@ -8,6 +8,7 @@ namespace tee
 	public partial class AttackButton : Button
 	{
 		private PlayerAttack _boundAttack;
+		private ConversationTopic _boundTopic;
 		private ButtonGrid _topicGrid;
 		private Array<TopicButton> _topicButtonsAttack = new();
 		private Array<ConversationTopic> _attackConversationTopics = new();
@@ -25,10 +26,14 @@ namespace tee
 			get { return _boundAttack; }
 			set { _boundAttack = value; }
 		}
+		public ConversationTopic BoundTopic
+		{
+			get { return _boundTopic; }
+			set { _boundTopic = value; }
+		}
 		// Called when the node enters the scene tree for the first time.
 		public override void _Ready()
 		{
-			Pressed += OnPressed;
 			TopicButton.OnButtonPressed += Disable;
 			EncounterScene.EnemyTurnAnimationComplete += Enable;
 			_attackConversationTopics.Add(ConversationTopic.Art);
@@ -36,7 +41,7 @@ namespace tee
 			_attackConversationTopics.Add(ConversationTopic.Gossip);
 			_attackConversationTopics.Add(ConversationTopic.Politics);
 			_attackConversationTopics.Add(ConversationTopic.Sport);
-			_attackConversationTopics.Add(ConversationTopic.Weather);
+			_attackConversationTopics.Add(ConversationTopic.Lifestyle);
 
 			foreach (ConversationTopic conversationTopic in _attackConversationTopics)
 			{
@@ -63,12 +68,19 @@ namespace tee
 			}
 		}
 
+		public void ChildPressed(TopicButton button){
+			_topicGrid.DisableAllButtons();
+			_boundTopic = button.ConversationTopic;
+			OnButtonPressed?.Invoke(this);
+		}
+
 		public void SetupButton(PlayerAttack attack)
 		{
 			foreach (Button child in _topicGrid.ChildButtons)
 			{
 				_topicGrid.RemoveChild(child);
 			}
+			_topicGrid.ChildButtons.Clear();
 			_boundAttack = attack;
 			Text = attack.AttackName;
 			if (attack.EnableTopicChoice)
@@ -77,7 +89,8 @@ namespace tee
 				{
 					foreach (TopicButton button in _topicButtonsItem)
 					{
-						_topicGrid.AddChild(button);
+						_topicGrid.Add(button);
+						button.ParentButton = this;
 						if (!attack.UnlockedTopics.Contains(button.ConversationTopic))
 						{
 							button.Disabled = true;
@@ -93,7 +106,7 @@ namespace tee
 					foreach (TopicButton button in _topicButtonsAttack)
 					{
 						_topicGrid.Add(button);
-						button.ParentGrid = _topicGrid;
+						button.ParentButton = this;
 						if (!attack.UnlockedTopics.Contains(button.ConversationTopic))
 						{
 							button.Disabled = true;
@@ -113,11 +126,11 @@ namespace tee
 					ConversationTopic = ConversationTopic.None
 				};
 				_topicGrid.Add(button);
-				button.ParentGrid = _topicGrid;
+				button.ParentButton = this;
 			}
 		}
 
-		private void Disable(ConversationTopic topic)
+		private void Disable()
 		{
 			Disabled = true;
 		}
@@ -127,15 +140,10 @@ namespace tee
 			Disabled = false;
 		}
 
-		public void OnPressed()
-		{
-			OnButtonPressed?.Invoke(this);
-		}
-
 		public override void _ExitTree()
 		{
 			TopicButton.OnButtonPressed -= Disable;
 			EncounterScene.EnemyTurnAnimationComplete -= Enable;
 		}
-	}
+    }
 }

@@ -5,16 +5,16 @@ namespace tee
 {
 	public enum ConversationTopic
 	{
-		None,
-		Sport,
-		Weather,
-		Economy,
-		Politics,
-		Art,
-		Gossip,
-		PartyGossip,
-		Food,
-		Drink
+		None = 0,
+		Sport = 1,
+		Lifestyle = 2,
+		Economy = 3,
+		Politics = 4,
+		Art = 5,
+		Gossip = 6,
+		PartyGossip = 7,
+		Food = 8,
+		Drink = 9
 
 	}
 }

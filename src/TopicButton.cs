@@ -4,16 +4,16 @@ using System;
 namespace tee
 {
 
-	public delegate void TopicButtonHandler(ConversationTopic conversationTopic);
+	public delegate void TopicButtonHandler();
 	public partial class TopicButton : Button
 	{
 		public static event TopicButtonHandler OnButtonPressed;
 		private ConversationTopic _conversationTopic;
-		private ButtonGrid _parentGrid;
-		public ButtonGrid ParentGrid
+		private AttackButton _parentButton;
+		public AttackButton ParentButton
 		{
-			get { return _parentGrid; }
-			set { _parentGrid = value; }
+			get { return _parentButton; }
+			set { _parentButton = value; }
 		}
 		public ConversationTopic ConversationTopic
 		{
@@ -28,13 +28,8 @@ namespace tee
 
 		public void OnPressed()
 		{
-			_parentGrid.DisableAllButtons();
-			OnButtonPressed?.Invoke(_conversationTopic);
-		}
-
-		private void Disable(ConversationTopic topic)
-		{
-			Disabled = true;
+			_parentButton.ChildPressed(this);
+			OnButtonPressed?.Invoke();
 		}
 	}
 }

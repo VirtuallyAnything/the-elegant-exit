@@ -6,7 +6,6 @@ namespace tee
 	public partial class Attack : Resource
 	{
 		private string _attackName;
-		private string _dialogue;
 		private string _animation;
 
 		[Export]
@@ -14,12 +13,6 @@ namespace tee
 		{
 			get { return _attackName; }
 			set { _attackName = value; }
-		}
-		[Export]
-		public string Dialogue
-		{
-			get { return _dialogue; }
-			set { _dialogue = value; }
 		}
 		[Export]
 		public string Animation

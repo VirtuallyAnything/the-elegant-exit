@@ -27,7 +27,8 @@ namespace tee
 		// Called when the node enters the scene tree for the first time.
 		public override void _Ready()
 		{
-
+			CombatManager.CombatEnded += ExitEncounter;
+			GameManager.GameOver += ChangeToGameOverScene;
 		}
 
 		public void ChangeToPartyScene()
@@ -40,11 +41,14 @@ namespace tee
 
 		}
 
+		private void ChangeToGameOverScene(){
+			GetTree().CallDeferred("change_scene_to_file", "res://Scenes/GameOverScene.tscn");
+		}
+
 		public static void ChangeToEncounterScene(EnemyData enemyData)
 		{
 			PackedScene scene = GD.Load<PackedScene>("res://Scenes/EncounterScene.tscn");
 			_partyScene.Visible = false;
-			//_partyScene.ProcessMode = ProcessModeEnum.Disabled;
 			_partyScene.SetProcess(false);
 			_canvasLayer.ProcessMode = ProcessModeEnum.Pausable;
 			_canvasLayer.Visible = true;
@@ -62,5 +66,11 @@ namespace tee
 			_canvasLayer.Visible = false;
 			_canvasLayer.GetChild(0).QueueFree();
 		}
-	}
+
+        public override void _ExitTree()
+        {
+            CombatManager.CombatEnded -= ExitEncounter;
+			GameManager.GameOver -= ChangeToGameOverScene;
+        }
+    }
 }

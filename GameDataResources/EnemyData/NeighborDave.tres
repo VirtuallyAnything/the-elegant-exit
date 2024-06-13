@@ -12,4 +12,4 @@ EnemyAttacks = Array[Resource]([ExtResource("1_ip8nh")])
 Icon = ExtResource("1_6mlo7")
 Sprite = ExtResource("1_dsvcy")
 ConversationInterest = 20
-TopicPreferences = null
+TopicPreferences = Array[int]([1, 4])

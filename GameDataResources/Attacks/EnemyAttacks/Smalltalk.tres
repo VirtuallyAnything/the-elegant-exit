@@ -4,8 +4,8 @@
 
 [resource]
 script = ExtResource("1_h6gl3")
-SocialBatteryChange = 0
-MentalCapacityChange = 0.0
+_quotes = Array[String](["Lovely Weather, isn't it?"])
+SocialBatteryChange = -10
+MentalCapacityChange = -2.0
 AttackName = "Smalltalk"
-Dialogue = "\"Oh what lovely weather it is today and have you seen Sandra's dress - how gorgeous!\""
 Animation = ""
