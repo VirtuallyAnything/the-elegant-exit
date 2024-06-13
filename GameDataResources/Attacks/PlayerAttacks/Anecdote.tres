@@ -1,0 +1,15 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://jcvldt15okdk"]
+
+[ext_resource type="Script" path="res://src/PlayerAttack.cs" id="1_kpq7o"]
+
+[resource]
+script = ExtResource("1_kpq7o")
+SocialStandingChangeLike = 0.0
+SocialStandingChangeDislike = 0.0
+InterestChange = 0.0
+EnableTopicChoice = true
+IsFromItem = false
+UnlockedTopics = [1, 2, 3, 5, 4, 6]
+AttackName = "Anecdote"
+Dialogue = "Anecdote"
+Animation = ""

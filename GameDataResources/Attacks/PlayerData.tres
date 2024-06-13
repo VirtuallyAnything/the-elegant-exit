@@ -1,0 +1,12 @@
+[gd_resource type="Resource" load_steps=7 format=3 uid="uid://d0bu2gll3u4xb"]
+
+[ext_resource type="Resource" uid="uid://jcvldt15okdk" path="res://GameDataResources/Attacks/PlayerAttacks/Anecdote.tres" id="1_32iky"]
+[ext_resource type="Resource" uid="uid://bcdq4w1p7n60g" path="res://GameDataResources/Attacks/PlayerAttacks/MirrorExpression.tres" id="2_71xey"]
+[ext_resource type="Resource" uid="uid://cout4rcyqimw1" path="res://GameDataResources/Attacks/PlayerAttacks/AwkwardComment.tres" id="3_3kktk"]
+[ext_resource type="Script" path="res://src/PlayerData.cs" id="3_rxbdb"]
+[ext_resource type="Resource" uid="uid://bkuellhd57o5n" path="res://GameDataResources/Attacks/PlayerAttacks/InquiringQuestion.tres" id="4_ries7"]
+[ext_resource type="Resource" uid="uid://0jqdbyw83i7v" path="res://GameDataResources/Attacks/PlayerAttacks/Nod&Smile.tres" id="5_f3r0q"]
+
+[resource]
+script = ExtResource("3_rxbdb")
+_availableAttacks = Array[Resource]([ExtResource("1_32iky"), ExtResource("2_71xey"), ExtResource("3_3kktk"), ExtResource("4_ries7"), ExtResource("5_f3r0q")])

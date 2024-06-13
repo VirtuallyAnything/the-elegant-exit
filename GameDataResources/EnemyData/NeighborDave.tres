@@ -1,0 +1,15 @@
+[gd_resource type="Resource" load_steps=5 format=3 uid="uid://bqgn3w6aagdea"]
+
+[ext_resource type="Texture2D" uid="uid://cvmv3sr1jrvrj" path="res://Assets/Sprites/PersonIcon.png" id="1_6mlo7"]
+[ext_resource type="Texture2D" uid="uid://brhg2uwb0p3lt" path="res://Assets/Sprites/TestSprites.png" id="1_dsvcy"]
+[ext_resource type="Resource" uid="uid://dwmihg6b8f44u" path="res://GameDataResources/Attacks/EnemyAttacks/Smalltalk.tres" id="1_ip8nh"]
+[ext_resource type="Script" path="res://src/EnemyData.cs" id="2_ohvyd"]
+
+[resource]
+script = ExtResource("2_ohvyd")
+DisplayName = "Neighbor Dave"
+EnemyAttacks = Array[Resource]([ExtResource("1_ip8nh")])
+Icon = ExtResource("1_6mlo7")
+Sprite = ExtResource("1_dsvcy")
+ConversationInterest = 20
+TopicPreferences = null

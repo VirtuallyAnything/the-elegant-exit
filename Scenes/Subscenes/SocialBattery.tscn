@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://d21hljw8t080d"]
+
+[ext_resource type="Texture2D" uid="uid://b7g4o5wujfi7m" path="res://Assets/Sprites/SocialBatteryIcon.png" id="1_m3m15"]
+[ext_resource type="Texture2D" uid="uid://7rkwkdxdfmn8" path="res://Assets/Sprites/SocialBatteryProgress.png" id="2_s1cl3"]
+
+[node name="TextureProgressBar" type="TextureProgressBar"]
+offset_left = 60.0
+offset_top = 60.0
+offset_right = 201.0
+offset_bottom = 123.0
+value = 100.0
+texture_under = ExtResource("1_m3m15")
+texture_progress = ExtResource("2_s1cl3")
+texture_progress_offset = Vector2(8.86, 11.195)

@@ -1,0 +1,337 @@
+[gd_scene load_steps=19 format=3 uid="uid://cv7lwki55h2ma"]
+
+[ext_resource type="Texture2D" uid="uid://brhg2uwb0p3lt" path="res://Assets/Sprites/TestSprites.png" id="1_jm4g5"]
+[ext_resource type="Script" path="res://src/EncounterScene.cs" id="1_qerod"]
+[ext_resource type="Script" path="res://src/CombatManager.cs" id="2_6eywl"]
+[ext_resource type="Resource" uid="uid://d0bu2gll3u4xb" path="res://GameDataResources/Attacks/PlayerData.tres" id="3_8fkin"]
+[ext_resource type="Script" path="res://src/AttackButton.cs" id="4_jop31"]
+[ext_resource type="Script" path="res://src/VisibilityChanger.cs" id="5_flu7k"]
+[ext_resource type="Script" path="res://src/SlideMask.cs" id="7_2qx5t"]
+[ext_resource type="ButtonGroup" uid="uid://c8kg3f3dogyuv" path="res://AttackButtonGroup.tres" id="7_dq33r"]
+[ext_resource type="Texture2D" uid="uid://dloj826coufuu" path="res://Assets/Sprites/Avatar_JP.png" id="7_kbgav"]
+[ext_resource type="PackedScene" uid="uid://d21hljw8t080d" path="res://Scenes/Subscenes/SocialBattery.tscn" id="9_vlhst"]
+[ext_resource type="Script" path="res://src/ButtonGrid.cs" id="11_2jdkf"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_q7f4m"]
+font_size = 40
+
+[sub_resource type="Animation" id="Animation_5lmts"]
+resource_name = "PlayerTurn"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6]
+}
+
+[sub_resource type="Animation" id="Animation_2j1rs"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_y12pc"]
+resource_name = "SlideLeft"
+
+[sub_resource type="Animation" id="Animation_7kv2e"]
+resource_name = "SocialBatterySubtract"
+
+[sub_resource type="Animation" id="Animation_6mr0s"]
+resource_name = "SocialStandingChange"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_y5wym"]
+_data = {
+"PlayerTurn": SubResource("Animation_5lmts"),
+"RESET": SubResource("Animation_2j1rs"),
+"SlideLeft": SubResource("Animation_y12pc"),
+"SocialBatterySubtract": SubResource("Animation_7kv2e"),
+"SocialStandingChange": SubResource("Animation_6mr0s")
+}
+
+[node name="EncounterScene" type="Control" node_paths=PackedStringArray("_playerSprite", "_enemySprite", "_attackButtons", "_animationPlayer", "_dialogueLine", "_socialBatteryProgress", "_leaveButton")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qerod")
+_playerSprite = NodePath("PlayerSprite")
+_enemySprite = NodePath("EnemySprite")
+_attackButtons = [NodePath("Panel/VBoxContainer/Button"), NodePath("Panel/VBoxContainer/Button2"), NodePath("Panel/VBoxContainer/Button3")]
+_animationPlayer = NodePath("AnimationPlayer")
+_dialogueLine = NodePath("DialogLine")
+_socialBatteryProgress = NodePath("TextureProgressBar")
+_leaveButton = NodePath("Button")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+stretch_mode = 4
+
+[node name="Node" type="Node" parent="." node_paths=PackedStringArray("_encounterScene")]
+script = ExtResource("2_6eywl")
+_encounterScene = NodePath("..")
+_playerData = ExtResource("3_8fkin")
+
+[node name="EnemySprite" type="Sprite2D" parent="."]
+position = Vector2(1635, 427)
+flip_h = true
+hframes = 6
+vframes = 3
+
+[node name="PlayerSprite" type="Sprite2D" parent="."]
+position = Vector2(237, 427)
+texture = ExtResource("1_jm4g5")
+hframes = 6
+vframes = 3
+
+[node name="DialogLine" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.106
+anchor_right = 0.5
+anchor_bottom = 0.163
+offset_left = -417.0
+offset_right = 417.0
+offset_bottom = 84.0
+grow_horizontal = 2
+text = "\"And so I said to him, 'Lorem Ipsum!' Haha!\""
+label_settings = SubResource("LabelSettings_q7f4m")
+horizontal_alignment = 1
+autowrap_mode = 3
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_y5wym")
+}
+
+[node name="TextureProgressBar" parent="." instance=ExtResource("9_vlhst")]
+layout_mode = 0
+offset_left = 96.0
+offset_top = 79.0
+offset_right = 237.0
+offset_bottom = 142.0
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1265.0
+offset_top = 998.0
+offset_right = 1361.0
+offset_bottom = 1029.0
+text = "Leave Fight"
+
+[node name="Panel" type="ColorRect" parent="."]
+clip_children = 1
+layout_mode = 0
+offset_top = 682.0
+offset_right = 1000.0
+offset_bottom = 982.0
+script = ExtResource("7_2qx5t")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+clip_children = 1
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+offset_right = 1000.0
+offset_bottom = 300.0
+grow_vertical = 0
+
+[node name="Button" type="Button" parent="Panel/VBoxContainer" node_paths=PackedStringArray("TopicGrid")]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+toggle_mode = true
+button_group = ExtResource("7_dq33r")
+text = "Attack 1"
+script = ExtResource("4_jop31")
+TopicGrid = NodePath("../HSplitContainer/TopicGrid")
+
+[node name="HSplitContainer" type="HSplitContainer" parent="Panel/VBoxContainer"]
+visible = false
+layout_mode = 2
+script = ExtResource("5_flu7k")
+
+[node name="GridContainer" type="GridContainer" parent="Panel/VBoxContainer/HSplitContainer"]
+clip_contents = true
+layout_mode = 2
+size_flags_vertical = 3
+columns = 2
+
+[node name="TextureRect" type="TextureRect" parent="Panel/VBoxContainer/HSplitContainer/GridContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("7_kbgav")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="Label2" type="Label" parent="Panel/VBoxContainer/HSplitContainer/GridContainer"]
+layout_mode = 2
+text = "Social Standing:
+"
+
+[node name="TextureRect2" type="TextureRect" parent="Panel/VBoxContainer/HSplitContainer/GridContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("7_kbgav")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="Label3" type="Label" parent="Panel/VBoxContainer/HSplitContainer/GridContainer"]
+layout_mode = 2
+text = "Social Battery:"
+
+[node name="TextureRect3" type="TextureRect" parent="Panel/VBoxContainer/HSplitContainer/GridContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("7_kbgav")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer/HSplitContainer/GridContainer"]
+layout_mode = 2
+text = "Conversation Interest:"
+
+[node name="TopicGrid" type="GridContainer" parent="Panel/VBoxContainer/HSplitContainer"]
+layout_mode = 2
+columns = 2
+script = ExtResource("11_2jdkf")
+
+[node name="Button2" type="Button" parent="Panel/VBoxContainer" node_paths=PackedStringArray("TopicGrid")]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+toggle_mode = true
+button_group = ExtResource("7_dq33r")
+text = "Attack 1"
+script = ExtResource("4_jop31")
+TopicGrid = NodePath("../HSplitContainer2/TopicGrid")
+
+[node name="HSplitContainer2" type="HSplitContainer" parent="Panel/VBoxContainer"]
+visible = false
+layout_mode = 2
+script = ExtResource("5_flu7k")
+
+[node name="GridContainer2" type="GridContainer" parent="Panel/VBoxContainer/HSplitContainer2"]
+clip_contents = true
+layout_mode = 2
+size_flags_vertical = 3
+columns = 2
+
+[node name="TextureRect" type="TextureRect" parent="Panel/VBoxContainer/HSplitContainer2/GridContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("7_kbgav")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="Label2" type="Label" parent="Panel/VBoxContainer/HSplitContainer2/GridContainer2"]
+layout_mode = 2
+text = "Social Standing:
+"
+
+[node name="TextureRect2" type="TextureRect" parent="Panel/VBoxContainer/HSplitContainer2/GridContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("7_kbgav")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="Label3" type="Label" parent="Panel/VBoxContainer/HSplitContainer2/GridContainer2"]
+layout_mode = 2
+text = "Social Battery:"
+
+[node name="TextureRect3" type="TextureRect" parent="Panel/VBoxContainer/HSplitContainer2/GridContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("7_kbgav")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer/HSplitContainer2/GridContainer2"]
+layout_mode = 2
+text = "Conversation Interest:"
+
+[node name="TopicGrid" type="GridContainer" parent="Panel/VBoxContainer/HSplitContainer2"]
+layout_mode = 2
+columns = 2
+
+[node name="Button3" type="Button" parent="Panel/VBoxContainer" node_paths=PackedStringArray("TopicGrid")]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+toggle_mode = true
+button_group = ExtResource("7_dq33r")
+text = "Attack 1"
+script = ExtResource("4_jop31")
+TopicGrid = NodePath("../HSplitContainer3/TopicGrid")
+
+[node name="HSplitContainer3" type="HSplitContainer" parent="Panel/VBoxContainer"]
+visible = false
+layout_mode = 2
+script = ExtResource("5_flu7k")
+
+[node name="GridContainer3" type="GridContainer" parent="Panel/VBoxContainer/HSplitContainer3"]
+clip_contents = true
+layout_mode = 2
+size_flags_vertical = 3
+columns = 2
+
+[node name="TextureRect" type="TextureRect" parent="Panel/VBoxContainer/HSplitContainer3/GridContainer3"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("7_kbgav")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="Label2" type="Label" parent="Panel/VBoxContainer/HSplitContainer3/GridContainer3"]
+layout_mode = 2
+text = "Social Standing:
+"
+
+[node name="TextureRect2" type="TextureRect" parent="Panel/VBoxContainer/HSplitContainer3/GridContainer3"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("7_kbgav")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="Label3" type="Label" parent="Panel/VBoxContainer/HSplitContainer3/GridContainer3"]
+layout_mode = 2
+text = "Social Battery:"
+
+[node name="TextureRect3" type="TextureRect" parent="Panel/VBoxContainer/HSplitContainer3/GridContainer3"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("7_kbgav")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer/HSplitContainer3/GridContainer3"]
+layout_mode = 2
+text = "Conversation Interest:"
+
+[node name="TopicGrid" type="GridContainer" parent="Panel/VBoxContainer/HSplitContainer3"]
+layout_mode = 2
+columns = 2
+
+[connection signal="toggled" from="Panel/VBoxContainer/Button" to="Panel/VBoxContainer/HSplitContainer" method="ShowContainer"]
+[connection signal="toggled" from="Panel/VBoxContainer/Button2" to="Panel/VBoxContainer/HSplitContainer2" method="ShowContainer"]
+[connection signal="toggled" from="Panel/VBoxContainer/Button3" to="Panel/VBoxContainer/HSplitContainer3" method="ShowContainer"]

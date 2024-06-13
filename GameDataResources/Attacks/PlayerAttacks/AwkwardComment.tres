@@ -1,0 +1,15 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://cout4rcyqimw1"]
+
+[ext_resource type="Script" path="res://src/PlayerAttack.cs" id="1_edr2g"]
+
+[resource]
+script = ExtResource("1_edr2g")
+SocialStandingChangeLike = 0.0
+SocialStandingChangeDislike = 0.0
+InterestChange = 0.0
+EnableTopicChoice = true
+IsFromItem = true
+UnlockedTopics = [8, 9]
+AttackName = "Awkward Comment"
+Dialogue = "Awkward Comment"
+Animation = ""

@@ -1,0 +1,12 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://0jqdbyw83i7v"]
+
+[ext_resource type="Script" path="res://src/PlayerAttack.cs" id="1_5kp4x"]
+
+[resource]
+script = ExtResource("1_5kp4x")
+SocialStandingChange = 0.0
+InterestChange = 0.0
+EnableTopicChoice = false
+AttackName = "Nod and Smile"
+Dialogue = "Nod and Smile"
+Animation = ""

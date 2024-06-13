@@ -1,0 +1,12 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://bkuellhd57o5n"]
+
+[ext_resource type="Script" path="res://src/PlayerAttack.cs" id="1_hcd7m"]
+
+[resource]
+script = ExtResource("1_hcd7m")
+SocialStandingChange = 0.0
+InterestChange = 0.0
+EnableTopicChoice = false
+AttackName = "Inquiring Question"
+Dialogue = "Inquiring Question"
+Animation = ""
