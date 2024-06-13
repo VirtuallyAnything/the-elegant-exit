@@ -8,7 +8,7 @@ namespace tee
 	{
 		public static event CombatEventHandler CombatEnded;
 		[Export] private EncounterScene _encounterScene;
-		private float _mentalCapacity = 20;
+		private float _mentalCapacity = 10;
 		private float _socialStandingCombat;
 		private EnemyData _enemyData;
 		private float _conversationInterest;
