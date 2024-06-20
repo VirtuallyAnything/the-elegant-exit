@@ -11,9 +11,9 @@ config_version=5
 [application]
 
 config/name="TheElegantExit"
-run/main_scene="res://Scenes/PartyScene.tscn"
+run/main_scene="res://Scenes/StartScene.tscn"
 config/features=PackedStringArray("4.2", "C#", "GL Compatibility")
-config/icon="res://Assets/Sprites/icon.svg"
+config/icon="res://Assets/Sprites/ElegantExitLogo.png"
 
 [autoload]
 

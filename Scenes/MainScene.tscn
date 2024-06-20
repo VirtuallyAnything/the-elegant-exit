@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dmyfdjltetw2d"]
+
+[ext_resource type="Script" path="res://src/MainScene.cs" id="1_klk3w"]
+[ext_resource type="PackedScene" uid="uid://dmfp5lawyswyl" path="res://Scenes/PartyScene.tscn" id="2_6n0uc"]
+
+[node name="MainScene" type="Node2D" node_paths=PackedStringArray("_partyLayer", "_encounterLayer")]
+script = ExtResource("1_klk3w")
+_partyLayer = NodePath("PartyLayer")
+_encounterLayer = NodePath("EncounterLayer")
+
+[node name="Node2D" parent="." instance=ExtResource("2_6n0uc")]
+
+[node name="PartyLayer" type="CanvasLayer" parent="."]
+
+[node name="EncounterLayer" type="CanvasLayer" parent="."]
+process_mode = 4

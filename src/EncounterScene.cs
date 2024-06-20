@@ -17,6 +17,7 @@ namespace tee
 		[Export] private Color _playerDialogueColor;
 		[Export] private Sprite2D _enemySprite;
 		[Export] private Color _enemyDialogueColor;
+		[Export] private Label _enemyName;
 		[Export] private Array<AttackButton> _attackButtons;
 		[Export] private AnimationPlayer _animationPlayer;
 		[Export] private Label _dialogueLine;
@@ -50,6 +51,7 @@ namespace tee
 		public void SetupScene(EnemyData enemyData)
 		{
 			_currentEnemy = enemyData;
+			_enemyName.Text = _currentEnemy.DisplayName;
 			_enemySprite.Texture = enemyData.Sprite;
 			_dialogueLine.Text = "";
 			_dialogueLine.Modulate = _enemyDialogueColor;

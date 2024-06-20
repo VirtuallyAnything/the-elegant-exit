@@ -1,13 +1,15 @@
-[gd_scene load_steps=12 format=3 uid="uid://dmfp5lawyswyl"]
+[gd_scene load_steps=14 format=3 uid="uid://dmfp5lawyswyl"]
 
 [ext_resource type="Script" path="res://src/PartyScene.cs" id="1_mj4je"]
 [ext_resource type="Texture2D" uid="uid://b3iq1r4aqyun" path="res://Assets/Sprites/Environment.png" id="2_6yq0k"]
 [ext_resource type="PackedScene" uid="uid://d21hljw8t080d" path="res://Scenes/Subscenes/SocialBattery.tscn" id="4_8rkpa"]
 [ext_resource type="Texture2D" uid="uid://d3hx3upwa0rgm" path="res://Assets/Sprites/door.png" id="4_wxte6"]
+[ext_resource type="Texture2D" uid="uid://k4q8rnj22dsh" path="res://Assets/Sprites/MainCharacterIcon.png" id="5_hq8yi"]
 [ext_resource type="Script" path="res://src/Movement.cs" id="5_u7m7i"]
-[ext_resource type="Texture2D" uid="uid://cvmv3sr1jrvrj" path="res://Assets/Sprites/PersonIcon.png" id="6_iic4b"]
 [ext_resource type="Script" path="res://src/Enemy.cs" id="7_kk71b"]
+[ext_resource type="Resource" uid="uid://bqgn3w6aagdea" path="res://GameDataResources/EnemyData/NeighborDave.tres" id="8_4wv28"]
 [ext_resource type="Resource" uid="uid://dgmh740a8kil7" path="res://GameDataResources/EnemyData/Babi.tres" id="8_g1nty"]
+[ext_resource type="Resource" uid="uid://d4mv565km1snp" path="res://GameDataResources/EnemyData/JohnParker.tres" id="10_gmvvv"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_ky745"]
 vertices = PackedVector2Array(1894, 494, 2166, 125, 2167, 623, 1894, 529, 1893, 266, 1894, 224, 1512, 445, 1824, 445, 1823, 487, 1513, 490, 1366, 862, 1113, 862, 1114, 771, 1182, 771, 1366, 832, 1893, 125, 1826, 224, 1826, 266, 1629, 692, 1825, 692, 1826, 937, 1434, 937, 1434, 832, 1586, 692, 1434, 745, 1485, 692, 1433, 792, 1366, 792, 1222, 771, 1894, 623, 1825, 532, 1825, 624, 1629, 624, 1586, 623, 1510, 530, 1366, 771, 1182, 703, 1225, 703, 929, 703, 929, 554, 1080, 554, 1052, 485, 929, 485, 929, 409, 1087, 451, 861, 409, 861, 659, 512, 659, 512, 159, 859, 159, 861, 364, 929, 372, 929, 125, 1154, 125, 1154, 383, 1121, 422, 1223, 411, 1223, 124, 1826, 124, 1442, 377, 1826, 376, 1442, 490, 1511, 623, 1442, 530, 1135, 499, 1170, 467, 1442, 639, 1380, 703)
@@ -25,10 +27,6 @@ radius = 8.83325
 [node name="Node2D" type="Node2D" node_paths=PackedStringArray("_socialBattery")]
 script = ExtResource("1_mj4je")
 _socialBattery = NodePath("GroundFloor/Characters/CharacterBody2D5/Camera2D/TextureProgressBar")
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-process_mode = 4
-visible = false
 
 [node name="GroundFloor" type="Node2D" parent="."]
 
@@ -281,7 +279,7 @@ disable_collision = false
 [node name="Characters" type="Node2D" parent="GroundFloor"]
 
 [node name="CharacterBody2D5" type="CharacterBody2D" parent="GroundFloor/Characters" node_paths=PackedStringArray("_agent", "_camera")]
-position = Vector2(905, 595)
+position = Vector2(2463, 563)
 script = ExtResource("5_u7m7i")
 _agent = NodePath("NavigationAgent2D")
 _camera = NodePath("Camera2D")
@@ -292,8 +290,7 @@ shape = SubResource("CircleShape2D_rv6dr")
 
 [node name="Sprite2D" type="Sprite2D" parent="GroundFloor/Characters/CharacterBody2D5"]
 position = Vector2(-2.38419e-07, -1.52588e-05)
-scale = Vector2(0.21225, 0.21225)
-texture = ExtResource("6_iic4b")
+texture = ExtResource("5_hq8yi")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="GroundFloor/Characters/CharacterBody2D5"]
 path_desired_distance = 65.0
@@ -301,7 +298,6 @@ target_desired_distance = 65.0
 avoidance_enabled = true
 radius = 20.0
 time_horizon_agents = 0.66
-debug_enabled = true
 
 [node name="Camera2D" type="Camera2D" parent="GroundFloor/Characters/CharacterBody2D5"]
 
@@ -310,11 +306,24 @@ offset_left = -876.0
 offset_top = -460.0
 offset_right = -735.0
 offset_bottom = -397.0
+metadata/_edit_use_anchors_ = true
 
 [node name="Enemy" type="Node2D" parent="GroundFloor"]
-position = Vector2(328, 563)
+position = Vector2(276, 536)
+script = ExtResource("7_kk71b")
+_triggerRange = 100.0
+_enemyData = ExtResource("8_4wv28")
+
+[node name="Enemy2" type="Node2D" parent="GroundFloor"]
+position = Vector2(1917, 385)
 script = ExtResource("7_kk71b")
 _triggerRange = 100.0
 _enemyData = ExtResource("8_g1nty")
+
+[node name="Enemy3" type="Node2D" parent="GroundFloor"]
+position = Vector2(2006, 784)
+script = ExtResource("7_kk71b")
+_triggerRange = 100.0
+_enemyData = ExtResource("10_gmvvv")
 
 [connection signal="velocity_computed" from="GroundFloor/Characters/CharacterBody2D5/NavigationAgent2D" to="GroundFloor/Characters/CharacterBody2D5" method="OnNavigationAgent2DVelocityComputed"]

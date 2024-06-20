@@ -1,0 +1,109 @@
+[gd_scene load_steps=9 format=3 uid="uid://bhl5fccx2vo6m"]
+
+[ext_resource type="Texture2D" uid="uid://crypfsgpcufs8" path="res://Assets/UI/TitleScreen_vers2.png" id="1_iap2q"]
+[ext_resource type="Texture2D" uid="uid://bof3wrxapds3v" path="res://Assets/Sprites/MainCharacters.png" id="2_dym4n"]
+[ext_resource type="Theme" uid="uid://bpp0q38rfd1ms" path="res://Assets/Themes/Lobster.tres" id="2_p0wqb"]
+[ext_resource type="PackedScene" uid="uid://dl3r57rxufb83" path="res://Scenes/Subscenes/SpeechbubbleButton1.tscn" id="3_dnpqh"]
+[ext_resource type="StyleBox" uid="uid://dl3ygowiq30p5" path="res://Assets/Themes/SpeechBubbleStyleBox2.tres" id="4_1y13y"]
+[ext_resource type="Texture2D" uid="uid://bex0x2lhx7pqh" path="res://Assets/UI/Speechbubble_var3.png" id="5_8vrqg"]
+[ext_resource type="Texture2D" uid="uid://b12srjfl8cur2" path="res://Assets/UI/arrow.png" id="6_4fm0u"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_s4ava"]
+texture = ExtResource("5_8vrqg")
+texture_margin_left = 96.0
+texture_margin_top = 70.0
+texture_margin_right = 40.0
+texture_margin_bottom = 43.0
+
+[node name="StartScene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.501961, 0.14902, 0.266667, 1)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("1_iap2q")
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -108.0
+offset_top = 623.0
+offset_right = 1812.0
+offset_bottom = 1703.0
+texture = ExtResource("2_dym4n")
+
+[node name="PlayButton" parent="." instance=ExtResource("3_dnpqh")]
+layout_mode = 1
+
+[node name="Button2" parent="." instance=ExtResource("3_dnpqh")]
+layout_mode = 1
+offset_left = -448.0
+offset_top = 74.0
+offset_right = 39.0
+offset_bottom = 200.0
+theme_override_styles/normal = ExtResource("4_1y13y")
+
+[node name="Label" parent="Button2" index="0"]
+anchor_left = 0.521
+anchor_top = 0.456
+anchor_right = 0.521
+anchor_bottom = 0.456
+offset_left = -162.727
+offset_top = -38.456
+offset_right = 162.273
+offset_bottom = 38.544
+text = "Scoreboard"
+
+[node name="Button3" parent="." instance=ExtResource("3_dnpqh")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.953
+anchor_top = 2.432
+anchor_right = 0.953
+anchor_bottom = 2.432
+offset_left = -1235.76
+offset_top = -1834.56
+offset_right = -729.76
+offset_bottom = -1706.56
+theme_override_styles/normal = SubResource("StyleBoxTexture_s4ava")
+
+[node name="Label" parent="Button3" index="0"]
+anchor_left = 0.543
+anchor_top = 0.441
+anchor_right = 0.543
+anchor_bottom = 0.441
+offset_left = -56.758
+offset_top = -38.448
+offset_right = 57.242
+offset_bottom = 38.552
+text = "Quit"
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_top = 150.0
+offset_right = 1920.0
+offset_bottom = 422.0
+theme = ExtResource("2_p0wqb")
+bbcode_enabled = true
+text = "[center]The [font=res://Assets/Fonts/Lobster-Regular.ttf]Elegant[/font] Exit[/center]"
+
+[node name="Arrow" type="Sprite2D" parent="."]
+position = Vector2(1304, 448)
+texture = ExtResource("6_4fm0u")
+
+[editable path="Button2"]
+[editable path="Button3"]

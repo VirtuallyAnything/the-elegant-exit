@@ -7,8 +7,8 @@ script = ExtResource("1_tkmik")
 _topicRelatedQuotes = {
 0: "",
 1: "",
-2: "Have you read that Men’s Health article about the health benefits of a good tan. I followed one of their guides from last year and my coworkers commented on my ‘pumpkin looks’ for a month.",
-3: "",
+2: "I followed a Men’s Health article from last year and my coworkers commented on my ‘pumpkin looks’ for a month.",
+3: "You know, I also sometimes spend money.",
 4: "Have you heard of that politician on campaign who declared his love for his home state of Wisconsin? But he said that in Wyoming.",
 5: "",
 6: "",
@@ -27,5 +27,5 @@ SocialBatteryChangeDislike = 0
 EnableTopicChoice = true
 IsFromItem = false
 UnlockedTopics = [2, 3, 4]
-AttackName = "Anecdote"
+AttackName = "Awkward Anecdote"
 Animation = ""

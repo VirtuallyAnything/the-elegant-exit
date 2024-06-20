@@ -9,9 +9,50 @@ namespace tee
 		public static event CombatEventHandler CombatEnded;
 		[Export] private EncounterScene _encounterScene;
 		private float _mentalCapacity = 10;
+        private float MentalCapacity
+        {
+			get{return _mentalCapacity;}
+			set
+			{
+				if(value < 0){
+					_mentalCapacity = 0;
+				}else if(value > 10){
+					_mentalCapacity = 10;
+				}else{
+					_mentalCapacity = value;
+				}	
+			}
+		}
 		private float _socialStandingCombat;
+		private float SocialStandingCombat{
+			get{return _socialStandingCombat;}
+			set
+			{
+				if(value < -5){
+					_socialStandingCombat = -5;
+				}else if(value > 5){
+					_socialStandingCombat = 5;
+				}else{
+					_socialStandingCombat = value;
+				}
+			}
+		}
 		private EnemyData _enemyData;
+		private float _maxConversationInterest;
 		private float _conversationInterest;
+		private float ConversationInterest{
+			get{return _conversationInterest;}
+			set
+			{
+				if(value < 0){
+					_conversationInterest = 0;
+				}else if(value > _maxConversationInterest){
+					_conversationInterest = _maxConversationInterest;
+				}else{
+					_conversationInterest = value;
+				}
+			}
+		}
 		private Array<PlayerAttack> _currentAttacks = new();
 		private Array<PlayerAttack> _allPlayerAttacks;
 		private Array<PlayerAttack> _attackPool;
@@ -38,7 +79,8 @@ namespace tee
 				_encounterScene.AttackButtons[i].SetupButton(randomAttack);
 			}
 			_enemyData = _encounterScene.CurrentEnemy;
-			_conversationInterest = _enemyData.ConversationInterest;
+			_maxConversationInterest = _enemyData.ConversationInterest;
+			ConversationInterest = _maxConversationInterest;
 			_encounterScene.DisableAttackButtons(true);
 			EnemyAttack();
 
@@ -51,10 +93,10 @@ namespace tee
 				_encounterScene.DisableAttackButtons(false);
 				return;
 			}
-			if (_mentalCapacity <= 0)
+			if (MentalCapacity <= 0)
 			{
 				CombatEnded?.Invoke();
-				GameManager.SocialStandingOverall += _socialStandingCombat;
+				GameManager.SocialStandingOverall += SocialStandingCombat;
 				return;
 			}
 			_currentAttacks.Remove(_selectedAttack);
@@ -71,38 +113,38 @@ namespace tee
 
 			if (_enemyData.TopicPreferences.Contains(conversationTopic))
 			{
-				_socialStandingCombat += _selectedAttack.SocialStandingChangeLike;
-				_conversationInterest += _selectedAttack.ConversationInterestChangeLike;
-				_mentalCapacity += _selectedAttack.MentalCapacityChangeLike;
+				SocialStandingCombat += _selectedAttack.SocialStandingChangeLike;
+				ConversationInterest += _selectedAttack.ConversationInterestChangeLike;
+				MentalCapacity += _selectedAttack.MentalCapacityChangeLike;
 				GameManager.SocialBattery += _selectedAttack.SocialBatteryChangeLike;
 			}
 			else
 			{
-				_socialStandingCombat += _selectedAttack.SocialStandingChangeDislike;
-				_conversationInterest += _selectedAttack.ConversationInterestChangeDislike;
-				_mentalCapacity += _selectedAttack.MentalCapacityChangeDislike;
+				SocialStandingCombat += _selectedAttack.SocialStandingChangeDislike;
+				ConversationInterest += _selectedAttack.ConversationInterestChangeDislike;
+				MentalCapacity += _selectedAttack.MentalCapacityChangeDislike;
 				GameManager.SocialBattery += _selectedAttack.SocialBatteryChangeDislike;
 			}
 
 			_encounterScene.PlayCombatAnimation(_selectedAttack, conversationTopic);
-			_encounterScene.UpdateUI(GameManager.SocialBattery, _socialStandingCombat, _mentalCapacity, _conversationInterest);
+			_encounterScene.UpdateUI(GameManager.SocialBattery, SocialStandingCombat, MentalCapacity, ConversationInterest);
 			GD.Print("Player Attacks!");
 
 		}
 
 		public void EnemyAttack()
 		{
-			if (_conversationInterest <= 0)
+			if (ConversationInterest <= 0)
 			{
 				CombatEnded?.Invoke();
-				GameManager.SocialStandingOverall += _socialStandingCombat;
+				GameManager.SocialStandingOverall += SocialStandingCombat;
 				return;
 			}
 			EnemyAttack enemyAttack = _enemyData.EnemyAttacks.PickRandom();
 			GameManager.SocialBattery += enemyAttack.SocialBatteryChange;
-			_mentalCapacity += enemyAttack.MentalCapacityChange;
+			MentalCapacity += enemyAttack.MentalCapacityChange;
 			_encounterScene.PlayCombatAnimation(enemyAttack);
-			_encounterScene.UpdateUI(GameManager.SocialBattery, _socialStandingCombat, _mentalCapacity, _conversationInterest);
+			_encounterScene.UpdateUI(GameManager.SocialBattery, SocialStandingCombat, MentalCapacity, ConversationInterest);
 		}
 
 		public PlayerAttack ChooseRandomPlayerAttack()

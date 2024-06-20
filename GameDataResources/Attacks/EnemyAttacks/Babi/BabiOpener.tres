@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://daj35kx6kces2"]
+
+[ext_resource type="Script" path="res://src/EnemyAttack.cs" id="1_f8etp"]
+
+[resource]
+script = ExtResource("1_f8etp")
+_quotes = Array[String](["Ooooh haaaave youuu heaaard?! Karaoke is gonna start shortly. Oh I am soooo hyped!"])
+SocialBatteryChange = -5
+MentalCapacityChange = -2.0
+AttackName = ""
+Animation = ""

@@ -11,7 +11,7 @@ namespace tee
 		private static Godot.Collections.Array<PlayerAttack> _availableAttacks;
 		private int[] _partyMembers;
 		private static float _socialStandingOverall;
-		private static int _socialBattery;
+		private static int _socialBattery = 30;
 
 		public static Godot.Collections.Array<PlayerAttack> AvailableAttacks
 		{
@@ -24,10 +24,14 @@ namespace tee
 			get { return _socialBattery; }
 			set 
 			{ 
-				_socialBattery = value;
-				if(_socialBattery <= 0){
+				if(value > 30){
+					_socialBattery = 30;
+				}else if(value <= 0){
+					_socialBattery = 0;
 					GameOver?.Invoke();
-				} 
+				}else{
+					_socialBattery = value;
+				}
 			}
 		}
 

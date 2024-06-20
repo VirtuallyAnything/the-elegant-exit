@@ -41,6 +41,7 @@ namespace tee
 		{
 			GD.Print($"Enemy {_enemyData.DisplayName} triggers fight");
 			SceneManager.ChangeToEncounterScene(_enemyData);
+			QueueFree();
 		}
 	}
 }

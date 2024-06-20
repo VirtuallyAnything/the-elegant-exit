@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://b2jae8ym7heos"]
+
+[ext_resource type="Script" path="res://src/EnemyAttack.cs" id="1_3mdsl"]
+
+[resource]
+script = ExtResource("1_3mdsl")
+_quotes = Array[String](["Who invited you to this party?"])
+SocialBatteryChange = -3
+MentalCapacityChange = -1.0
+AttackName = "Who Invited You?"
+Animation = ""

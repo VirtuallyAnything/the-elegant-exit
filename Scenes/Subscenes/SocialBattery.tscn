@@ -1,14 +1,30 @@
-[gd_scene load_steps=3 format=3 uid="uid://d21hljw8t080d"]
+[gd_scene load_steps=5 format=3 uid="uid://d21hljw8t080d"]
 
 [ext_resource type="Texture2D" uid="uid://b7g4o5wujfi7m" path="res://Assets/Sprites/SocialBatteryIcon.png" id="1_m3m15"]
 [ext_resource type="Texture2D" uid="uid://7rkwkdxdfmn8" path="res://Assets/Sprites/SocialBatteryProgress.png" id="2_s1cl3"]
+[ext_resource type="Script" path="res://src/TextSetter.cs" id="3_ls56a"]
+
+[sub_resource type="Theme" id="Theme_gufhv"]
+default_font_size = 35
 
 [node name="TextureProgressBar" type="TextureProgressBar"]
 offset_left = 60.0
 offset_top = 60.0
 offset_right = 201.0
 offset_bottom = 123.0
-value = 100.0
+max_value = 30.0
+value = 30.0
 texture_under = ExtResource("1_m3m15")
 texture_progress = ExtResource("2_s1cl3")
 texture_progress_offset = Vector2(8.86, 11.195)
+
+[node name="SocialBatteryValue" type="Label" parent="."]
+modulate = Color(0, 0.701961, 0.0862745, 1)
+layout_mode = 0
+offset_left = 163.0
+offset_right = 203.0
+offset_bottom = 49.0
+theme = SubResource("Theme_gufhv")
+script = ExtResource("3_ls56a")
+
+[connection signal="value_changed" from="." to="SocialBatteryValue" method="ValueChanged"]

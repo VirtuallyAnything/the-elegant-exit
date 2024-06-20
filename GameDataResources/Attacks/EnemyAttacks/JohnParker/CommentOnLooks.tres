@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://6xiobnbsc0qs"]
+
+[ext_resource type="Script" path="res://src/EnemyAttack.cs" id="1_2wheo"]
+
+[resource]
+script = ExtResource("1_2wheo")
+_quotes = Array[String](["You must not earn much, looking the way you do."])
+SocialBatteryChange = -5
+MentalCapacityChange = -2.0
+AttackName = "Comment On Looks"
+Animation = ""

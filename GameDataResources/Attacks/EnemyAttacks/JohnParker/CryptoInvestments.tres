@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://wn4q8cwgqopa"]
+
+[ext_resource type="Script" path="res://src/EnemyAttack.cs" id="1_xo0d1"]
+
+[resource]
+script = ExtResource("1_xo0d1")
+_quotes = Array[String](["I invested millions into crypto."])
+SocialBatteryChange = 0
+MentalCapacityChange = -1.0
+AttackName = "Crypto Investments"
+Animation = ""

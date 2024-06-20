@@ -10,6 +10,7 @@ namespace tee
 		private PlayerAttack _boundAttack;
 		private ConversationTopic _boundTopic;
 		private ButtonGrid _topicGrid;
+		[Export] AttackValueSetter _attackValueSetter;
 		private Array<TopicButton> _topicButtonsAttack = new();
 		private Array<ConversationTopic> _attackConversationTopics = new();
 		private Array<TopicButton> _topicButtonsItem = new();
@@ -128,6 +129,7 @@ namespace tee
 				_topicGrid.Add(button);
 				button.ParentButton = this;
 			}
+			_attackValueSetter.SetLabels(attack);
 		}
 
 		private void Disable()

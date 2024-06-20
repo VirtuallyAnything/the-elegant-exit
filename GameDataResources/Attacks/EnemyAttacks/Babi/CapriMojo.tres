@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://bi1hld7xttf31"]
+
+[ext_resource type="Script" path="res://src/EnemyAttack.cs" id="1_1oi4m"]
+
+[resource]
+script = ExtResource("1_1oi4m")
+_quotes = Array[String](["I’ve been at the thrift shop lately. And oh my gosh! Those capri jeans really cater to my mojo!"])
+SocialBatteryChange = 0
+MentalCapacityChange = -1.0
+AttackName = ""
+Animation = ""

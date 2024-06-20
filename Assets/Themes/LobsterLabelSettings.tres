@@ -1,0 +1,11 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://bx6i6eo3rklk8"]
+
+[ext_resource type="FontFile" uid="uid://dnj361fu4us32" path="res://Assets/Fonts/Lobster-Regular.ttf" id="1_lyy1p"]
+
+[resource]
+font = ExtResource("1_lyy1p")
+font_size = 100
+font_color = Color(1, 0.8, 0.701961, 1)
+shadow_size = 0
+shadow_color = Color(0.235294, 0.298039, 0.54902, 1)
+shadow_offset = Vector2(5, 5)
