@@ -30,7 +30,7 @@ namespace tee
 			set { _icon = value; }
 		}
 		[Export]
-		public Texture2D Sprite
+		public Texture2D Texture
 		{
 			get { return _sprite; }
 			set { _sprite = value; }

@@ -6,7 +6,8 @@ namespace tee
 {
 	public partial class SceneManager : Node
 	{
-		private static EncounterScene _encounterScene;
+		private static EncounterScene _encounterScene = new();
+		private EncounterStartScreen _encounterStartScene = new();
 		private static PartyScene _partyScene;
 		private static MainScene _mainScene;
 		private static CanvasLayer _canvasLayer;
@@ -37,31 +38,44 @@ namespace tee
 			GameManager.GameOver += ChangeToGameOverScene;
 		}
 
-		public void ChangeToScene(SceneName sceneName){
+		public void ChangeToScene(SceneName sceneName)
+		{
+			//currentScene.Remove()
 			switch (sceneName)
 			{
-				case SceneName.MainMenu: ChangeToMainScene();
-				break;
-    			case SceneName.PauseMenu: ChangeToPauseScene();
-				break;
-    			case SceneName.Scoreboard:
-				break;
-    			case SceneName.NicknameScreen:
-				break;
-    			case SceneName.PartyGroundFloor:
-				break;
-    			case SceneName.PartyFirstFloor:
-				break;
-    			case SceneName.PartySecondFloor:
-				break;
-    			case SceneName.EncounterStart:
-				break;
-    			case SceneName.Encounter:
-				break;
-    			case SceneName.EncounterFinished:
-				break;
-    			case SceneName.GameOver:
-				break;
+				case SceneName.MainMenu:
+					ChangeToMainScene();
+					break;
+				case SceneName.MainScene:
+					ChangeToMainScene();
+					break;
+				case SceneName.PauseMenu:
+					ChangeToPauseScene();
+					break;
+				case SceneName.Scoreboard:
+					break;
+				case SceneName.NicknameScreen:
+					break;
+				case SceneName.PartyGroundFloor:
+					ChangeToPartyGroundFloor();
+					break;
+				case SceneName.PartyFirstFloor:
+					ChangeToPartyFirstFloor();
+					break;
+				case SceneName.PartySecondFloor:
+					ChangeToPartySecondFloor();
+					break;
+				case SceneName.EncounterStart:
+					ChangeToEncounterStartScene();
+					break;
+				case SceneName.Encounter:
+					ChangeToEncounterScene();
+					break;
+				case SceneName.EncounterFinished:
+					break;
+				case SceneName.GameOver:
+					ChangeToGameOverScene();
+					break;
 			}
 		}
 
@@ -70,24 +84,44 @@ namespace tee
 			GetTree().CallDeferred("change_scene_to_file", "res://Scenes/MainScene.tscn");
 		}
 
-		public void ChangeToPauseScene()
+		private void ChangeToPartyGroundFloor()
 		{
 
 		}
 
-		private void ChangeToGameOverScene(){
+		private void ChangeToPartyFirstFloor()
+		{
+
+		}
+
+		private void ChangeToPartySecondFloor()
+		{
+
+		}
+
+		private void ChangeToPauseScene()
+		{
+
+		}
+
+		private void ChangeToGameOverScene()
+		{
 			GetTree().CallDeferred("change_scene_to_file", "res://Scenes/GameOverScene.tscn");
 		}
 
-		public static void ChangeToEncounterScene(EnemyData enemyData)
+		private void ChangeToEncounterStartScene()
 		{
-			PackedScene scene = GD.Load<PackedScene>("res://Scenes/EncounterScene.tscn");
 			_mainScene.PartyLayer.Visible = false;
 			_mainScene.PartyLayer.SetProcess(false);
-			_mainScene.EncounterLayer.ProcessMode = ProcessModeEnum.Pausable;
-			_mainScene.EncounterLayer.Visible = true;
-			_mainScene.EncounterLayer.AddChild(scene.Instantiate());
-			_encounterScene.SetupScene(enemyData);
+			_mainScene.EncounterLayer.AddChild(_encounterStartScene);
+		}
+
+		public static void ChangeToEncounterScene()
+		{
+			_mainScene.PartyLayer.Visible = false;
+			_mainScene.PartyLayer.SetProcess(false);
+			_mainScene.EncounterLayer.AddChild(_encounterScene);
+			_encounterScene.SetupScene(GameManager.CurrentEnemy);
 			_encounterScene.LeaveButton.Pressed += ExitEncounter;
 		}
 
@@ -96,15 +130,13 @@ namespace tee
 			_mainScene.PartyLayer.ProcessMode = ProcessModeEnum.Pausable;
 			_partyScene.OnSceneReentered();
 			_mainScene.PartyLayer.Visible = true;
-			_mainScene.EncounterLayer.SetProcess(false);
-			_mainScene.EncounterLayer.Visible = false;
-			_mainScene.EncounterLayer.GetChild(0).QueueFree();
+			_mainScene.EncounterLayer.RemoveChild(_encounterScene);
 		}
 
-        public override void _ExitTree()
-        {
-            CombatManager.CombatEnded -= ExitEncounter;
+		public override void _ExitTree()
+		{
+			CombatManager.CombatEnded -= ExitEncounter;
 			GameManager.GameOver -= ChangeToGameOverScene;
-        }
-    }
+		}
+	}
 }

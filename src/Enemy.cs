@@ -10,6 +10,7 @@ namespace tee
 		[Export] private EnemyData _enemyData;
 		private Sprite2D _sprite = new Sprite2D();
 		Area2D _triggerArea = new Area2D();
+		private SceneManager _sceneManager;
 
 
 		// Called when the node enters the scene tree for the first time.
@@ -25,6 +26,7 @@ namespace tee
 			_sprite.Texture = _enemyData.Icon;
 			AddChild(_sprite);
 			AddChild(_triggerArea);
+			_sceneManager = GetNode("/root/SceneManager") as SceneManager;
 		}
 
 		// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -40,7 +42,8 @@ namespace tee
 		private void OnBodyEntered(Node2D body)
 		{
 			GD.Print($"Enemy {_enemyData.DisplayName} triggers fight");
-			SceneManager.ChangeToEncounterScene(_enemyData);
+			GameManager.CurrentEnemy = _enemyData;
+			_sceneManager.ChangeToScene(SceneName.EncounterStart);
 			QueueFree();
 		}
 	}

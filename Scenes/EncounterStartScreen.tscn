@@ -1,8 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://dqpcyi5i0xyjh"]
+[gd_scene load_steps=10 format=3 uid="uid://dqpcyi5i0xyjh"]
 
 [ext_resource type="Script" path="res://src/EncounterStartScreen.cs" id="1_5g70q"]
-[ext_resource type="Texture2D" uid="uid://dloj826coufuu" path="res://Assets/Sprites/Avatar_JP.png" id="2_8hrfe"]
-[ext_resource type="Texture2D" uid="uid://c08irt6knvdnn" path="res://Assets/Sprites/MainCharacters_scaled.png" id="3_ytnew"]
+[ext_resource type="Texture2D" uid="uid://b1on62evvvcee" path="res://Assets/UI/EncounterStartScreen.png" id="2_j3cag"]
+[ext_resource type="Texture2D" uid="uid://bof3wrxapds3v" path="res://Assets/Sprites/MainCharacters.png" id="3_5u531"]
+[ext_resource type="LabelSettings" uid="uid://bx6i6eo3rklk8" path="res://Assets/Themes/LobsterLabelSettings.tres" id="4_oqcpl"]
+[ext_resource type="Texture2D" uid="uid://ibsb083f86ee" path="res://Assets/UI/VS_withFlame.png" id="5_diw5j"]
 
 [sub_resource type="Theme" id="Theme_bya7o"]
 default_font_size = 85
@@ -13,26 +15,14 @@ length = 0.8
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("VS:position")
+tracks/0/path = NodePath("TextureRect3:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(914, -134), Vector2(914, 781)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("EnemyName:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.4, 0.7),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(2019, 781), Vector2(1096, 781)]
+"values": [Vector2(716, -593), Vector2(716, 262), Vector2(716, 123), Vector2(716, 181)]
 }
 
 [sub_resource type="Animation" id="Animation_8u2kd"]
@@ -40,26 +30,14 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("VS:position")
+tracks/0/path = NodePath("TextureRect3:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(914, 688)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("EnemyName:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1096, 688)]
+"values": [Vector2(716, 181)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vr1mx"]
@@ -68,7 +46,7 @@ _data = {
 "RESET": SubResource("Animation_8u2kd")
 }
 
-[node name="EncounterStartScreen" type="Control"]
+[node name="EncounterStartScreen" type="Control" node_paths=PackedStringArray("_enemyName", "_enemyTexture", "_animationPlayer")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -76,6 +54,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_5g70q")
+_enemyName = NodePath("EnemyName")
+_enemyTexture = NodePath("EnemyName/TextureRect")
+_animationPlayer = NodePath("AnimationPlayer")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -84,52 +65,79 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.517647, 0.227451, 0.156863, 1)
+color = Color(0.501961, 0.14902, 0.266667, 1)
 
-[node name="EnemyName" type="Label" parent="."]
+[node name="TextureRect2" type="TextureRect" parent="."]
+visible = false
 layout_mode = 0
-offset_left = 1096.0
-offset_top = 688.0
-offset_right = 1765.02
-offset_bottom = 804.0
-theme = SubResource("Theme_bya7o")
-text = "Enemy Name"
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_j3cag")
 
-[node name="EnemyTexture" type="TextureRect" parent="EnemyName"]
-layout_mode = 0
-offset_left = 77.0
-offset_top = -633.0
-offset_right = 459.0
-offset_bottom = 17.0
-texture = ExtResource("2_8hrfe")
-
-[node name="VS" type="Label" parent="."]
-layout_mode = 0
-offset_left = 914.0
-offset_top = 688.0
-offset_right = 1583.0
-offset_bottom = 804.0
-theme = SubResource("Theme_bya7o")
-text = "VS"
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.217
+anchor_top = 0.377
+anchor_right = 0.217
+anchor_bottom = 0.377
+offset_left = -407.64
+offset_top = -0.160004
+offset_right = 1512.36
+offset_bottom = 1079.84
+texture = ExtResource("3_5u531")
 
 [node name="PlayerName" type="Label" parent="."]
 layout_mode = 0
-offset_left = 157.0
-offset_top = 781.0
-offset_right = 826.0
-offset_bottom = 897.0
+offset_left = 129.0
+offset_top = 94.0
+offset_right = 708.0
+offset_bottom = 497.0
 theme = SubResource("Theme_bya7o")
 text = "Anthony & Mark"
+label_settings = ExtResource("4_oqcpl")
+horizontal_alignment = 1
+autowrap_mode = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_vr1mx")
 }
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="EnemyName" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -703.0
+offset_top = 94.0
+offset_right = -124.0
+offset_bottom = 497.0
+grow_horizontal = 0
+theme = SubResource("Theme_bya7o")
+text = "Anthony & Mark"
+label_settings = ExtResource("4_oqcpl")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="TextureRect" type="TextureRect" parent="EnemyName"]
 layout_mode = 0
-offset_left = 297.0
-offset_top = 189.0
-offset_right = 697.0
-offset_bottom = 775.0
-texture = ExtResource("3_ytnew")
+offset_top = 335.0
+offset_right = 579.0
+offset_bottom = 986.0
+
+[node name="TextureRect3" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.501
+anchor_top = 0.5
+anchor_right = 0.501
+anchor_bottom = 0.5
+offset_left = 716.0
+offset_top = 181.0
+offset_right = 1206.0
+offset_bottom = 774.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_diw5j")
+stretch_mode = 4

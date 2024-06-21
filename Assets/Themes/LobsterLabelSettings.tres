@@ -3,9 +3,10 @@
 [ext_resource type="FontFile" uid="uid://dnj361fu4us32" path="res://Assets/Fonts/Lobster-Regular.ttf" id="1_lyy1p"]
 
 [resource]
+line_spacing = -35.0
 font = ExtResource("1_lyy1p")
-font_size = 100
+font_size = 144
 font_color = Color(1, 0.8, 0.701961, 1)
-shadow_size = 0
-shadow_color = Color(0.235294, 0.298039, 0.54902, 1)
-shadow_offset = Vector2(5, 5)
+shadow_size = 10
+shadow_color = Color(0.12549, 0.0431373, 0.145098, 1)
+shadow_offset = Vector2(8, 8)

@@ -10,6 +10,11 @@ namespace tee
 		private static PlayerData _playerData;
 		private static Godot.Collections.Array<PlayerAttack> _availableAttacks;
 		private int[] _partyMembers;
+		private static EnemyData _currentEnemy;
+		public static EnemyData CurrentEnemy{
+			get{return _currentEnemy;}
+			set{_currentEnemy = value;}
+		}
 		private static float _socialStandingOverall;
 		private static int _socialBattery = 30;
 

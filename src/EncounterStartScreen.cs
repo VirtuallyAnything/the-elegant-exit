@@ -1,15 +1,19 @@
 using Godot;
 using System;
+using tee;
 
 public partial class EncounterStartScreen : Control
 {
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
-	{
-	}
+	[Export] private Label _enemyName;
+	[Export] private TextureRect _enemyTexture;
+	[Export] private AnimationPlayer _animationPlayer;
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
-	}
+    public override void _EnterTree()
+    {
+        _enemyName.Text = GameManager.CurrentEnemy.DisplayName;
+		_enemyTexture.Texture = GameManager.CurrentEnemy.Texture;
+		_animationPlayer.Play("FlyIn");
+    }
+
+
 }

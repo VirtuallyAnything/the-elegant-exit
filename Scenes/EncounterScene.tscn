@@ -519,6 +519,9 @@ theme = SubResource("Theme_0tp7n")
 text = "Long Enemy Name here"
 horizontal_alignment = 1
 
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(960, 540)
+
 [connection signal="toggled" from="VBoxContainer/Button" to="VBoxContainer/HBoxContainer" method="ShowContainer"]
 [connection signal="toggled" from="VBoxContainer/Button2" to="VBoxContainer/HBoxContainer2" method="ShowContainer"]
 [connection signal="toggled" from="VBoxContainer/Button3" to="VBoxContainer/HBoxContainer3" method="ShowContainer"]

@@ -1,16 +1,65 @@
-[gd_scene load_steps=3 format=3 uid="uid://dmyfdjltetw2d"]
+[gd_scene load_steps=8 format=3 uid="uid://dmyfdjltetw2d"]
 
 [ext_resource type="Script" path="res://src/MainScene.cs" id="1_klk3w"]
 [ext_resource type="PackedScene" uid="uid://dmfp5lawyswyl" path="res://Scenes/PartyScene.tscn" id="2_6n0uc"]
+[ext_resource type="PackedScene" uid="uid://cv7lwki55h2ma" path="res://Scenes/EncounterScene.tscn" id="3_kpiw3"]
+[ext_resource type="Script" path="res://src/Movement.cs" id="3_pubtp"]
+[ext_resource type="Texture2D" uid="uid://k4q8rnj22dsh" path="res://Assets/Sprites/MainCharacterIcon.png" id="4_mph3w"]
+[ext_resource type="PackedScene" uid="uid://d21hljw8t080d" path="res://Scenes/Subscenes/SocialBattery.tscn" id="5_t55tw"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rv6dr"]
+radius = 8.83325
 
 [node name="MainScene" type="Node2D" node_paths=PackedStringArray("_partyLayer", "_encounterLayer")]
 script = ExtResource("1_klk3w")
 _partyLayer = NodePath("PartyLayer")
 _encounterLayer = NodePath("EncounterLayer")
 
-[node name="Node2D" parent="." instance=ExtResource("2_6n0uc")]
-
 [node name="PartyLayer" type="CanvasLayer" parent="."]
+
+[node name="Node2D" parent="PartyLayer" instance=ExtResource("2_6n0uc")]
+
+[node name="Characters" parent="PartyLayer/Node2D/GroundFloor" index="3"]
+visible = false
+
+[node name="Characters" type="Node2D" parent="."]
+
+[node name="CharacterBody2D5" type="CharacterBody2D" parent="Characters" node_paths=PackedStringArray("_agent", "_camera")]
+position = Vector2(2463, 563)
+script = ExtResource("3_pubtp")
+_agent = NodePath("../../PartyLayer/Node2D/GroundFloor/Characters/CharacterBody2D5/NavigationAgent2D")
+_camera = NodePath("../../PartyLayer/Node2D/GroundFloor/Characters/CharacterBody2D5/Camera2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Characters/CharacterBody2D5"]
+scale = Vector2(3.285, 3.285)
+shape = SubResource("CircleShape2D_rv6dr")
+
+[node name="Sprite2D" type="Sprite2D" parent="Characters/CharacterBody2D5"]
+position = Vector2(-2.38419e-07, -1.52588e-05)
+texture = ExtResource("4_mph3w")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="Characters/CharacterBody2D5"]
+path_desired_distance = 65.0
+target_desired_distance = 65.0
+avoidance_enabled = true
+radius = 20.0
+time_horizon_agents = 0.66
+
+[node name="Camera2D" type="Camera2D" parent="Characters/CharacterBody2D5"]
+
+[node name="TextureProgressBar" parent="Characters/CharacterBody2D5/Camera2D" instance=ExtResource("5_t55tw")]
+offset_left = -876.0
+offset_top = -460.0
+offset_right = -735.0
+offset_bottom = -397.0
+metadata/_edit_use_anchors_ = true
 
 [node name="EncounterLayer" type="CanvasLayer" parent="."]
 process_mode = 4
+visible = false
+
+[node name="EncounterScene" parent="EncounterLayer" instance=ExtResource("3_kpiw3")]
+
+[connection signal="velocity_computed" from="Characters/CharacterBody2D5/NavigationAgent2D" to="Characters/CharacterBody2D5" method="OnNavigationAgent2DVelocityComputed"]
+
+[editable path="PartyLayer/Node2D"]

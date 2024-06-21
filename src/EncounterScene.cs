@@ -8,7 +8,7 @@ using System.Runtime.CompilerServices;
 namespace tee
 {
 	public delegate void EncounterSceneHandler();
-	public partial class EncounterScene : Control
+	public partial class EncounterScene : Scene
 	{
 		public event EncounterSceneHandler SetupCompleted;
 		public static event EncounterSceneHandler PlayerTurnAnimationComplete;
@@ -52,12 +52,17 @@ namespace tee
 		{
 			_currentEnemy = enemyData;
 			_enemyName.Text = _currentEnemy.DisplayName;
-			_enemySprite.Texture = enemyData.Sprite;
+			_enemySprite.Texture = enemyData.Texture;
 			_dialogueLine.Text = "";
 			_dialogueLine.Modulate = _enemyDialogueColor;
 			_socialBatteryProgress.Value = GameManager.SocialBattery;
 			SetupCompleted?.Invoke();
 		}
+
+		public override void Remove()
+        {
+			GetParent().RemoveChild(this);
+        }
 
 		public void DisableAttackButtons(bool areDisabled){
 			for(int i = 0; i < _attackButtons.Count; i++){
@@ -154,5 +159,5 @@ namespace tee
 			_socialStandingValue.Text = $"{socialStandingNew}";
 			_conversationInterestValue.Text = $"{interestNew}";
 		}
-	}
+    }
 }
