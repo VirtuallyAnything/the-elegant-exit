@@ -8,13 +8,13 @@
 [ext_resource type="Resource" uid="uid://borjush8jxdk1" path="res://GameDataResources/Attacks/EnemyAttacks/JohnParker/TeslaStocks.tres" id="5_yslex"]
 [ext_resource type="Resource" uid="uid://b2jae8ym7heos" path="res://GameDataResources/Attacks/EnemyAttacks/JohnParker/WhoInvitedYou.tres" id="6_ir3e8"]
 [ext_resource type="Texture2D" uid="uid://y51ai85kj0r0" path="res://Assets/Sprites/ElegantExitLogo.png" id="7_py1ro"]
-[ext_resource type="Texture2D" uid="uid://dloj826coufuu" path="res://Assets/Sprites/Avatar_JP.png" id="8_k6eo7"]
+[ext_resource type="Texture2D" uid="uid://dloj826coufuu" path="res://Assets/Sprites/Avatar_JP.png" id="8_kxcpj"]
 
 [resource]
 script = ExtResource("1_adste")
 DisplayName = "John Parker"
 EnemyAttacks = Array[Resource]([ExtResource("1_1mnm3"), ExtResource("2_8ub2g"), ExtResource("3_5wyy3"), ExtResource("4_4awoa"), ExtResource("5_yslex"), ExtResource("6_ir3e8")])
 Icon = ExtResource("7_py1ro")
-Sprite = ExtResource("8_k6eo7")
+Texture = ExtResource("8_kxcpj")
 ConversationInterest = 20
 TopicPreferences = Array[int]([3, 5, 7, 8, 9])

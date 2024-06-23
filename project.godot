@@ -17,7 +17,7 @@ config/icon="res://Assets/Sprites/ElegantExitLogo.png"
 
 [autoload]
 
-SceneManager="*res://src/SceneManager.cs"
+SceneManager="*res://src/SceneCode/SceneManager.cs"
 GameManager="*res://src/GameManager.cs"
 
 [display]

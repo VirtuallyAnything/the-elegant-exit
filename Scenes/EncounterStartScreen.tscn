@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://dqpcyi5i0xyjh"]
 
-[ext_resource type="Script" path="res://src/EncounterStartScreen.cs" id="1_5g70q"]
+[ext_resource type="Script" path="res://src/SceneCode/EncounterStartScreen.cs" id="1_5g70q"]
 [ext_resource type="Texture2D" uid="uid://b1on62evvvcee" path="res://Assets/UI/EncounterStartScreen.png" id="2_j3cag"]
 [ext_resource type="Texture2D" uid="uid://bof3wrxapds3v" path="res://Assets/Sprites/MainCharacters.png" id="3_5u531"]
 [ext_resource type="LabelSettings" uid="uid://bx6i6eo3rklk8" path="res://Assets/Themes/LobsterLabelSettings.tres" id="4_oqcpl"]

@@ -8,13 +8,13 @@
 [ext_resource type="Resource" uid="uid://cp7yrnixb7nb3" path="res://GameDataResources/Attacks/EnemyAttacks/NeighborDave/TalkAboutStacy.tres" id="4_8s1ta"]
 [ext_resource type="Resource" uid="uid://bdysh4r800567" path="res://GameDataResources/Attacks/EnemyAttacks/NeighborDave/TalkAboutWeather.tres" id="5_54oft"]
 [ext_resource type="Resource" uid="uid://d1flcsllc4cfn" path="res://GameDataResources/Attacks/EnemyAttacks/NeighborDave/ThinWallsComment.tres" id="6_cces7"]
-[ext_resource type="Texture2D" uid="uid://dloj826coufuu" path="res://Assets/Sprites/Avatar_JP.png" id="8_6d0lw"]
+[ext_resource type="Texture2D" uid="uid://dloj826coufuu" path="res://Assets/Sprites/Avatar_JP.png" id="8_1vo61"]
 
 [resource]
 script = ExtResource("2_ohvyd")
 DisplayName = "Neighbor Dave"
 EnemyAttacks = Array[Resource]([ExtResource("1_hghen"), ExtResource("2_axg17"), ExtResource("3_qykfc"), ExtResource("4_8s1ta"), ExtResource("5_54oft"), ExtResource("6_cces7")])
 Icon = ExtResource("1_6mlo7")
-Sprite = ExtResource("8_6d0lw")
+Texture = ExtResource("8_1vo61")
 ConversationInterest = 20
 TopicPreferences = Array[int]([1, 4, 7, 8, 9])

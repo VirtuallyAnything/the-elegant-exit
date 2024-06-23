@@ -2,7 +2,7 @@ using Godot;
 using System;
 using System.Diagnostics;
 
-public partial class Movement : CharacterBody2D
+public partial class PlayerMovement : CharacterBody2D
 {
 	[Export] private NavigationAgent2D _agent;
 	[Export] private Camera2D _camera;

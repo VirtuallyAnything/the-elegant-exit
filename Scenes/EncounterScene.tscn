@@ -1,6 +1,6 @@
 [gd_scene load_steps=23 format=3 uid="uid://cv7lwki55h2ma"]
 
-[ext_resource type="Script" path="res://src/EncounterScene.cs" id="1_qerod"]
+[ext_resource type="Script" path="res://src/SceneCode/EncounterScene.cs" id="1_qerod"]
 [ext_resource type="Script" path="res://src/CombatManager.cs" id="2_6eywl"]
 [ext_resource type="Texture2D" uid="uid://c08irt6knvdnn" path="res://Assets/Sprites/MainCharacters_scaled.png" id="3_ibufg"]
 [ext_resource type="Script" path="res://src/AttackButton.cs" id="4_jop31"]
@@ -93,7 +93,7 @@ _playerDialogueColor = Color(0.22184, 0.204197, 0.770126, 1)
 _enemySprite = NodePath("EnemySprite")
 _enemyDialogueColor = Color(0.807913, 0.00169103, 0.000926806, 1)
 _enemyName = NodePath("EnemyName")
-_attackButtons = [NodePath("VBoxContainer/Button"), NodePath("VBoxContainer/Button2"), NodePath("VBoxContainer/Button3")]
+_attackButtons = []
 _animationPlayer = NodePath("AnimationPlayer")
 _dialogueLine = NodePath("DialogLine")
 _mentalCapacityValue = NodePath("MentalCapacityValue")
