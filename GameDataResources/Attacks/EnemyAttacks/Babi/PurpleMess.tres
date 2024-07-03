@@ -1,9 +1,9 @@
 [gd_resource type="Resource" load_steps=2 format=3 uid="uid://dkvmh1gn66v82"]
 
-[ext_resource type="Script" path="res://src/EnemyAttack.cs" id="1_f0p0y"]
+[ext_resource type="Script" path="res://src/ResourceScripts/EnemyAttack.cs" id="1_wm5wh"]
 
 [resource]
-script = ExtResource("1_f0p0y")
+script = ExtResource("1_wm5wh")
 _quotes = Array[String](["That sweater…that purple… I expected more style of you Anthony!"])
 SocialBatteryChange = -2
 MentalCapacityChange = -2.0

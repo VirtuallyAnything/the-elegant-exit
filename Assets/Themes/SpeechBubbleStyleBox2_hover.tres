@@ -1,0 +1,11 @@
+[gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://ktpv7alcaut6"]
+
+[ext_resource type="Texture2D" uid="uid://ku12iaynwue2" path="res://Assets/UI/Speechbubble_var2.png" id="1_cljfx"]
+
+[resource]
+texture = ExtResource("1_cljfx")
+texture_margin_left = 65.0
+texture_margin_top = 26.0
+texture_margin_right = 40.0
+texture_margin_bottom = 72.0
+modulate_color = Color(0.827451, 0.890196, 0.890196, 1)

@@ -4,11 +4,16 @@ using tee;
 
 public partial class MainScene : Node2D
 {
-	[Export] private PartyFloor _currentFloor;
+	[Export] private Scene _currentFloor;
 	[Export] private CanvasLayer _encounterLayer;
 	[Export] private TextureProgressBar _socialBattery;
 	[Export] private Camera2D _camera;
-	public PartyFloor CurrentFloor
+	[Export] private CharacterBody2D _player;
+	public CharacterBody2D Player{
+		get{return _player;}
+		set{_player = value;}
+	}
+	public Scene CurrentFloor
 	{
 		get { return _currentFloor; }
 		set { _currentFloor = value; }
@@ -23,6 +28,13 @@ public partial class MainScene : Node2D
 	{
 		SceneManager.MainScene = this;
 		UpdateUI();
+	}
+
+	public void ChangeSubScene(Scene scene){
+		RemoveChild(_currentFloor);
+		AddChild(scene);
+		MoveChild(scene, 0);
+		_currentFloor = scene;
 	}
 
 	public void UpdateUI()

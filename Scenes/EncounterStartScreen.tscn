@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://dqpcyi5i0xyjh"]
+[gd_scene load_steps=11 format=3 uid="uid://dqpcyi5i0xyjh"]
 
 [ext_resource type="Script" path="res://src/SceneCode/EncounterStartScreen.cs" id="1_5g70q"]
 [ext_resource type="Texture2D" uid="uid://b1on62evvvcee" path="res://Assets/UI/EncounterStartScreen.png" id="2_j3cag"]
 [ext_resource type="Texture2D" uid="uid://bof3wrxapds3v" path="res://Assets/Sprites/MainCharacters.png" id="3_5u531"]
 [ext_resource type="LabelSettings" uid="uid://bx6i6eo3rklk8" path="res://Assets/Themes/LobsterLabelSettings.tres" id="4_oqcpl"]
 [ext_resource type="Texture2D" uid="uid://ibsb083f86ee" path="res://Assets/UI/VS_withFlame.png" id="5_diw5j"]
+[ext_resource type="Script" path="res://src/SceneSwapButton.cs" id="6_tdx1t"]
 
 [sub_resource type="Theme" id="Theme_bya7o"]
 default_font_size = 85
@@ -24,6 +25,18 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector2(716, -593), Vector2(716, 262), Vector2(716, 123), Vector2(716, 181)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("EnemyName:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.3, 0.5, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1920, 94), Vector2(1185, 94), Vector2(1217, 94)]
+}
 
 [sub_resource type="Animation" id="Animation_8u2kd"]
 length = 0.001
@@ -38,6 +51,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(716, 181)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("EnemyName:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1217, 94)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vr1mx"]
@@ -109,9 +134,9 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -703.0
+offset_left = 1217.0
 offset_top = 94.0
-offset_right = -124.0
+offset_right = 1796.0
 offset_bottom = 497.0
 grow_horizontal = 0
 theme = SubResource("Theme_bya7o")
@@ -141,3 +166,14 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("5_diw5j")
 stretch_mode = 4
+
+[node name="Button" type="Button" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("6_tdx1t")
+_sceneName = 9

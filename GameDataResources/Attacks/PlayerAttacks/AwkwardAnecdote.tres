@@ -1,6 +1,6 @@
 [gd_resource type="Resource" load_steps=2 format=3 uid="uid://jcvldt15okdk"]
 
-[ext_resource type="Script" path="res://src/PlayerAttack.cs" id="1_tkmik"]
+[ext_resource type="Script" path="res://src/ResourceScripts/PlayerAttack.cs" id="1_tkmik"]
 
 [resource]
 script = ExtResource("1_tkmik")

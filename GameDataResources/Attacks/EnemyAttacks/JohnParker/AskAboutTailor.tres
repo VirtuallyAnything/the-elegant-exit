@@ -1,9 +1,9 @@
 [gd_resource type="Resource" load_steps=2 format=3 uid="uid://dgo8yh8plpcen"]
 
-[ext_resource type="Script" path="res://src/EnemyAttack.cs" id="1_cuayt"]
+[ext_resource type="Script" path="res://src/ResourceScripts/EnemyAttack.cs" id="1_vthjv"]
 
 [resource]
-script = ExtResource("1_cuayt")
+script = ExtResource("1_vthjv")
 _quotes = Array[String](["Who is your tailor? Your aesthetic doesn't please John Parker."])
 SocialBatteryChange = -3
 MentalCapacityChange = -3.0

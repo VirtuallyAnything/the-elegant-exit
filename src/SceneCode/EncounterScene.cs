@@ -44,7 +44,6 @@ namespace tee
 
 		public override void _Ready()
 		{
-			SceneManager.EncounterScene = this;
 			AttackButton.OnButtonPressed += SetCurrentlySelectedButton;
 		}
 
@@ -58,11 +57,6 @@ namespace tee
 			_socialBatteryProgress.Value = GameManager.SocialBattery;
 			SetupCompleted?.Invoke();
 		}
-
-		public override void Remove()
-        {
-			GetParent().RemoveChild(this);
-        }
 
 		public void DisableAttackButtons(bool areDisabled){
 			for(int i = 0; i < _attackButtons.Count; i++){

@@ -13,7 +13,7 @@
 
 [sub_resource type="Gradient" id="Gradient_vp34m"]
 offsets = PackedFloat32Array(0.0985507, 1)
-colors = PackedColorArray(0.423529, 0.235294, 0.0431373, 1, 0.891009, 0.601604, 0.219388, 1)
+colors = PackedColorArray(0.12549, 0.0431373, 0.145098, 1, 0.501961, 0.14902, 0.266667, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_g87ax"]
 gradient = SubResource("Gradient_vp34m")
@@ -93,7 +93,7 @@ _playerDialogueColor = Color(0.22184, 0.204197, 0.770126, 1)
 _enemySprite = NodePath("EnemySprite")
 _enemyDialogueColor = Color(0.807913, 0.00169103, 0.000926806, 1)
 _enemyName = NodePath("EnemyName")
-_attackButtons = []
+_attackButtons = [NodePath("VBoxContainer/Button"), NodePath("VBoxContainer/Button2"), NodePath("VBoxContainer/Button3")]
 _animationPlayer = NodePath("AnimationPlayer")
 _dialogueLine = NodePath("DialogLine")
 _mentalCapacityValue = NodePath("MentalCapacityValue")
@@ -156,7 +156,6 @@ offset_right = 237.0
 offset_bottom = 142.0
 
 [node name="Button" type="Button" parent="."]
-visible = false
 layout_mode = 0
 offset_left = 1265.0
 offset_top = 998.0

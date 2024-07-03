@@ -1,0 +1,8 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://c63a2eerex2pi"]
+
+[ext_resource type="Shader" path="res://Assets/Shaders/Outline.gdshader" id="1_vl384"]
+
+[resource]
+shader = ExtResource("1_vl384")
+shader_parameter/outlineWidth = 10.0
+shader_parameter/blurRadius = 5.0

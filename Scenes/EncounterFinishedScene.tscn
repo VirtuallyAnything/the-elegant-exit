@@ -1,0 +1,45 @@
+[gd_scene load_steps=4 format=3 uid="uid://jpedgvm5olo1"]
+
+[ext_resource type="Script" path="res://src/SceneCode/EncounterFinishedScene.cs" id="1_bfikk"]
+[ext_resource type="LabelSettings" uid="uid://bx6i6eo3rklk8" path="res://Assets/Themes/LobsterLabelSettings.tres" id="2_m70y3"]
+[ext_resource type="Script" path="res://src/SceneSwapButton.cs" id="3_56eoo"]
+
+[node name="EncounterFinishedScene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bfikk")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.501961, 0.14902, 0.266667, 1)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 131.0
+offset_bottom = 311.0
+grow_horizontal = 2
+text = "Escaped from Conversation!"
+label_settings = ExtResource("2_m70y3")
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_56eoo")
+_sceneName = 8

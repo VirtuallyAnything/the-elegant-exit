@@ -1,9 +1,9 @@
 [gd_resource type="Resource" load_steps=2 format=3 uid="uid://cp7yrnixb7nb3"]
 
-[ext_resource type="Script" path="res://src/EnemyAttack.cs" id="1_hskyj"]
+[ext_resource type="Script" path="res://src/ResourceScripts/EnemyAttack.cs" id="1_rlcto"]
 
 [resource]
-script = ExtResource("1_hskyj")
+script = ExtResource("1_rlcto")
 _quotes = Array[String](["Where do you know Stacy from?"])
 SocialBatteryChange = 0
 MentalCapacityChange = -1.0

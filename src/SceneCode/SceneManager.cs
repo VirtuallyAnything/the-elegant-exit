@@ -7,16 +7,12 @@ namespace tee
 	public partial class SceneManager : Node
 	{
 		
-		private static EncounterScene _encounterScene = new();
-		private EncounterStartScreen _encounterStartScene = new();
+		private static EncounterScene _encounterScene;
+		private EncounterStartScreen _encounterStartScene;
+		private EncounterFinishedScene _encounterFinishedScene;
 		private static PartyGroundFloor _partyGroundFloor;
 		private static PartyFirstFloor _partyFirstFloor;
 		private static MainScene _mainScene;
-		public static EncounterScene EncounterScene
-		{
-			get { return _encounterScene; }
-			set { _encounterScene = value; }
-		}
 		public static PartyGroundFloor PartyGroundFloor
 		{
 			get { return _partyGroundFloor; }
@@ -31,9 +27,11 @@ namespace tee
 		// Called when the node enters the scene tree for the first time.
 		public override void _Ready()
 		{
-			CombatManager.CombatEnded += ExitEncounter;
+			CombatManager.CombatEnded += ChangeToEncounterFinishedScene;
 			GameManager.GameOver += ChangeToGameOverScene;
 			_encounterStartScene = (EncounterStartScreen) ResourceLoader.Load<PackedScene>("res://Scenes/EncounterStartScreen.tscn").Instantiate();
+			_encounterScene = (EncounterScene) ResourceLoader.Load<PackedScene>("res://Scenes/EncounterScene.tscn").Instantiate();
+			_encounterFinishedScene = (EncounterFinishedScene) ResourceLoader.Load<PackedScene>("res://Scenes/EncounterFinishedScene.tscn").Instantiate();
 			_partyGroundFloor = (PartyGroundFloor) ResourceLoader.Load<PackedScene>("res://Scenes/PartyGroundFloor.tscn").Instantiate();
 			_partyFirstFloor = (PartyFirstFloor) ResourceLoader.Load<PackedScene>("res://Scenes/PartyFirstFloor.tscn").Instantiate();
 		}
@@ -72,6 +70,10 @@ namespace tee
 					ChangeToEncounterScene();
 					break;
 				case SceneName.EncounterFinished:
+					ChangeToEncounterFinishedScene();
+					break;
+				case SceneName.CurrentPartyFloor:
+					ExitEncounter();
 					break;
 				case SceneName.GameOver:
 					ChangeToGameOverScene();
@@ -79,25 +81,19 @@ namespace tee
 			}
 		}
 
-		public void ChangeToMainScene()
+		private void ChangeToMainScene()
 		{
 			GetTree().CallDeferred("change_scene_to_file", "res://Scenes/MainScene.tscn");
 		}
 
 		private void ChangeToPartyGroundFloor()
 		{
-			MainScene.RemoveChild(MainScene.CurrentFloor);
-			MainScene.AddChild(_partyGroundFloor);
-			MainScene.MoveChild(_partyGroundFloor, 0);
-			MainScene.CurrentFloor = _partyGroundFloor;
+			_mainScene.ChangeSubScene(_partyGroundFloor);
 		}
 
 		private void ChangeToPartyFirstFloor()
 		{
-			MainScene.RemoveChild(MainScene.CurrentFloor);
-			MainScene.AddChild(_partyFirstFloor);
-			MainScene.MoveChild(_partyFirstFloor, 0);
-			MainScene.CurrentFloor = _partyFirstFloor;
+			_mainScene.ChangeSubScene(_partyFirstFloor);
 		}
 
 		private void ChangeToPartySecondFloor()
@@ -110,35 +106,43 @@ namespace tee
 
 		}
 
+		private void ChangeToEncounterStartScene()
+		{
+			_mainScene.CallDeferred(MethodName.RemoveChild, _mainScene.CurrentFloor);
+			_mainScene.EncounterLayer.AddChild(_encounterStartScene);
+			_mainScene.EncounterLayer.Visible = true;
+			_encounterStartScene.SetProcess(true);
+		}
+
+		private void ChangeToEncounterScene()
+		{
+			_mainScene.EncounterLayer.RemoveChild(_encounterStartScene);
+			_mainScene.EncounterLayer.AddChild(_encounterScene);
+			_encounterScene.LeaveButton.Pressed += ExitEncounter;
+			_encounterScene.SetupScene(GameManager.CurrentEnemy);
+			
+		}
+
+		private void ChangeToEncounterFinishedScene(){
+			_mainScene.EncounterLayer.RemoveChild(_encounterScene);
+			_mainScene.EncounterLayer.AddChild(_encounterFinishedScene);
+			_encounterScene.LeaveButton.Pressed += ExitEncounter;
+			_encounterScene.SetupScene(GameManager.CurrentEnemy);
+		}
+
+		public void ExitEncounter()
+		{
+			_mainScene.UpdateUI();
+			_mainScene.EncounterLayer.RemoveChild(_encounterScene);
+			_mainScene.AddChild(_mainScene.CurrentFloor);
+			_mainScene.MoveChild(_mainScene.CurrentFloor, 0);
+		}
+
 		private void ChangeToGameOverScene()
 		{
 			GetTree().CallDeferred("change_scene_to_file", "res://Scenes/GameOverScene.tscn");
 		}
-
-		private void ChangeToEncounterStartScene()
-		{
-			_mainScene.CurrentFloor.Visible = false;
-			_mainScene.CurrentFloor.SetProcess(false);
-			_mainScene.EncounterLayer.AddChild(_encounterStartScene);
-		}
-
-		public static void ChangeToEncounterScene()
-		{
-			_mainScene.CurrentFloor.Visible = false;
-			_mainScene.CurrentFloor.SetProcess(false);
-			_mainScene.EncounterLayer.AddChild(_encounterScene);
-			_encounterScene.SetupScene(GameManager.CurrentEnemy);
-			_encounterScene.LeaveButton.Pressed += ExitEncounter;
-		}
-
-		public static void ExitEncounter()
-		{
-			_mainScene.CurrentFloor.ProcessMode = ProcessModeEnum.Pausable;
-			_mainScene.UpdateUI();
-			_mainScene.CurrentFloor.Visible = true;
-			_mainScene.EncounterLayer.RemoveChild(_encounterScene);
-		}
-
+		
 		public override void _ExitTree()
 		{
 			CombatManager.CombatEnded -= ExitEncounter;

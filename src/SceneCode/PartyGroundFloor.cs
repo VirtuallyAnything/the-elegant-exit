@@ -3,15 +3,11 @@ using System;
 
 namespace tee
 {
-	public partial class PartyGroundFloor : PartyFloor
+	public partial class PartyGroundFloor : Scene
 	{
         public override void _Ready()
         {
-            base._Ready();
         }
-        public override void OnFloorEntered()
-        {
-            throw new NotImplementedException();
-        }
+
 	}
 }

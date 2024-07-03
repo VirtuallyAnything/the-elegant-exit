@@ -2,9 +2,9 @@ using Godot;
 
 namespace tee
 {
-    public abstract partial class Scene : Control
+    public abstract partial class Scene : Node
     {
-        public abstract void Remove();
+       
 
     }
 }

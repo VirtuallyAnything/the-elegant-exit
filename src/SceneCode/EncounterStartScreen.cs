@@ -12,6 +12,8 @@ public partial class EncounterStartScreen : Control
     {
         _enemyName.Text = GameManager.CurrentEnemy.DisplayName;
 		_enemyTexture.Texture = GameManager.CurrentEnemy.Texture;
+
+		GetTree().CreateTimer(2);
 		_animationPlayer.Play("FlyIn");
     }
 

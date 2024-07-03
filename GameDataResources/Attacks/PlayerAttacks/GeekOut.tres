@@ -1,6 +1,6 @@
 [gd_resource type="Resource" load_steps=2 format=3 uid="uid://deqcorb47srom"]
 
-[ext_resource type="Script" path="res://src/PlayerAttack.cs" id="1_whrrp"]
+[ext_resource type="Script" path="res://src/ResourceScripts/PlayerAttack.cs" id="1_whrrp"]
 
 [resource]
 script = ExtResource("1_whrrp")

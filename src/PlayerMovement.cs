@@ -22,7 +22,7 @@ public partial class PlayerMovement : CharacterBody2D
         GlobalPosition = GlobalPosition.MoveToward(GlobalPosition + safeVelocity, _movementDelta);
     }
 
-	public override void _Input(InputEvent @event)
+	public override void _UnhandledInput(InputEvent @event)
 	{
 		if (Input.IsActionPressed("Move"))
 		{

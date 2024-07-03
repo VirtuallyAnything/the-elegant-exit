@@ -4,14 +4,14 @@
 [ext_resource type="Texture2D" uid="uid://cxykjoqtv188j" path="res://Assets/Sprites/BabiIcon.png" id="1_o5vv7"]
 [ext_resource type="Resource" uid="uid://bi1hld7xttf31" path="res://GameDataResources/Attacks/EnemyAttacks/Babi/CapriMojo.tres" id="2_iyq6k"]
 [ext_resource type="Resource" uid="uid://cb6h3i3qmsm2w" path="res://GameDataResources/Attacks/EnemyAttacks/Babi/DuetSinging.tres" id="3_873tw"]
-[ext_resource type="Script" path="res://src/EnemyData.cs" id="3_kdnd3"]
 [ext_resource type="Resource" uid="uid://dko8mi8fpkq72" path="res://GameDataResources/Attacks/EnemyAttacks/Babi/GardenHint.tres" id="4_1fspo"]
 [ext_resource type="Resource" uid="uid://ovwf8sk2vu86" path="res://GameDataResources/Attacks/EnemyAttacks/Babi/LuckyCouple.tres" id="5_nmqvc"]
 [ext_resource type="Resource" uid="uid://dkvmh1gn66v82" path="res://GameDataResources/Attacks/EnemyAttacks/Babi/PurpleMess.tres" id="6_nb0eh"]
 [ext_resource type="Texture2D" uid="uid://dgds5ddni47ev" path="res://Assets/Sprites/Babi_Sprite.png" id="8_0arsa"]
+[ext_resource type="Script" path="res://src/ResourceScripts/EnemyData.cs" id="9_casv8"]
 
 [resource]
-script = ExtResource("3_kdnd3")
+script = ExtResource("9_casv8")
 DisplayName = "Babi"
 EnemyAttacks = Array[Resource]([ExtResource("1_422by"), ExtResource("2_iyq6k"), ExtResource("3_873tw"), ExtResource("4_1fspo"), ExtResource("5_nmqvc"), ExtResource("6_nb0eh")])
 Icon = ExtResource("1_o5vv7")

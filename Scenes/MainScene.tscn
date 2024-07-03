@@ -9,12 +9,12 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_rv6dr"]
 radius = 8.83325
 
-[node name="MainScene" type="Node2D" node_paths=PackedStringArray("_currentFloor", "_encounterLayer", "_socialBattery", "_camera")]
+[node name="MainScene" type="Node2D" node_paths=PackedStringArray("_currentFloor", "_socialBattery", "_camera", "_player")]
 script = ExtResource("1_klk3w")
 _currentFloor = NodePath("Node2D")
-_encounterLayer = NodePath("EncounterLayer")
 _socialBattery = NodePath("Characters/CharacterBody2D5/Camera2D/TextureProgressBar")
 _camera = NodePath("Characters/CharacterBody2D5/Camera2D")
+_player = NodePath("Characters/CharacterBody2D5")
 
 [node name="Node2D" parent="." instance=ExtResource("2_6n0uc")]
 
@@ -30,7 +30,7 @@ _triggerRange = 0.0
 [node name="Characters" type="Node2D" parent="."]
 
 [node name="CharacterBody2D5" type="CharacterBody2D" parent="Characters" node_paths=PackedStringArray("_agent", "_camera") groups=["Player"]]
-position = Vector2(2463, 563)
+position = Vector2(1615, 2763)
 script = ExtResource("3_pubtp")
 _agent = NodePath("NavigationAgent2D")
 _camera = NodePath("Camera2D")
@@ -60,10 +60,7 @@ offset_right = -735.0
 offset_bottom = -397.0
 metadata/_edit_use_anchors_ = true
 
-[node name="PartyLayer" type="CanvasLayer" parent="."]
-
 [node name="EncounterLayer" type="CanvasLayer" parent="."]
-process_mode = 4
 layer = 3
 visible = false
 

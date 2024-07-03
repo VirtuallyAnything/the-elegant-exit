@@ -7,6 +7,7 @@ public enum SceneName{
     PartyGroundFloor,
     PartyFirstFloor,
     PartySecondFloor,
+    CurrentPartyFloor,
     EncounterStart,
     Encounter,
     EncounterFinished,

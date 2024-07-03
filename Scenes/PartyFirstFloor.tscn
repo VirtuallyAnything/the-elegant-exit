@@ -1,12 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://damjwt0d5a1y8"]
+[gd_scene load_steps=9 format=3 uid="uid://damjwt0d5a1y8"]
 
 [ext_resource type="Script" path="res://src/SceneCode/PartyFirstFloor.cs" id="1_me5vh"]
 [ext_resource type="Texture2D" uid="uid://bcwv3jtxpxt4a" path="res://Assets/Levels/FirstFloor.png" id="2_ka8sf"]
 [ext_resource type="Texture2D" uid="uid://d3hx3upwa0rgm" path="res://Assets/Sprites/door.png" id="3_gemse"]
-[ext_resource type="Script" path="res://src/Enemy.cs" id="4_kpk03"]
+[ext_resource type="Script" path="res://src/Interactables/Enemy.cs" id="4_kpk03"]
 [ext_resource type="Resource" uid="uid://bqgn3w6aagdea" path="res://GameDataResources/EnemyData/NeighborDave.tres" id="5_tsw0b"]
-[ext_resource type="Resource" uid="uid://d4mv565km1snp" path="res://GameDataResources/EnemyData/JohnParker.tres" id="6_wol1e"]
-[ext_resource type="Resource" uid="uid://dgmh740a8kil7" path="res://GameDataResources/EnemyData/Babi.tres" id="7_j1os3"]
 [ext_resource type="Script" path="res://src/SceneCode/SceneSwitchArea.cs" id="8_d007l"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_ky745"]
@@ -271,24 +269,6 @@ node_a = NodePath("../RigidBody2D")
 node_b = NodePath("../StaticBody2D2")
 disable_collision = false
 
-[node name="Enemy" type="Node2D" parent="FirstFloor"]
-position = Vector2(1375, 3875)
-script = ExtResource("4_kpk03")
-_triggerRange = 10.0
-_enemyData = ExtResource("5_tsw0b")
-
-[node name="Enemy2" type="Node2D" parent="FirstFloor"]
-position = Vector2(4885, 3418)
-script = ExtResource("4_kpk03")
-_triggerRange = 10.0
-_enemyData = ExtResource("6_wol1e")
-
-[node name="Enemy3" type="Node2D" parent="FirstFloor"]
-position = Vector2(1250, 2363)
-script = ExtResource("4_kpk03")
-_triggerRange = 10.0
-_enemyData = ExtResource("7_j1os3")
-
 [node name="StairsAreaUp" type="Area2D" parent="."]
 position = Vector2(-1307, 929)
 script = ExtResource("8_d007l")
@@ -303,7 +283,7 @@ script = ExtResource("8_d007l")
 _sceneName = 5
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StairsAreaDown"]
-position = Vector2(0, -73)
+position = Vector2(0, -109)
 polygon = PackedVector2Array(3496, 1539, 3498, 1642, 3713, 1641, 3713, 1534)
 
 [node name="UStairsAreaDown" type="Area2D" parent="."]
@@ -312,5 +292,11 @@ script = ExtResource("8_d007l")
 _sceneName = 5
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="UStairsAreaDown"]
-position = Vector2(-78, 0)
+position = Vector2(-115, 0)
 polygon = PackedVector2Array(3627, 1499, 3625, 1717, 3740, 1716, 3741, 1504)
+
+[node name="Enemy" type="Node2D" parent="."]
+position = Vector2(2737, 3982)
+script = ExtResource("4_kpk03")
+_triggerRange = 10.0
+_enemyData = ExtResource("5_tsw0b")

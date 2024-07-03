@@ -1,7 +1,6 @@
 [gd_resource type="Resource" load_steps=10 format=3 uid="uid://d4mv565km1snp"]
 
 [ext_resource type="Resource" uid="uid://dgo8yh8plpcen" path="res://GameDataResources/Attacks/EnemyAttacks/JohnParker/AskAboutTailor.tres" id="1_1mnm3"]
-[ext_resource type="Script" path="res://src/EnemyData.cs" id="1_adste"]
 [ext_resource type="Resource" uid="uid://6xiobnbsc0qs" path="res://GameDataResources/Attacks/EnemyAttacks/JohnParker/CommentOnLooks.tres" id="2_8ub2g"]
 [ext_resource type="Resource" uid="uid://wn4q8cwgqopa" path="res://GameDataResources/Attacks/EnemyAttacks/JohnParker/CryptoInvestments.tres" id="3_5wyy3"]
 [ext_resource type="Resource" uid="uid://nbq4tp8tr4kj" path="res://GameDataResources/Attacks/EnemyAttacks/JohnParker/ElonTheGenius.tres" id="4_4awoa"]
@@ -9,9 +8,10 @@
 [ext_resource type="Resource" uid="uid://b2jae8ym7heos" path="res://GameDataResources/Attacks/EnemyAttacks/JohnParker/WhoInvitedYou.tres" id="6_ir3e8"]
 [ext_resource type="Texture2D" uid="uid://y51ai85kj0r0" path="res://Assets/Sprites/ElegantExitLogo.png" id="7_py1ro"]
 [ext_resource type="Texture2D" uid="uid://dloj826coufuu" path="res://Assets/Sprites/Avatar_JP.png" id="8_kxcpj"]
+[ext_resource type="Script" path="res://src/ResourceScripts/EnemyData.cs" id="9_7amvr"]
 
 [resource]
-script = ExtResource("1_adste")
+script = ExtResource("9_7amvr")
 DisplayName = "John Parker"
 EnemyAttacks = Array[Resource]([ExtResource("1_1mnm3"), ExtResource("2_8ub2g"), ExtResource("3_5wyy3"), ExtResource("4_4awoa"), ExtResource("5_yslex"), ExtResource("6_ir3e8")])
 Icon = ExtResource("7_py1ro")

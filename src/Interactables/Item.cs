@@ -1,0 +1,21 @@
+using Godot;
+using System;
+
+namespace tee
+{
+	public partial class Item : Interactable
+	{
+		[Export] private ItemData _itemData;
+
+		public override void _Ready()
+		{
+			_sprite.Texture = _itemData.Texture;
+			_triggerRange = 100;
+		}
+
+        protected override void OnBodyEntered(Node2D body)
+        {
+            base.OnBodyEntered(body);
+        }
+    }
+}

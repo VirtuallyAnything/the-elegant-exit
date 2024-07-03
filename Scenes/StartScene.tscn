@@ -1,11 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://bhl5fccx2vo6m"]
+[gd_scene load_steps=9 format=3 uid="uid://bhl5fccx2vo6m"]
 
 [ext_resource type="Texture2D" uid="uid://bof3wrxapds3v" path="res://Assets/Sprites/MainCharacters.png" id="2_dym4n"]
 [ext_resource type="Theme" uid="uid://bpp0q38rfd1ms" path="res://Assets/Themes/Lobster.tres" id="2_p0wqb"]
 [ext_resource type="PackedScene" uid="uid://dl3r57rxufb83" path="res://Scenes/Subscenes/SpeechbubbleButton1.tscn" id="3_dnpqh"]
 [ext_resource type="StyleBox" uid="uid://dl3ygowiq30p5" path="res://Assets/Themes/SpeechBubbleStyleBox2.tres" id="4_1y13y"]
+[ext_resource type="StyleBox" uid="uid://ktpv7alcaut6" path="res://Assets/Themes/SpeechBubbleStyleBox2_hover.tres" id="4_qadeg"]
 [ext_resource type="StyleBox" uid="uid://df0i6qdd6mfnl" path="res://Assets/Themes/SpeechBubbleStyleBox3.tres" id="4_uufm2"]
 [ext_resource type="Texture2D" uid="uid://b12srjfl8cur2" path="res://Assets/UI/arrow.png" id="6_4fm0u"]
+[ext_resource type="StyleBox" uid="uid://bf0xiyj7g4ohp" path="res://Assets/Themes/SpeechBubbleStyleBox3_hover.tres" id="6_35xfj"]
 
 [node name="StartScene" type="Control"]
 layout_mode = 3
@@ -43,7 +45,7 @@ offset_top = 74.0
 offset_right = 39.0
 offset_bottom = 200.0
 theme_override_styles/normal = ExtResource("4_1y13y")
-theme_override_styles/hover = ExtResource("4_1y13y")
+theme_override_styles/hover = ExtResource("4_qadeg")
 theme_override_styles/pressed = ExtResource("4_1y13y")
 theme_override_styles/disabled = ExtResource("4_1y13y")
 theme_override_styles/focus = ExtResource("4_1y13y")
@@ -63,16 +65,12 @@ text = "Scoreboard"
 [node name="Button3" parent="." instance=ExtResource("3_dnpqh")]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.953
-anchor_top = 2.432
-anchor_right = 0.953
-anchor_bottom = 2.432
-offset_left = -1235.76
-offset_top = -1834.56
-offset_right = -729.76
-offset_bottom = -1706.56
+offset_left = -366.0
+offset_top = 252.0
+offset_right = 140.0
+offset_bottom = 380.0
 theme_override_styles/normal = ExtResource("4_uufm2")
-theme_override_styles/hover = ExtResource("4_uufm2")
+theme_override_styles/hover = ExtResource("6_35xfj")
 theme_override_styles/pressed = ExtResource("4_uufm2")
 theme_override_styles/disabled = ExtResource("4_uufm2")
 theme_override_styles/focus = ExtResource("4_uufm2")
@@ -97,8 +95,17 @@ theme = ExtResource("2_p0wqb")
 bbcode_enabled = true
 text = "[center]The [font=res://Assets/Fonts/Lobster-Regular.ttf]Elegant[/font] Exit[/center]"
 
-[node name="Arrow" type="Sprite2D" parent="."]
-position = Vector2(1304, 448)
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.483
+anchor_right = 0.5
+anchor_bottom = 0.483
+offset_left = -76.0
+offset_top = -146.64
+offset_right = 762.0
+offset_bottom = 0.359985
 texture = ExtResource("6_4fm0u")
 
 [editable path="Button2"]

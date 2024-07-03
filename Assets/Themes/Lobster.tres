@@ -1,6 +1,7 @@
-[gd_resource type="Theme" load_steps=5 format=3 uid="uid://bpp0q38rfd1ms"]
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://bpp0q38rfd1ms"]
 
 [ext_resource type="StyleBox" uid="uid://clf5eknolteml" path="res://Assets/Themes/SpeechBubbleStyleBox1.tres" id="1_2tqip"]
+[ext_resource type="StyleBox" uid="uid://dkdkw6mcmj715" path="res://Assets/Themes/SpeechBubbleStyleBox1_hover.tres" id="2_rd2ke"]
 
 [sub_resource type="SystemFont" id="SystemFont_vuxfr"]
 font_names = PackedStringArray("Franklin Gothic Book")
@@ -19,7 +20,7 @@ Button/colors/font_color = Color(1, 0.8, 0.701961, 1)
 Button/fonts/font = SubResource("SystemFont_vuxfr")
 Button/styles/disabled = ExtResource("1_2tqip")
 Button/styles/focus = ExtResource("1_2tqip")
-Button/styles/hover = ExtResource("1_2tqip")
+Button/styles/hover = ExtResource("2_rd2ke")
 Button/styles/normal = ExtResource("1_2tqip")
 Button/styles/pressed = ExtResource("1_2tqip")
 HeaderLarge/font_sizes/font_size = 200
