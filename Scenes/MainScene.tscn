@@ -7,14 +7,15 @@
 [ext_resource type="PackedScene" uid="uid://d21hljw8t080d" path="res://Scenes/Subscenes/SocialBattery.tscn" id="5_t55tw"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rv6dr"]
-radius = 8.83325
+radius = 14.6245
 
-[node name="MainScene" type="Node2D" node_paths=PackedStringArray("_currentFloor", "_socialBattery", "_camera", "_player")]
+[node name="MainScene" type="Node2D" node_paths=PackedStringArray("_currentFloor", "_encounterLayer", "_socialBattery", "_camera", "_player")]
 script = ExtResource("1_klk3w")
 _currentFloor = NodePath("Node2D")
-_socialBattery = NodePath("Characters/CharacterBody2D5/Camera2D/TextureProgressBar")
-_camera = NodePath("Characters/CharacterBody2D5/Camera2D")
-_player = NodePath("Characters/CharacterBody2D5")
+_encounterLayer = NodePath("EncounterLayer")
+_socialBattery = NodePath("Characters/Player/Camera2D/TextureProgressBar")
+_camera = NodePath("Characters/Player/Camera2D")
+_player = NodePath("Characters/Player")
 
 [node name="Node2D" parent="." instance=ExtResource("2_6n0uc")]
 
@@ -29,31 +30,32 @@ _triggerRange = 0.0
 
 [node name="Characters" type="Node2D" parent="."]
 
-[node name="CharacterBody2D5" type="CharacterBody2D" parent="Characters" node_paths=PackedStringArray("_agent", "_camera") groups=["Player"]]
+[node name="Player" type="CharacterBody2D" parent="Characters" node_paths=PackedStringArray("_agent", "_camera") groups=["Player"]]
 position = Vector2(1615, 2763)
 script = ExtResource("3_pubtp")
 _agent = NodePath("NavigationAgent2D")
 _camera = NodePath("Camera2D")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Characters/CharacterBody2D5" groups=["Player"]]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Characters/Player" groups=["Player"]]
 scale = Vector2(3.285, 3.285)
 shape = SubResource("CircleShape2D_rv6dr")
 
-[node name="Sprite2D" type="Sprite2D" parent="Characters/CharacterBody2D5"]
+[node name="Sprite2D" type="Sprite2D" parent="Characters/Player"]
 position = Vector2(-2.38419e-07, -1.52588e-05)
+scale = Vector2(1.5, 1.5)
 texture = ExtResource("4_mph3w")
 
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="Characters/CharacterBody2D5"]
-path_desired_distance = 65.0
-target_desired_distance = 65.0
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="Characters/Player"]
+path_desired_distance = 21.25
+target_desired_distance = 21.25
 avoidance_enabled = true
 radius = 20.0
 time_horizon_agents = 0.66
 debug_enabled = true
 
-[node name="Camera2D" type="Camera2D" parent="Characters/CharacterBody2D5"]
+[node name="Camera2D" type="Camera2D" parent="Characters/Player"]
 
-[node name="TextureProgressBar" parent="Characters/CharacterBody2D5/Camera2D" instance=ExtResource("5_t55tw")]
+[node name="TextureProgressBar" parent="Characters/Player/Camera2D" instance=ExtResource("5_t55tw")]
 offset_left = -876.0
 offset_top = -460.0
 offset_right = -735.0
@@ -64,6 +66,6 @@ metadata/_edit_use_anchors_ = true
 layer = 3
 visible = false
 
-[connection signal="velocity_computed" from="Characters/CharacterBody2D5/NavigationAgent2D" to="Characters/CharacterBody2D5" method="OnNavigationAgent2DVelocityComputed"]
+[connection signal="velocity_computed" from="Characters/Player/NavigationAgent2D" to="Characters/Player" method="OnNavigationAgent2DVelocityComputed"]
 
 [editable path="Node2D"]

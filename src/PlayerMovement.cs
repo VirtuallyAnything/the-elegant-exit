@@ -26,7 +26,6 @@ public partial class PlayerMovement : CharacterBody2D
 	{
 		if (Input.IsActionPressed("Move"))
 		{
-			// _movementVector = Input.GetVector("move_forwards", "move_backwards", "move_left", "move_right");
 			if (@event is InputEventMouseButton eventMouseButton){
 				_agent.TargetPosition = GetViewport().CanvasTransform.AffineInverse() * eventMouseButton.Position;
 			}

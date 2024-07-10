@@ -9,13 +9,14 @@ namespace tee
 
 		public override void _Ready()
 		{
+			base._Ready();
 			_sprite.Texture = _itemData.Texture;
 			_triggerRange = 100;
 		}
 
-        protected override void OnBodyEntered(Node2D body)
+        protected override void OnTriggerAreaEntered(Node2D body)
         {
-            base.OnBodyEntered(body);
+            base.OnTriggerAreaEntered(body);
         }
     }
 }

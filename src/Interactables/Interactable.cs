@@ -22,7 +22,7 @@ namespace tee
                 Shape = circle
             };
             _triggerArea.AddChild(collisionShape);
-			_triggerArea.BodyEntered += OnBodyEntered;
+			_triggerArea.BodyEntered += OnTriggerAreaEntered;
 
 			AddChild(_sprite);
 			AddChild(_triggerArea);
@@ -33,7 +33,7 @@ namespace tee
 		{
 		}
 
-		protected virtual void OnBodyEntered(Node2D body){
+		protected virtual void OnTriggerAreaEntered(Node2D body){
 
 		}
 		
