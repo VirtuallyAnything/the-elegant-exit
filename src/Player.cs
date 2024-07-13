@@ -3,19 +3,28 @@ using System;
 
 namespace tee
 {
-	public partial class Player : Node
+	public partial class Player : Node2D
 	{
 		[Export] private PlayerData _data;
-		// Called when the node enters the scene tree for the first time.
+		[Export] private NavigationAgent2D _agent;
+		private Movement _movement;
+
 		public override void _Ready()
 		{
-
+			_movement = new(_agent, this);
+			AddChild(_movement);
 		}
 
-		// Called every frame. 'delta' is the elapsed time since the previous frame.
-		public override void _Process(double delta)
+	public override void _UnhandledInput(InputEvent @event)
+	{
+		if (Input.IsActionPressed("Move"))
 		{
+			if (@event is InputEventMouseButton eventMouseButton)
+			{
+				_agent.TargetPosition = GetViewport().CanvasTransform.AffineInverse() * eventMouseButton.Position;
+			}
 		}
+	}
 
 		public void Attack(int attackNumber)
 		{

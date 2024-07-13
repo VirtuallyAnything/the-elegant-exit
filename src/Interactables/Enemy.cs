@@ -11,6 +11,7 @@ namespace tee
 		[Export] int _sightConeSegments;
 		[Export] float _sightConeAngleDegrees;
 		[Export] float _sightConeRadius;
+		private Movement _movement;
 		private NavigationAgent2D _navAgent = new();
 
 		private SceneManager _sceneManager;
@@ -22,6 +23,8 @@ namespace tee
 			base._Ready();
 			_sprite.Texture = _enemyData.Icon;
 			AddChild(_navAgent);
+			_movement = new(_navAgent, this);
+			AddChild(_movement);
 
 			CollisionCone collisionCone = new(){
 				Segments = _sightConeSegments,
@@ -50,7 +53,12 @@ namespace tee
 
 		private void OnSightConeEntered(Node2D body){
 			if (body.IsInGroup("Player")){
-
+				Vector2 playerPosition = body.Position;
+				_navAgent.TargetPosition = playerPosition;
+				var targetVector = GlobalPosition.DirectionTo(playerPosition).Angle();
+				Tween rotationTween = CreateTween();
+				rotationTween.TweenProperty(_sightCone, $"{PropertyName.Rotation}", targetVector, 0.01 / GetProcessDeltaTime());
+				
 			}
 		}
 
