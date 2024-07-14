@@ -7,12 +7,12 @@ public partial class Movement : Node
 	private NavigationAgent2D _navAgent;
 	private Node2D _nodeToMove;
 	private Vector2 _movementVector;
-	private float _movementSpeed = 100;
+	private float _speed = 100;
 	private float _movementDelta;
 	private Vector2 _safeVelocity;
-	public float MovementSpeed{
-		get{return _movementSpeed;}
-		set{_movementSpeed = value;}
+	public float Speed{
+		get{return _speed;}
+		set{_speed = value;}
 	}
 
 	public Movement(NavigationAgent2D navAgent, Node2D nodeToMove)
@@ -36,7 +36,7 @@ public partial class Movement : Node
 	{
 		if (!_navAgent.IsNavigationFinished())
 		{
-			_movementDelta = _movementSpeed * (float)delta;
+			_movementDelta = _speed * (float)delta;
 			Vector2 nextPathPosition = _navAgent.GetNextPathPosition();
 			Vector2 newVelocity = _nodeToMove.GlobalPosition.DirectionTo(nextPathPosition) * _movementDelta;
 			if (_navAgent.AvoidanceEnabled)

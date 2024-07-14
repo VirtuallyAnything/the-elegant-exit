@@ -33,6 +33,7 @@ _triggerRange = 0.0
 position = Vector2(1615, 2763)
 script = ExtResource("3_53yld")
 _agent = NodePath("NavigationAgent2D")
+_movementSpeed = 150.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Characters/Player" groups=["Player"]]
 scale = Vector2(3.285, 3.285)

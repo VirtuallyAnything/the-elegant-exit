@@ -7,11 +7,13 @@ namespace tee
 	{
 		[Export] private PlayerData _data;
 		[Export] private NavigationAgent2D _agent;
+		[Export] private float _movementSpeed;
 		private Movement _movement;
 
 		public override void _Ready()
 		{
 			_movement = new(_agent, this);
+			_movement.Speed = _movementSpeed;
 			AddChild(_movement);
 		}
 
@@ -26,7 +28,11 @@ namespace tee
 		}
 	}
 
-		public void Attack(int attackNumber)
+        public Vector2 GetPosition(){
+			return GlobalPosition;
+		}
+
+        public void Attack(int attackNumber)
 		{
 
 		}
