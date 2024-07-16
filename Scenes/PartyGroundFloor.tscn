@@ -47,7 +47,7 @@ _sightConeRadius = 1000.0
 _triggerRange = 10.0
 
 [node name="Enemy2" type="Node2D" parent="GroundFloor"]
-position = Vector2(1657, 2590)
+position = Vector2(1935, 2666)
 script = ExtResource("7_kk71b")
 _enemyData = ExtResource("6_ylpf6")
 _sightConeSegments = 16
@@ -82,7 +82,7 @@ script = ExtResource("8_ekoj5")
 _sceneName = 6
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D2"]
-position = Vector2(103, 0)
+position = Vector2(140, 0)
 polygon = PackedVector2Array(3408, 1794, 3408, 2018, 3534, 2020, 3532, 1794)
 
 [node name="Door" type="TextureRect" parent="."]

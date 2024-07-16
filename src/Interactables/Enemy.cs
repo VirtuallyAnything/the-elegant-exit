@@ -16,7 +16,8 @@ namespace tee
 		private Node2D _player;
 		private Vector2 _playerPosition;
 		private bool _isSeeingPlayer;
-		private RayCast2D _rayCast = new(); 
+		private bool _isPlayerInSightCone;
+		private RayCast2D _rayCast = new();
 		[Export] private float _playerFollowSeconds = 10;
 		private double _playerFollowSecondsLeft;
 		[Export] private float _turnSpeed = (float)Math.Tau;
@@ -46,29 +47,47 @@ namespace tee
 			_sceneManager = GetNode("/root/SceneManager") as SceneManager;
 		}
 
-        // Called every frame. 'delta' is the elapsed time since the previous frame.
-        public override void _Process(double delta)
+		// Called every frame. 'delta' is the elapsed time since the previous frame.
+		public override void _Process(double delta)
 		{
+			if (_player == null)
+			{
+				return;
+			}
+
+			Vector2 currentPlayerPosition = _player.Position;
 			if (_playerFollowSecondsLeft > 0)
 			{
-				Vector2 currentPlayerPosition = _player.Position;
+
 				if (_playerPosition.DistanceTo(currentPlayerPosition) > 10)
 				{
-					_rayCast.TargetPosition = currentPlayerPosition;
-					if(_rayCast.GetCollider() is not Player){
-						_isSeeingPlayer = false;
-					}else{
-						_isSeeingPlayer = true;
-					}
+					CheckLineOfSightToPlayer(currentPlayerPosition);
 
 					_navAgent.TargetPosition = currentPlayerPosition;
 					float targetAngle = GlobalPosition.DirectionTo(currentPlayerPosition).Angle();
 					float angleDiff = (float)Mathf.Wrap(targetAngle - _sightCone.Rotation, -Math.PI, Math.PI);
 					_sightCone.Rotation += Math.Clamp((float)delta * _turnSpeed, 0, Math.Abs(angleDiff)) * Math.Sign(angleDiff);
 				}
-				
-				if(!_isSeeingPlayer){
+
+				if (!_isSeeingPlayer)
+				{
 					_playerFollowSecondsLeft -= delta;
+				}
+			}else{
+				_navAgent.TargetPosition = GlobalPosition;
+			}
+
+			if (_isPlayerInSightCone)
+			{
+				_rayCast.TargetPosition = currentPlayerPosition - Position;
+				if (_rayCast.GetCollider() is not Player)
+				{
+					_isSeeingPlayer = false;
+				}
+				else
+				{
+					_isSeeingPlayer = true;
+					_playerFollowSecondsLeft = _playerFollowSeconds;
 				}
 			}
 		}
@@ -87,20 +106,39 @@ namespace tee
 			{
 				_player = body;
 				_playerPosition = body.Position;
-				_rayCast.TargetPosition = _playerPosition;
+				_rayCast.TargetPosition = _playerPosition - Position;
 				_rayCast.ForceRaycastUpdate();
-				if(_rayCast.GetCollider() is not Player){
-					GD.Print(_rayCast.GetCollider());
+				if (_rayCast.GetCollider() is not Player)
+				{
+					_isSeeingPlayer = false;
+					_isPlayerInSightCone = true;
 					return;
 				}
 				_isSeeingPlayer = true;
+				_isPlayerInSightCone = true;
 				_navAgent.TargetPosition = _playerPosition;
 				_playerFollowSecondsLeft = _playerFollowSeconds;
 			}
 		}
 
-		private void OnSightConeExited(Node2D body){
+		private void OnSightConeExited(Node2D body)
+		{
 			_isSeeingPlayer = false;
+			_isPlayerInSightCone = false;
+		}
+
+		private void CheckLineOfSightToPlayer(Vector2 playerPosition)
+		{
+			_rayCast.TargetPosition = playerPosition - Position;
+			if (_rayCast.GetCollider() is not Player)
+			{
+				_isSeeingPlayer = false;
+			}
+			else if (_isPlayerInSightCone)
+			{
+				_isSeeingPlayer = true;
+				_playerFollowSecondsLeft = _playerFollowSeconds;
+			}
 		}
 	}
 }
