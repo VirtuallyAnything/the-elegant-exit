@@ -7,6 +7,7 @@ namespace tee
 	public partial class Door : TextureRect
 	{
 		private bool _isOpen;
+		private bool _canBeUsed;
 
 		public override void _GuiInput(InputEvent @event)
 		{

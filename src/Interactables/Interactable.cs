@@ -5,7 +5,7 @@ namespace tee
 {
 	public partial class Interactable : Node2D
 	{
-		[Export] protected float _triggerRange;
+		[Export] protected float _triggerRange = 10;
 		protected Sprite2D _sprite = new Sprite2D();
 		Area2D _triggerArea = new Area2D();
 

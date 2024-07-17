@@ -27,6 +27,7 @@ namespace tee
 		{
 			base._Ready();
 			_sprite.Texture = _enemyData.Icon;
+			_navAgent.NavigationLayers = 2;
 			AddChild(_navAgent);
 			_movement = new(_navAgent, this);
 			AddChild(_movement);
@@ -50,7 +51,7 @@ namespace tee
 		// Called every frame. 'delta' is the elapsed time since the previous frame.
 		public override void _Process(double delta)
 		{
-			if (_player == null)
+			if (_player is null)
 			{
 				return;
 			}
@@ -58,22 +59,19 @@ namespace tee
 			Vector2 currentPlayerPosition = _player.Position;
 			if (_playerFollowSecondsLeft > 0)
 			{
-
-				if (_playerPosition.DistanceTo(currentPlayerPosition) > 10)
+				CheckLineOfSightToPlayer(currentPlayerPosition);
+				if (_playerPosition.DistanceTo(currentPlayerPosition) > _triggerRange)
 				{
-					CheckLineOfSightToPlayer(currentPlayerPosition);
-
-					_navAgent.TargetPosition = currentPlayerPosition;
-					float targetAngle = GlobalPosition.DirectionTo(currentPlayerPosition).Angle();
-					float angleDiff = (float)Mathf.Wrap(targetAngle - _sightCone.Rotation, -Math.PI, Math.PI);
-					_sightCone.Rotation += Math.Clamp((float)delta * _turnSpeed, 0, Math.Abs(angleDiff)) * Math.Sign(angleDiff);
+					NavigateTo(currentPlayerPosition, (float)delta);
 				}
 
 				if (!_isSeeingPlayer)
 				{
 					_playerFollowSecondsLeft -= delta;
 				}
-			}else{
+			}
+			else
+			{
 				_navAgent.TargetPosition = GlobalPosition;
 			}
 
@@ -92,12 +90,23 @@ namespace tee
 			}
 		}
 
+		private void NavigateTo(Vector2 position, float delta)
+		{
+			_navAgent.TargetPosition = position;
+			float targetAngle = GlobalPosition.DirectionTo(position).Angle();
+			float angleDiff = (float)Mathf.Wrap(targetAngle - _sightCone.Rotation, -Math.PI, Math.PI);
+			_sightCone.Rotation += Math.Clamp(delta * _turnSpeed, 0, Math.Abs(angleDiff)) * Math.Sign(angleDiff);
+		}
+
 		override protected void OnTriggerAreaEntered(Node2D body)
 		{
-			GD.Print($"Enemy {_enemyData.DisplayName} triggers fight");
-			GameManager.CurrentEnemy = _enemyData;
-			_sceneManager.ChangeToScene(SceneName.EncounterStart);
-			QueueFree();
+			if (body.IsInGroup("Player"))
+			{
+				GD.Print($"Enemy {_enemyData.DisplayName} triggers fight");
+				GameManager.CurrentEnemy = _enemyData;
+				_sceneManager.ChangeToScene(SceneName.EncounterStart);
+				QueueFree();
+			}
 		}
 
 		private void OnSightConeEntered(Node2D body)
@@ -123,8 +132,11 @@ namespace tee
 
 		private void OnSightConeExited(Node2D body)
 		{
-			_isSeeingPlayer = false;
-			_isPlayerInSightCone = false;
+			if (body.IsInGroup("Player"))
+			{
+				_isSeeingPlayer = false;
+				_isPlayerInSightCone = false;
+			}
 		}
 
 		private void CheckLineOfSightToPlayer(Vector2 playerPosition)

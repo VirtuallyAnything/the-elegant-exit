@@ -51,6 +51,10 @@ PanCamera={
 ]
 }
 
+[navigation]
+
+2d/default_edge_connection_margin=30.0
+
 [rendering]
 
 renderer/rendering_method="mobile"

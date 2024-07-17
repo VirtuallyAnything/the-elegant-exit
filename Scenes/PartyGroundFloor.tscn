@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dmfp5lawyswyl"]
+[gd_scene load_steps=16 format=3 uid="uid://dmfp5lawyswyl"]
 
 [ext_resource type="Script" path="res://src/SceneCode/PartyGroundFloor.cs" id="1_mj4je"]
 [ext_resource type="Texture2D" uid="uid://cxsgk2jxdn3" path="res://Assets/Levels/GroundFloor.png" id="2_vuute"]
@@ -22,6 +22,20 @@ agent_radius = 35.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0w2vk"]
 size = Vector2(48.5, 833)
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_rn8cf"]
+vertices = PackedVector2Array(3656, 2454, 4491, 2454, 4488, 3049, 3657, 2908, 3655, 3049, 3655, 3026, 3609, 2908, 3609, 3026)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(3, 2, 4, 5), PackedInt32Array(6, 3, 5, 7)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(3621, 2419, 3621.68, 2872.6, 3574, 2873, 3574, 3061, 3621, 3061, 3622, 3085, 4523, 3084, 4526, 2419)])
+source_geometry_group_name = &"navigation_polygon_source_group"
+agent_radius = 35.0
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_o7d8p"]
+vertices = PackedVector2Array(1633, 3476, 1634, 3668, 1276, 3667, 1277, 3096, 2538, 3668, 2539, 4240, 2225, 4240, 2227, 3473, 2323, 3288, 2967, 3382, 2967, 3669, 3537, 2908, 3585, 2908, 3585, 3026, 3539, 3026, 801, 3096, 801, 2454, 2205, 2454, 2205, 3285, 2323, 2453, 3537, 2453, 3538, 3383)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 7, 8), PackedInt32Array(9, 10, 4, 8), PackedInt32Array(11, 12, 13, 14), PackedInt32Array(3, 15, 16, 17), PackedInt32Array(3, 17, 18, 0), PackedInt32Array(7, 0, 18, 8), PackedInt32Array(8, 19, 20, 11), PackedInt32Array(8, 11, 14, 21, 9)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(3573, 2418, 3572, 2873, 3620, 2873, 3620, 3061, 3574, 3061, 3573, 3419, 3002, 3417, 3002, 3705, 2573, 3703, 2575, 4275, 2190, 4276, 2192, 3508, 1668, 3511, 1670, 3704, 1241, 3702, 1242, 3131, 766, 3131, 767, 2419, 2240, 2420, 2240, 3251, 2288, 3252, 2289, 2419)])
+source_geometry_group_name = &"navigation_polygon_source_group"
+agent_radius = 35.0
+
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_mj4je")
 
@@ -32,7 +46,8 @@ position = Vector2(2974, 2283)
 scale = Vector2(1.48704, 1.48704)
 texture = ExtResource("2_vuute")
 
-[node name="NavigationRegion2D" type="NavigationRegion2D" parent="GroundFloor"]
+[node name="PlayerNavigationRegion2D" type="NavigationRegion2D" parent="GroundFloor"]
+visible = false
 position = Vector2(0, 2196)
 scale = Vector2(1.487, 1.487)
 navigation_polygon = SubResource("NavigationPolygon_ky745")
@@ -53,7 +68,7 @@ _enemyData = ExtResource("6_ylpf6")
 _sightConeSegments = 16
 _sightConeAngleDegrees = 135.0
 _sightConeRadius = 800.0
-_triggerRange = 10.0
+_triggerRange = 1.0
 
 [node name="Enemy3" type="Node2D" parent="GroundFloor"]
 position = Vector2(2006, 784)
@@ -68,6 +83,16 @@ _triggerRange = 10.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GroundFloor/Walls/StaticBody2D"]
 position = Vector2(2264.75, 2835.5)
 shape = SubResource("RectangleShape2D_0w2vk")
+
+[node name="Rooms" type="Node2D" parent="GroundFloor"]
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="GroundFloor/Rooms"]
+navigation_polygon = SubResource("NavigationPolygon_rn8cf")
+navigation_layers = 2
+
+[node name="NavigationRegion2D2" type="NavigationRegion2D" parent="GroundFloor/Rooms"]
+navigation_polygon = SubResource("NavigationPolygon_o7d8p")
+navigation_layers = 2
 
 [node name="Area2D" type="Area2D" parent="."]
 script = ExtResource("8_ekoj5")
@@ -86,6 +111,7 @@ position = Vector2(140, 0)
 polygon = PackedVector2Array(3408, 1794, 3408, 2018, 3534, 2020, 3532, 1794)
 
 [node name="Door" type="TextureRect" parent="."]
+visible = false
 offset_left = 933.0
 offset_top = 3132.0
 offset_right = 1122.0
