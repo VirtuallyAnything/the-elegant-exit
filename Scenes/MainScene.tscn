@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://src/SceneCode/MainScene.cs" id="1_klk3w"]
 [ext_resource type="PackedScene" uid="uid://dmfp5lawyswyl" path="res://Scenes/PartyGroundFloor.tscn" id="2_6n0uc"]
 [ext_resource type="Script" path="res://src/Player.cs" id="3_53yld"]
-[ext_resource type="Texture2D" uid="uid://k4q8rnj22dsh" path="res://Assets/Sprites/MainCharacterIcon.png" id="4_mph3w"]
+[ext_resource type="Texture2D" uid="uid://k4q8rnj22dsh" path="res://Assets/Textures/MainCharacterIcon.png" id="4_mph3w"]
 [ext_resource type="PackedScene" uid="uid://d21hljw8t080d" path="res://Scenes/Subscenes/SocialBattery.tscn" id="5_t55tw"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rv6dr"]
@@ -17,15 +17,6 @@ _socialBattery = NodePath("Characters/Player/Camera2D/TextureProgressBar")
 _camera = NodePath("Characters/Player/Camera2D")
 
 [node name="Node2D" parent="." instance=ExtResource("2_6n0uc")]
-
-[node name="Enemy" parent="Node2D/GroundFloor" index="2"]
-_triggerRange = 0.0
-
-[node name="Enemy2" parent="Node2D/GroundFloor" index="3"]
-_triggerRange = 0.0
-
-[node name="Enemy3" parent="Node2D/GroundFloor" index="4"]
-_triggerRange = 0.0
 
 [node name="Characters" type="Node2D" parent="."]
 

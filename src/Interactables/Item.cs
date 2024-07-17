@@ -16,7 +16,7 @@ namespace tee
 
         protected override void OnTriggerAreaEntered(Node2D body)
         {
-            base.OnTriggerAreaEntered(body);
+
         }
     }
 }

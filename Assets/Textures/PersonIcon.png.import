@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://7rkwkdxdfmn8"
-path="res://.godot/imported/SocialBatteryProgress.png-240b6a87b392497e915e9cf0e64f0775.ctex"
+uid="uid://cvmv3sr1jrvrj"
+path="res://.godot/imported/PersonIcon.png-d0d91aaf393427d880c5c9389f3eb603.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/SocialBatteryProgress.png"
-dest_files=["res://.godot/imported/SocialBatteryProgress.png-240b6a87b392497e915e9cf0e64f0775.ctex"]
+source_file="res://Assets/Textures/PersonIcon.png"
+dest_files=["res://.godot/imported/PersonIcon.png-d0d91aaf393427d880c5c9389f3eb603.ctex"]
 
 [params]
 

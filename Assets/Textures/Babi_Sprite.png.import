@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://brhg2uwb0p3lt"
-path="res://.godot/imported/TestSprites.png-38b118fcccbfba1640ee9e7fb8fa7241.ctex"
+uid="uid://dgds5ddni47ev"
+path="res://.godot/imported/Babi_Sprite.png-42460df49b84b5a02b63cc958ef9cf35.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/TestSprites.png"
-dest_files=["res://.godot/imported/TestSprites.png-38b118fcccbfba1640ee9e7fb8fa7241.ctex"]
+source_file="res://Assets/Textures/Babi_Sprite.png"
+dest_files=["res://.godot/imported/Babi_Sprite.png-42460df49b84b5a02b63cc958ef9cf35.ctex"]
 
 [params]
 

@@ -6,8 +6,8 @@
 [ext_resource type="Resource" uid="uid://nbq4tp8tr4kj" path="res://GameDataResources/Attacks/EnemyAttacks/JohnParker/ElonTheGenius.tres" id="4_4awoa"]
 [ext_resource type="Resource" uid="uid://borjush8jxdk1" path="res://GameDataResources/Attacks/EnemyAttacks/JohnParker/TeslaStocks.tres" id="5_yslex"]
 [ext_resource type="Resource" uid="uid://b2jae8ym7heos" path="res://GameDataResources/Attacks/EnemyAttacks/JohnParker/WhoInvitedYou.tres" id="6_ir3e8"]
-[ext_resource type="Texture2D" uid="uid://y51ai85kj0r0" path="res://Assets/Sprites/ElegantExitLogo.png" id="7_py1ro"]
-[ext_resource type="Texture2D" uid="uid://dloj826coufuu" path="res://Assets/Sprites/Avatar_JP.png" id="8_kxcpj"]
+[ext_resource type="Texture2D" uid="uid://y51ai85kj0r0" path="res://Assets/Textures/ElegantExitLogo.png" id="7_py1ro"]
+[ext_resource type="Texture2D" uid="uid://dloj826coufuu" path="res://Assets/Textures/Avatar_JP.png" id="8_kxcpj"]
 [ext_resource type="Script" path="res://src/ResourceScripts/EnemyData.cs" id="9_7amvr"]
 
 [resource]

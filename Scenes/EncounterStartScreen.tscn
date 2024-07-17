@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://src/SceneCode/EncounterStartScreen.cs" id="1_5g70q"]
 [ext_resource type="Texture2D" uid="uid://b1on62evvvcee" path="res://Assets/UI/EncounterStartScreen.png" id="2_j3cag"]
-[ext_resource type="Texture2D" uid="uid://bof3wrxapds3v" path="res://Assets/Sprites/MainCharacters.png" id="3_5u531"]
+[ext_resource type="Texture2D" uid="uid://bof3wrxapds3v" path="res://Assets/Textures/MainCharacters.png" id="3_5u531"]
 [ext_resource type="LabelSettings" uid="uid://bx6i6eo3rklk8" path="res://Assets/Themes/LobsterLabelSettings.tres" id="4_oqcpl"]
 [ext_resource type="Texture2D" uid="uid://ibsb083f86ee" path="res://Assets/UI/VS_withFlame.png" id="5_diw5j"]
 [ext_resource type="Script" path="res://src/SceneSwapButton.cs" id="6_tdx1t"]

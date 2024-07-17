@@ -1,13 +1,13 @@
 [gd_resource type="Resource" load_steps=10 format=3 uid="uid://bqgn3w6aagdea"]
 
-[ext_resource type="Texture2D" uid="uid://cvmv3sr1jrvrj" path="res://Assets/Sprites/PersonIcon.png" id="1_6mlo7"]
+[ext_resource type="Texture2D" uid="uid://cvmv3sr1jrvrj" path="res://Assets/Textures/PersonIcon.png" id="1_6mlo7"]
 [ext_resource type="Resource" uid="uid://8xn0egqs5tj" path="res://GameDataResources/Attacks/EnemyAttacks/NeighborDave/CelebrityGossip.tres" id="1_hghen"]
 [ext_resource type="Resource" uid="uid://dh2uovbtd14kp" path="res://GameDataResources/Attacks/EnemyAttacks/NeighborDave/LikingTheMusic.tres" id="2_axg17"]
 [ext_resource type="Resource" uid="uid://xx86xpw3vi5w" path="res://GameDataResources/Attacks/EnemyAttacks/NeighborDave/SetupHangout.tres" id="3_qykfc"]
 [ext_resource type="Resource" uid="uid://cp7yrnixb7nb3" path="res://GameDataResources/Attacks/EnemyAttacks/NeighborDave/TalkAboutStacy.tres" id="4_8s1ta"]
 [ext_resource type="Resource" uid="uid://bdysh4r800567" path="res://GameDataResources/Attacks/EnemyAttacks/NeighborDave/TalkAboutWeather.tres" id="5_54oft"]
 [ext_resource type="Resource" uid="uid://d1flcsllc4cfn" path="res://GameDataResources/Attacks/EnemyAttacks/NeighborDave/ThinWallsComment.tres" id="6_cces7"]
-[ext_resource type="Texture2D" uid="uid://dloj826coufuu" path="res://Assets/Sprites/Avatar_JP.png" id="8_1vo61"]
+[ext_resource type="Texture2D" uid="uid://dloj826coufuu" path="res://Assets/Textures/Avatar_JP.png" id="8_1vo61"]
 [ext_resource type="Script" path="res://src/ResourceScripts/EnemyData.cs" id="9_hjvbu"]
 
 [resource]

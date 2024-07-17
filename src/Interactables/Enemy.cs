@@ -7,6 +7,7 @@ namespace tee
 	{
 		//Some Variable for line of sight maybe?
 		[Export] private EnemyData _enemyData;
+		private CollisionShape2D _collisionShape;
 		private Area2D _sightCone = new();
 		[Export] int _sightConeSegments;
 		[Export] float _sightConeAngleDegrees;
@@ -27,7 +28,6 @@ namespace tee
 		{
 			base._Ready();
 			_sprite.Texture = _enemyData.Icon;
-			_navAgent.NavigationLayers = 2;
 			AddChild(_navAgent);
 			_movement = new(_navAgent, this);
 			AddChild(_movement);
@@ -43,6 +43,14 @@ namespace tee
 			_sightCone.BodyExited += OnSightConeExited;
 			AddChild(_sightCone);
 
+			_collisionShape = new()
+			{
+				Shape = new CircleShape2D()
+				{
+					Radius = _sprite.Texture.GetSize().X / 2
+				}
+			};
+			AddChild(_collisionShape);
 			AddChild(_rayCast);
 
 			_sceneManager = GetNode("/root/SceneManager") as SceneManager;

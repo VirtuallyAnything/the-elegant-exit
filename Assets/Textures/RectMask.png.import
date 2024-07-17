@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c08irt6knvdnn"
-path="res://.godot/imported/MainCharacters_scaled.png-c16758c4f6e7a93f3df99a2eeffbbab4.ctex"
+uid="uid://cpjddkrool3ba"
+path="res://.godot/imported/RectMask.png-c47a2f50d57ad0203f35468677ca5999.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/MainCharacters_scaled.png"
-dest_files=["res://.godot/imported/MainCharacters_scaled.png-c16758c4f6e7a93f3df99a2eeffbbab4.ctex"]
+source_file="res://Assets/Textures/RectMask.png"
+dest_files=["res://.godot/imported/RectMask.png-c47a2f50d57ad0203f35468677ca5999.ctex"]
 
 [params]
 

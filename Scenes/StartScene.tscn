@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://bhl5fccx2vo6m"]
 
-[ext_resource type="Texture2D" uid="uid://bof3wrxapds3v" path="res://Assets/Sprites/MainCharacters.png" id="2_dym4n"]
+[ext_resource type="Texture2D" uid="uid://bof3wrxapds3v" path="res://Assets/Textures/MainCharacters.png" id="2_dym4n"]
 [ext_resource type="Theme" uid="uid://bpp0q38rfd1ms" path="res://Assets/Themes/Lobster.tres" id="2_p0wqb"]
 [ext_resource type="PackedScene" uid="uid://dl3r57rxufb83" path="res://Scenes/Subscenes/SpeechbubbleButton1.tscn" id="3_dnpqh"]
 [ext_resource type="StyleBox" uid="uid://dl3ygowiq30p5" path="res://Assets/Themes/SpeechBubbleStyleBox2.tres" id="4_1y13y"]

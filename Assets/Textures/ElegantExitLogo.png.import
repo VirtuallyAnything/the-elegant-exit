@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cpjddkrool3ba"
-path="res://.godot/imported/RectMask.png-6a9ef6d95537c16be6fadaae4045893e.ctex"
+uid="uid://y51ai85kj0r0"
+path="res://.godot/imported/ElegantExitLogo.png-3aae3bf17a6cd34127b287f946e81880.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/RectMask.png"
-dest_files=["res://.godot/imported/RectMask.png-6a9ef6d95537c16be6fadaae4045893e.ctex"]
+source_file="res://Assets/Textures/ElegantExitLogo.png"
+dest_files=["res://.godot/imported/ElegantExitLogo.png-3aae3bf17a6cd34127b287f946e81880.ctex"]
 
 [params]
 

@@ -3,11 +3,11 @@ using System;
 
 namespace tee
 {
-	public partial class Interactable : Node2D
+	public abstract partial class Interactable : Node2D
 	{
 		[Export] protected float _triggerRange = 10;
 		protected Sprite2D _sprite = new Sprite2D();
-		Area2D _triggerArea = new Area2D();
+		protected Area2D _triggerArea = new Area2D();
 
 
 		// Called when the node enters the scene tree for the first time.
@@ -23,21 +23,17 @@ namespace tee
             };
             _triggerArea.AddChild(collisionShape);
 			_triggerArea.BodyEntered += OnTriggerAreaEntered;
+			_triggerArea.BodyExited += OnTriggerAreaExited;
 
 			AddChild(_sprite);
 			AddChild(_triggerArea);
 		}
 
-		// Called every frame. 'delta' is the elapsed time since the previous frame.
-		public override void _Process(double delta)
-		{
-		}
-
-		protected virtual void OnTriggerAreaEntered(Node2D body){
-
-		}
+		protected abstract void OnTriggerAreaEntered(Node2D body);
 		
+		protected virtual void OnTriggerAreaExited(Node2D body){
 
+		}
 		
 	}
 }

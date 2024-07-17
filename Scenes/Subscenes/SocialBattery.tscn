@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://d21hljw8t080d"]
 
-[ext_resource type="Texture2D" uid="uid://b7g4o5wujfi7m" path="res://Assets/Sprites/SocialBatteryIcon.png" id="1_m3m15"]
-[ext_resource type="Texture2D" uid="uid://7rkwkdxdfmn8" path="res://Assets/Sprites/SocialBatteryProgress.png" id="2_s1cl3"]
+[ext_resource type="Texture2D" uid="uid://b7g4o5wujfi7m" path="res://Assets/Textures/SocialBatteryIcon.png" id="1_m3m15"]
+[ext_resource type="Texture2D" uid="uid://7rkwkdxdfmn8" path="res://Assets/Textures/SocialBatteryProgress.png" id="2_s1cl3"]
 [ext_resource type="Script" path="res://src/TextSetter.cs" id="3_ls56a"]
 
 [sub_resource type="Theme" id="Theme_gufhv"]

@@ -1,98 +1,65 @@
-[gd_scene load_steps=16 format=3 uid="uid://dmfp5lawyswyl"]
+[gd_scene load_steps=12 format=3 uid="uid://dmfp5lawyswyl"]
 
 [ext_resource type="Script" path="res://src/SceneCode/PartyGroundFloor.cs" id="1_mj4je"]
 [ext_resource type="Texture2D" uid="uid://cxsgk2jxdn3" path="res://Assets/Levels/GroundFloor.png" id="2_vuute"]
-[ext_resource type="Texture2D" uid="uid://d3hx3upwa0rgm" path="res://Assets/Sprites/door.png" id="4_wxte6"]
-[ext_resource type="Resource" uid="uid://bqgn3w6aagdea" path="res://GameDataResources/EnemyData/NeighborDave.tres" id="5_735ji"]
-[ext_resource type="Resource" uid="uid://d4mv565km1snp" path="res://GameDataResources/EnemyData/JohnParker.tres" id="6_ylpf6"]
-[ext_resource type="Resource" uid="uid://dgmh740a8kil7" path="res://GameDataResources/EnemyData/Babi.tres" id="7_74onh"]
-[ext_resource type="Script" path="res://src/Interactables/Enemy.cs" id="7_kk71b"]
+[ext_resource type="PackedScene" uid="uid://lk1nms6ylsx0" path="res://Scenes/Subscenes/Enemy.tscn" id="3_vs0d7"]
+[ext_resource type="PackedScene" uid="uid://bve4wmvjohoh7" path="res://Scenes/Subscenes/Door.tscn" id="7_6wlcc"]
 [ext_resource type="Script" path="res://src/SceneCode/SceneSwitchArea.cs" id="8_ekoj5"]
-[ext_resource type="Script" path="res://src/Door.cs" id="9_cmrrc"]
 [ext_resource type="Material" uid="uid://c63a2eerex2pi" path="res://Assets/Materials/Outlined.tres" id="10_rf80p"]
-[ext_resource type="Texture2D" uid="uid://dloj826coufuu" path="res://Assets/Sprites/Avatar_JP.png" id="11_8oqdr"]
-
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_ky745"]
-vertices = PackedVector2Array(1718, 185, 2128, 184, 2368, 184, 2369, 489, 1574, 745, 2551, -413, 3962, -1438, 3964, 79, 3288, 82, 2549, -83, 26, -1438, 2483, -415, 32, -514, 2366, 1419, 2369, 1492, 2085, 1491, 2176, 1408, 2085, 1249, 2178, 1340, 660, 593, 547, 595, 549, 185, 1141, 185, 1982, 1249, 1984, 1378, 1798, 1378, 1798, 1255, 2160, 888, 2369, 888, 2368, 978, 2085, 978, 724, 694, 767, 696, 770, 978, 548, 978, 666, 696, 1406, 953, 1409, 1363, 1189, 1363, 1268, 953, 1189, 952, 1208, 951, 1262, 851, 1202, 853, 2496, 1154, 2497, 1340, 3007, 1154, 3008, 1362, 2598, 1362, 2597, 1154, 2598, 1096, 547, 696, 1088, 1080, 1087, 1363, 549, 1363, 550, 1080, 1012, 1078, 1067, 1078, 1718, 83, 2128, 83, 448, 517, 450, 1402, 36, 1402, 36, 226, 447, 85, 3276, 186, 3904, 185, 3904, 1362, 3110, 1362, 3110, 1154, 3222, 184, 3110, 1096, 1574, 185, 2470, 489, 2470, 184, 3008, 184, 3008, 563, 2470, 563, 2470, 547, 2370, 547, 2469, 681, 2469, 664, 3008, 664, 3008, 978, 2470, 738, 2470, 978, 2368, 738, 2367, 681, 2368, 787, 2160, 787, 1984, 787, 1984, 979, 1697, 979, 1508, 849, 1473, 745, 2598, 1080, 3008, 1080, 3008, 1096, 3110, 184, 2496, 1096, 1067, 984, 1012, 979, 1697, 1079, 2496, 1080, 1360, 184, 1472, 184, 1087, 853, 869, 597, 1697, 1252, 1696, 1363, 1512, 1363, 872, 979, 2086, 888, 2110, 888, 2110, 787, 724, 593, 3222, 83, 2286, -83, 2466, -166, 2368, -166, 2354, -413, 2286, -411, 1141, 83, 1087, 980, 1360, 83)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4), PackedInt32Array(5, 6, 7, 8, 9), PackedInt32Array(10, 6, 5, 11, 12), PackedInt32Array(13, 14, 15, 16), PackedInt32Array(16, 15, 17, 18), PackedInt32Array(19, 20, 21, 22), PackedInt32Array(23, 24, 25, 26), PackedInt32Array(27, 28, 29, 30), PackedInt32Array(31, 32, 33, 34, 35), PackedInt32Array(36, 37, 38, 39), PackedInt32Array(39, 38, 40, 41), PackedInt32Array(42, 39, 41, 43), PackedInt32Array(44, 45, 18, 17), PackedInt32Array(46, 47, 48, 49, 50), PackedInt32Array(34, 51, 35), PackedInt32Array(52, 53, 54, 55, 56, 57), PackedInt32Array(1, 0, 58, 59), PackedInt32Array(60, 61, 62, 63, 64), PackedInt32Array(64, 63, 12), PackedInt32Array(65, 66, 67, 68, 69), PackedInt32Array(70, 65, 69, 71), PackedInt32Array(4, 72, 0), PackedInt32Array(73, 74, 75, 76), PackedInt32Array(76, 77, 78), PackedInt32Array(73, 76, 78, 3), PackedInt32Array(3, 78, 79), PackedInt32Array(80, 81, 82, 83, 84), PackedInt32Array(83, 85, 84), PackedInt32Array(80, 84, 86, 87), PackedInt32Array(86, 88, 89, 4, 87), PackedInt32Array(4, 90, 91, 92, 93, 94), PackedInt32Array(50, 95, 96, 97, 46), PackedInt32Array(71, 98, 70), PackedInt32Array(97, 71, 69, 46), PackedInt32Array(99, 50, 49, 44), PackedInt32Array(100, 57, 56, 101), PackedInt32Array(102, 103, 99), PackedInt32Array(4, 3, 79, 87), PackedInt32Array(104, 105, 94, 42, 43, 106, 107, 22), PackedInt32Array(108, 109, 110, 93, 102), PackedInt32Array(101, 111, 107, 106), PackedInt32Array(30, 112, 113), PackedInt32Array(27, 30, 113, 89), PackedInt32Array(89, 113, 114), PackedInt32Array(4, 89, 114), PackedInt32Array(4, 114, 90), PackedInt32Array(102, 99, 44, 17, 23), PackedInt32Array(31, 35, 19, 115), PackedInt32Array(115, 19, 22), PackedInt32Array(107, 115, 22), PackedInt32Array(65, 70, 116, 8), PackedInt32Array(9, 8, 116, 59, 117), PackedInt32Array(118, 119, 120, 11), PackedInt32Array(12, 11, 120), PackedInt32Array(12, 120, 121), PackedInt32Array(122, 64, 12, 121, 117), PackedInt32Array(106, 123, 100, 101), PackedInt32Array(102, 23, 26, 108), PackedInt32Array(92, 102, 93), PackedInt32Array(94, 93, 42), PackedInt32Array(104, 22, 122, 124), PackedInt32Array(124, 122, 117), PackedInt32Array(58, 124, 117), PackedInt32Array(58, 117, 59)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(2562.21, 1188.97, 2531.27, 1188.97, 2531.94, 1375.25, 2298.59, 1374.58, 2211.84, 1375.25, 2400.13, 1386.01, 2405.51, 1527.91, 2051.11, 1525.89, 2050.44, 1284.47, 2018.16, 1284.47, 2019.5, 1414.26, 1763.95, 1412.91, 1762.61, 1289.17, 1732.35, 1287.83, 1731, 1398.12, 1477.47, 1398.12, 1472.76, 884.331, 1299.26, 885.676, 1300.61, 917.955, 1441.16, 917.955, 1443.85, 1398.12, 1154, 1398.12, 1155.35, 919.301, 1170.81, 917.955, 1169.47, 887.693, 1122.39, 887.693, 1122.39, 1011.43, 1101.55, 1014.12, 1101.55, 1045.73, 1123.74, 1047.75, 1122.39, 1398.12, 513.786, 1398.12, 515.804, 1045.73, 977.135, 1043.04, 977.135, 1014.12, 837.256, 1014.12, 833.894, 630.8, 758.574, 629.455, 758.574, 661.062, 802.286, 663.753, 805.649, 1012.78, 513.786, 1014.12, 512.441, 662.408, 628.783, 661.062, 627.438, 629.455, 512.441, 630.8, 513.786, 149.966, 1106.25, 149.966, 1106.25, 117.687, 482.179, 119.704, 482.851, 517.149, 486.214, 1437.12, 0.672495, 1438.47, 0.672495, 225.958, -3.36247, -513.786, -8.74243, -1473.44, 3997.31, -1473.44, 4000, 114.324, 3318.76, 117.014, 3315.4, 150.639, 3938.8, 149.966, 3938.8, 1397.44, 3074.65, 1398.12, 3074.65, 1188.97, 3042.37, 1188.97, 3043.71, 1398.12, 2563.55, 1396.77), PackedVector2Array(1539.34, 149.966, 1683.25, 149.966, 1683.25, 118.359, 1395.43, 118.359, 1395.43, 149.294, 1507.06, 149.966, 1507.73, 710.155, 1539.34, 710.155), PackedVector2Array(1731.67, 1014.12, 1731.67, 1044.38, 2531.27, 1045.73, 2531.27, 1061.2, 2562.88, 1060.52, 2562.88, 1045.06, 3043.04, 1045.73, 3043.04, 1060.52, 3074.65, 1060.52, 3075.32, 149.294, 3186.95, 149.294, 3186.95, 117.687, 2162.74, 117.687, 2163.42, 149.294, 2402.82, 149.966, 2403.5, 453.934, 2435.1, 453.934, 2435.1, 149.966, 3043.71, 149.294, 3043.04, 598.52, 2435.1, 597.848, 2435.1, 581.708, 2403.5, 581.708, 2402.82, 645.595, 2434.43, 645.595, 2434.43, 629.455, 3043.04, 629.455, 3043.04, 1012.78, 2435.1, 1013.45, 2435.1, 773.369, 2402.82, 773.369, 2402.82, 821.789, 2195.02, 821.789, 2195.02, 853.396, 2403.5, 853.396, 2402.82, 1012.78, 2050.44, 1013.45, 2051.11, 853.396, 2075.32, 853.396, 2075.32, 821.789, 2018.83, 821.789, 2018.83, 1014.12), PackedVector2Array(2321.45, -117.687, 2513.79, -117.687, 2515.8, -379.287, 2498.99, -131.137, 2334.9, -131.137, 2321.45, -377.27)])
-source_geometry_group_name = &"navigation_polygon_source_group"
-agent_radius = 35.0
+[ext_resource type="Texture2D" uid="uid://dloj826coufuu" path="res://Assets/Textures/Avatar_JP.png" id="11_8oqdr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0w2vk"]
 size = Vector2(48.5, 833)
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_rn8cf"]
-vertices = PackedVector2Array(3656, 2454, 4491, 2454, 4488, 3049, 3657, 2908, 3655, 3049, 3655, 3026, 3609, 2908, 3609, 3026)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(3, 2, 4, 5), PackedInt32Array(6, 3, 5, 7)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(3621, 2419, 3621.68, 2872.6, 3574, 2873, 3574, 3061, 3621, 3061, 3622, 3085, 4523, 3084, 4526, 2419)])
+vertices = PackedVector2Array(4488, 3049, 3656, 3049, 3656, 2454, 4491, 2454)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(3621, 2419, 3622, 3085, 4523, 3084, 4526, 2419)])
 source_geometry_group_name = &"navigation_polygon_source_group"
 agent_radius = 35.0
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_o7d8p"]
-vertices = PackedVector2Array(1633, 3476, 1634, 3668, 1276, 3667, 1277, 3096, 2538, 3668, 2539, 4240, 2225, 4240, 2227, 3473, 2323, 3288, 2967, 3382, 2967, 3669, 3537, 2908, 3585, 2908, 3585, 3026, 3539, 3026, 801, 3096, 801, 2454, 2205, 2454, 2205, 3285, 2323, 2453, 3537, 2453, 3538, 3383)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 7, 8), PackedInt32Array(9, 10, 4, 8), PackedInt32Array(11, 12, 13, 14), PackedInt32Array(3, 15, 16, 17), PackedInt32Array(3, 17, 18, 0), PackedInt32Array(7, 0, 18, 8), PackedInt32Array(8, 19, 20, 11), PackedInt32Array(8, 11, 14, 21, 9)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(3573, 2418, 3572, 2873, 3620, 2873, 3620, 3061, 3574, 3061, 3573, 3419, 3002, 3417, 3002, 3705, 2573, 3703, 2575, 4275, 2190, 4276, 2192, 3508, 1668, 3511, 1670, 3704, 1241, 3702, 1242, 3131, 766, 3131, 767, 2419, 2240, 2420, 2240, 3251, 2288, 3252, 2289, 2419)])
+vertices = PackedVector2Array(1633, 3476, 1634, 3668, 1276, 3667, 1277, 3096, 2538, 3668, 2539, 4240, 2225, 4240, 2227, 3473, 2323, 3288, 2967, 3382, 2967, 3669, 2323, 2453, 3538, 2453, 3538, 3383, 2205, 3285, 801, 3096, 801, 2454, 2205, 2454)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 7, 8), PackedInt32Array(9, 10, 4, 8, 11), PackedInt32Array(12, 13, 9, 11), PackedInt32Array(14, 8, 7, 0), PackedInt32Array(3, 15, 16, 17), PackedInt32Array(3, 17, 14, 0)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(3573, 2418, 3573, 3419, 3002, 3417, 3002, 3705, 2573, 3703, 2575, 4275, 2190, 4276, 2192, 3508, 1668, 3511, 1670, 3704, 1241, 3702, 1242, 3131, 766, 3131, 767, 2419, 2240, 2420, 2240, 3251, 2288, 3252, 2289, 2419)])
 source_geometry_group_name = &"navigation_polygon_source_group"
 agent_radius = 35.0
 
-[node name="Node2D" type="Node2D"]
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_7giwx"]
+vertices = PackedVector2Array(1159, 3668, 800, 3668, 801, 3215, 1159, 3215)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(766, 3180, 765, 3703, 1194, 3703, 1194, 3180)])
+source_geometry_group_name = &"navigation_polygon_source_group"
+agent_radius = 35.0
+
+[node name="GroundFloor" type="Node2D"]
 script = ExtResource("1_mj4je")
 
-[node name="GroundFloor" type="Node2D" parent="."]
-
-[node name="EnvironmentTest" type="Sprite2D" parent="GroundFloor"]
+[node name="EnvironmentTest" type="Sprite2D" parent="."]
 position = Vector2(2974, 2283)
 scale = Vector2(1.48704, 1.48704)
 texture = ExtResource("2_vuute")
 
-[node name="PlayerNavigationRegion2D" type="NavigationRegion2D" parent="GroundFloor"]
-visible = false
-position = Vector2(0, 2196)
-scale = Vector2(1.487, 1.487)
-navigation_polygon = SubResource("NavigationPolygon_ky745")
+[node name="Enemy2" parent="." instance=ExtResource("3_vs0d7")]
 
-[node name="Enemy" type="Node2D" parent="GroundFloor"]
-position = Vector2(276, 536)
-script = ExtResource("7_kk71b")
-_enemyData = ExtResource("5_735ji")
-_sightConeSegments = 4
-_sightConeAngleDegrees = 45.0
-_sightConeRadius = 1000.0
-_triggerRange = 10.0
+[node name="Walls" type="Node2D" parent="."]
 
-[node name="Enemy2" type="Node2D" parent="GroundFloor"]
-position = Vector2(1935, 2666)
-script = ExtResource("7_kk71b")
-_enemyData = ExtResource("6_ylpf6")
-_sightConeSegments = 16
-_sightConeAngleDegrees = 135.0
-_sightConeRadius = 800.0
-_triggerRange = 1.0
+[node name="StaticBody2D" type="StaticBody2D" parent="Walls"]
 
-[node name="Enemy3" type="Node2D" parent="GroundFloor"]
-position = Vector2(2006, 784)
-script = ExtResource("7_kk71b")
-_enemyData = ExtResource("7_74onh")
-_triggerRange = 10.0
-
-[node name="Walls" type="Node2D" parent="GroundFloor"]
-
-[node name="StaticBody2D" type="StaticBody2D" parent="GroundFloor/Walls"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="GroundFloor/Walls/StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D"]
 position = Vector2(2264.75, 2835.5)
 shape = SubResource("RectangleShape2D_0w2vk")
 
-[node name="Rooms" type="Node2D" parent="GroundFloor"]
+[node name="Rooms" type="Node2D" parent="."]
 
-[node name="NavigationRegion2D" type="NavigationRegion2D" parent="GroundFloor/Rooms"]
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="Rooms"]
 navigation_polygon = SubResource("NavigationPolygon_rn8cf")
-navigation_layers = 2
 
-[node name="NavigationRegion2D2" type="NavigationRegion2D" parent="GroundFloor/Rooms"]
+[node name="NavigationRegion2D2" type="NavigationRegion2D" parent="Rooms"]
 navigation_polygon = SubResource("NavigationPolygon_o7d8p")
-navigation_layers = 2
+
+[node name="NavigationRegion2D3" type="NavigationRegion2D" parent="Rooms"]
+navigation_polygon = SubResource("NavigationPolygon_7giwx")
 
 [node name="Area2D" type="Area2D" parent="."]
 script = ExtResource("8_ekoj5")
@@ -110,21 +77,9 @@ _sceneName = 6
 position = Vector2(140, 0)
 polygon = PackedVector2Array(3408, 1794, 3408, 2018, 3534, 2020, 3532, 1794)
 
-[node name="Door" type="TextureRect" parent="."]
-visible = false
-offset_left = 933.0
-offset_top = 3132.0
-offset_right = 1122.0
-offset_bottom = 3191.0
-texture = ExtResource("4_wxte6")
-stretch_mode = 4
-script = ExtResource("9_cmrrc")
-
-[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="Door"]
-position = Vector2(89, 24)
-vertices = PackedVector2Array(100, -24, -89, -24, -89, 1, 100, 1)
-
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false
 material = ExtResource("10_rf80p")
 texture = ExtResource("11_8oqdr")
+
+[node name="Door" parent="." instance=ExtResource("7_6wlcc")]

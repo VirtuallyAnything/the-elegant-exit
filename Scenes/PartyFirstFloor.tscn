@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://src/SceneCode/PartyFirstFloor.cs" id="1_me5vh"]
 [ext_resource type="Texture2D" uid="uid://bcwv3jtxpxt4a" path="res://Assets/Levels/FirstFloor.png" id="2_ka8sf"]
-[ext_resource type="Texture2D" uid="uid://d3hx3upwa0rgm" path="res://Assets/Sprites/door.png" id="3_gemse"]
+[ext_resource type="Texture2D" uid="uid://d3hx3upwa0rgm" path="res://Assets/Textures/door.png" id="3_gemse"]
 [ext_resource type="Script" path="res://src/Interactables/Enemy.cs" id="4_kpk03"]
 [ext_resource type="Resource" uid="uid://bqgn3w6aagdea" path="res://GameDataResources/EnemyData/NeighborDave.tres" id="5_tsw0b"]
 [ext_resource type="Script" path="res://src/SceneCode/SceneSwitchArea.cs" id="8_d007l"]
@@ -299,4 +299,3 @@ polygon = PackedVector2Array(3627, 1499, 3625, 1717, 3740, 1716, 3741, 1504)
 position = Vector2(2737, 3982)
 script = ExtResource("4_kpk03")
 _enemyData = ExtResource("5_tsw0b")
-_triggerRange = 10.0

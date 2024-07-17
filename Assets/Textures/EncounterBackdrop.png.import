@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d3hx3upwa0rgm"
-path="res://.godot/imported/door.png-1677dcd430722d29398d86fccf5d5345.ctex"
+uid="uid://bqrxurddwi4dn"
+path="res://.godot/imported/EncounterBackdrop.png-518ee025eb6324e6e5601b613ffc7752.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/door.png"
-dest_files=["res://.godot/imported/door.png-1677dcd430722d29398d86fccf5d5345.ctex"]
+source_file="res://Assets/Textures/EncounterBackdrop.png"
+dest_files=["res://.godot/imported/EncounterBackdrop.png-518ee025eb6324e6e5601b613ffc7752.ctex"]
 
 [params]
 

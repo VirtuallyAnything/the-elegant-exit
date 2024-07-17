@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://y51ai85kj0r0"
-path="res://.godot/imported/ElegantExitLogo.png-5075576201b561b222b248904fe6ea72.ctex"
+uid="uid://k4q8rnj22dsh"
+path="res://.godot/imported/MainCharacterIcon.png-d931a79d2cdc998ce262b30407659f79.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/ElegantExitLogo.png"
-dest_files=["res://.godot/imported/ElegantExitLogo.png-5075576201b561b222b248904fe6ea72.ctex"]
+source_file="res://Assets/Textures/MainCharacterIcon.png"
+dest_files=["res://.godot/imported/MainCharacterIcon.png-d931a79d2cdc998ce262b30407659f79.ctex"]
 
 [params]
 

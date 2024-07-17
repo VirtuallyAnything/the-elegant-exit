@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cxykjoqtv188j"
-path="res://.godot/imported/BabiIcon.png-aa4260a228e787a5459598430d90c631.ctex"
+uid="uid://bof3wrxapds3v"
+path="res://.godot/imported/MainCharacters.png-ca46416300ddb65342138f19f9896a53.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/BabiIcon.png"
-dest_files=["res://.godot/imported/BabiIcon.png-aa4260a228e787a5459598430d90c631.ctex"]
+source_file="res://Assets/Textures/MainCharacters.png"
+dest_files=["res://.godot/imported/MainCharacters.png-ca46416300ddb65342138f19f9896a53.ctex"]
 
 [params]
 

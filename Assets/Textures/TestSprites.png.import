@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bqrxurddwi4dn"
-path="res://.godot/imported/EncounterBackdrop.png-2123bc245d1cfc3452c0819b1e76463a.ctex"
+uid="uid://brhg2uwb0p3lt"
+path="res://.godot/imported/TestSprites.png-40c341ff300bdc1a08f57e5cbb5b9429.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/EncounterBackdrop.png"
-dest_files=["res://.godot/imported/EncounterBackdrop.png-2123bc245d1cfc3452c0819b1e76463a.ctex"]
+source_file="res://Assets/Textures/TestSprites.png"
+dest_files=["res://.godot/imported/TestSprites.png-40c341ff300bdc1a08f57e5cbb5b9429.ctex"]
 
 [params]
 
