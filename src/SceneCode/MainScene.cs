@@ -8,8 +8,8 @@ public partial class MainScene : Node2D
 	[Export] private CanvasLayer _encounterLayer;
 	[Export] private TextureProgressBar _socialBattery;
 	[Export] private Camera2D _camera;
-	[Export] private CharacterBody2D _player;
-	public CharacterBody2D Player{
+	[Export] private Player _player;
+	public Player Player{
 		get{return _player;}
 		set{_player = value;}
 	}
@@ -23,7 +23,7 @@ public partial class MainScene : Node2D
 		get { return _encounterLayer; }
 		set { _encounterLayer = value; }
 	}
-	// Called when the node enters the scene tree for the first time.
+
 	public override void _Ready()
 	{
 		SceneManager.MainScene = this;

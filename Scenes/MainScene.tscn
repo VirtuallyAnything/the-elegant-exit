@@ -9,14 +9,15 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_rv6dr"]
 radius = 14.6245
 
-[node name="MainScene" type="Node2D" node_paths=PackedStringArray("_currentFloor", "_encounterLayer", "_socialBattery", "_camera")]
+[node name="MainScene" type="Node2D" node_paths=PackedStringArray("_currentFloor", "_encounterLayer", "_socialBattery", "_camera", "_player")]
 script = ExtResource("1_klk3w")
-_currentFloor = NodePath("Node2D")
+_currentFloor = NodePath("GroundFloor")
 _encounterLayer = NodePath("EncounterLayer")
 _socialBattery = NodePath("Characters/Player/Camera2D/TextureProgressBar")
 _camera = NodePath("Characters/Player/Camera2D")
+_player = NodePath("Characters/Player")
 
-[node name="Node2D" parent="." instance=ExtResource("2_6n0uc")]
+[node name="GroundFloor" parent="." instance=ExtResource("2_6n0uc")]
 
 [node name="Characters" type="Node2D" parent="."]
 
@@ -55,5 +56,3 @@ metadata/_edit_use_anchors_ = true
 [node name="EncounterLayer" type="CanvasLayer" parent="."]
 layer = 3
 visible = false
-
-[editable path="Node2D"]

@@ -4,15 +4,20 @@ using System.Diagnostics;
 
 public partial class Movement : Node
 {
-	private NavigationAgent2D _navAgent;
-	private Node2D _nodeToMove;
+	protected NavigationAgent2D _navAgent;
+	protected Node2D _nodeToMove;
 	private Vector2 _movementVector;
 	private float _speed = 100;
+	protected float _turnSpeed = (float)Math.Tau;
 	private float _movementDelta;
 	private Vector2 _safeVelocity;
 	public float Speed{
 		get{return _speed;}
 		set{_speed = value;}
+	}
+	public float TurnSpeed{
+		get{return _turnSpeed;}
+		set{_turnSpeed = value;}
 	}
 
 	public Movement(NavigationAgent2D navAgent, Node2D nodeToMove)
