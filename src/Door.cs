@@ -9,6 +9,7 @@ namespace tee
 		private bool _isOpen;
 		private bool _canBeUsed;
 		private int _blockingBodies;
+		private int _enemiesInRange;
 		private Texture2D _texture;
 		[Export] private NavigationRegion2D _navRegion = new();
 		private Area2D _swingCone = new();
@@ -45,7 +46,7 @@ namespace tee
 			}
 			if (Input.IsActionJustPressed("Interact"))
 			{
-				if(_isOpen && _blockingBodies != 0){
+				if(_isOpen && _blockingBodies != 0 || _enemiesInRange != 0){
 					return;
 				}
 				_sprite.RotationDegrees = _isOpen ? 0 : -90;
@@ -67,6 +68,7 @@ namespace tee
 					_isOpen = true;
 					_navRegion.Enabled = true;
 				}
+				_enemiesInRange++;
 			}
 		}
 
@@ -75,6 +77,9 @@ namespace tee
 			if (body.IsInGroup("Player"))
 			{
 				_canBeUsed = false;
+			}else if (body.IsInGroup("Enemy"))
+			{
+				_enemiesInRange--;
 			}
 		}
 
