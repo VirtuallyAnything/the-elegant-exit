@@ -39,28 +39,23 @@ namespace tee
 		public override void _Ready()
 		{
 			base._Ready();
-			_enemySight.BodyEntered += StartChase;
 		}
 
 		public override void _Process(double delta)
 		{
-			if (_player is null)
+			if (_enemySight.IsSeeingPlayer())
 			{
-				return;
+				_playerFollowSecondsLeft = _playerFollowSeconds;
+			}
+			else
+			{
+				_playerFollowSecondsLeft -= delta;
 			}
 
 			if (_playerFollowSecondsLeft > 0)
 			{
-				_enemySight.CheckLineOfSightToPlayer();
-				Vector2 currentPlayerPosition = _player.Position;
-				if (_enemySight.IsSeeingPlayer())
-				{
-					_playerFollowSecondsLeft = _playerFollowSeconds;
-				}
-				else
-				{
-					_playerFollowSecondsLeft -= delta;
-				}
+				Vector2 currentPlayerPosition = _enemySight.CurrentPlayerPosition;
+
 
 				if (_lastPlayerPosition.DistanceTo(currentPlayerPosition) > _correctionMargin)
 				{
@@ -73,23 +68,12 @@ namespace tee
 			}
 		}
 
-        private void NavigateTo(Vector2 position, float delta)
+		private void NavigateTo(Vector2 position, float delta)
 		{
 			_navAgent.TargetPosition = position;
 			float targetAngle = _nodeToMove.GlobalPosition.DirectionTo(position).Angle();
 			float angleDiff = (float)Mathf.Wrap(targetAngle - _enemySight.Rotation, -Math.PI, Math.PI);
 			_enemySight.Rotation += Math.Clamp(delta * _turnSpeed, 0, Math.Abs(angleDiff)) * Math.Sign(angleDiff);
 		}
-
-		private void StartChase(Node2D body){
-			if(body is Player player){
-				_player = player;
-				_lastPlayerPosition = player.Position;
-				_navAgent.TargetPosition = _lastPlayerPosition;
-				_playerFollowSecondsLeft = _playerFollowSeconds;
-			}
-
-		}
-
 	}
 }

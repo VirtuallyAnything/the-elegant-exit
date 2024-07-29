@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://dmfp5lawyswyl"]
+[gd_scene load_steps=14 format=3 uid="uid://dmfp5lawyswyl"]
 
 [ext_resource type="Script" path="res://src/SceneCode/PartyGroundFloor.cs" id="1_mj4je"]
 [ext_resource type="Texture2D" uid="uid://cxsgk2jxdn3" path="res://Assets/Levels/GroundFloor.png" id="2_vuute"]
 [ext_resource type="PackedScene" uid="uid://lk1nms6ylsx0" path="res://Scenes/Subscenes/Enemy.tscn" id="3_vs0d7"]
 [ext_resource type="PackedScene" uid="uid://bve4wmvjohoh7" path="res://Scenes/Subscenes/Door.tscn" id="7_6wlcc"]
 [ext_resource type="Script" path="res://src/SceneCode/SceneSwitchArea.cs" id="8_ekoj5"]
+[ext_resource type="Shader" path="res://Assets/Shaders/Veil.gdshader" id="8_i5id5"]
 [ext_resource type="Material" uid="uid://c63a2eerex2pi" path="res://Assets/Materials/Outlined.tres" id="10_rf80p"]
 [ext_resource type="Texture2D" uid="uid://dloj826coufuu" path="res://Assets/Textures/Avatar_JP.png" id="11_8oqdr"]
 
@@ -31,6 +32,10 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(766, 3180, 765, 3703, 1194, 3703, 1194, 3180)])
 source_geometry_group_name = &"navigation_polygon_source_group"
 agent_radius = 35.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_h7sam"]
+shader = ExtResource("8_i5id5")
+shader_parameter/player_position = null
 
 [node name="GroundFloor" type="Node2D"]
 script = ExtResource("1_mj4je")
@@ -84,3 +89,9 @@ material = ExtResource("10_rf80p")
 texture = ExtResource("11_8oqdr")
 
 [node name="Door" parent="." instance=ExtResource("7_6wlcc")]
+
+[node name="EnvironmentTest2" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_h7sam")
+position = Vector2(2974, 2283)
+scale = Vector2(1.48704, 1.48704)
+texture = ExtResource("2_vuute")

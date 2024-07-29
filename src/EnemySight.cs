@@ -10,6 +10,12 @@ namespace tee
 		private Vector2 _lastPlayerPosition;
 		private bool _isRayHittingPlayer;
 		private bool _isPlayerInSightCone;
+		public Vector2 LastPlayerPosition{
+			get{return _lastPlayerPosition;}
+		}
+		public Vector2 CurrentPlayerPosition{
+			get{return _player.Position;}
+		}
 
 		// Called when the node enters the scene tree for the first time.
 		public EnemySight(RayCast2D raycast){
@@ -26,10 +32,9 @@ namespace tee
 				return;
 			}
 
-			Vector2 currentPlayerPosition = _player.Position;
 			if (_isPlayerInSightCone)
 			{
-				_rayCast.TargetPosition = currentPlayerPosition - GlobalPosition;
+				_rayCast.TargetPosition = CurrentPlayerPosition - GlobalPosition;
 				if (_rayCast.GetCollider() is not Player)
 				{
 					_isRayHittingPlayer = false;
@@ -41,27 +46,8 @@ namespace tee
 			}
 		}
 
-		public void CheckLineOfSightToPlayer()
-		{
-			if(_player is null){
-				GD.PrintErr("EnemySight Player Reference is null.");
-				return;
-			}
-			_rayCast.TargetPosition = _player.Position - GlobalPosition;
-			if (_rayCast.GetCollider() is not Player)
-			{
-				_isRayHittingPlayer = false;
-			}
-			else if (_isPlayerInSightCone)
-			{
-				_isRayHittingPlayer = true;
-				
-			}
-		}
-
 		private void OnSightConeEntered(Node2D body)
 		{
-			
 			if (body is Player player)
 			{
 				_rayCast.Enabled = true;
