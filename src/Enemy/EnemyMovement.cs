@@ -31,7 +31,7 @@ namespace tee
 			set { _correctionMargin = value; }
 		}
 
-		public EnemyMovement(NavigationAgent2D navAgent, Node2D nodeToMove, EnemySight enemySight) : base(navAgent, nodeToMove)
+		public EnemyMovement(NavigationAgent2D navAgent, Node2D nodeToMove, EnemySight enemySight) : base(navAgent, nodeToMove, enemySight)
 		{
 			_enemySight = enemySight;
 		}
@@ -71,9 +71,9 @@ namespace tee
 		private void NavigateTo(Vector2 position, float delta)
 		{
 			_navAgent.TargetPosition = position;
-			float targetAngle = _nodeToMove.GlobalPosition.DirectionTo(position).Angle();
+			/*float targetAngle = _nodeToMove.GlobalPosition.DirectionTo(position).Angle();
 			float angleDiff = (float)Mathf.Wrap(targetAngle - _enemySight.Rotation, -Math.PI, Math.PI);
-			_enemySight.Rotation += Math.Clamp(delta * _turnSpeed, 0, Math.Abs(angleDiff)) * Math.Sign(angleDiff);
+			_enemySight.Rotation += Math.Clamp(delta * _turnSpeed, 0, Math.Abs(angleDiff)) * Math.Sign(angleDiff);*/
 		}
 	}
 }

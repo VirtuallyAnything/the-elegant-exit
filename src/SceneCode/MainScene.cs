@@ -27,6 +27,8 @@ public partial class MainScene : Node2D
 	public override void _Ready()
 	{
 		SceneManager.MainScene = this;
+		GameManager.Player = _player;
+		GameManager.SetupGame();
 		UpdateUI();
 	}
 

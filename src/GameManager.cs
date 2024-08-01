@@ -7,7 +7,7 @@ namespace tee
 	public partial class GameManager : Node
 	{
 		public static event GameHandler GameOver;
-		private static PlayerData _playerData;
+		private static Player _player;
 		private static Godot.Collections.Array<PlayerAttack> _availableAttacks;
 		private int[] _partyMembers;
 		private static EnemyData _currentEnemy;
@@ -44,12 +44,19 @@ namespace tee
 			get{return _socialStandingOverall;}
 			set{_socialStandingOverall = value;}
 		}
+		public static Player Player{
+			get{return _player;}
+			set{_player = value;}
+		}
+		
 		public override void _Ready()
-		{
-			_playerData = GD.Load<PlayerData>("res://GameDataResources/Attacks/PlayerData.tres");
-			_availableAttacks = _playerData.AvailableAttacks;
-			_socialStandingOverall = _playerData.SocialStandingOverall;
-			_socialBattery = _playerData.SocialBattery;
+		{	
+		}
+
+		public static void SetupGame(){
+			_availableAttacks = _player.Data.AvailableAttacks;
+			_socialStandingOverall = _player.Data.SocialStandingOverall;
+			_socialBattery = _player.Data.SocialBattery;
 		}
 	}
 }

@@ -1,16 +1,20 @@
-[gd_scene load_steps=14 format=3 uid="uid://dmfp5lawyswyl"]
+[gd_scene load_steps=15 format=3 uid="uid://dmfp5lawyswyl"]
 
 [ext_resource type="Script" path="res://src/SceneCode/PartyGroundFloor.cs" id="1_mj4je"]
 [ext_resource type="Texture2D" uid="uid://cxsgk2jxdn3" path="res://Assets/Levels/GroundFloor.png" id="2_vuute"]
 [ext_resource type="PackedScene" uid="uid://lk1nms6ylsx0" path="res://Scenes/Subscenes/Enemy.tscn" id="3_vs0d7"]
+[ext_resource type="Script" path="res://src/Map/Wall.cs" id="4_b5ob3"]
 [ext_resource type="PackedScene" uid="uid://bve4wmvjohoh7" path="res://Scenes/Subscenes/Door.tscn" id="7_6wlcc"]
 [ext_resource type="Script" path="res://src/SceneCode/SceneSwitchArea.cs" id="8_ekoj5"]
-[ext_resource type="Shader" path="res://Assets/Shaders/Veil.gdshader" id="8_i5id5"]
+[ext_resource type="PackedScene" uid="uid://ba07kn2ollll2" path="res://Scenes/Subscenes/fow_light.tscn" id="8_svv30"]
 [ext_resource type="Material" uid="uid://c63a2eerex2pi" path="res://Assets/Materials/Outlined.tres" id="10_rf80p"]
 [ext_resource type="Texture2D" uid="uid://dloj826coufuu" path="res://Assets/Textures/Avatar_JP.png" id="11_8oqdr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0w2vk"]
 size = Vector2(48.5, 833)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a0n2h"]
+size = Vector2(928, 48)
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_rn8cf"]
 vertices = PackedVector2Array(4488, 3049, 3656, 3049, 3656, 2454, 4491, 2454)
@@ -33,10 +37,6 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(766, 3180, 765, 3703, 1
 source_geometry_group_name = &"navigation_polygon_source_group"
 agent_radius = 35.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_h7sam"]
-shader = ExtResource("8_i5id5")
-shader_parameter/player_position = null
-
 [node name="GroundFloor" type="Node2D"]
 script = ExtResource("1_mj4je")
 
@@ -51,10 +51,18 @@ _speed = 100.0
 [node name="Walls" type="Node2D" parent="."]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Walls"]
+script = ExtResource("4_b5ob3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D"]
 position = Vector2(2264.75, 2835.5)
 shape = SubResource("RectangleShape2D_0w2vk")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Walls"]
+script = ExtResource("4_b5ob3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D2"]
+position = Vector2(1182, 2395)
+shape = SubResource("RectangleShape2D_a0n2h")
 
 [node name="Rooms" type="Node2D" parent="."]
 
@@ -90,8 +98,6 @@ texture = ExtResource("11_8oqdr")
 
 [node name="Door" parent="." instance=ExtResource("7_6wlcc")]
 
-[node name="EnvironmentTest2" type="Sprite2D" parent="."]
-material = SubResource("ShaderMaterial_h7sam")
-position = Vector2(2974, 2283)
-scale = Vector2(1.48704, 1.48704)
-texture = ExtResource("2_vuute")
+[node name="FOW" parent="." instance=ExtResource("8_svv30")]
+offset_right = 5948.0
+offset_bottom = 4566.0

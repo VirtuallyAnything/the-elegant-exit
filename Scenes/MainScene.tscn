@@ -1,10 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://dmyfdjltetw2d"]
+[gd_scene load_steps=9 format=3 uid="uid://dmyfdjltetw2d"]
 
 [ext_resource type="Script" path="res://src/SceneCode/MainScene.cs" id="1_klk3w"]
 [ext_resource type="PackedScene" uid="uid://dmfp5lawyswyl" path="res://Scenes/PartyGroundFloor.tscn" id="2_6n0uc"]
-[ext_resource type="Script" path="res://src/Player.cs" id="3_53yld"]
+[ext_resource type="Script" path="res://src/Player/Player.cs" id="3_53yld"]
+[ext_resource type="Resource" uid="uid://d0bu2gll3u4xb" path="res://GameDataResources/Attacks/PlayerData.tres" id="4_iwfah"]
 [ext_resource type="Texture2D" uid="uid://k4q8rnj22dsh" path="res://Assets/Textures/MainCharacterIcon.png" id="4_mph3w"]
 [ext_resource type="PackedScene" uid="uid://d21hljw8t080d" path="res://Scenes/Subscenes/SocialBattery.tscn" id="5_t55tw"]
+[ext_resource type="Texture2D" uid="uid://ceb1ia7oecf7l" path="res://Assets/Textures/PlayerSightCone.png" id="6_k7ig0"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rv6dr"]
 radius = 14.6245
@@ -21,11 +23,13 @@ _player = NodePath("Characters/Player")
 
 [node name="Characters" type="Node2D" parent="."]
 
-[node name="Player" type="CharacterBody2D" parent="Characters" node_paths=PackedStringArray("_agent") groups=["Player"]]
+[node name="Player" type="CharacterBody2D" parent="Characters" node_paths=PackedStringArray("_agent", "_playerVision") groups=["Player"]]
 position = Vector2(1615, 2763)
 script = ExtResource("3_53yld")
-_agent = NodePath("NavigationAgent2D")
+_data = ExtResource("4_iwfah")
 _movementSpeed = 150.0
+_agent = NodePath("NavigationAgent2D")
+_playerVision = NodePath("PointLight2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Characters/Player" groups=["Player"]]
 scale = Vector2(3.285, 3.285)
@@ -52,6 +56,11 @@ offset_top = -460.0
 offset_right = -735.0
 offset_bottom = -397.0
 metadata/_edit_use_anchors_ = true
+
+[node name="PointLight2D" type="PointLight2D" parent="Characters/Player" groups=["PlayerVision"]]
+energy = 0.8
+shadow_enabled = true
+texture = ExtResource("6_k7ig0")
 
 [node name="EncounterLayer" type="CanvasLayer" parent="."]
 layer = 3

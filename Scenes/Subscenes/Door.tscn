@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bve4wmvjohoh7"]
 
-[ext_resource type="Script" path="res://src/Door.cs" id="1_d2nwp"]
+[ext_resource type="Script" path="res://src/Map/Door.cs" id="1_d2nwp"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_x77pa"]
 vertices = PackedVector2Array(155, 60, 35, 60, 35, -22, 155, -22)

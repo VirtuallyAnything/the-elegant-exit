@@ -1,0 +1,80 @@
+[gd_scene load_steps=12 format=3 uid="uid://ba07kn2ollll2"]
+
+[ext_resource type="Shader" path="res://Assets/Shaders/fow.gdshader" id="1_spnn6"]
+[ext_resource type="Script" path="res://src/Map/Veil.cs" id="2_ey08t"]
+[ext_resource type="Texture2D" uid="uid://bq267a13ala75" path="res://Assets/Textures/Veil.png" id="3_s6bkw"]
+[ext_resource type="Shader" path="res://Assets/Shaders/convert_light_mask.gdshader" id="4_2tidq"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vc2wf"]
+shader = ExtResource("1_spnn6")
+shader_parameter/fog_scroll_velocity = Vector2(0.1, 0.1)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_obslj"]
+
+[sub_resource type="Gradient" id="Gradient_bwsh4"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_t2t3b"]
+gradient = SubResource("Gradient_bwsh4")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_n5ubc"]
+viewport_path = NodePath("LightSubViewport")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8s3ri"]
+resource_local_to_scene = true
+shader = ExtResource("4_2tidq")
+shader_parameter/persistent_reveal = true
+shader_parameter/light_texture = SubResource("ViewportTexture_n5ubc")
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_limae"]
+
+[node name="FOW" type="TextureRect"]
+material = SubResource("ShaderMaterial_vc2wf")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("CanvasTexture_obslj")
+script = ExtResource("2_ey08t")
+_fogTexture = ExtResource("3_s6bkw")
+_fogScrollVelocity = Vector2(0, 0)
+_lightGroup = "PlayerVision"
+_lightOccluderGroup = "Occluder"
+_fowScaleFactor = 0.2
+
+[node name="LightSubViewport" type="SubViewport" parent="."]
+disable_3d = true
+transparent_bg = true
+handle_input_locally = false
+canvas_item_default_texture_repeat = 1
+canvas_cull_mask = 4294966273
+size = Vector2i(641, 359)
+render_target_update_mode = 4
+
+[node name="Background" type="TextureRect" parent="LightSubViewport"]
+offset_right = 64.0
+offset_bottom = 64.0
+texture = SubResource("GradientTexture2D_t2t3b")
+stretch_mode = 1
+
+[node name="Camera2D" type="Camera2D" parent="LightSubViewport/Background"]
+anchor_mode = 0
+
+[node name="CanvasModulate" type="CanvasModulate" parent="LightSubViewport"]
+scale = Vector2(1.1, 1.1)
+color = Color(0, 0, 0, 1)
+
+[node name="MaskSubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+handle_input_locally = false
+canvas_item_default_texture_repeat = 1
+canvas_cull_mask = 4294966273
+size = Vector2i(2, 2)
+render_target_update_mode = 4
+
+[node name="TextureRect" type="TextureRect" parent="MaskSubViewport"]
+material = SubResource("ShaderMaterial_8s3ri")
+texture = SubResource("CanvasTexture_limae")
+expand_mode = 3

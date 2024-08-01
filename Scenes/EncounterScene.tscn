@@ -7,7 +7,7 @@
 [ext_resource type="Script" path="res://src/VisibilityChanger.cs" id="5_flu7k"]
 [ext_resource type="ButtonGroup" uid="uid://c8kg3f3dogyuv" path="res://AttackButtonGroup.tres" id="7_dq33r"]
 [ext_resource type="Texture2D" uid="uid://dloj826coufuu" path="res://Assets/Textures/Avatar_JP.png" id="7_kbgav"]
-[ext_resource type="Script" path="res://src/AttackValueSetter.cs" id="9_hj51r"]
+[ext_resource type="Script" path="res://src/UI/AttackValueSetter.cs" id="9_hj51r"]
 [ext_resource type="PackedScene" uid="uid://d21hljw8t080d" path="res://Scenes/Subscenes/SocialBattery.tscn" id="9_vlhst"]
 [ext_resource type="Script" path="res://src/ButtonGrid.cs" id="11_2jdkf"]
 
