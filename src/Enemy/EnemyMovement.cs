@@ -13,7 +13,7 @@ namespace tee
 		private Vector2 _lastPlayerPosition;
 		private bool _isSeeingPlayer;
 		private bool _isPlayerInSightCone;
-		private EnemySight _enemySight;
+		private EnemyVision _enemyVision;
 
 		public Player PlayerReference
 		{
@@ -31,9 +31,9 @@ namespace tee
 			set { _correctionMargin = value; }
 		}
 
-		public EnemyMovement(NavigationAgent2D navAgent, Node2D nodeToMove, EnemySight enemySight) : base(navAgent, nodeToMove, enemySight)
+		public EnemyMovement(NavigationAgent2D navAgent, Node2D nodeToMove, EnemyVision enemyVision) : base(navAgent, nodeToMove, enemyVision)
 		{
-			_enemySight = enemySight;
+			_enemyVision = enemyVision;
 		}
 
 		public override void _Ready()
@@ -43,7 +43,7 @@ namespace tee
 
 		public override void _Process(double delta)
 		{
-			if (_enemySight.IsSeeingPlayer())
+			if (_enemyVision.IsSeeingPlayer())
 			{
 				_playerFollowSecondsLeft = _playerFollowSeconds;
 			}
@@ -54,26 +54,18 @@ namespace tee
 
 			if (_playerFollowSecondsLeft > 0)
 			{
-				Vector2 currentPlayerPosition = _enemySight.CurrentPlayerPosition;
+				Vector2 currentPlayerPosition = _enemyVision.CurrentPlayerPosition;
 
 
 				if (_lastPlayerPosition.DistanceTo(currentPlayerPosition) > _correctionMargin)
 				{
-					NavigateTo(currentPlayerPosition, (float)delta);
+					_navAgent.TargetPosition = currentPlayerPosition;
 				}
 			}
 			else
 			{
 				_navAgent.TargetPosition = _nodeToMove.GlobalPosition;
 			}
-		}
-
-		private void NavigateTo(Vector2 position, float delta)
-		{
-			_navAgent.TargetPosition = position;
-			/*float targetAngle = _nodeToMove.GlobalPosition.DirectionTo(position).Angle();
-			float angleDiff = (float)Mathf.Wrap(targetAngle - _enemySight.Rotation, -Math.PI, Math.PI);
-			_enemySight.Rotation += Math.Clamp(delta * _turnSpeed, 0, Math.Abs(angleDiff)) * Math.Sign(angleDiff);*/
 		}
 	}
 }

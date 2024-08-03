@@ -23,13 +23,16 @@ _player = NodePath("Characters/Player")
 
 [node name="Characters" type="Node2D" parent="."]
 
-[node name="Player" type="CharacterBody2D" parent="Characters" node_paths=PackedStringArray("_agent", "_playerVision") groups=["Player"]]
+[node name="Player" type="CharacterBody2D" parent="Characters" node_paths=PackedStringArray("_agent", "_discoveryLight") groups=["Player"]]
 position = Vector2(1615, 2763)
 script = ExtResource("3_53yld")
 _data = ExtResource("4_iwfah")
+_sightConeSegments = 10
+_sightConeAngleDegrees = 120.0
+_sightConeRadius = 500.0
 _agent = NodePath("NavigationAgent2D")
 _movementSpeed = 150.0
-_playerVision = NodePath("PointLight2D")
+_discoveryLight = NodePath("PointLight2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Characters/Player" groups=["Player"]]
 scale = Vector2(3.285, 3.285)

@@ -14,7 +14,6 @@ namespace tee
 		protected override void OnNavigationAgent2DVelocityComputed(Vector2 safeVelocity)
 		{
 			base.OnNavigationAgent2DVelocityComputed(safeVelocity);
-			//NodeMoved?.Invoke(_nodeToMove.GlobalPosition);
 		}
 
         public override void _PhysicsProcess(double delta)

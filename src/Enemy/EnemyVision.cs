@@ -3,7 +3,7 @@ using System;
 
 namespace tee
 {
-	public partial class EnemySight : Area2D
+	public partial class EnemyVision : Vision
 	{
 		private RayCast2D _rayCast;
 		private Player _player;
@@ -18,10 +18,8 @@ namespace tee
 		}
 
 		// Called when the node enters the scene tree for the first time.
-		public EnemySight(RayCast2D raycast){
+		public EnemyVision(RayCast2D raycast){
 			_rayCast = raycast;
-			BodyEntered += OnSightConeEntered;
-			BodyExited += OnSightConeExited;
 		}
 
 		// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -46,7 +44,7 @@ namespace tee
 			}
 		}
 
-		private void OnSightConeEntered(Node2D body)
+		protected override void OnSightConeEntered(Node2D body)
 		{
 			if (body is Player player)
 			{
@@ -65,7 +63,7 @@ namespace tee
 			}
 		}
 
-		private void OnSightConeExited(Node2D body)
+		protected override void OnSightConeExited(Node2D body)
 		{
 			if (body.IsInGroup("Player"))
 			{
