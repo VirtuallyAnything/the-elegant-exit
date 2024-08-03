@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Reflection.Metadata.Ecma335;
 namespace tee
 {
 	public partial class PlayerMovement : Movement
@@ -13,10 +14,18 @@ namespace tee
 		protected override void OnNavigationAgent2DVelocityComputed(Vector2 safeVelocity)
 		{
 			base.OnNavigationAgent2DVelocityComputed(safeVelocity);
-			NodeMoved?.Invoke(_nodeToMove.GlobalPosition);
+			//NodeMoved?.Invoke(_nodeToMove.GlobalPosition);
 		}
 
-		public override void _UnhandledInput(InputEvent @event)
+        public override void _PhysicsProcess(double delta)
+        {
+            base._PhysicsProcess(delta);
+			if(!_navAgent.IsNavigationFinished()){
+				NodeMoved?.Invoke(_nodeToMove.GlobalPosition);
+			}
+        }
+
+        public override void _UnhandledInput(InputEvent @event)
 		{
 			if (Input.IsActionPressed("Move"))
 			{

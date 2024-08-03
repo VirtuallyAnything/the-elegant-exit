@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://damjwt0d5a1y8"]
+[gd_scene load_steps=8 format=3 uid="uid://damjwt0d5a1y8"]
 
 [ext_resource type="Script" path="res://src/SceneCode/PartyFirstFloor.cs" id="1_me5vh"]
 [ext_resource type="Texture2D" uid="uid://bcwv3jtxpxt4a" path="res://Assets/Levels/FirstFloor.png" id="2_ka8sf"]
 [ext_resource type="Script" path="res://src/Enemy/Enemy.cs" id="4_kpk03"]
 [ext_resource type="Resource" uid="uid://bqgn3w6aagdea" path="res://GameDataResources/EnemyData/NeighborDave.tres" id="5_tsw0b"]
+[ext_resource type="PackedScene" uid="uid://ba07kn2ollll2" path="res://Scenes/Subscenes/fow_light.tscn" id="6_yuf7y"]
 [ext_resource type="Script" path="res://src/SceneCode/SceneSwitchArea.cs" id="8_d007l"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_ky745"]
@@ -61,3 +62,14 @@ polygon = PackedVector2Array(3627, 1499, 3625, 1717, 3740, 1716, 3741, 1504)
 position = Vector2(2737, 3982)
 script = ExtResource("4_kpk03")
 _enemyData = ExtResource("5_tsw0b")
+
+[node name="FOW" parent="." instance=ExtResource("6_yuf7y")]
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 6456.0
+offset_bottom = 4833.0
+grow_horizontal = 1
+grow_vertical = 1
+_fowScaleFactor = 0.1
+_initialReveal = false

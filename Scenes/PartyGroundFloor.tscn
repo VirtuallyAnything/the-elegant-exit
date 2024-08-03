@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dmfp5lawyswyl"]
+[gd_scene load_steps=16 format=3 uid="uid://dmfp5lawyswyl"]
 
 [ext_resource type="Script" path="res://src/SceneCode/PartyGroundFloor.cs" id="1_mj4je"]
 [ext_resource type="Texture2D" uid="uid://cxsgk2jxdn3" path="res://Assets/Levels/GroundFloor.png" id="2_vuute"]
@@ -15,6 +15,13 @@ size = Vector2(48.5, 833)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a0n2h"]
 size = Vector2(928, 48)
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_8ho13"]
+vertices = PackedVector2Array(3728, 4203, 3325, 4203, 3326, 4074, 3728, 3929, 3728, 4275, 3729, 4430, 3085, 4430, 3253, 4276, 3085, 4073, 3254, 4074, 2967, 4263, 2655, 4264, 2655, 4077, 2967, 4070, 3730, 3810, 3753, 3810, 3753, 3929, 2632, 4077, 2632, 3787, 3729, 3787)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 7), PackedInt32Array(7, 6, 8, 9), PackedInt32Array(10, 11, 12, 13), PackedInt32Array(14, 15, 16, 3), PackedInt32Array(12, 17, 18, 19, 13), PackedInt32Array(3, 2, 9, 8, 13, 19, 14)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(2597, 3752, 2597, 4112, 2620, 4112, 2621, 4300, 3003, 4298, 3002, 4106, 3050, 4107, 3050, 4465, 3764, 4465, 3763, 4240, 3288, 4241, 3289, 4109, 3291, 4109, 3290, 4239, 3763, 4238, 3763, 3964, 3788, 3964, 3788, 3775, 3764, 3775, 3763, 3752)])
+source_geometry_group_name = &"navigation_polygon_source_group"
+agent_radius = 35.0
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_rn8cf"]
 vertices = PackedVector2Array(4488, 3049, 3656, 3049, 3656, 2454, 4491, 2454)
@@ -67,6 +74,9 @@ shape = SubResource("RectangleShape2D_a0n2h")
 [node name="Rooms" type="Node2D" parent="."]
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="Rooms"]
+navigation_polygon = SubResource("NavigationPolygon_8ho13")
+
+[node name="NavigationRegion2D4" type="NavigationRegion2D" parent="Rooms"]
 navigation_polygon = SubResource("NavigationPolygon_rn8cf")
 
 [node name="NavigationRegion2D2" type="NavigationRegion2D" parent="Rooms"]
@@ -98,6 +108,11 @@ texture = ExtResource("11_8oqdr")
 
 [node name="Door" parent="." instance=ExtResource("7_6wlcc")]
 
+[node name="Door2" parent="." instance=ExtResource("7_6wlcc")]
+position = Vector2(2597, 3752)
+rotation = 1.57079
+
 [node name="FOW" parent="." instance=ExtResource("8_svv30")]
 offset_right = 5948.0
 offset_bottom = 4566.0
+_fowScaleFactor = 0.1
