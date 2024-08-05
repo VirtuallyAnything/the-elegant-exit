@@ -13,15 +13,15 @@ namespace tee
 
         protected override void OnSightConeEntered(Node2D body)
         {
-            if(body is Enemy){
-				body.Visible = true;
+            if(body is Enemy enemy){
+				enemy.AppearInView();
 			}
         }
 
         protected override void OnSightConeExited(Node2D body)
         {
-            if(body is Enemy){
-				body.Visible = false;
+            if(body is Enemy enemy){
+				enemy.FadeFromView();
 			}
         }
     }

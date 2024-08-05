@@ -19,13 +19,16 @@ namespace tee
 		[Export] private float _speed;
 		[Export] private float _turnSpeed = (float)Math.Tau;
 
-		private bool _isVisibleToPlayer;
+		private Tween _tween;
+		private Color _transparent = new Color(1, 1, 1, 0);
 		private SceneManager _sceneManager;
 
 		public override void _Ready()
 		{
 			base._Ready();
+			Modulate = _transparent;
 			_sprite.Texture = _enemyData.Icon;
+			
 			AddChild(_navAgent);
 
 			CollisionCone collisionCone = new()
@@ -68,6 +71,20 @@ namespace tee
 				_sceneManager.ChangeToScene(SceneName.EncounterStart);
 				QueueFree();
 			}
+		}
+
+		public void FadeFromView(){
+			_tween = CreateTween();
+			float animationLength = 2f;
+			Color currentColor = Modulate;
+			PropertyTweener propTweener = _tween.TweenProperty(
+				this, $"{PropertyName.Modulate}", _transparent, animationLength);
+			propTweener.From(currentColor);
+		}
+
+		public void AppearInView(){
+			_tween?.Kill();
+			Modulate = Color.Color8(255, 255, 255, 255);
 		}
 
 	}

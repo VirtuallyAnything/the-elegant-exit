@@ -24,7 +24,7 @@ _player = NodePath("Characters/Player")
 [node name="Characters" type="Node2D" parent="."]
 
 [node name="Player" type="CharacterBody2D" parent="Characters" node_paths=PackedStringArray("_agent", "_discoveryLight") groups=["Player"]]
-position = Vector2(1615, 2763)
+position = Vector2(1119, 2738)
 script = ExtResource("3_53yld")
 _data = ExtResource("4_iwfah")
 _sightConeSegments = 10
