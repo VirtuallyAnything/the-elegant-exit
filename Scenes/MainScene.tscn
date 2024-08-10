@@ -61,8 +61,8 @@ offset_bottom = -397.0
 metadata/_edit_use_anchors_ = true
 
 [node name="PointLight2D" type="PointLight2D" parent="Characters/Player" groups=["PlayerVision"]]
-energy = 0.8
 shadow_enabled = true
+shadow_filter = 1
 texture = ExtResource("6_k7ig0")
 
 [node name="EncounterLayer" type="CanvasLayer" parent="."]

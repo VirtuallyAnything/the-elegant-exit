@@ -47,7 +47,10 @@ agent_radius = 35.0
 [node name="GroundFloor" type="Node2D"]
 script = ExtResource("1_mj4je")
 
-[node name="EnvironmentTest" type="Sprite2D" parent="."]
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.529067, 0.529067, 0.529067, 1)
+
+[node name="EnvironmentTest" type="Sprite2D" parent="CanvasModulate"]
 position = Vector2(2974, 2283)
 scale = Vector2(1.48704, 1.48704)
 texture = ExtResource("2_vuute")

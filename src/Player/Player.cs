@@ -31,6 +31,7 @@ namespace tee
 				AngleRadians = (float)(_sightConeAngleDegrees * (Math.PI / 180)),
 				Radius = _sightConeRadius
 			};
+			RemoveChild(_discoveryLight);
 			_playerVision = new(_discoveryLight);
 			_playerVision.AddChild(collisionCone);
 			AddChild(_playerVision);

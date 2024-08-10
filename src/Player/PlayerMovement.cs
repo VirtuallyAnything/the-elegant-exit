@@ -1,6 +1,4 @@
 using Godot;
-using System;
-using System.Reflection.Metadata.Ecma335;
 namespace tee
 {
 	public partial class PlayerMovement : Movement
@@ -20,7 +18,7 @@ namespace tee
         {
             base._PhysicsProcess(delta);
 			if(!_navAgent.IsNavigationFinished()){
-				NodeMoved?.Invoke(_nodeToMove.GlobalPosition);
+				NodeMoved?.Invoke(_nodeToMove.GlobalPosition, _nodeToRotate.Rotation);
 			}
         }
 

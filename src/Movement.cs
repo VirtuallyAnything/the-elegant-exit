@@ -4,7 +4,7 @@ using System.Diagnostics;
 
 namespace tee
 {
-	public delegate void MovementHandler(Vector2 position);
+	public delegate void MovementHandler(Vector2 position, float rotation);
 	public partial class Movement : Node
 	{
 		protected NavigationAgent2D _navAgent;

@@ -42,7 +42,6 @@ public partial class Veil : TextureRect
 	public override void _Ready()
 	{
 		PlayerMovement.NodeMoved += OnPlayerMoved;
-		//Player.Moved += OnPlayerMoved;
 		_lightSV = GetNode<SubViewport>("LightSubViewport");
 		_maskSV = GetNode<SubViewport>("MaskSubViewport");
 		_mask = GetNode<TextureRect>("MaskSubViewport/TextureRect");
@@ -50,7 +49,6 @@ public partial class Veil : TextureRect
 		var display_height = Size.Y;
 		Vector2 displayVector = new Vector2(display_width, display_height);
 		_sizeVec = (Vector2I)(_fowScaleFactor * displayVector);
-
 
 		// set Viewports and TextureRects to window size
 		_lightSV.Size = _sizeVec;
@@ -114,10 +112,10 @@ public partial class Veil : TextureRect
 	}
 
 	// takes the instance ID and position of the in-game light to move the duplicate light and update fog
-	public void OnPlayerMoved(Vector2 position)
+	public void OnPlayerMoved(Vector2 position, float newRotation = 0)
 	{
 		_playerVisionDup.Position = _fowScaleFactor * position;
-		_playerVisionDup.Rotation = _playerVision.Rotation;
+		_playerVisionDup.Rotation = newRotation;
 		_maskImage = _maskSV.GetTexture().GetImage();
 		_maskTexture = ImageTexture.CreateFromImage(_maskImage);
 		ShaderMaterial thisMaterial = (ShaderMaterial)Material;
