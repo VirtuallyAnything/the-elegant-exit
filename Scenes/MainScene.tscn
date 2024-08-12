@@ -1,7 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://dmyfdjltetw2d"]
+[gd_scene load_steps=8 format=3 uid="uid://dmyfdjltetw2d"]
 
 [ext_resource type="Script" path="res://src/SceneCode/MainScene.cs" id="1_klk3w"]
-[ext_resource type="PackedScene" uid="uid://dmfp5lawyswyl" path="res://Scenes/PartyGroundFloor.tscn" id="2_6n0uc"]
 [ext_resource type="Script" path="res://src/Player/Player.cs" id="3_53yld"]
 [ext_resource type="Resource" uid="uid://d0bu2gll3u4xb" path="res://GameDataResources/Attacks/PlayerData.tres" id="4_iwfah"]
 [ext_resource type="Texture2D" uid="uid://k4q8rnj22dsh" path="res://Assets/Textures/MainCharacterIcon.png" id="4_mph3w"]
@@ -11,17 +10,15 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_rv6dr"]
 radius = 14.6245
 
-[node name="MainScene" type="Node2D" node_paths=PackedStringArray("_currentFloor", "_encounterLayer", "_socialBattery", "_camera", "_player")]
+[node name="MainScene" type="Node2D" node_paths=PackedStringArray("_encounterLayer", "_socialBattery", "_camera", "_player")]
 script = ExtResource("1_klk3w")
-_currentFloor = NodePath("GroundFloor")
 _encounterLayer = NodePath("EncounterLayer")
 _socialBattery = NodePath("Characters/Player/Camera2D/TextureProgressBar")
 _camera = NodePath("Characters/Player/Camera2D")
 _player = NodePath("Characters/Player")
 
-[node name="GroundFloor" parent="." instance=ExtResource("2_6n0uc")]
-
-[node name="Characters" type="Node2D" parent="."]
+[node name="Characters" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
 
 [node name="Player" type="CharacterBody2D" parent="Characters" node_paths=PackedStringArray("_agent", "_discoveryLight") groups=["Player"]]
 position = Vector2(1119, 2738)

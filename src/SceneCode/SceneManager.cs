@@ -39,7 +39,7 @@ namespace tee
 			switch (sceneName)
 			{
 				case SceneName.MainMenu:
-					ChangeToMainScene();
+					
 					break;
 				case SceneName.MainScene:
 					ChangeToMainScene();
@@ -80,9 +80,10 @@ namespace tee
 
 		private void ChangeToMainScene()
 		{
-			GetTree().CallDeferred("change_scene_to_file", "res://Scenes/MainScene.tscn");
 			_partyGroundFloor = (PartyGroundFloor) ResourceLoader.Load<PackedScene>("res://Scenes/PartyGroundFloor.tscn").Instantiate();
 			_partyFirstFloor = (PartyFirstFloor) ResourceLoader.Load<PackedScene>("res://Scenes/PartyFirstFloor.tscn").Instantiate();
+			MainScene.MainSceneInit += ChangeToPartyGroundFloor;
+			GetTree().CallDeferred("change_scene_to_file", "res://Scenes/MainScene.tscn");
 		}
 
 		private void ChangeToPartyGroundFloor()
@@ -122,7 +123,6 @@ namespace tee
 			_mainScene.EncounterLayer.AddChild(_encounterScene);
 			_encounterScene.LeaveButton.Pressed += ExitEncounter;
 			_encounterScene.SetupScene(GameManager.CurrentEnemy);
-			
 		}
 
 		private void ChangeToEncounterFinishedScene(){
@@ -145,6 +145,7 @@ namespace tee
 
 		private void ChangeToGameOverScene()
 		{
+			MainScene.MainSceneInit -= ChangeToPartyGroundFloor;
 			GetTree().CallDeferred("change_scene_to_file", "res://Scenes/GameOverScene.tscn");
 		}
 		

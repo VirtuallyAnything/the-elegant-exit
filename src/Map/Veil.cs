@@ -39,9 +39,15 @@ public partial class Veil : TextureRect
 	private PointLight2D _playerVisionDup;
 	private Dictionary<ulong, LightOccluder2D> _occluderDupsDict = new();
 
+	public override void _EnterTree()
+	{
+		base._EnterTree();
+		PlayerMovement.NodeMoved += OnPlayerMoved;
+	}
+
 	public override void _Ready()
 	{
-		PlayerMovement.NodeMoved += OnPlayerMoved;
+		GD.Print($"_Ready called by {this}");
 		_lightSV = GetNode<SubViewport>("LightSubViewport");
 		_maskSV = GetNode<SubViewport>("MaskSubViewport");
 		_mask = GetNode<TextureRect>("MaskSubViewport/TextureRect");
@@ -125,5 +131,11 @@ public partial class Veil : TextureRect
 			ShaderMaterial maskMaterial = (ShaderMaterial)_mask.Material;
 			maskMaterial.SetShaderParameter("mask_texture", _maskTexture);
 		}
+	}
+
+	public override void _ExitTree()
+	{
+		base._ExitTree();
+		PlayerMovement.NodeMoved -= OnPlayerMoved;
 	}
 }
