@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Runtime.CompilerServices;
 
 namespace tee
 {
@@ -17,7 +18,6 @@ namespace tee
 		}
 		private static float _socialStandingOverall;
 		private static int _socialBattery = 30;
-
 		public static Godot.Collections.Array<PlayerAttack> AvailableAttacks
 		{
 			get { return _availableAttacks; }
@@ -33,7 +33,7 @@ namespace tee
 					_socialBattery = 30;
 				}else if(value <= 0){
 					_socialBattery = 0;
-					GameOver?.Invoke();
+					EndGame();
 				}else{
 					_socialBattery = value;
 				}
@@ -58,5 +58,10 @@ namespace tee
 			_socialStandingOverall = _player.Data.SocialStandingOverall;
 			_socialBattery = _player.Data.SocialBattery;
 		}
+
+		public static void EndGame(){
+			GameOver?.Invoke();
+		}
+
 	}
 }

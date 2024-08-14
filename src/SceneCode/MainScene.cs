@@ -34,6 +34,7 @@ namespace tee
 			GameManager.Player = _player;
 			GameManager.SetupGame();
 			UpdateUI();
+			_camera.MakeCurrent();
 			MainSceneInit?.Invoke();
 		}
 
@@ -51,7 +52,6 @@ namespace tee
 		public void UpdateUI()
 		{
 			_socialBattery.Value = GameManager.SocialBattery;
-			_camera.MakeCurrent();
 		}
 	}
 }

@@ -28,9 +28,7 @@ namespace tee
 		public override void _Ready()
 		{
 			CombatManager.CombatEnded += ChangeToEncounterFinishedScene;
-			GameManager.GameOver += ChangeToGameOverScene;
-			
-			
+			GameManager.GameOver += ChangeToGameOverScene;	
 		}
 
 		public void ChangeToScene(SceneName sceneName)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dmyfdjltetw2d"]
+[gd_scene load_steps=11 format=3 uid="uid://dmyfdjltetw2d"]
 
 [ext_resource type="Script" path="res://src/SceneCode/MainScene.cs" id="1_klk3w"]
 [ext_resource type="Script" path="res://src/Player/Player.cs" id="3_53yld"]
@@ -6,9 +6,20 @@
 [ext_resource type="Texture2D" uid="uid://k4q8rnj22dsh" path="res://Assets/Textures/MainCharacterIcon.png" id="4_mph3w"]
 [ext_resource type="PackedScene" uid="uid://d21hljw8t080d" path="res://Scenes/Subscenes/SocialBattery.tscn" id="5_t55tw"]
 [ext_resource type="Texture2D" uid="uid://ceb1ia7oecf7l" path="res://Assets/Textures/PlayerSightCone.png" id="6_k7ig0"]
+[ext_resource type="FontFile" uid="uid://dnj361fu4us32" path="res://Assets/Fonts/Lobster-Regular.ttf" id="6_q8ytb"]
+[ext_resource type="Script" path="res://src/GameTimer.cs" id="8_28aws"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rv6dr"]
 radius = 14.6245
+
+[sub_resource type="LabelSettings" id="LabelSettings_3w7eg"]
+line_spacing = -35.0
+font = ExtResource("6_q8ytb")
+font_size = 110
+font_color = Color(1, 0.8, 0.701961, 1)
+shadow_size = 10
+shadow_color = Color(0.12549, 0.0431373, 0.145098, 1)
+shadow_offset = Vector2(8, 8)
 
 [node name="MainScene" type="Node2D" node_paths=PackedStringArray("_encounterLayer", "_socialBattery", "_camera", "_player")]
 script = ExtResource("1_klk3w")
@@ -57,6 +68,19 @@ offset_right = -735.0
 offset_bottom = -397.0
 metadata/_edit_use_anchors_ = true
 
+[node name="Countdown" type="Label" parent="Characters/Player/Camera2D"]
+layout_direction = 2
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 605.0
+offset_top = -460.0
+offset_right = 882.0
+offset_bottom = -280.0
+grow_horizontal = 0
+text = "0:00"
+label_settings = SubResource("LabelSettings_3w7eg")
+
 [node name="PointLight2D" type="PointLight2D" parent="Characters/Player" groups=["PlayerVision"]]
 shadow_enabled = true
 shadow_filter = 1
@@ -65,3 +89,8 @@ texture = ExtResource("6_k7ig0")
 [node name="EncounterLayer" type="CanvasLayer" parent="."]
 layer = 3
 visible = false
+
+[node name="Timer" type="Timer" parent="." node_paths=PackedStringArray("_displayLabel")]
+one_shot = true
+script = ExtResource("8_28aws")
+_displayLabel = NodePath("../Characters/Player/Camera2D/Countdown")
