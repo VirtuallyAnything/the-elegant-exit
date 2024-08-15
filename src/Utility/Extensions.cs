@@ -1,5 +1,7 @@
 using Godot;
 using System;
+using System.Collections.Generic;
+using tee;
 
 public static class Extensions : Object
 {
@@ -8,10 +10,10 @@ public static class Extensions : Object
 		Vector2[] vertices = new Vector2[4];
 		if (centerVerticesAroundOrigin)
 		{
-			vertices[0] = new Vector2(origin.X + size.X/2, origin.Y - size.Y/2);
-			vertices[1] = new Vector2(origin.X + size.X/2, origin.Y + size.Y/2);
-			vertices[2] = new Vector2(origin.X - size.X/2, origin.Y + size.Y/2);
-			vertices[3] = new Vector2(origin.X - size.X/2, origin.Y - size.Y/2);
+			vertices[0] = new Vector2(origin.X + size.X / 2, origin.Y - size.Y / 2);
+			vertices[1] = new Vector2(origin.X + size.X / 2, origin.Y + size.Y / 2);
+			vertices[2] = new Vector2(origin.X - size.X / 2, origin.Y + size.Y / 2);
+			vertices[3] = new Vector2(origin.X - size.X / 2, origin.Y - size.Y / 2);
 		}
 		else
 		{
@@ -21,5 +23,35 @@ public static class Extensions : Object
 			vertices[3] = new Vector2(origin.X + size.X, origin.Y);
 		}
 		return vertices;
+	}
+
+	public static Godot.Collections.Array<EnemyInterest> ToConversationTopics(this Godot.Collections.Array<TopicName> topicNames)
+	{
+		Godot.Collections.Array<EnemyInterest> conversationTopics = new();
+		foreach (TopicName topic in topicNames)
+		{
+			EnemyInterest conversationTopic = new(topic);
+			conversationTopics.Add(conversationTopic);
+		}
+		return conversationTopics;
+	}
+
+	public static EnemyInterest Random<T>(this Godot.Collections.Array<EnemyInterest> topics)
+	{
+		int totalWeight = 0; // this stores sum of weights of all elements before current
+		EnemyInterest selected = new(TopicName.None); // currently selected element
+		Random random = new Random();
+		foreach (EnemyInterest topic in topics)
+		{
+			int weight = topic.Propability; // weight of current element
+			int r = random.Next(totalWeight + weight); // random value
+			if (r >= totalWeight)
+			{ // probability of this is weight/(totalWeight+weight)
+				selected = topic;
+			} // it is the probability of discarding last selected element and selecting current one instead
+			totalWeight += weight; // increase weight sum
+		}
+
+		return selected; // when iterations end, selected is some element of sequence. 
 	}
 }

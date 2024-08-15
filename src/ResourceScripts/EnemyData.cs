@@ -7,7 +7,10 @@ namespace tee
 	{
 		private string _displayName;
 		private Godot.Collections.Array<EnemyAttack> _enemyAttacks;
-		private Godot.Collections.Array<ConversationTopic> _topicPreferences;
+		private Godot.Collections.Array<TopicName> _likes = new([TopicName.SpecialInterest]);
+		private Godot.Collections.Array<TopicName> _neutrals = new([TopicName.Art, TopicName.Economy, TopicName.Gossip, TopicName.Lifestyle, TopicName.Politics, TopicName.Sport]);
+		private Godot.Collections.Array<TopicName> _dislikes;
+
 		private Texture2D _icon;
 		private Texture2D _sprite;
 		private int _conversationInterest = 20;
@@ -42,10 +45,22 @@ namespace tee
 			set { _conversationInterest = value; }
 		}
 		[Export]
-		public Godot.Collections.Array<ConversationTopic> TopicPreferences
+		public Godot.Collections.Array<TopicName> Likes
 		{
-			get { return _topicPreferences; }
-			set { _topicPreferences = value; }
+			get { return _likes; }
+			set { _likes = value; }
+		}
+		[Export]
+		public Godot.Collections.Array<TopicName> Neutrals
+		{
+			get { return _neutrals; }
+			set { _neutrals = value; }
+		}
+		[Export]
+		public Godot.Collections.Array<TopicName> Dislikes
+		{
+			get { return _dislikes; }
+			set { _dislikes = value; }
 		}
 	}
 }

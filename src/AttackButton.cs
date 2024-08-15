@@ -8,13 +8,13 @@ namespace tee
 	public partial class AttackButton : Button
 	{
 		private PlayerAttack _boundAttack;
-		private ConversationTopic _boundTopic;
+		private TopicName _boundTopic;
 		private ButtonGrid _topicGrid;
 		[Export] AttackValueSetter _attackValueSetter;
 		private Array<TopicButton> _topicButtonsAttack = new();
-		private Array<ConversationTopic> _attackConversationTopics = new();
+		private Array<TopicName> _attackConversationTopics = new();
 		private Array<TopicButton> _topicButtonsItem = new();
-		private Array<ConversationTopic> _itemConversationTopics = new();
+		private Array<TopicName> _itemConversationTopics = new();
 		public static event AttackButtonHandler OnButtonPressed;
 		[Export]
 		public ButtonGrid TopicGrid
@@ -27,7 +27,7 @@ namespace tee
 			get { return _boundAttack; }
 			set { _boundAttack = value; }
 		}
-		public ConversationTopic BoundTopic
+		public TopicName BoundTopic
 		{
 			get { return _boundTopic; }
 			set { _boundTopic = value; }
@@ -37,14 +37,14 @@ namespace tee
 		{
 			TopicButton.OnButtonPressed += Disable;
 			EncounterScene.EnemyTurnAnimationComplete += Enable;
-			_attackConversationTopics.Add(ConversationTopic.Art);
-			_attackConversationTopics.Add(ConversationTopic.Economy);
-			_attackConversationTopics.Add(ConversationTopic.Gossip);
-			_attackConversationTopics.Add(ConversationTopic.Politics);
-			_attackConversationTopics.Add(ConversationTopic.Sport);
-			_attackConversationTopics.Add(ConversationTopic.Lifestyle);
+			_attackConversationTopics.Add(TopicName.Art);
+			_attackConversationTopics.Add(TopicName.Economy);
+			_attackConversationTopics.Add(TopicName.Gossip);
+			_attackConversationTopics.Add(TopicName.Politics);
+			_attackConversationTopics.Add(TopicName.Sport);
+			_attackConversationTopics.Add(TopicName.Lifestyle);
 
-			foreach (ConversationTopic conversationTopic in _attackConversationTopics)
+			foreach (TopicName conversationTopic in _attackConversationTopics)
 			{
 				TopicButton button = new()
 				{
@@ -54,11 +54,10 @@ namespace tee
 				_topicButtonsAttack.Add(button);
 			}
 
-			_itemConversationTopics.Add(ConversationTopic.PartyGossip);
-			_itemConversationTopics.Add(ConversationTopic.Drink);
-			_itemConversationTopics.Add(ConversationTopic.Food);
+			_itemConversationTopics.Add(TopicName.Drink);
+			_itemConversationTopics.Add(TopicName.Food);
 
-			foreach (ConversationTopic conversationTopic in _itemConversationTopics)
+			foreach (TopicName conversationTopic in _itemConversationTopics)
 			{
 				TopicButton button = new()
 				{
@@ -124,7 +123,7 @@ namespace tee
 				TopicButton button = new()
 				{
 					Text = "Select",
-					ConversationTopic = ConversationTopic.None
+					ConversationTopic = TopicName.None
 				};
 				_topicGrid.Add(button);
 				button.ParentButton = this;

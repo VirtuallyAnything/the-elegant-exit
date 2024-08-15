@@ -3,7 +3,7 @@ using System;
 
 namespace tee
 {
-	public enum ConversationTopic
+	public enum TopicName
 	{
 		None = 0,
 		Sport = 1,
@@ -12,7 +12,7 @@ namespace tee
 		Politics = 4,
 		Art = 5,
 		Gossip = 6,
-		PartyGossip = 7,
+		SpecialInterest = 7,
 		Food = 8,
 		Drink = 9
 

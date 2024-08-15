@@ -17,4 +17,6 @@ EnemyAttacks = Array[Resource]([ExtResource("1_hghen"), ExtResource("2_axg17"), 
 Icon = ExtResource("1_6mlo7")
 Texture = ExtResource("8_1vo61")
 ConversationInterest = 20
-TopicPreferences = Array[int]([1, 4, 7, 8, 9])
+Likes = null
+Neutrals = null
+Dislikes = null

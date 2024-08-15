@@ -16,19 +16,18 @@ namespace tee
 		private int _socialBatteryChangeDislike;
 		private bool _enableTopicChoice;
 		private bool _isFromItem;
-		private Godot.Collections.Array<ConversationTopic> _unlockedTopics = new();
+		private Godot.Collections.Array<TopicName> _unlockedTopics = new();
 		[Export]
-		private Godot.Collections.Dictionary<ConversationTopic, string> _topicRelatedQuotes = new(){
-			{ConversationTopic.None, ""},
-			{ConversationTopic.Sport, ""},
-			{ConversationTopic.Lifestyle, ""},
-			{ConversationTopic.Economy, ""},
-			{ConversationTopic.Politics, ""},
-			{ConversationTopic.Art, ""},
-			{ConversationTopic.Gossip, ""},
-			{ConversationTopic.PartyGossip, ""},
-			{ConversationTopic.Food, ""},
-			{ConversationTopic.Drink, ""}
+		private Godot.Collections.Dictionary<TopicName, string> _topicRelatedQuotes = new(){
+			{TopicName.None, ""},
+			{TopicName.Sport, ""},
+			{TopicName.Lifestyle, ""},
+			{TopicName.Economy, ""},
+			{TopicName.Politics, ""},
+			{TopicName.Art, ""},
+			{TopicName.Gossip, ""},
+			{TopicName.Food, ""},
+			{TopicName.Drink, ""}
 		};
 
 		[Export]
@@ -92,13 +91,13 @@ namespace tee
 			set { _isFromItem = value; }
 		}
 		[Export]
-		public Godot.Collections.Array<ConversationTopic> UnlockedTopics
+		public Godot.Collections.Array<TopicName> UnlockedTopics
 		{
 			get { return _unlockedTopics; }
 			set { _unlockedTopics = value; }
 		}
 
-		public string GetQuoteForTopic(ConversationTopic topic){
+		public string GetQuoteForTopic(TopicName topic){
 			return _topicRelatedQuotes[topic];
 		}
 	}

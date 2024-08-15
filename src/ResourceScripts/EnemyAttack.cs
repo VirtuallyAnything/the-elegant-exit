@@ -3,12 +3,14 @@ using System;
 
 namespace tee
 {
+	[GlobalClass]
 	public partial class EnemyAttack : Attack
 	{
 		private float _mentalCapacityChange;
 		private int _socialBatteryChange;
-		[Export] private Godot.Collections.Array<string> _quotes;
-
+		private TopicName _topic;
+		[Export] 
+		private string _quote;
 		[Export]
 		public int SocialBatteryChange
 		{
@@ -21,9 +23,8 @@ namespace tee
 			get { return _mentalCapacityChange; }
 			set { _mentalCapacityChange = value; }
 		}
-
-		public string PickRandomQuote(){
-			return _quotes.PickRandom();
+		public TopicName Topic{
+			get;
 		}
 	}
 }

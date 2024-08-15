@@ -8,14 +8,14 @@ namespace tee
 	public partial class TopicButton : Button
 	{
 		public static event TopicButtonHandler OnButtonPressed;
-		private ConversationTopic _conversationTopic;
+		private TopicName _conversationTopic;
 		private AttackButton _parentButton;
 		public AttackButton ParentButton
 		{
 			get { return _parentButton; }
 			set { _parentButton = value; }
 		}
-		public ConversationTopic ConversationTopic
+		public TopicName ConversationTopic
 		{
 			get { return _conversationTopic; }
 			set { _conversationTopic = value; }

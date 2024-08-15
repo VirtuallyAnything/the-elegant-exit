@@ -3,7 +3,7 @@ using System;
 
 namespace tee
 {
-	public partial class Enemy : Interactable
+	public partial class PartyEnemy : Interactable
 	{
 		[Export] private EnemyData _enemyData;
 		private CollisionShape2D _collisionShape;

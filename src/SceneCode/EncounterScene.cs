@@ -74,7 +74,7 @@ namespace tee
 			_currentlySelectedButton.SetupButton(attack);
 		}
 
-		public async void PlayCombatAnimation(PlayerAttack attack, ConversationTopic topic)
+		public async void PlayCombatAnimation(PlayerAttack attack, TopicName topic)
 		{
 			_dialogueLine.Text = attack.GetQuoteForTopic(topic);
 			_dialogueLine.Modulate = _playerDialogueColor;
