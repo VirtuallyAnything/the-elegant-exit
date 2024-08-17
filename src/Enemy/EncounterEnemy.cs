@@ -12,23 +12,39 @@ namespace tee
 		private Array<EnemyInterest> _likes;
 		private Array<EnemyInterest> _neutrals;
 		private Array<EnemyInterest> _dislikes;
-		public int ConversationInterest{
-			get;
+		public int ConversationInterest
+		{
+			get { return _conversationInterest; }
+			set
+			{
+				if (value >= 0)
+				{
+					_conversationInterest = value;
+				}
+				else
+				{
+					_conversationInterest = 0;
+				}
+			}
 		}
-		public Array<EnemyInterest> Likes{
-			get{return _likes;}
-			init{_likes = value;}
+		public Array<EnemyInterest> Likes
+		{
+			get { return _likes; }
+			init { _likes = value; }
 		}
-		public Array<EnemyInterest> Neutrals{
-			get{return _neutrals;}
-			init{_neutrals = value;}
+		public Array<EnemyInterest> Neutrals
+		{
+			get { return _neutrals; }
+			init { _neutrals = value; }
 		}
-		public Array<EnemyInterest> Dislikes{
-			get{return _dislikes;}
-			init{_dislikes = value;}
+		public Array<EnemyInterest> Dislikes
+		{
+			get { return _dislikes; }
+			init { _dislikes = value; }
 		}
 
-		public EncounterEnemy(EnemyData data){
+		public EncounterEnemy(EnemyData data)
+		{
 			_displayName = data.DisplayName;
 			_enemyAttacks = data.EnemyAttacks;
 			_conversationInterest = data.ConversationInterest;
@@ -47,24 +63,37 @@ namespace tee
 		{
 		}
 
-		public EnemyInterest ChooseTopic(){
+		public EnemyInterest ChooseTopic()
+		{
 			Array<EnemyInterest> allTopics = _likes + _neutrals + _dislikes;
-			return allTopics.Random<EnemyInterest>();
+			return allTopics.WeightedRandom<EnemyInterest>();
 		}
 
-		public EnemyAttack ChooseAttack(){
+		public EnemyAttack ChooseAttack()
+		{
 			TopicName topic = ChooseTopic().Name;
 			Array<EnemyAttack> potentialAttacks = new();
-			foreach(EnemyAttack attack in _enemyAttacks){
-				if(attack.Topic == topic){
+			foreach (EnemyAttack attack in _enemyAttacks)
+			{
+				if (attack.Topic == topic)
+				{
 					potentialAttacks.Add(attack);
 				}
 			}
 			return potentialAttacks.PickRandom();
 		}
 
-		public bool HasLike(TopicName topic){
-			return Likes.Any(enemyInterest => enemyInterest.Name == topic);
+		public Preference GetPreferenceFor(TopicName topic)
+		{
+			if (Likes.Any(enemyInterest => enemyInterest.Name == topic))
+			{
+				return Preference.Like;
+			}
+			if (Dislikes.Any(enemyInterest => enemyInterest.Name == topic))
+			{
+				return Preference.Dislike;
+			}
+			return Preference.Neutral;
 		}
 	}
 }

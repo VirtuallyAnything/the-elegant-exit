@@ -129,7 +129,6 @@ namespace tee
 			_encounterScene.QueueFree();
 			_mainScene.EncounterLayer.AddChild(_encounterFinishedScene);
 			_encounterScene.LeaveButton.Pressed += ExitEncounter;
-			_encounterScene.SetupScene(GameManager.CurrentEnemy);
 		}
 
 		public void ExitEncounter()

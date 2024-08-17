@@ -90,7 +90,7 @@ namespace tee
 
 		public void PlayCombatAnimation(EnemyAttack attack)
 		{
-			_dialogueLine.Text = attack.PickRandomQuote();
+			_dialogueLine.Text = attack.Quote;
 			_dialogueLine.Modulate = _enemyDialogueColor;
 			Tween tween = _dialogueLine.CreateTween();
 			int textLength = _dialogueLine.Text.Length;
@@ -103,11 +103,11 @@ namespace tee
 		private void PlayAnimationsForAttack(PlayerAttack playerAttack)
 		{
 
-			if (playerAttack.ConversationInterestChangeLike < 0)
+			if (playerAttack.ConversationInterestChange < 0)
 			{
 				// Play Negative Feedback Animation
 			}
-			else if (playerAttack.ConversationInterestChangeLike > 0)
+			else if (playerAttack.ConversationInterestChange > 0)
 			{
 				//Play Positive Feedback Animation
 			}

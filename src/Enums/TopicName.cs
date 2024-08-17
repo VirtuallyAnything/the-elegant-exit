@@ -15,6 +15,5 @@ namespace tee
 		SpecialInterest = 7,
 		Food = 8,
 		Drink = 9
-
 	}
 }

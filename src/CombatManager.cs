@@ -10,50 +10,27 @@ namespace tee
 		[Export] private EncounterScene _encounterScene;
 
 		private int _socialBatteryTemp;
-		private float _mentalCapacity = 10;
-        private float MentalCapacity
-        {
-			get{return _mentalCapacity;}
-			set
-			{
-				if(value < 0){
-					_mentalCapacity = 0;
-				}else if(value > 10){
-					_mentalCapacity = 10;
-				}else{
-					_mentalCapacity = value;
-				}	
-			}
-		}
-		private TopicName _currentTopic;
-		private TopicName _nextTopic;
+		private EncounterPlayer _player;
+		private EnemyInterest _currentTopic;
+		private EnemyInterest _nextTopic;
+
 		private EncounterEnemy _enemy;
-		private float _maxConversationInterest;
-		private float _conversationInterest;
-		private float ConversationInterest{
-			get{return _conversationInterest;}
-			set
-			{
-				if(value < 0){
-					_conversationInterest = 0;
-				}else if(value > _maxConversationInterest){
-					_conversationInterest = _maxConversationInterest;
-				}else{
-					_conversationInterest = value;
-				}
-			}
-		}
-		private Array<PlayerAttack> _currentAttacks = new();
-		private Array<PlayerAttack> _allPlayerAttacks;
-		private Array<PlayerAttack> _attackPool;
+		private Preference _preferenceForCurrentTopic;
+		private bool _isBlockNextEnemyAttack;
+
+
 		private PlayerAttack _selectedAttack;
 		private bool _isFirstTurn = true;
 
+		public Preference PreferenceForCurrentTopic
+		{
+			get { return _preferenceForCurrentTopic; }
+		}
+
 		public override void _Ready()
 		{
-			_allPlayerAttacks = GameManager.AvailableAttacks;
+			_player = new(GameManager.AvailableAttacks);
 			_socialBatteryTemp = GameManager.SocialBattery - 10;
-			_attackPool = new Array<PlayerAttack>(_allPlayerAttacks);
 			_encounterScene.SetupCompleted += StartCombat;
 			EncounterScene.PlayerTurnAnimationComplete += EnemyAttack;
 			EncounterScene.EnemyTurnAnimationComplete += SetupNewAttack;
@@ -65,16 +42,13 @@ namespace tee
 			PlayerAttack randomAttack;
 			for (int i = 0; i <= 2; i++)
 			{
-				randomAttack = ChooseRandomPlayerAttack();
-				_currentAttacks.Add(randomAttack);
+				randomAttack = _player.ChooseRandomAttack();
+
 				_encounterScene.AttackButtons[i].SetupButton(randomAttack);
 			}
 			_enemy = new(_encounterScene.CurrentEnemy);
-			_maxConversationInterest = _enemy.ConversationInterest;
-			ConversationInterest = _maxConversationInterest;
 			_encounterScene.DisableAttackButtons(true);
 			EnemyAttack();
-
 		}
 
 		private void SetupNewAttack()
@@ -84,15 +58,14 @@ namespace tee
 				_encounterScene.DisableAttackButtons(false);
 				return;
 			}
-			if (MentalCapacity <= 0)
+			if (_player.MentalCapacity <= 0)
 			{
 				CombatEnded?.Invoke();
 				//GameManager.SocialStandingOverall += SocialStandingCombat;
 				return;
 			}
-			_currentAttacks.Remove(_selectedAttack);
-			PlayerAttack newAttack = ChooseRandomPlayerAttack();
-			_currentAttacks.Add(newAttack);
+
+			PlayerAttack newAttack = _player.SwapAttackOut(_selectedAttack);
 			_encounterScene.SetupSelectedButton(newAttack);
 		}
 
@@ -101,24 +74,25 @@ namespace tee
 			_isFirstTurn = false;
 			TopicName conversationTopic = attackButton.BoundTopic;
 			_selectedAttack = attackButton.BoundAttack;
+			_preferenceForCurrentTopic = _enemy.GetPreferenceFor(conversationTopic);
 
-			if (_enemy.HasLike(conversationTopic))
+			int conversationInterestBonusDamage = 0;
+			_socialBatteryTemp += _selectedAttack.SocialBatteryChange;
+			switch (_preferenceForCurrentTopic)
 			{
-				ConversationInterest += _selectedAttack.ConversationInterestChangeLike;
-				MentalCapacity += _selectedAttack.MentalCapacityChangeLike;
-				_socialBatteryTemp += _selectedAttack.SocialBatteryChangeLike;
+				case Preference.Like:
+					conversationInterestBonusDamage -= 1;
+					break;
+				case Preference.Dislike:
+					conversationInterestBonusDamage += 1;
+					break;
 			}
-			else
-			{
-				ConversationInterest += _selectedAttack.ConversationInterestChangeDislike;
-				MentalCapacity += _selectedAttack.MentalCapacityChangeDislike;
-				_socialBatteryTemp += _selectedAttack.SocialBatteryChangeDislike;
-			}
+			_enemy.ConversationInterest -= conversationInterestBonusDamage + _selectedAttack.ConversationInterestChange;
 
 			_encounterScene.PlayCombatAnimation(_selectedAttack, conversationTopic);
-			_encounterScene.UpdateUI(GameManager.SocialBattery, /*SocialStandingCombat*/0, MentalCapacity, ConversationInterest);
+			_encounterScene.UpdateUI(GameManager.SocialBattery, /*SocialStandingCombat*/0, _player.MentalCapacity, _enemy.ConversationInterest);
 			GD.Print("Player Attacks!");
-			if (ConversationInterest <= 0)
+			if (_enemy.ConversationInterest <= 0)
 			{
 				CombatEnded?.Invoke();
 				return;
@@ -127,26 +101,24 @@ namespace tee
 
 		public void EnemyAttack()
 		{
-			EnemyAttack enemyAttack = _enemy.ChooseAttack();;
-			_socialBatteryTemp += enemyAttack.SocialBatteryChange;
-			MentalCapacity += enemyAttack.MentalCapacityChange;
+			EnemyAttack enemyAttack = _enemy.ChooseAttack();
+			if (_isBlockNextEnemyAttack)
+			{
+				_isBlockNextEnemyAttack = false;
+			}
+			else
+			{
+				_socialBatteryTemp += enemyAttack.SocialBatteryChange;
+				_player.MentalCapacity += enemyAttack.MentalCapacityChange;
+			}
+
 			_encounterScene.PlayCombatAnimation(enemyAttack);
-			_encounterScene.UpdateUI(_socialBatteryTemp, /*SocialStandingCombat*/0, MentalCapacity, ConversationInterest);
+			_encounterScene.UpdateUI(_socialBatteryTemp, /*SocialStandingCombat*/0, _player.MentalCapacity, _enemy.ConversationInterest);
 		}
 
-		public PlayerAttack ChooseRandomPlayerAttack()
+		public void BlockNextEnemyAttack()
 		{
-			if (_attackPool.Count == 0)
-			{
-				_attackPool = new Array<PlayerAttack>(_allPlayerAttacks);
-				foreach (PlayerAttack attack in _currentAttacks)
-				{
-					_attackPool.Remove(attack);
-				}
-			}
-			PlayerAttack randomAttack = _attackPool.PickRandom();
-			_attackPool.Remove(randomAttack);
-			return randomAttack;
+			_isBlockNextEnemyAttack = true;
 		}
 
 		public override void _ExitTree()

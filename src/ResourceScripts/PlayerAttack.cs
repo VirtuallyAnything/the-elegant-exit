@@ -3,17 +3,11 @@ using System;
 
 namespace tee
 {
-	[Tool]
 	public partial class PlayerAttack : Attack
 	{
-		private float _socialStandingChangeLike,
-			_socialStandingChangeDislike;
-		private float _mentalCapacityChangeLike;
-		private float _mentalCapacityChangeDislike;
-		private float _conversationInterestChangeLike;
-		private float _conversationInterestChangeDislike;
-		private int _socialBatteryChangeLike;
-		private int _socialBatteryChangeDislike;
+		private CharacterName _owningCharacter;
+		private int _conversationInterestChange;
+		private int _socialBatteryChange;
 		private bool _enableTopicChoice;
 		private bool _isFromItem;
 		private Godot.Collections.Array<TopicName> _unlockedTopics = new();
@@ -29,54 +23,24 @@ namespace tee
 			{TopicName.Food, ""},
 			{TopicName.Drink, ""}
 		};
-
+		private BonusEffect _bonusEffect;
 		[Export]
-		public float SocialStandingChangeLike
-		{
-			get { return _socialStandingChangeLike; }
-			set { _socialStandingChangeLike = value; }
+        public CharacterName OwningCharacter
+        {
+			get{return _owningCharacter;}
+			set{_owningCharacter = value;}
 		}
 		[Export]
-		public float SocialStandingChangeDislike
+		public int ConversationInterestChange
 		{
-			get { return _socialStandingChangeDislike; }
-			set { _socialStandingChangeDislike = value; }
+			get { return _conversationInterestChange; }
+			set { _conversationInterestChange = value; }
 		}
 		[Export]
-		public float MentalCapacityChangeLike
+		public int SocialBatteryChange
 		{
-			get { return _mentalCapacityChangeLike; }
-			set { _mentalCapacityChangeLike = value; }
-		}
-		[Export]
-		public float MentalCapacityChangeDislike
-		{
-			get { return _mentalCapacityChangeDislike; }
-			set { _mentalCapacityChangeDislike = value; }
-		}
-		[Export]
-		public float ConversationInterestChangeLike
-		{
-			get { return _conversationInterestChangeLike; }
-			set { _conversationInterestChangeLike = value; }
-		}
-		[Export]
-		public float ConversationInterestChangeDislike
-		{
-			get { return _conversationInterestChangeDislike; }
-			set { _conversationInterestChangeDislike = value; }
-		}
-		[Export]
-		public int SocialBatteryChangeLike
-		{
-			get { return _socialBatteryChangeLike; }
-			set { _socialBatteryChangeLike = value; }
-		}
-		[Export]
-		public int SocialBatteryChangeDislike
-		{
-			get { return _socialBatteryChangeDislike; }
-			set { _socialBatteryChangeDislike = value; }
+			get { return _socialBatteryChange; }
+			set { _socialBatteryChange = value; }
 		}
 		[Export]
 		public bool EnableTopicChoice
@@ -99,6 +63,10 @@ namespace tee
 
 		public string GetQuoteForTopic(TopicName topic){
 			return _topicRelatedQuotes[topic];
+		}
+
+		public void Resolve(CombatManager combatManager){
+			_bonusEffect?.Resolve(combatManager);
 		}
 	}
 }

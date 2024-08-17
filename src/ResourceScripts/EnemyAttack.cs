@@ -9,7 +9,6 @@ namespace tee
 		private float _mentalCapacityChange;
 		private int _socialBatteryChange;
 		private TopicName _topic;
-		[Export] 
 		private string _quote;
 		[Export]
 		public int SocialBatteryChange
@@ -24,7 +23,12 @@ namespace tee
 			set { _mentalCapacityChange = value; }
 		}
 		public TopicName Topic{
-			get;
+			get{return _topic;}
+		}
+		[Export]
+		public string Quote{
+			get{return _quote;}
+			set{_quote = value;}
 		}
 	}
 }

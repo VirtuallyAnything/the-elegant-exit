@@ -6,26 +6,13 @@ using tee;
 public partial class EnemyInterest : GodotObject
 {
 	private TopicName _name;
-	private int _propability = 5;
-	private int _enthusiasmStacks;
-	private int _annoyanceStacks;
+	private int _weight = 5;
+	private EnthusiasmLevel _enthusiasmLevel = new();
 	public TopicName Name
 	{
 		get { return _name; }
 	}
-	public int Propability
-	{
-		get; set;
-	}
-
-	[Range(0, 5, ErrorMessage = "Value for {EnthusiasmStacks} must be between {0} and {5}.")]
-	public int EnthusiasmStacks
-	{
-		get; set;
-	}
-
-	[Range(0, 5, ErrorMessage = "Value for {AnnoyanceStacks} must be between {0} and {5}.")]
-	public int AnnoyanceStacks
+	public int Weight
 	{
 		get; set;
 	}
@@ -37,6 +24,6 @@ public partial class EnemyInterest : GodotObject
 
 	public void IncreaseEnthusiasm()
 	{
-		_enthusiasmStacks++;
+		_enthusiasmLevel.Increase();
 	}
 }

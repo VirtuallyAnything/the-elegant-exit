@@ -36,14 +36,14 @@ public static class Extensions : Object
 		return conversationTopics;
 	}
 
-	public static EnemyInterest Random<T>(this Godot.Collections.Array<EnemyInterest> topics)
+	public static EnemyInterest WeightedRandom<T>(this Godot.Collections.Array<EnemyInterest> topics)
 	{
 		int totalWeight = 0; // this stores sum of weights of all elements before current
 		EnemyInterest selected = new(TopicName.None); // currently selected element
 		Random random = new Random();
 		foreach (EnemyInterest topic in topics)
 		{
-			int weight = topic.Propability; // weight of current element
+			int weight = topic.Weight; // weight of current element
 			int r = random.Next(totalWeight + weight); // random value
 			if (r >= totalWeight)
 			{ // probability of this is weight/(totalWeight+weight)

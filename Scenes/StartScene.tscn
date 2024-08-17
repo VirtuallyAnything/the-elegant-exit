@@ -107,6 +107,7 @@ offset_top = -146.64
 offset_right = 762.0
 offset_bottom = 0.359985
 texture = ExtResource("6_4fm0u")
+stretch_mode = 4
 
 [editable path="Button2"]
 [editable path="Button3"]
