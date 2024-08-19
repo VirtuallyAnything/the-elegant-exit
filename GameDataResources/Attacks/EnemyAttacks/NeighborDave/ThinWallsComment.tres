@@ -1,11 +1,11 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://d1flcsllc4cfn"]
+[gd_resource type="Resource" script_class="EnemyAttack" load_steps=2 format=3 uid="uid://d1flcsllc4cfn"]
 
 [ext_resource type="Script" path="res://src/ResourceScripts/EnemyAttack.cs" id="1_8ecoh"]
 
 [resource]
 script = ExtResource("1_8ecoh")
-_quotes = Array[String](["We have pretty thin walls, don't we?"])
 SocialBatteryChange = -10
 MentalCapacityChange = -5.0
+Quote = ""
 AttackName = "Thin Walls Comment"
 Animation = ""

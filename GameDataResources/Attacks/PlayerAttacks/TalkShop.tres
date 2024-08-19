@@ -16,14 +16,9 @@ _topicRelatedQuotes = {
 8: "",
 9: ""
 }
-SocialStandingChangeLike = 2.0
-SocialStandingChangeDislike = -1.0
-MentalCapacityChangeLike = 1.0
-MentalCapacityChangeDislike = 0.0
-ConversationInterestChangeLike = -3.0
-ConversationInterestChangeDislike = -8.0
-SocialBatteryChangeLike = 0
-SocialBatteryChangeDislike = 0
+OwningCharacter = 0
+ConversationInterestChange = 0.0
+SocialBatteryChange = 0
 EnableTopicChoice = true
 IsFromItem = false
 UnlockedTopics = [3, 4, 2]

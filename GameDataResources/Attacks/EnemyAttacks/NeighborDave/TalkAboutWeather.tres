@@ -1,11 +1,11 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://bdysh4r800567"]
+[gd_resource type="Resource" script_class="EnemyAttack" load_steps=2 format=3 uid="uid://bdysh4r800567"]
 
 [ext_resource type="Script" path="res://src/ResourceScripts/EnemyAttack.cs" id="1_xul5f"]
 
 [resource]
 script = ExtResource("1_xul5f")
-_quotes = Array[String](["Nice weather, innit?"])
 SocialBatteryChange = 0
 MentalCapacityChange = -1.0
+Quote = ""
 AttackName = "Talk About Weather"
 Animation = ""

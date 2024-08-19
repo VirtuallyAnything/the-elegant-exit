@@ -1,11 +1,11 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://nbq4tp8tr4kj"]
+[gd_resource type="Resource" script_class="EnemyAttack" load_steps=2 format=3 uid="uid://nbq4tp8tr4kj"]
 
 [ext_resource type="Script" path="res://src/ResourceScripts/EnemyAttack.cs" id="1_fa8fb"]
 
 [resource]
 script = ExtResource("1_fa8fb")
-_quotes = Array[String](["Elon Musk is a genius!"])
 SocialBatteryChange = 0
 MentalCapacityChange = -1.0
+Quote = ""
 AttackName = "Elon The Genius"
 Animation = ""

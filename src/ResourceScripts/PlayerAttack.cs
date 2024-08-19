@@ -6,8 +6,7 @@ namespace tee
 	public partial class PlayerAttack : Attack
 	{
 		private CharacterName _owningCharacter;
-		private int _conversationInterestChange;
-		private int _socialBatteryChange;
+		private int _conversationInterestDamage;
 		private bool _enableTopicChoice;
 		private bool _isFromItem;
 		private Godot.Collections.Array<TopicName> _unlockedTopics = new();
@@ -31,16 +30,11 @@ namespace tee
 			set{_owningCharacter = value;}
 		}
 		[Export]
-		public int ConversationInterestChange
+		/// <summary> Is always a positive value.</summary>
+		public int ConversationInterestDamage
 		{
-			get { return _conversationInterestChange; }
-			set { _conversationInterestChange = value; }
-		}
-		[Export]
-		public int SocialBatteryChange
-		{
-			get { return _socialBatteryChange; }
-			set { _socialBatteryChange = value; }
+			get { return _conversationInterestDamage; }
+			set { _conversationInterestDamage = Math.Abs(value); }
 		}
 		[Export]
 		public bool EnableTopicChoice
@@ -65,7 +59,15 @@ namespace tee
 			return _topicRelatedQuotes[topic];
 		}
 
+		
+		/// <summary>
+		/// Resolves the stats of this PlayerAttack and its BonusEffect, if it is not null.
+		/// </summary>
+		/// <param name="combatManager">
+		///	The CombatManager to resolve this PlayerAttack on.
+		/// </param>
 		public void Resolve(CombatManager combatManager){
+			combatManager.ConversationInterestDamage = _conversationInterestDamage;
 			_bonusEffect?.Resolve(combatManager);
 		}
 	}

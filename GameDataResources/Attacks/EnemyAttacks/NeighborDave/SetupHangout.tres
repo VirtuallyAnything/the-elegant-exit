@@ -1,11 +1,11 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://xx86xpw3vi5w"]
+[gd_resource type="Resource" script_class="EnemyAttack" load_steps=2 format=3 uid="uid://xx86xpw3vi5w"]
 
 [ext_resource type="Script" path="res://src/ResourceScripts/EnemyAttack.cs" id="1_vm0hw"]
 
 [resource]
 script = ExtResource("1_vm0hw")
-_quotes = Array[String](["You could come by next weekend."])
 SocialBatteryChange = -5
 MentalCapacityChange = -2.0
+Quote = ""
 AttackName = "Set Up Hangout"
 Animation = ""

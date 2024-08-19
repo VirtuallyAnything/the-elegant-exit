@@ -103,11 +103,11 @@ namespace tee
 		private void PlayAnimationsForAttack(PlayerAttack playerAttack)
 		{
 
-			if (playerAttack.ConversationInterestChange < 0)
+			if (playerAttack.ConversationInterestDamage < 0)
 			{
 				// Play Negative Feedback Animation
 			}
-			else if (playerAttack.ConversationInterestChange > 0)
+			else if (playerAttack.ConversationInterestDamage > 0)
 			{
 				//Play Positive Feedback Animation
 			}

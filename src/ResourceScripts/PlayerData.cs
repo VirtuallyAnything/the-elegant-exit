@@ -8,7 +8,7 @@ namespace tee
 	{
 		[Export] private Godot.Collections.Array<PlayerAttack> _availableAttacks;
 		private int[] _partyMembers;
-		private float _socialStandingOverall;
+		private int _socialStandingOverall;
 		private int _socialBattery = 100;
 
 		public Godot.Collections.Array<PlayerAttack> AvailableAttacks
@@ -23,7 +23,7 @@ namespace tee
 			set { _socialBattery = value; }
 		}
 
-		public float SocialStandingOverall{
+		public int SocialStandingOverall{
 			get{return _socialStandingOverall;}
 			set{_socialStandingOverall = value;}
 		}

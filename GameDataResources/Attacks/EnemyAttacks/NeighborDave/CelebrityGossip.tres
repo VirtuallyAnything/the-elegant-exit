@@ -1,11 +1,11 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://8xn0egqs5tj"]
+[gd_resource type="Resource" script_class="EnemyAttack" load_steps=2 format=3 uid="uid://8xn0egqs5tj"]
 
 [ext_resource type="Script" path="res://src/ResourceScripts/EnemyAttack.cs" id="1_j8xgk"]
 
 [resource]
 script = ExtResource("1_j8xgk")
-_quotes = Array[String](["Have you heard about Dustin Tieger on the news? Awful business."])
 SocialBatteryChange = -2
 MentalCapacityChange = -1.0
+Quote = ""
 AttackName = "Celebrity Gossip"
 Animation = ""

@@ -16,7 +16,7 @@ namespace tee
 			get{return _currentEnemy;}
 			set{_currentEnemy = value;}
 		}
-		private static float _socialStandingOverall;
+		private static int _socialStandingOverall;
 		private static int _socialBattery = 30;
 		public static Godot.Collections.Array<PlayerAttack> AvailableAttacks
 		{
@@ -40,7 +40,7 @@ namespace tee
 			}
 		}
 
-		public static float SocialStandingOverall{
+		public static int SocialStandingOverall{
 			get{return _socialStandingOverall;}
 			set{_socialStandingOverall = value;}
 		}

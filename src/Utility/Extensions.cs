@@ -25,23 +25,24 @@ public static class Extensions : Object
 		return vertices;
 	}
 
-	public static Godot.Collections.Array<EnemyInterest> ToConversationTopics(this Godot.Collections.Array<TopicName> topicNames)
+	public static Godot.Collections.Array<ConversationTopic> ToConversationTopics(this Godot.Collections.Array<TopicName> topicNames)
 	{
-		Godot.Collections.Array<EnemyInterest> conversationTopics = new();
+		Godot.Collections.Array<ConversationTopic> conversationTopics = new();
 		foreach (TopicName topic in topicNames)
 		{
-			EnemyInterest conversationTopic = new(topic);
+			ConversationTopic conversationTopic = new(topic);
 			conversationTopics.Add(conversationTopic);
 		}
 		return conversationTopics;
 	}
 
-	public static EnemyInterest WeightedRandom<T>(this Godot.Collections.Array<EnemyInterest> topics)
+	// Code by Nevermind on https://softwareengineering.stackexchange.com/questions/150616/get-weighted-random-item
+	public static ConversationTopic WeightedRandom<T>(this IEnumerable<ConversationTopic> topics)
 	{
 		int totalWeight = 0; // this stores sum of weights of all elements before current
-		EnemyInterest selected = new(TopicName.None); // currently selected element
+		ConversationTopic selected = new(TopicName.None); // currently selected element
 		Random random = new Random();
-		foreach (EnemyInterest topic in topics)
+		foreach (ConversationTopic topic in topics)
 		{
 			int weight = topic.Weight; // weight of current element
 			int r = random.Next(totalWeight + weight); // random value

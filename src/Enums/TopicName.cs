@@ -14,6 +14,7 @@ namespace tee
 		Gossip = 6,
 		SpecialInterest = 7,
 		Food = 8,
-		Drink = 9
+		Drink = 9,
+		Weather = 10
 	}
 }
