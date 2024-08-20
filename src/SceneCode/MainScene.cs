@@ -11,8 +11,8 @@ namespace tee
 		[Export] private CanvasLayer _encounterLayer;
 		[Export] private TextureProgressBar _socialBattery;
 		[Export] private Camera2D _camera;
-		[Export] private Player _player;
-		public Player Player
+		[Export] private PartyPlayer _player;
+		public PartyPlayer Player
 		{
 			get { return _player; }
 			set { _player = value; }

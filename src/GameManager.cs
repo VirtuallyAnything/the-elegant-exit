@@ -8,7 +8,7 @@ namespace tee
 	public partial class GameManager : Node
 	{
 		public static event GameHandler GameOver;
-		private static Player _player;
+		private static PartyPlayer _player;
 		private static Godot.Collections.Array<PlayerAttack> _availableAttacks;
 		private int[] _partyMembers;
 		private static EnemyData _currentEnemy;
@@ -44,7 +44,7 @@ namespace tee
 			get{return _socialStandingOverall;}
 			set{_socialStandingOverall = value;}
 		}
-		public static Player Player{
+		public static PartyPlayer Player{
 			get{return _player;}
 			set{_player = value;}
 		}

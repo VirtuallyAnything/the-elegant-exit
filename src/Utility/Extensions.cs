@@ -46,7 +46,7 @@ public static class Extensions : Object
 		{
 			int weight = topic.Weight; // weight of current element
 			int r = random.Next(totalWeight + weight); // random value
-			if (r >= totalWeight)
+			if (r >= totalWeight && weight > 0)
 			{ // probability of this is weight/(totalWeight+weight)
 				selected = topic;
 			} // it is the probability of discarding last selected element and selecting current one instead

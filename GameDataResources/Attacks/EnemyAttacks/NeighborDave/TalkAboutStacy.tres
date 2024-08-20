@@ -4,6 +4,7 @@
 
 [resource]
 script = ExtResource("1_rlcto")
+_topic = 0
 SocialBatteryChange = 0
 MentalCapacityChange = -1.0
 Quote = ""

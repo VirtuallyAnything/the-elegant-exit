@@ -4,7 +4,7 @@ using System;
 namespace tee
 {
 
-	public partial class Player : Node2D
+	public partial class PartyPlayer : Node2D
 	{
 		[Export] private PlayerData _data;
 		[Export] private int _sightConeSegments;

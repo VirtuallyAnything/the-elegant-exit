@@ -3,6 +3,7 @@ using System;
 
 namespace tee
 {
+	[GlobalClass]
 	public partial class PlayerAttack : Attack
 	{
 		private CharacterName _owningCharacter;
@@ -54,21 +55,12 @@ namespace tee
 			get { return _unlockedTopics; }
 			set { _unlockedTopics = value; }
 		}
+		public BonusEffect BonusEffect{
+			get{return _bonusEffect;}
+		}
 
 		public string GetQuoteForTopic(TopicName topic){
 			return _topicRelatedQuotes[topic];
-		}
-
-		
-		/// <summary>
-		/// Resolves the stats of this PlayerAttack and its BonusEffect, if it is not null.
-		/// </summary>
-		/// <param name="combatManager">
-		///	The CombatManager to resolve this PlayerAttack on.
-		/// </param>
-		public void Resolve(CombatManager combatManager){
-			combatManager.ConversationInterestDamage = _conversationInterestDamage;
-			_bonusEffect?.Resolve(combatManager);
 		}
 	}
 }

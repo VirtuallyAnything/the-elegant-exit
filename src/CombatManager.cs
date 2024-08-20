@@ -12,8 +12,8 @@ namespace tee
 		private int _socialBatteryTemp;
 		private EncounterPlayer _player;
 		private int _conversationInterestDamage;
-		private TopicName _currentTopicName;
-		private TopicName _lastTopicName;
+		private TopicName _playerCurrentTopicName;
+		private TopicName _playerLastTopicName;
 
 		private EncounterEnemy _enemy;
 		private Preference _preferenceForCurrentTopic;
@@ -22,19 +22,22 @@ namespace tee
 		private PlayerAttack _selectedAttack;
 		private bool _isFirstTurn = true;
 
-		public int ConversationInterestDamage{
+		public int ConversationInterestDamage
+		{
 			get { return _conversationInterestDamage; }
-			set {_conversationInterestDamage = value; }
+			set { _conversationInterestDamage = value; }
 		}
 		public Preference PreferenceForCurrentTopic
 		{
 			get { return _preferenceForCurrentTopic; }
 		}
-		public EncounterEnemy Enemy{
-			get{return _enemy;}
+		public EncounterEnemy Enemy
+		{
+			get { return _enemy; }
 		}
-		public TopicName CurrentTopicName{
-			get{return _currentTopicName;}
+		public TopicName CurrentTopicName
+		{
+			get { return _playerCurrentTopicName; }
 		}
 
 		public override void _Ready()
@@ -82,29 +85,47 @@ namespace tee
 		public void PlayerAttack(AttackButton attackButton)
 		{
 			_isFirstTurn = false;
-			_lastTopicName = _currentTopicName;
-			_currentTopicName = attackButton.BoundTopic;
-
+			_playerLastTopicName = _playerCurrentTopicName;
+			TopicName topicOfAttack = attackButton.BoundTopic;
 			_selectedAttack = attackButton.BoundAttack;
-			_preferenceForCurrentTopic = _enemy.GetPreferenceFor(_currentTopicName);
 
 			int conversationInterestBonusDamage = 0;
-			switch (_preferenceForCurrentTopic)
+			if (topicOfAttack != TopicName.None)
 			{
-				case Preference.Like:
-					conversationInterestBonusDamage -= 1;
-					break;
-				case Preference.Dislike:
-					conversationInterestBonusDamage += 1;
-					break;
+				_playerCurrentTopicName = topicOfAttack;
+				_preferenceForCurrentTopic = _enemy.GetPreferenceFor(topicOfAttack);
+
+				switch (_preferenceForCurrentTopic)
+				{
+					case Preference.Like:
+						conversationInterestBonusDamage -= 1;
+						break;
+					case Preference.Dislike:
+						conversationInterestBonusDamage += 1;
+						if (_playerCurrentTopicName == _playerLastTopicName)
+						{
+							_enemy.Enrage(_playerCurrentTopicName);
+						}
+						if (_player.DiscoveredEnemyPreferences.ContainsKey(_playerCurrentTopicName))
+						{
+							_socialBatteryTemp -= 1;
+						}
+						break;
+				}
 			}
-			_enemy.ReactTo(_currentTopicName);
-			_selectedAttack.Resolve(this);
+
+			_player.Resolve(_selectedAttack, this);
+			_enemy.ReactTo(topicOfAttack);
+			if (!_player.DiscoveredEnemyPreferences.ContainsKey(_playerCurrentTopicName))
+			{
+				_player.DiscoveredEnemyPreferences.Add(_playerCurrentTopicName, _preferenceForCurrentTopic);
+			}
 			_enemy.ConversationInterest -= conversationInterestBonusDamage + ConversationInterestDamage;
 
-			_encounterScene.PlayCombatAnimation(_selectedAttack, _currentTopicName);
+			_encounterScene.PlayCombatAnimation(_selectedAttack, _playerCurrentTopicName);
 			_encounterScene.UpdateUI(_socialBatteryTemp, /*SocialStandingCombat*/0, _player.MentalCapacity, _enemy.ConversationInterest);
-			GD.Print("Player Attacks!");
+			GD.Print($"Player attacks and does {conversationInterestBonusDamage + ConversationInterestDamage} damage to CI.");
+			GD.Print($"New Enemy CI: {_enemy.ConversationInterest}");
 			if (_enemy.ConversationInterest <= 0)
 			{
 				CombatEnded?.Invoke();
@@ -115,7 +136,6 @@ namespace tee
 		public void EnemyAttack()
 		{
 			EnemyAttack enemyAttack = _enemy.ChooseAttack();
-			_currentTopicName = enemyAttack.Topic;
 
 			if (_isBlockNextEnemyAttack)
 			{

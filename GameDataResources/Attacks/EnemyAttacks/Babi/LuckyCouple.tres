@@ -1,11 +1,11 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://ovwf8sk2vu86"]
+[gd_resource type="Resource" script_class="EnemyAttack" load_steps=2 format=3 uid="uid://ovwf8sk2vu86"]
 
 [ext_resource type="Script" path="res://src/ResourceScripts/EnemyAttack.cs" id="1_w2fvi"]
 
 [resource]
 script = ExtResource("1_w2fvi")
-_quotes = Array[String](["You are so lucky! Why are all the nice men gay?"])
 SocialBatteryChange = 4
 MentalCapacityChange = 0.0
+Quote = ""
 AttackName = ""
 Animation = ""

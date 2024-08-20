@@ -8,7 +8,15 @@ namespace tee
 		private string _displayName;
 		private Godot.Collections.Array<EnemyAttack> _enemyAttacks;
 		private Godot.Collections.Array<TopicName> _likes = new([TopicName.SpecialInterest]);
-		private Godot.Collections.Array<TopicName> _neutrals = new([TopicName.Art, TopicName.Economy, TopicName.Gossip, TopicName.Lifestyle, TopicName.Politics, TopicName.Sport]);
+		private Godot.Collections.Array<TopicName> _neutrals = new([
+			TopicName.Art, 
+			TopicName.Economy, 
+			TopicName.Gossip, 
+			TopicName.Lifestyle, 
+			TopicName.Politics, 
+			TopicName.Sport,
+			TopicName.Weather
+			]);
 		private Godot.Collections.Array<TopicName> _dislikes;
 
 		private Texture2D _icon;

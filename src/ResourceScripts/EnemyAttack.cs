@@ -8,6 +8,7 @@ namespace tee
 	{
 		private float _mentalCapacityChange;
 		private int _socialBatteryChange;
+		[Export]
 		private TopicName _topic;
 		private string _quote;
 		[Export]

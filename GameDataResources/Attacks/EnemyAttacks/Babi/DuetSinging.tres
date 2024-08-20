@@ -1,11 +1,11 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://cb6h3i3qmsm2w"]
+[gd_resource type="Resource" script_class="EnemyAttack" load_steps=2 format=3 uid="uid://cb6h3i3qmsm2w"]
 
 [ext_resource type="Script" path="res://src/ResourceScripts/EnemyAttack.cs" id="1_ylld1"]
 
 [resource]
 script = ExtResource("1_ylld1")
-_quotes = Array[String](["And what are you going to sing at the Karaoke? I can totally see you doing “If it be your will” in duet!"])
 SocialBatteryChange = -7
 MentalCapacityChange = -4.0
+Quote = ""
 AttackName = ""
 Animation = ""

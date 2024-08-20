@@ -12,7 +12,8 @@ public partial class ConversationTopic : GodotObject
 	}
 	public int Weight
 	{
-		get; set;
+		get{ return _weight;}
+		set{ _weight = value;}
 	}
 
 	public ConversationTopic(TopicName name)
@@ -23,10 +24,14 @@ public partial class ConversationTopic : GodotObject
 	public void IncreaseEnthusiasm()
 	{
 		_enthusiasmLevel.Increase();
+		Weight += 5;
+		GD.Print($"Enthusiasm Increased. ConversationTopic {Name} now has Enthusiasm Level {_enthusiasmLevel.CurrentEnthusiasm} and a Weight of {Weight}.");
 	}
 
 	public void DecreaseEnthusiasm(){
 		_enthusiasmLevel.Decrease();
+		Weight -= 5;
+		GD.Print($"Enthusiasm Decreased. ConversationTopic {Name} now has Enthusiasm Level {_enthusiasmLevel.CurrentEnthusiasm} and a Weight of {Weight}.");
 	}
 
 	public int GetCurrentEnthusiasmLevel(){

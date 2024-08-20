@@ -6,7 +6,7 @@ namespace tee
 
 	public partial class EnemyMovement : Movement
 	{
-		private Player _player;
+		private PartyPlayer _player;
 		private float _playerFollowSeconds = 10;
 		private double _playerFollowSecondsLeft;
 		private float _correctionMargin = 30;
@@ -15,7 +15,7 @@ namespace tee
 		private bool _isPlayerInSightCone;
 		private EnemyVision _enemyVision;
 
-		public Player PlayerReference
+		public PartyPlayer PlayerReference
 		{
 			get { return _player; }
 			set { _player = value; }

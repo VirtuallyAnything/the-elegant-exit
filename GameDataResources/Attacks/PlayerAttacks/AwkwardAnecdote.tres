@@ -1,4 +1,4 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://jcvldt15okdk"]
+[gd_resource type="Resource" script_class="PlayerAttack" load_steps=2 format=3 uid="uid://jcvldt15okdk"]
 
 [ext_resource type="Script" path="res://src/ResourceScripts/PlayerAttack.cs" id="1_tkmik"]
 
@@ -17,8 +17,7 @@ _topicRelatedQuotes = {
 9: ""
 }
 OwningCharacter = 0
-ConversationInterestChange = 0.0
-SocialBatteryChange = 0
+ConversationInterestDamage = 0
 EnableTopicChoice = true
 IsFromItem = false
 UnlockedTopics = [2, 3, 4]

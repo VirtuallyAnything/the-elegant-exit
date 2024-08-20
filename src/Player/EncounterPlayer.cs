@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Godot;
 using Godot.Collections;
 
@@ -29,11 +30,18 @@ namespace tee
         private Array<PlayerAttack> _attackPool;
         private Array<PlayerAttack> _currentAttacks = new();
 
+        private System.Collections.Generic.Dictionary<TopicName, Preference> _discoveredEnemyPreferences = new();
+        public System.Collections.Generic.Dictionary<TopicName, Preference> DiscoveredEnemyPreferences
+        {
+            get { return _discoveredEnemyPreferences; }
+        }
+
         public EncounterPlayer(Array<PlayerAttack> playerAttacks)
         {
             _allPlayerAttacks = playerAttacks;
             _attackPool = new Array<PlayerAttack>(_allPlayerAttacks);
         }
+
         public PlayerAttack ChooseRandomAttack()
         {
             if (_attackPool.Count == 0)
@@ -50,10 +58,23 @@ namespace tee
             return randomAttack;
         }
 
-        public PlayerAttack SwapAttackOut(PlayerAttack attack){
+        /// <summary>
+		/// Resolves the stats of this PlayerAttack and its BonusEffect, if it is not null.
+		/// </summary>
+		/// <param name="combatManager">
+		///	The CombatManager to resolve this PlayerAttack on.
+		/// </param>
+		public void Resolve(PlayerAttack attack, CombatManager combatManager)
+        {
+            combatManager.ConversationInterestDamage = attack.ConversationInterestDamage;
+            attack.BonusEffect?.Resolve(combatManager);
+        }
+
+        public PlayerAttack SwapAttackOut(PlayerAttack attack)
+        {
             _currentAttacks.Remove(attack);
-			PlayerAttack newAttack = ChooseRandomAttack();
-			_currentAttacks.Add(newAttack);
+            PlayerAttack newAttack = ChooseRandomAttack();
+            _currentAttacks.Add(newAttack);
             return newAttack;
         }
     }

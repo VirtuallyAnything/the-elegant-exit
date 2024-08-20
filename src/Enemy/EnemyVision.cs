@@ -6,7 +6,7 @@ namespace tee
 	public partial class EnemyVision : Vision
 	{
 		private RayCast2D _rayCast;
-		private Player _player;
+		private PartyPlayer _player;
 		private Vector2 _lastPlayerPosition;
 		private bool _isRayHittingPlayer;
 		private bool _isPlayerInSightCone;
@@ -33,7 +33,7 @@ namespace tee
 			if (_isPlayerInSightCone)
 			{
 				_rayCast.TargetPosition = CurrentPlayerPosition - GlobalPosition;
-				if (_rayCast.GetCollider() is not Player)
+				if (_rayCast.GetCollider() is not PartyPlayer)
 				{
 					_isRayHittingPlayer = false;
 				}
@@ -46,7 +46,7 @@ namespace tee
 
 		protected override void OnSightConeEntered(Node2D body)
 		{
-			if (body is Player player)
+			if (body is PartyPlayer player)
 			{
 				_rayCast.Enabled = true;
 				_isPlayerInSightCone = true;
@@ -54,7 +54,7 @@ namespace tee
 				_lastPlayerPosition = player.Position;
 				_rayCast.TargetPosition = _lastPlayerPosition - GlobalPosition;
 				_rayCast.ForceRaycastUpdate();
-				if (_rayCast.GetCollider() is not Player)
+				if (_rayCast.GetCollider() is not PartyPlayer)
 				{
 					_isRayHittingPlayer = false;
 					return;

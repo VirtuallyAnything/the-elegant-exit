@@ -38,8 +38,8 @@ _data = ExtResource("4_iwfah")
 _sightConeSegments = 10
 _sightConeAngleDegrees = 120.0
 _sightConeRadius = 500.0
-_movementSpeed = 150.0
 _agent = NodePath("NavigationAgent2D")
+_movementSpeed = 150.0
 _discoveryLight = NodePath("PointLight2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Characters/Player" groups=["Player"]]

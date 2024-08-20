@@ -4,6 +4,7 @@
 
 [resource]
 script = ExtResource("1_vm0hw")
+_topic = 0
 SocialBatteryChange = -5
 MentalCapacityChange = -2.0
 Quote = ""

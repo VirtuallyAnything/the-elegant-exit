@@ -4,8 +4,9 @@
 
 [resource]
 script = ExtResource("1_woodc")
+_topic = 3
 SocialBatteryChange = 1
 MentalCapacityChange = 0.0
-Quote = ""
+Quote = "Attack about Economy"
 AttackName = "Tesla Stocks"
 Animation = ""

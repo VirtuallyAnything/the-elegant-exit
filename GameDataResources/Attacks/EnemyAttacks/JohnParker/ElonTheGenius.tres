@@ -4,8 +4,9 @@
 
 [resource]
 script = ExtResource("1_fa8fb")
+_topic = 3
 SocialBatteryChange = 0
 MentalCapacityChange = -1.0
-Quote = ""
+Quote = "Attack about Economy"
 AttackName = "Elon The Genius"
 Animation = ""
