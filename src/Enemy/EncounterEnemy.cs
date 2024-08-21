@@ -70,6 +70,14 @@ namespace tee
 		{
 			get { return _dislikes; }
 		}
+		public bool IgnoreNextAnnoyance
+		{
+			get; set;
+		}
+		public bool IgnoreNextEnthusiasm
+		{
+			get; set;
+		}
 
 		public EncounterEnemy(EnemyData data)
 		{
@@ -109,7 +117,7 @@ namespace tee
 			_topicPreferences[TopicName.Weather].ConversationTopic.Weight = 0;
 		}
 
-		public ConversationTopic ChooseTopic()
+		public TopicName ChooseTopic()
 		{
 			List<ConversationTopic> allTopics = [];
 			foreach (TopicName topic in _likes)
@@ -122,15 +130,14 @@ namespace tee
 			}
 
 			ConversationTopic chosenTopic = allTopics.WeightedRandom<ConversationTopic>();
-			_currentTopicName = chosenTopic.Name;
-			chosenTopic.Weight += 5;
 			GD.Print($"{DisplayName} chooses topic {chosenTopic.Name}.");
-			return chosenTopic;
+			return chosenTopic.Name;
 		}
 
-		public EnemyAttack ChooseAttack()
+		public EnemyAttack ChooseAttack(TopicName topicName)
 		{
-			ConversationTopic chosenTopic = ChooseTopic();
+			_currentTopicName = topicName;
+			ConversationTopic chosenTopic = _topicPreferences[topicName].ConversationTopic;
 			Array<EnemyAttack> potentialAttacks = new();
 			foreach (EnemyAttack attack in _attackPool)
 			{
@@ -144,26 +151,24 @@ namespace tee
 			{
 				chosenTopic.Weight = 0;
 			}
-			EnemyAttack chosenAttack = potentialAttacks.PickRandom();
-			GD.Print($"{DisplayName} has {potentialAttacks.Count} attacks for {chosenTopic.Name}. They choose {chosenAttack.AttackName}.");
+			else
+			{
+				chosenTopic.Weight += 5;
+			}
 
-			_attackPool.Remove(chosenAttack);
-			return chosenAttack;
-		}
+			if (potentialAttacks.Count == 0)
+			{
+				GD.Print($"No more attacks for topic {topicName} available. Choosing different topic.");
+				return ChooseAttack(ChooseTopic());
+			}
+			else
+			{
+				EnemyAttack chosenAttack = potentialAttacks.PickRandom();
+				GD.Print($"{DisplayName} has {potentialAttacks.Count} attacks for {chosenTopic.Name}. They choose {chosenAttack.AttackName}.");
 
-		public Preference GetPreferenceFor(TopicName topic)
-		{
-			return _topicPreferences[topic].Preference;
-		}
-
-		public void IncreaseEnthusiasmFor(TopicName topic)
-		{
-			_topicPreferences[topic].ConversationTopic.IncreaseEnthusiasm();
-		}
-
-		public void DecreaseEnthusiasmFor(TopicName topic)
-		{
-			_topicPreferences[topic].ConversationTopic.DecreaseEnthusiasm();
+				_attackPool.Remove(chosenAttack);
+				return chosenAttack;
+			}
 		}
 
 		public void ReactTo(TopicName topicName)
@@ -186,7 +191,7 @@ namespace tee
 			//if there is a change of topic to a topic with less than two enthusiasm, increase annoyance.
 			if (_currentTopicName != _lastTopicName)
 			{
-				if (currentConversationTopic.GetCurrentEnthusiasmLevel() < 2)
+				if (currentConversationTopic.GetCurrentEnthusiasmLevel() < 2 && !IgnoreNextAnnoyance)
 				{
 					ConversationTopic lastConversationTopic = _topicPreferences[_lastTopicName].ConversationTopic;
 					int currentEnthusiasm = lastConversationTopic.GetCurrentEnthusiasmLevel();
@@ -210,19 +215,27 @@ namespace tee
 			switch (preference)
 			{
 				case Preference.Like:
-					currentConversationTopic.IncreaseEnthusiasm();
-					break;
 				case Preference.Neutral:
-					currentConversationTopic.IncreaseEnthusiasm();
+					if (!IgnoreNextEnthusiasm)
+					{
+						currentConversationTopic.IncreaseEnthusiasm();
+					}
 					break;
 				case Preference.Dislike:
-					_annoyance.Increase();
-
+					if (!IgnoreNextAnnoyance)
+					{
+						_annoyance.Increase();
+					}
 					break;
 			}
 			GD.Print($"{DisplayName} Preference for {_currentTopicName}: {preference}");
+			IgnoreNextAnnoyance = false;
+			IgnoreNextEnthusiasm = false;
+		}
 
-
+		public Preference GetPreferenceFor(TopicName topic)
+		{
+			return _topicPreferences[topic].Preference;
 		}
 
 		public void Enrage(TopicName dislikedTopicName)
@@ -235,6 +248,16 @@ namespace tee
 			_conversationInterest += summand;
 		}
 
+		public void IncreaseEnthusiasmFor(TopicName topic)
+		{
+			_topicPreferences[topic].ConversationTopic.IncreaseEnthusiasm();
+		}
+
+		public void DecreaseEnthusiasmFor(TopicName topic)
+		{
+			_topicPreferences[topic].ConversationTopic.DecreaseEnthusiasm();
+		}
+		
 		public void DecreaseAnnoyance()
 		{
 			_annoyance.Decrease();

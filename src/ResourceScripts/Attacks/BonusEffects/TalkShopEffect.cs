@@ -11,7 +11,7 @@ namespace tee
             switch(preference){
                 case Preference.Like:
                 enemy.DecreaseAnnoyance();
-                enemy.IncreaseEnthusiasmFor(combatManager.CurrentTopicName);
+                enemy.IncreaseEnthusiasmFor(combatManager.PlayerCurrentTopicName);
                 break;
                 case Preference.Dislike:
                 enemy.IncreaseAnnoyance();

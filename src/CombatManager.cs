@@ -14,13 +14,14 @@ namespace tee
 		private int _conversationInterestDamage;
 		private TopicName _playerCurrentTopicName;
 		private TopicName _playerLastTopicName;
+		private PlayerAttack _selectedAttack;
+		private bool _isFirstTurn = true;
 
 		private EncounterEnemy _enemy;
 		private Preference _preferenceForCurrentTopic;
+		private TopicName _nextTopicName;
 		private bool _isBlockNextEnemyAttack;
-
-		private PlayerAttack _selectedAttack;
-		private bool _isFirstTurn = true;
+		private bool _isIgnoreCIBonusDamage;
 
 		public int ConversationInterestDamage
 		{
@@ -35,9 +36,25 @@ namespace tee
 		{
 			get { return _enemy; }
 		}
-		public TopicName CurrentTopicName
+		public TopicName PlayerCurrentTopicName
 		{
 			get { return _playerCurrentTopicName; }
+		}
+		public TopicName NextTopicName
+		{
+			get { return _nextTopicName; }
+			set
+			{
+				if (_enemy.GetPreferenceFor(value) != Preference.Dislike)
+				{
+					_nextTopicName = value;
+				}else{
+					_nextTopicName = TopicName.None;
+				};
+			}
+		}
+		public int SocialStanding{
+			get; set;
 		}
 
 		public override void _Ready()
@@ -94,23 +111,25 @@ namespace tee
 			{
 				_playerCurrentTopicName = topicOfAttack;
 				_preferenceForCurrentTopic = _enemy.GetPreferenceFor(topicOfAttack);
-
-				switch (_preferenceForCurrentTopic)
+				if (!_isIgnoreCIBonusDamage)
 				{
-					case Preference.Like:
-						conversationInterestBonusDamage -= 1;
-						break;
-					case Preference.Dislike:
-						conversationInterestBonusDamage += 1;
-						if (_playerCurrentTopicName == _playerLastTopicName)
-						{
-							_enemy.Enrage(_playerCurrentTopicName);
-						}
-						if (_player.DiscoveredEnemyPreferences.ContainsKey(_playerCurrentTopicName))
-						{
-							_socialBatteryTemp -= 1;
-						}
-						break;
+					switch (_preferenceForCurrentTopic)
+					{
+						case Preference.Like:
+							conversationInterestBonusDamage -= 1;
+							break;
+						case Preference.Dislike:
+							conversationInterestBonusDamage += 1;
+							if (_playerCurrentTopicName == _playerLastTopicName)
+							{
+								_enemy.Enrage(_playerCurrentTopicName);
+							}
+							if (_player.DiscoveredEnemyPreferences.ContainsKey(_playerCurrentTopicName))
+							{
+								_socialBatteryTemp -= 1;
+							}
+							break;
+					}
 				}
 			}
 
@@ -121,6 +140,7 @@ namespace tee
 				_player.DiscoveredEnemyPreferences.Add(_playerCurrentTopicName, _preferenceForCurrentTopic);
 			}
 			_enemy.ConversationInterest -= conversationInterestBonusDamage + ConversationInterestDamage;
+			_isIgnoreCIBonusDamage = false;
 
 			_encounterScene.PlayCombatAnimation(_selectedAttack, _playerCurrentTopicName);
 			_encounterScene.UpdateUI(_socialBatteryTemp, /*SocialStandingCombat*/0, _player.MentalCapacity, _enemy.ConversationInterest);
@@ -135,7 +155,18 @@ namespace tee
 
 		public void EnemyAttack()
 		{
-			EnemyAttack enemyAttack = _enemy.ChooseAttack();
+			TopicName chosenTopicName;
+			if (NextTopicName != TopicName.None)
+			{
+				chosenTopicName = NextTopicName;
+				NextTopicName = TopicName.None;
+			}
+			else
+			{
+				chosenTopicName = _enemy.ChooseTopic();
+			}
+
+			EnemyAttack enemyAttack = _enemy.ChooseAttack(chosenTopicName);
 
 			if (_isBlockNextEnemyAttack)
 			{
@@ -154,6 +185,21 @@ namespace tee
 		public void BlockNextEnemyAttack()
 		{
 			_isBlockNextEnemyAttack = true;
+		}
+
+		public void IgnoreCIBonusDamage()
+		{
+			_isIgnoreCIBonusDamage = true;
+		}
+
+		public void IgnoreNextAnnoyance()
+		{
+			_enemy.IgnoreNextAnnoyance = true;
+		}
+
+		public void IgnoreNextEnthusiasm()
+		{
+			_enemy.IgnoreNextEnthusiasm = true;
 		}
 
 		public override void _ExitTree()
