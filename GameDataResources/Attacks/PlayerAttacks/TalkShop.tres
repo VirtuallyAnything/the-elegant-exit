@@ -1,25 +1,23 @@
-[gd_resource type="Resource" script_class="PlayerAttack" load_steps=2 format=3 uid="uid://c3fig235sju03"]
+[gd_resource type="Resource" script_class="TopicalPlayerAttack" load_steps=2 format=3 uid="uid://c3fig235sju03"]
 
-[ext_resource type="Script" path="res://src/ResourceScripts/PlayerAttack.cs" id="1_tal61"]
+[ext_resource type="Script" path="res://src/ResourceScripts/TopicalPlayerAttack.cs" id="1_p7bk2"]
 
 [resource]
-script = ExtResource("1_tal61")
+script = ExtResource("1_p7bk2")
 _topicRelatedQuotes = {
 0: "",
 1: "",
-2: "My cousin Jake started microdosing adaptogens to biohack his circadian rhythm, absolute game-changer for his intermittent fasting routine. I personally have been focusing on hygge-inspired minimalism, although I consider shifting to wabi-sabi aesthetics. Have you ever tried that?",
-3: "Last month during the heated bull run, I decided to leverage my hodling by YOLO-ing into a FOMO-driven altcoin pump. I liquidated my blue-chip stonks to buy the dip on a low-cap moonshot, but to my dismay the coin rug-pulled just as I was about to HODL into a whale dump.",
-4: "McCasey’s bid for governor is falling to shambles. He filibustered through stump speeches pandering to PACs while dodging gerrymandering gaffes. Despite his attempts at pork-barrel promises his platform collapsed under the weight polling pivots and caucus chaos.",
+2: "",
+3: "",
+4: "",
 5: "",
 6: "",
-7: "",
 8: "",
 9: ""
 }
+UnlockedTopics = [1, 2, 4]
 OwningCharacter = 0
-ConversationInterestDamage = 0
-EnableTopicChoice = true
+ConversationInterestDamage = 2
 IsFromItem = false
-UnlockedTopics = [3, 4, 2]
-AttackName = "Talk Shop"
+AttackName = ""
 Animation = ""

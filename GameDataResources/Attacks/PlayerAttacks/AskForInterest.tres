@@ -1,25 +1,25 @@
-[gd_resource type="Resource" script_class="PlayerAttack" load_steps=2 format=3 uid="uid://cbqcfkv2twa4n"]
+[gd_resource type="Resource" script_class="TopicalPlayerAttack" load_steps=3 format=3 uid="uid://cbqcfkv2twa4n"]
 
-[ext_resource type="Script" path="res://src/ResourceScripts/PlayerAttack.cs" id="1_4u75q"]
+[ext_resource type="Resource" uid="uid://b7wmved4wqvw8" path="res://GameDataResources/Attacks/PlayerAttacks/BonusEffects/AskForInterestEffect.tres" id="1_gpsb2"]
+[ext_resource type="Script" path="res://src/ResourceScripts/TopicalPlayerAttack.cs" id="2_6lu2h"]
 
 [resource]
-script = ExtResource("1_4u75q")
+script = ExtResource("2_6lu2h")
 _topicRelatedQuotes = {
-0: "What are you into?",
+0: "",
 1: "",
 2: "",
 3: "",
 4: "",
 5: "",
 6: "",
-7: "",
 8: "",
 9: ""
 }
+UnlockedTopics = [null]
+_bonusEffect = ExtResource("1_gpsb2")
 OwningCharacter = 0
-ConversationInterestDamage = 0
-EnableTopicChoice = false
+ConversationInterestDamage = 2
 IsFromItem = false
-UnlockedTopics = []
 AttackName = "Ask For Interest"
 Animation = ""

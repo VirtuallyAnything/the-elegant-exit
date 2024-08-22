@@ -6,9 +6,10 @@
 [ext_resource type="Resource" uid="uid://clsno7agx4m40" path="res://GameDataResources/Attacks/PlayerAttacks/FunnyAnecdote.tres" id="4_fnsck"]
 [ext_resource type="Resource" uid="uid://0jqdbyw83i7v" path="res://GameDataResources/Attacks/PlayerAttacks/Nod&Smile.tres" id="5_f3r0q"]
 [ext_resource type="Resource" uid="uid://cbqcfkv2twa4n" path="res://GameDataResources/Attacks/PlayerAttacks/AskForInterest.tres" id="5_syyrr"]
-[ext_resource type="Resource" uid="uid://bxl2mui1yayd" path="res://GameDataResources/Attacks/PlayerAttacks/GiveCompliment.tres" id="6_bpcvt"]
-[ext_resource type="Resource" uid="uid://82xcndk1xvur" path="res://GameDataResources/Attacks/PlayerAttacks/DerogativeCommentary.tres" id="7_ebebf"]
+[ext_resource type="Resource" uid="uid://82xcndk1xvur" path="res://GameDataResources/Attacks/PlayerAttacks/DerogatoryCommentary.tres" id="6_sqlnd"]
+
+[sub_resource type="Resource" id="Resource_hcv0n"]
 
 [resource]
 script = ExtResource("3_rxbdb")
-_availableAttacks = Array[Resource]([ExtResource("1_32iky"), ExtResource("1_32iky"), ExtResource("5_f3r0q"), ExtResource("3_wjwpo"), ExtResource("4_fnsck"), ExtResource("4_fnsck"), ExtResource("5_syyrr"), ExtResource("6_bpcvt"), ExtResource("7_ebebf")])
+_availableAttacks = Array[Resource]([ExtResource("1_32iky"), ExtResource("1_32iky"), ExtResource("5_f3r0q"), ExtResource("3_wjwpo"), ExtResource("4_fnsck"), ExtResource("4_fnsck"), ExtResource("5_syyrr"), SubResource("Resource_hcv0n"), ExtResource("6_sqlnd")])

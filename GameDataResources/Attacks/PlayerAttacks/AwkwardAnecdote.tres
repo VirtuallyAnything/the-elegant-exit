@@ -1,25 +1,23 @@
-[gd_resource type="Resource" script_class="PlayerAttack" load_steps=2 format=3 uid="uid://jcvldt15okdk"]
+[gd_resource type="Resource" script_class="TopicalPlayerAttack" load_steps=2 format=3 uid="uid://jcvldt15okdk"]
 
-[ext_resource type="Script" path="res://src/ResourceScripts/PlayerAttack.cs" id="1_tkmik"]
+[ext_resource type="Script" path="res://src/ResourceScripts/TopicalPlayerAttack.cs" id="1_ydvse"]
 
 [resource]
-script = ExtResource("1_tkmik")
+script = ExtResource("1_ydvse")
 _topicRelatedQuotes = {
 0: "",
 1: "",
-2: "I followed a Men’s Health article from last year and my coworkers commented on my ‘pumpkin looks’ for a month.",
-3: "You know, I also sometimes spend money.",
-4: "Have you heard of that politician on campaign who declared his love for his home state of Wisconsin? But he said that in Wyoming.",
+2: "",
+3: "",
+4: "",
 5: "",
 6: "",
-7: "",
 8: "",
 9: ""
 }
+UnlockedTopics = [1, 4, 2]
 OwningCharacter = 0
-ConversationInterestDamage = 0
-EnableTopicChoice = true
+ConversationInterestDamage = 3
 IsFromItem = false
-UnlockedTopics = [2, 3, 4]
 AttackName = "Awkward Anecdote"
 Animation = ""

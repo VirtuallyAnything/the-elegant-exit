@@ -3,13 +3,13 @@ using Godot;
 namespace tee
 {
     [GlobalClass]
-    public abstract partial class AskForInterestEffect : TopicalBonusEffect
+    public partial class AskForInterestEffect : BonusEffect
     {
-        public override void Resolve(CombatManager combatManager, TopicName topicName){
+        public override void Resolve(CombatManager combatManager){
             combatManager.IgnoreCIBonusDamage();
             combatManager.IgnoreNextAnnoyance();
             combatManager.IgnoreNextEnthusiasm();
-            combatManager.NextTopicName = topicName;
+            combatManager.NextTopicName = combatManager.PlayerCurrentTopicName;
             Preference preference = combatManager.PreferenceForCurrentTopic;
             if(preference == Preference.Like){
                 combatManager.SocialStanding += 1;

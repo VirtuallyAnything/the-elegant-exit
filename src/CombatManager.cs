@@ -40,6 +40,9 @@ namespace tee
 		{
 			get { return _playerCurrentTopicName; }
 		}
+		public PlayerAttack SelectedAttack{
+			get{return _selectedAttack;}
+		}
 		public TopicName NextTopicName
 		{
 			get { return _nextTopicName; }

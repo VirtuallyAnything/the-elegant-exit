@@ -9,6 +9,7 @@ namespace tee
 		private CharacterName _owningCharacter;
 		private int _conversationInterestDamage;
 		private bool _isFromItem;
+		[Export]
 		private BonusEffect _bonusEffect;
 		
 		[Export]

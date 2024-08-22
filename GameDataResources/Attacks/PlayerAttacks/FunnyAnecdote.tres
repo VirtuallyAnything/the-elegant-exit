@@ -1,25 +1,23 @@
-[gd_resource type="Resource" script_class="PlayerAttack" load_steps=2 format=3 uid="uid://clsno7agx4m40"]
+[gd_resource type="Resource" script_class="TopicalPlayerAttack" load_steps=2 format=3 uid="uid://clsno7agx4m40"]
 
-[ext_resource type="Script" path="res://src/ResourceScripts/PlayerAttack.cs" id="1_pb2xw"]
+[ext_resource type="Script" path="res://src/ResourceScripts/TopicalPlayerAttack.cs" id="1_eoj8r"]
 
 [resource]
-script = ExtResource("1_pb2xw")
+script = ExtResource("1_eoj8r")
 _topicRelatedQuotes = {
 0: "",
-1: "The Netherlands won a record at this year’s football cup. Most defeats in semi-finals of any sports team.",
+1: "",
 2: "",
 3: "",
 4: "",
-5: "It’s amazing that Leonardo da Vinci could paint and invent and still had time to be a crime-fighting turtle.",
-6: "The latest scandal around Elon Musk is called Elon-Gate. The affair is really dragging on.",
-7: "",
+5: "",
+6: "",
 8: "",
 9: ""
 }
-OwningCharacter = 0
-ConversationInterestDamage = 0
-EnableTopicChoice = true
+UnlockedTopics = [5, 3, 6]
+OwningCharacter = 1
+ConversationInterestDamage = 3
 IsFromItem = false
-UnlockedTopics = [1, 5, 6]
 AttackName = "Funny Anecdote"
 Animation = ""

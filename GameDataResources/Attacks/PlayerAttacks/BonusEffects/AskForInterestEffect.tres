@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="AskForInterestEffect" load_steps=2 format=3 uid="uid://b7wmved4wqvw8"]
+
+[ext_resource type="Script" path="res://src/ResourceScripts/Attacks/BonusEffects/AskForInterestEffect.cs" id="1_6b3u1"]
+
+[resource]
+script = ExtResource("1_6b3u1")
+_description = "No modified CI from Like or Dislike [br]Does not trigger Annoyance and Enthusiasm [br]Enemy talks about topic if it is not Dislike+1 [br]SSC if LIKE"

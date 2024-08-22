@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="NodSmileEffect" load_steps=2 format=3 uid="uid://bvnyty5va3mc4"]
+
+[ext_resource type="Script" path="res://src/ResourceScripts/Attacks/BonusEffects/NodSmileEffect.cs" id="1_wpbkn"]
+
+[resource]
+script = ExtResource("1_wpbkn")
+_description = ""
