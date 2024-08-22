@@ -1,0 +1,8 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://7ps021sw2vqy"]
+
+[sub_resource type="SystemFont" id="SystemFont_jcwd1"]
+font_names = PackedStringArray("Franklin Gothic")
+
+[resource]
+default_font = SubResource("SystemFont_jcwd1")
+default_font_size = 30

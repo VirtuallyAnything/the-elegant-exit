@@ -18,7 +18,7 @@ namespace tee
 		[Export] private Sprite2D _enemySprite;
 		[Export] private Color _enemyDialogueColor;
 		[Export] private Label _enemyName;
-		[Export] private Array<AttackButton> _attackButtons;
+		[Export] private AttackCardContainer _attackCardContainer;
 		[Export] private AnimationPlayer _animationPlayer;
 		[Export] private Label _dialogueLine;
 		[Export] private Label _mentalCapacityValue;
@@ -26,7 +26,7 @@ namespace tee
 		[Export] private Label _socialStandingValue;
 		[Export] private TextureProgressBar _socialBatteryProgress;
 		[Export] private Button _leaveButton;
-		private AttackButton _currentlySelectedButton;
+		private AttackCard _currentlySelectedCard;
 		private EnemyData _currentEnemy;
 		public EnemyData CurrentEnemy
 		{
@@ -37,14 +37,14 @@ namespace tee
 		{
 			get { return _leaveButton; }
 		}
-		public Array<AttackButton> AttackButtons
+		public AttackCardContainer AttackCardContainer
 		{
-			get { return _attackButtons; }
+			get { return _attackCardContainer; }
 		}
 
 		public override void _Ready()
 		{
-			AttackButton.OnButtonPressed += SetCurrentlySelectedButton;
+			AttackCard.AttackSelected += SetCurrentlySelectedButton;
 		}
 
 		public void SetupScene(EnemyData enemyData)
@@ -58,25 +58,14 @@ namespace tee
 			SetupCompleted?.Invoke();
 		}
 
-		public void DisableAttackButtons(bool areDisabled){
-			for(int i = 0; i < _attackButtons.Count; i++){
-				_attackButtons[i].Disabled = areDisabled;
-			}
+		private void SetCurrentlySelectedButton(AttackCard attackCard)
+		{
+			_currentlySelectedCard = attackCard;
 		}
 
-		private void SetCurrentlySelectedButton(AttackButton button)
+		public async void PlayCombatAnimation(PlayerAttack attack)
 		{
-			_currentlySelectedButton = button;
-		}
-
-		public void SetupSelectedButton(PlayerAttack attack)
-		{
-			_currentlySelectedButton.SetupButton(attack);
-		}
-
-		public async void PlayCombatAnimation(PlayerAttack attack, TopicName topic)
-		{
-			_dialogueLine.Text = attack.GetQuoteForTopic(topic);
+			_dialogueLine.Text = attack.GetQuote();
 			_dialogueLine.Modulate = _playerDialogueColor;
 			Tween tween = _dialogueLine.CreateTween();
 			int textLength = _dialogueLine.Text.Length;

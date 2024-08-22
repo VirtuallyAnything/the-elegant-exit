@@ -48,12 +48,15 @@ namespace tee
 				if (_enemy.GetPreferenceFor(value) != Preference.Dislike)
 				{
 					_nextTopicName = value;
-				}else{
+				}
+				else
+				{
 					_nextTopicName = TopicName.None;
 				};
 			}
 		}
-		public int SocialStanding{
+		public int SocialStanding
+		{
 			get; set;
 		}
 
@@ -64,7 +67,7 @@ namespace tee
 			_encounterScene.SetupCompleted += StartCombat;
 			EncounterScene.PlayerTurnAnimationComplete += EnemyAttack;
 			EncounterScene.EnemyTurnAnimationComplete += SetupNewAttack;
-			AttackButton.OnButtonPressed += PlayerAttack;
+			AttackCard.AttackSelected += PlayerAttack;
 		}
 
 		public void StartCombat()
@@ -74,10 +77,10 @@ namespace tee
 			{
 				randomAttack = _player.ChooseRandomAttack();
 
-				_encounterScene.AttackButtons[i].SetupButton(randomAttack);
+				_encounterScene.AttackCardContainer.AddNewAttackCard(randomAttack);
 			}
 			_enemy = new(_encounterScene.CurrentEnemy);
-			_encounterScene.DisableAttackButtons(true);
+			_encounterScene.AttackCardContainer.DisableInput();
 			EnemyAttack();
 		}
 
@@ -85,7 +88,7 @@ namespace tee
 		{
 			if (_isFirstTurn)
 			{
-				_encounterScene.DisableAttackButtons(false);
+				_encounterScene.AttackCardContainer.EnableInput();
 				return;
 			}
 			if (_player.MentalCapacity <= 0)
@@ -96,15 +99,15 @@ namespace tee
 			}
 
 			PlayerAttack newAttack = _player.SwapAttackOut(_selectedAttack);
-			_encounterScene.SetupSelectedButton(newAttack);
+			_encounterScene.AttackCardContainer.SwapAttackCardOutFor(newAttack);
 		}
 
-		public void PlayerAttack(AttackButton attackButton)
+		public void PlayerAttack(AttackCard attackCard)
 		{
 			_isFirstTurn = false;
 			_playerLastTopicName = _playerCurrentTopicName;
-			TopicName topicOfAttack = attackButton.BoundTopic;
-			_selectedAttack = attackButton.BoundAttack;
+			TopicName topicOfAttack = attackCard.BoundTopic;
+			_selectedAttack = attackCard.BoundAttack;
 
 			int conversationInterestBonusDamage = 0;
 			if (topicOfAttack != TopicName.None)
@@ -142,7 +145,7 @@ namespace tee
 			_enemy.ConversationInterest -= conversationInterestBonusDamage + ConversationInterestDamage;
 			_isIgnoreCIBonusDamage = false;
 
-			_encounterScene.PlayCombatAnimation(_selectedAttack, _playerCurrentTopicName);
+			_encounterScene.PlayCombatAnimation(_selectedAttack);
 			_encounterScene.UpdateUI(_socialBatteryTemp, /*SocialStandingCombat*/0, _player.MentalCapacity, _enemy.ConversationInterest);
 			GD.Print($"Player attacks and does {conversationInterestBonusDamage + ConversationInterestDamage} damage to CI.");
 			GD.Print($"New Enemy CI: {_enemy.ConversationInterest}");
@@ -208,7 +211,7 @@ namespace tee
 			_encounterScene.SetupCompleted -= StartCombat;
 			EncounterScene.PlayerTurnAnimationComplete -= EnemyAttack;
 			EncounterScene.EnemyTurnAnimationComplete -= SetupNewAttack;
-			AttackButton.OnButtonPressed -= PlayerAttack;
+			AttackCard.AttackSelected -= PlayerAttack;
 		}
 	}
 }

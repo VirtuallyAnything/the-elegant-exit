@@ -9,11 +9,11 @@ namespace tee
 	{
 		public static event TopicButtonHandler OnButtonPressed;
 		private TopicName _conversationTopic;
-		private AttackButton _parentButton;
-		public AttackButton ParentButton
+		private AttackCardBack _parent;
+		public AttackCardBack Parent
 		{
-			get { return _parentButton; }
-			set { _parentButton = value; }
+			get { return _parent; }
+			set { _parent = value; }
 		}
 		public TopicName ConversationTopic
 		{
@@ -28,7 +28,7 @@ namespace tee
 
 		public void OnPressed()
 		{
-			_parentButton.ChildPressed(this);
+			_parent.ChildPressed(this);
 			OnButtonPressed?.Invoke();
 		}
 	}

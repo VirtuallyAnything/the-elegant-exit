@@ -1,15 +1,11 @@
-[gd_scene load_steps=23 format=3 uid="uid://cv7lwki55h2ma"]
+[gd_scene load_steps=19 format=3 uid="uid://cv7lwki55h2ma"]
 
 [ext_resource type="Script" path="res://src/SceneCode/EncounterScene.cs" id="1_qerod"]
 [ext_resource type="Script" path="res://src/CombatManager.cs" id="2_6eywl"]
 [ext_resource type="Texture2D" uid="uid://c08irt6knvdnn" path="res://Assets/Textures/MainCharacters_scaled.png" id="3_ibufg"]
-[ext_resource type="Script" path="res://src/AttackButton.cs" id="4_jop31"]
-[ext_resource type="Script" path="res://src/VisibilityChanger.cs" id="5_flu7k"]
-[ext_resource type="ButtonGroup" uid="uid://c8kg3f3dogyuv" path="res://AttackButtonGroup.tres" id="7_dq33r"]
-[ext_resource type="Texture2D" uid="uid://dloj826coufuu" path="res://Assets/Textures/Avatar_JP.png" id="7_kbgav"]
-[ext_resource type="Script" path="res://src/UI/AttackValueSetter.cs" id="9_hj51r"]
+[ext_resource type="Texture2D" uid="uid://b25kk6eoa8a2r" path="res://Assets/UI/ConversationCard.png" id="5_ywx5t"]
+[ext_resource type="Theme" uid="uid://7ps021sw2vqy" path="res://Assets/Themes/AttackCardTitle.tres" id="6_s6tn8"]
 [ext_resource type="PackedScene" uid="uid://d21hljw8t080d" path="res://Scenes/Subscenes/SocialBattery.tscn" id="9_vlhst"]
-[ext_resource type="Script" path="res://src/ButtonGrid.cs" id="11_2jdkf"]
 
 [sub_resource type="Gradient" id="Gradient_vp34m"]
 offsets = PackedFloat32Array(0.0985507, 1)
@@ -93,7 +89,7 @@ _playerDialogueColor = Color(0.22184, 0.204197, 0.770126, 1)
 _enemySprite = NodePath("EnemySprite")
 _enemyDialogueColor = Color(0.807913, 0.00169103, 0.000926806, 1)
 _enemyName = NodePath("EnemyName")
-_attackButtons = [NodePath("VBoxContainer/Button"), NodePath("VBoxContainer/Button2"), NodePath("VBoxContainer/Button3")]
+_attackButtons = [NodePath(""), NodePath(""), NodePath("")]
 _animationPlayer = NodePath("AnimationPlayer")
 _dialogueLine = NodePath("DialogLine")
 _mentalCapacityValue = NodePath("MentalCapacityValue")
@@ -163,297 +159,6 @@ offset_right = 1361.0
 offset_bottom = 1029.0
 text = "Leave Fight"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-clip_children = 1
-custom_minimum_size = Vector2(300, 100)
-layout_mode = 2
-offset_top = 682.0
-offset_right = 756.0
-offset_bottom = 982.0
-grow_vertical = 0
-
-[node name="Button" type="Button" parent="VBoxContainer" node_paths=PackedStringArray("_attackValueSetter", "TopicGrid")]
-custom_minimum_size = Vector2(0, 70)
-layout_mode = 2
-toggle_mode = true
-button_group = ExtResource("7_dq33r")
-text = "Attack 1"
-script = ExtResource("4_jop31")
-_attackValueSetter = NodePath("../HBoxContainer/VBoxContainer")
-TopicGrid = NodePath("../HBoxContainer/TopicGrid")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
-visible = false
-layout_mode = 2
-script = ExtResource("5_flu7k")
-
-[node name="GridContainer" type="GridContainer" parent="VBoxContainer/HBoxContainer"]
-clip_contents = true
-layout_mode = 2
-size_flags_vertical = 3
-columns = 2
-
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/HBoxContainer/GridContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-texture = ExtResource("7_kbgav")
-expand_mode = 2
-stretch_mode = 4
-
-[node name="Social Standing" type="Label" parent="VBoxContainer/HBoxContainer/GridContainer"]
-layout_mode = 2
-text = "Social Standing:
-"
-
-[node name="TextureRect2" type="TextureRect" parent="VBoxContainer/HBoxContainer/GridContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-texture = ExtResource("7_kbgav")
-expand_mode = 2
-stretch_mode = 4
-
-[node name="Social Battery" type="Label" parent="VBoxContainer/HBoxContainer/GridContainer"]
-layout_mode = 2
-text = "Social Battery:"
-
-[node name="TextureRect3" type="TextureRect" parent="VBoxContainer/HBoxContainer/GridContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-texture = ExtResource("7_kbgav")
-expand_mode = 2
-stretch_mode = 4
-
-[node name="ConversationInterest" type="Label" parent="VBoxContainer/HBoxContainer/GridContainer"]
-layout_mode = 2
-text = "Conversation Interest:"
-
-[node name="TextureRect4" type="TextureRect" parent="VBoxContainer/HBoxContainer/GridContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-texture = ExtResource("7_kbgav")
-expand_mode = 2
-stretch_mode = 4
-
-[node name="Mental Capacity" type="Label" parent="VBoxContainer/HBoxContainer/GridContainer"]
-layout_mode = 2
-text = "Mental Capacity:"
-
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer" node_paths=PackedStringArray("_socialBatteryChange", "_conversationInterestChange", "_mentalCapacityChange")]
-layout_mode = 2
-script = ExtResource("9_hj51r")
-_socialBatteryChange = NodePath("SocialBatteryChange")
-_conversationInterestChange = NodePath("ConversationInterestChange")
-_mentalCapacityChange = NodePath("MentalCapacityChange")
-
-[node name="SocialStandingChange" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-text = "SSV"
-
-[node name="SocialBatteryChange" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-text = "SBV"
-
-[node name="ConversationInterestChange" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-text = "CIV"
-
-[node name="MentalCapacityChange" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-text = "CIV"
-
-[node name="TopicGrid" type="GridContainer" parent="VBoxContainer/HBoxContainer"]
-layout_mode = 2
-columns = 2
-script = ExtResource("11_2jdkf")
-
-[node name="Button2" type="Button" parent="VBoxContainer" node_paths=PackedStringArray("_attackValueSetter", "TopicGrid")]
-custom_minimum_size = Vector2(0, 70)
-layout_mode = 2
-toggle_mode = true
-button_group = ExtResource("7_dq33r")
-text = "Attack 1"
-script = ExtResource("4_jop31")
-_attackValueSetter = NodePath("../HBoxContainer2/VBoxContainer")
-TopicGrid = NodePath("../HBoxContainer2/TopicGrid")
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
-visible = false
-layout_mode = 2
-script = ExtResource("5_flu7k")
-
-[node name="GridContainer2" type="GridContainer" parent="VBoxContainer/HBoxContainer2"]
-clip_contents = true
-layout_mode = 2
-size_flags_vertical = 3
-columns = 2
-
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/HBoxContainer2/GridContainer2"]
-layout_mode = 2
-size_flags_vertical = 3
-texture = ExtResource("7_kbgav")
-expand_mode = 2
-stretch_mode = 4
-
-[node name="Label2" type="Label" parent="VBoxContainer/HBoxContainer2/GridContainer2"]
-layout_mode = 2
-text = "Social Standing:
-"
-
-[node name="TextureRect2" type="TextureRect" parent="VBoxContainer/HBoxContainer2/GridContainer2"]
-layout_mode = 2
-size_flags_vertical = 3
-texture = ExtResource("7_kbgav")
-expand_mode = 2
-stretch_mode = 4
-
-[node name="Label3" type="Label" parent="VBoxContainer/HBoxContainer2/GridContainer2"]
-layout_mode = 2
-text = "Social Battery:"
-
-[node name="TextureRect3" type="TextureRect" parent="VBoxContainer/HBoxContainer2/GridContainer2"]
-layout_mode = 2
-size_flags_vertical = 3
-texture = ExtResource("7_kbgav")
-expand_mode = 2
-stretch_mode = 4
-
-[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer2/GridContainer2"]
-layout_mode = 2
-text = "Conversation Interest:"
-
-[node name="TextureRect4" type="TextureRect" parent="VBoxContainer/HBoxContainer2/GridContainer2"]
-layout_mode = 2
-size_flags_vertical = 3
-texture = ExtResource("7_kbgav")
-expand_mode = 2
-stretch_mode = 4
-
-[node name="Mental Capacity" type="Label" parent="VBoxContainer/HBoxContainer2/GridContainer2"]
-layout_mode = 2
-text = "Mental Capacity:"
-
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer2" node_paths=PackedStringArray("_socialBatteryChange", "_conversationInterestChange", "_mentalCapacityChange")]
-layout_mode = 2
-script = ExtResource("9_hj51r")
-_socialBatteryChange = NodePath("SocialBatteryChange")
-_conversationInterestChange = NodePath("ConversationInterestChange")
-_mentalCapacityChange = NodePath("MentalCapacityChange")
-
-[node name="SocialStandingChange" type="Label" parent="VBoxContainer/HBoxContainer2/VBoxContainer"]
-layout_mode = 2
-text = "SSV"
-
-[node name="SocialBatteryChange" type="Label" parent="VBoxContainer/HBoxContainer2/VBoxContainer"]
-layout_mode = 2
-text = "SBV"
-
-[node name="ConversationInterestChange" type="Label" parent="VBoxContainer/HBoxContainer2/VBoxContainer"]
-layout_mode = 2
-text = "CIV"
-
-[node name="MentalCapacityChange" type="Label" parent="VBoxContainer/HBoxContainer2/VBoxContainer"]
-layout_mode = 2
-text = "CIV"
-
-[node name="TopicGrid" type="GridContainer" parent="VBoxContainer/HBoxContainer2"]
-layout_mode = 2
-columns = 2
-script = ExtResource("11_2jdkf")
-
-[node name="Button3" type="Button" parent="VBoxContainer" node_paths=PackedStringArray("_attackValueSetter", "TopicGrid")]
-custom_minimum_size = Vector2(0, 70)
-layout_mode = 2
-toggle_mode = true
-button_group = ExtResource("7_dq33r")
-text = "Attack 1"
-script = ExtResource("4_jop31")
-_attackValueSetter = NodePath("../HBoxContainer3/VBoxContainer")
-TopicGrid = NodePath("../HBoxContainer3/TopicGrid")
-
-[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer"]
-visible = false
-layout_mode = 2
-script = ExtResource("5_flu7k")
-
-[node name="GridContainer3" type="GridContainer" parent="VBoxContainer/HBoxContainer3"]
-clip_contents = true
-layout_mode = 2
-size_flags_vertical = 3
-columns = 2
-
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/HBoxContainer3/GridContainer3"]
-layout_mode = 2
-size_flags_vertical = 3
-texture = ExtResource("7_kbgav")
-expand_mode = 2
-stretch_mode = 4
-
-[node name="Label2" type="Label" parent="VBoxContainer/HBoxContainer3/GridContainer3"]
-layout_mode = 2
-text = "Social Standing:
-"
-
-[node name="TextureRect2" type="TextureRect" parent="VBoxContainer/HBoxContainer3/GridContainer3"]
-layout_mode = 2
-size_flags_vertical = 3
-texture = ExtResource("7_kbgav")
-expand_mode = 2
-stretch_mode = 4
-
-[node name="Label3" type="Label" parent="VBoxContainer/HBoxContainer3/GridContainer3"]
-layout_mode = 2
-text = "Social Battery:"
-
-[node name="TextureRect3" type="TextureRect" parent="VBoxContainer/HBoxContainer3/GridContainer3"]
-layout_mode = 2
-size_flags_vertical = 3
-texture = ExtResource("7_kbgav")
-expand_mode = 2
-stretch_mode = 4
-
-[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer3/GridContainer3"]
-layout_mode = 2
-text = "Conversation Interest:"
-
-[node name="TextureRect4" type="TextureRect" parent="VBoxContainer/HBoxContainer3/GridContainer3"]
-layout_mode = 2
-size_flags_vertical = 3
-texture = ExtResource("7_kbgav")
-expand_mode = 2
-stretch_mode = 4
-
-[node name="Mental Capacity" type="Label" parent="VBoxContainer/HBoxContainer3/GridContainer3"]
-layout_mode = 2
-text = "Mental Capacity:"
-
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer3" node_paths=PackedStringArray("_socialBatteryChange", "_conversationInterestChange", "_mentalCapacityChange")]
-layout_mode = 2
-script = ExtResource("9_hj51r")
-_socialBatteryChange = NodePath("SocialBatteryChange")
-_conversationInterestChange = NodePath("ConversationInterestChange")
-_mentalCapacityChange = NodePath("MentalCapacityChange")
-
-[node name="SocialStandingChange" type="Label" parent="VBoxContainer/HBoxContainer3/VBoxContainer"]
-layout_mode = 2
-text = "SSV"
-
-[node name="SocialBatteryChange" type="Label" parent="VBoxContainer/HBoxContainer3/VBoxContainer"]
-layout_mode = 2
-text = "SBV"
-
-[node name="ConversationInterestChange" type="Label" parent="VBoxContainer/HBoxContainer3/VBoxContainer"]
-layout_mode = 2
-text = "CIV"
-
-[node name="MentalCapacityChange" type="Label" parent="VBoxContainer/HBoxContainer3/VBoxContainer"]
-layout_mode = 2
-text = "CIV"
-
-[node name="TopicGrid" type="GridContainer" parent="VBoxContainer/HBoxContainer3"]
-layout_mode = 2
-columns = 2
-script = ExtResource("11_2jdkf")
-
 [node name="ConversationInterest" type="Label" parent="."]
 layout_mode = 0
 offset_left = 1386.0
@@ -518,6 +223,24 @@ horizontal_alignment = 1
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(960, 540)
 
-[connection signal="toggled" from="VBoxContainer/Button" to="VBoxContainer/HBoxContainer" method="ShowContainer"]
-[connection signal="toggled" from="VBoxContainer/Button2" to="VBoxContainer/HBoxContainer2" method="ShowContainer"]
-[connection signal="toggled" from="VBoxContainer/Button3" to="VBoxContainer/HBoxContainer3" method="ShowContainer"]
+[node name="TextureButton" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 129.0
+offset_top = -398.0
+offset_right = 718.0
+offset_bottom = -35.0
+grow_vertical = 0
+texture_normal = ExtResource("5_ywx5t")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="TextureButton"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 43.0
+offset_top = 23.0
+offset_right = 554.0
+offset_bottom = 63.0
+theme = ExtResource("6_s6tn8")
+text = "Some Attack Name"
