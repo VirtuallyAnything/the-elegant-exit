@@ -1,12 +1,9 @@
-[gd_scene load_steps=21 format=3 uid="uid://cv7lwki55h2ma"]
+[gd_scene load_steps=18 format=3 uid="uid://cv7lwki55h2ma"]
 
 [ext_resource type="Script" path="res://src/SceneCode/EncounterScene.cs" id="1_qerod"]
 [ext_resource type="Script" path="res://src/CombatManager.cs" id="2_6eywl"]
 [ext_resource type="Texture2D" uid="uid://c08irt6knvdnn" path="res://Assets/Textures/MainCharacters_scaled.png" id="3_ibufg"]
-[ext_resource type="Texture2D" uid="uid://b25kk6eoa8a2r" path="res://Assets/UI/ConversationCard.png" id="5_ywx5t"]
-[ext_resource type="Theme" uid="uid://7ps021sw2vqy" path="res://Assets/Themes/AttackCardTitle.tres" id="6_s6tn8"]
 [ext_resource type="Script" path="res://src/UI/AttackCardContainer.cs" id="7_3ynpm"]
-[ext_resource type="Theme" uid="uid://cjbdvjn8wibud" path="res://Assets/Themes/DescriptionText.tres" id="8_4iw1r"]
 [ext_resource type="PackedScene" uid="uid://d21hljw8t080d" path="res://Scenes/Subscenes/SocialBattery.tscn" id="9_vlhst"]
 
 [sub_resource type="Gradient" id="Gradient_vp34m"]
@@ -78,7 +75,7 @@ default_font_size = 35
 [sub_resource type="Theme" id="Theme_0tp7n"]
 default_font_size = 40
 
-[node name="EncounterScene" type="Control" node_paths=PackedStringArray("_playerSprite", "_enemySprite", "_enemyName", "_animationPlayer", "_dialogueLine", "_mentalCapacityValue", "_conversationInterestValue", "_socialStandingValue", "_socialBatteryProgress", "_leaveButton")]
+[node name="EncounterScene" type="Control" node_paths=PackedStringArray("_playerSprite", "_enemySprite", "_enemyName", "_attackCardContainer", "_animationPlayer", "_dialogueLine", "_mentalCapacityValue", "_conversationInterestValue", "_socialStandingValue", "_socialBatteryProgress", "_leaveButton")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -91,6 +88,7 @@ _playerDialogueColor = Color(0.22184, 0.204197, 0.770126, 1)
 _enemySprite = NodePath("EnemySprite")
 _enemyDialogueColor = Color(0.807913, 0.00169103, 0.000926806, 1)
 _enemyName = NodePath("EnemyName")
+_attackCardContainer = NodePath("AttackCardContainer")
 _animationPlayer = NodePath("AnimationPlayer")
 _dialogueLine = NodePath("DialogLine")
 _mentalCapacityValue = NodePath("MentalCapacityValue")
@@ -231,33 +229,3 @@ offset_top = 629.0
 offset_right = 136.0
 offset_bottom = 669.0
 script = ExtResource("7_3ynpm")
-
-[node name="AttackCardFront" type="TextureButton" parent="AttackCardContainer"]
-layout_mode = 2
-texture_normal = ExtResource("5_ywx5t")
-
-[node name="AttackName" type="RichTextLabel" parent="AttackCardContainer/AttackCardFront"]
-modulate = Color(0, 0, 0, 1)
-layout_mode = 0
-offset_left = 43.0
-offset_top = 23.0
-offset_right = 554.0
-offset_bottom = 63.0
-theme = ExtResource("6_s6tn8")
-text = "Some Attack"
-
-[node name="Description" type="RichTextLabel" parent="AttackCardContainer/AttackCardFront"]
-modulate = Color(0, 0, 0, 1)
-layout_mode = 0
-offset_left = 43.0
-offset_top = 69.0
-offset_right = 537.0
-offset_bottom = 307.0
-theme = ExtResource("8_4iw1r")
-bbcode_enabled = true
-text = "[ul]
-Description Description
-We're describing very important things here
-Attack Explanation woooo
-Read, read, read all of it!
-[/ul]"

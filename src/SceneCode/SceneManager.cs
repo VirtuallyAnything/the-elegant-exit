@@ -6,7 +6,6 @@ namespace tee
 {
 	public partial class SceneManager : Node
 	{
-		private static Scene _currentScene;
 		private static EncounterScene _encounterScene;
 		private EncounterStartScreen _encounterStartScene;
 		private EncounterFinishedScene _encounterFinishedScene;

@@ -105,12 +105,15 @@ namespace tee
 			_encounterScene.AttackCardContainer.SwapAttackCardOutFor(newAttack);
 		}
 
-		public void PlayerAttack(AttackCard attackCard)
+		public void PlayerAttack(PlayerAttack playerAttack)
 		{
 			_isFirstTurn = false;
 			_playerLastTopicName = _playerCurrentTopicName;
-			TopicName topicOfAttack = attackCard.BoundTopic;
-			_selectedAttack = attackCard.BoundAttack;
+			TopicName topicOfAttack = TopicName.None;
+			if(playerAttack is TopicalPlayerAttack topicalPlayerAttack){
+				topicOfAttack = topicalPlayerAttack.SelectedTopicName;
+			};
+			_selectedAttack = playerAttack;
 
 			int conversationInterestBonusDamage = 0;
 			if (topicOfAttack != TopicName.None)

@@ -1,0 +1,48 @@
+[gd_scene load_steps=4 format=3 uid="uid://hpjm8ayi2spx"]
+
+[ext_resource type="Texture2D" uid="uid://b25kk6eoa8a2r" path="res://Assets/UI/ConversationCard.png" id="1_6yx0f"]
+[ext_resource type="Script" path="res://src/UI/AttackCardBack.cs" id="2_r0ahb"]
+[ext_resource type="Theme" uid="uid://7ps021sw2vqy" path="res://Assets/Themes/AttackCardTitle.tres" id="3_yw6m8"]
+
+[node name="AttackCardBack" type="TextureButton" node_paths=PackedStringArray("TopicGrid", "_attackName", "_conversationInterestDamage")]
+offset_right = 589.0
+offset_bottom = 363.0
+pivot_offset = Vector2(295, 0)
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("1_6yx0f")
+script = ExtResource("2_r0ahb")
+TopicGrid = NodePath("GridContainer")
+_attackName = NodePath("AttackName")
+_conversationInterestDamage = NodePath("ConversationInterestDamage")
+
+[node name="AttackName" type="Label" parent="."]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 43.0
+offset_top = 23.0
+offset_right = 490.0
+offset_bottom = 63.0
+theme = ExtResource("3_yw6m8")
+text = "Some Attack"
+
+[node name="ConversationInterestDamage" type="Label" parent="."]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -99.0
+offset_top = 23.0
+offset_right = -59.0
+offset_bottom = 58.0
+theme = ExtResource("3_yw6m8")
+text = "5"
+horizontal_alignment = 2
+
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 1
+offset_left = 43.0
+offset_top = 70.0
+offset_right = 530.0
+offset_bottom = 307.0
+columns = 2

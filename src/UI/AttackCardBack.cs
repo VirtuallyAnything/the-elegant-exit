@@ -6,13 +6,13 @@ namespace tee
     public delegate void TopicHandler(TopicName topicName);
     public partial class AttackCardBack : AttackCardSide
     {
-        private Label _attackName;
+
         private TopicName _boundTopic;
         private Godot.Collections.Array<TopicButton> _topicButtonsAttack = new();
         public event TopicHandler TopicPicked;
 
         [Export]
-        public ButtonGrid TopicGrid
+        public GridContainer TopicGrid
         {
             get; set;
         }
@@ -22,7 +22,7 @@ namespace tee
             set { _boundTopic = value; }
         }
 
-        public AttackCardBack(PlayerAttack attack)
+        public void Setup(PlayerAttack attack)
         {
             _attackName.Text = attack.AttackName;
             if (attack is TopicalPlayerAttack topicalPlayerAttack)
@@ -36,6 +36,7 @@ namespace tee
                         Parent = this
                     };
                     _topicButtonsAttack.Add(button);
+                    TopicGrid.AddChild(button);
                 }
             }
         }

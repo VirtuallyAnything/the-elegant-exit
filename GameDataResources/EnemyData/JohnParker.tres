@@ -22,5 +22,5 @@ Icon = ExtResource("7_py1ro")
 Texture = ExtResource("8_kxcpj")
 ConversationInterest = 20
 Likes = [7, 3, 6]
-Neutrals = [5, 4, 10]
+Neutrals = [5, 4]
 Dislikes = Array[int]([2, 1])

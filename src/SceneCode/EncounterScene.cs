@@ -1,9 +1,4 @@
 using Godot;
-using System;
-using Godot.Collections;
-using System.Threading.Tasks;
-using System.Net;
-using System.Runtime.CompilerServices;
 
 namespace tee
 {
@@ -13,11 +8,15 @@ namespace tee
 		public event EncounterSceneHandler SetupCompleted;
 		public static event EncounterSceneHandler PlayerTurnAnimationComplete;
 		public static event EncounterSceneHandler EnemyTurnAnimationComplete;
+		
 		[Export] private Sprite2D _playerSprite;
 		[Export] private Color _playerDialogueColor;
+
 		[Export] private Sprite2D _enemySprite;
 		[Export] private Color _enemyDialogueColor;
 		[Export] private Label _enemyName;
+		private EnemyData _currentEnemy;
+
 		[Export] private AttackCardContainer _attackCardContainer;
 		[Export] private AnimationPlayer _animationPlayer;
 		[Export] private Label _dialogueLine;
@@ -26,8 +25,7 @@ namespace tee
 		[Export] private Label _socialStandingValue;
 		[Export] private TextureProgressBar _socialBatteryProgress;
 		[Export] private Button _leaveButton;
-		private AttackCard _currentlySelectedCard;
-		private EnemyData _currentEnemy;
+
 		public EnemyData CurrentEnemy
 		{
 			get { return _currentEnemy; }
@@ -42,11 +40,6 @@ namespace tee
 			get { return _attackCardContainer; }
 		}
 
-		public override void _Ready()
-		{
-			AttackCard.AttackSelected += SetCurrentlySelectedButton;
-		}
-
 		public void SetupScene(EnemyData enemyData)
 		{
 			_currentEnemy = enemyData;
@@ -56,11 +49,6 @@ namespace tee
 			_dialogueLine.Modulate = _enemyDialogueColor;
 			_socialBatteryProgress.Value = GameManager.SocialBattery;
 			SetupCompleted?.Invoke();
-		}
-
-		private void SetCurrentlySelectedButton(AttackCard attackCard)
-		{
-			_currentlySelectedCard = attackCard;
 		}
 
 		public async void PlayCombatAnimation(PlayerAttack attack)

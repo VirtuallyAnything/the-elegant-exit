@@ -7,7 +7,6 @@ namespace tee
 	{
         public override void _Ready()
         {
-                GD.Print("PartyGroundFloor _Ready");
         }
 
 	}

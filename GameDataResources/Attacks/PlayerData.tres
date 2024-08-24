@@ -1,4 +1,4 @@
-[gd_resource type="Resource" load_steps=9 format=3 uid="uid://d0bu2gll3u4xb"]
+[gd_resource type="Resource" load_steps=8 format=3 uid="uid://d0bu2gll3u4xb"]
 
 [ext_resource type="Resource" uid="uid://jcvldt15okdk" path="res://GameDataResources/Attacks/PlayerAttacks/AwkwardAnecdote.tres" id="1_32iky"]
 [ext_resource type="Script" path="res://src/ResourceScripts/PlayerData.cs" id="3_rxbdb"]
@@ -8,8 +8,6 @@
 [ext_resource type="Resource" uid="uid://cbqcfkv2twa4n" path="res://GameDataResources/Attacks/PlayerAttacks/AskForInterest.tres" id="5_syyrr"]
 [ext_resource type="Resource" uid="uid://82xcndk1xvur" path="res://GameDataResources/Attacks/PlayerAttacks/DerogatoryCommentary.tres" id="6_sqlnd"]
 
-[sub_resource type="Resource" id="Resource_hcv0n"]
-
 [resource]
 script = ExtResource("3_rxbdb")
-_availableAttacks = Array[Resource]([ExtResource("1_32iky"), ExtResource("1_32iky"), ExtResource("5_f3r0q"), ExtResource("3_wjwpo"), ExtResource("4_fnsck"), ExtResource("4_fnsck"), ExtResource("5_syyrr"), SubResource("Resource_hcv0n"), ExtResource("6_sqlnd")])
+_availableAttacks = Array[Resource]([ExtResource("1_32iky"), ExtResource("1_32iky"), ExtResource("5_f3r0q"), ExtResource("3_wjwpo"), ExtResource("4_fnsck"), ExtResource("4_fnsck"), ExtResource("5_syyrr"), ExtResource("6_sqlnd")])

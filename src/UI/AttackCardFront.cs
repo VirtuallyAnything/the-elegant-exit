@@ -5,14 +5,19 @@ namespace tee
 {
     public partial class AttackCardFront : AttackCardSide
     {
-        private Label _attackName;
-        private Label _conversationInterestDamage;
+        [Export]
         private RichTextLabel _description;
 
-        public AttackCardFront(PlayerAttack attack){
+        public override void _Ready()
+        {
+            base._Ready();
+        }
+
+        public void Setup(PlayerAttack attack){
             _attackName.Text = attack.AttackName;
             _conversationInterestDamage.Text = $"{attack.ConversationInterestDamage}";
             _description.Text = attack.BonusEffect?.Description;
         }
+
     }
 }
