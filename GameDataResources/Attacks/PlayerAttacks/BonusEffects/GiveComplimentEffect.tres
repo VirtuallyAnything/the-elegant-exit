@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="GiveComplimentEffect" load_steps=2 format=3 uid="uid://rostnw4cgbp3"]
+
+[ext_resource type="Script" path="res://src/ResourceScripts/Attacks/BonusEffects/GiveComplimentEffect.cs" id="1_qj3xp"]
+
+[resource]
+script = ExtResource("1_qj3xp")
+_description = ""

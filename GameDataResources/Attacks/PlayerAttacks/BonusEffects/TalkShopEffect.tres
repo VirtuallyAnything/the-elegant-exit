@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="TalkShopEffect" load_steps=2 format=3 uid="uid://1gca7gi773tf"]
+
+[ext_resource type="Script" path="res://src/ResourceScripts/Attacks/BonusEffects/TalkShopEffect.cs" id="1_og50w"]
+
+[resource]
+script = ExtResource("1_og50w")
+_description = "[ul]If DISLIKE:[ul]+2 Bonus CI Damage[br]Annoyance +1[/ul]If NEUTRAL[ul]None[/ul]IF LIKE:[ul]Annoyance -1[br]Enthusiasm +1[/ul][/ul]"

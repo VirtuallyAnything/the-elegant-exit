@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="SpecialPlayerAttack" load_steps=3 format=3 uid="uid://28s477g34qgo"]
+
+[ext_resource type="Resource" uid="uid://rostnw4cgbp3" path="res://GameDataResources/Attacks/PlayerAttacks/BonusEffects/GiveComplimentEffect.tres" id="1_bb22v"]
+[ext_resource type="Script" path="res://src/ResourceScripts/SpecialPlayerAttack.cs" id="1_m6x6f"]
+
+[resource]
+script = ExtResource("1_m6x6f")
+_quotes = []
+_bonusEffect = ExtResource("1_bb22v")
+OwningCharacter = 1
+ConversationInterestDamage = 3
+IsFromItem = false
+AttackName = "Give Compliment"
+Animation = ""

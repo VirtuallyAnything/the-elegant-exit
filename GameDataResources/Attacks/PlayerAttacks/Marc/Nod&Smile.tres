@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="SpecialPlayerAttack" load_steps=3 format=3 uid="uid://0jqdbyw83i7v"]
+
+[ext_resource type="Resource" uid="uid://bvnyty5va3mc4" path="res://GameDataResources/Attacks/PlayerAttacks/BonusEffects/NodSmileEffect.tres" id="1_laqfd"]
+[ext_resource type="Script" path="res://src/ResourceScripts/SpecialPlayerAttack.cs" id="2_4gqqj"]
+
+[resource]
+script = ExtResource("2_4gqqj")
+_quotes = []
+_bonusEffect = ExtResource("1_laqfd")
+OwningCharacter = 0
+ConversationInterestDamage = 2
+IsFromItem = false
+AttackName = "Nod and Smile"
+Animation = ""

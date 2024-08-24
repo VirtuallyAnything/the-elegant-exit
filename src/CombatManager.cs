@@ -40,6 +40,9 @@ namespace tee
 		{
 			get { return _playerCurrentTopicName; }
 		}
+		public TopicName PlayerLastTopicName{
+			get{return _playerLastTopicName;}
+		}
 		public PlayerAttack SelectedAttack{
 			get{return _selectedAttack;}
 		}
@@ -108,6 +111,7 @@ namespace tee
 		public void PlayerAttack(PlayerAttack playerAttack)
 		{
 			_isFirstTurn = false;
+			ConversationInterestDamage = 0;
 			_playerLastTopicName = _playerCurrentTopicName;
 			TopicName topicOfAttack = TopicName.None;
 			if(playerAttack is TopicalPlayerAttack topicalPlayerAttack){

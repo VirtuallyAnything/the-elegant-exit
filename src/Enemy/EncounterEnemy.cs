@@ -35,6 +35,7 @@ namespace tee
 		private List<TopicName> _dislikes = new();
 		private TopicName _lastTopicName = TopicName.None;
 		private TopicName _currentTopicName = TopicName.None;
+		private bool _switchTopic = false;
 		public string DisplayName
 		{
 			get { return _displayName; }
@@ -117,8 +118,13 @@ namespace tee
 			_topicPreferences[TopicName.Weather].ConversationTopic.Weight = 0;
 		}
 
+		public void SwitchTopicNextTurn(){
+			_switchTopic = true;
+		}
+
 		public TopicName ChooseTopic()
 		{
+
 			List<ConversationTopic> allTopics = [];
 			foreach (TopicName topic in _likes)
 			{
@@ -127,6 +133,10 @@ namespace tee
 			foreach (TopicName topic in _neutrals)
 			{
 				allTopics.Add(_topicPreferences[topic].ConversationTopic);
+			}
+			if(_switchTopic){
+				allTopics.Remove(_topicPreferences[_currentTopicName].ConversationTopic);
+				_switchTopic = false;
 			}
 
 			ConversationTopic chosenTopic = allTopics.WeightedRandom<ConversationTopic>();

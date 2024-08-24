@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="TopicalPlayerAttack" load_steps=3 format=3 uid="uid://c3fig235sju03"]
+
+[ext_resource type="Resource" uid="uid://1gca7gi773tf" path="res://GameDataResources/Attacks/PlayerAttacks/BonusEffects/TalkShopEffect.tres" id="1_5dlx5"]
+[ext_resource type="Script" path="res://src/ResourceScripts/TopicalPlayerAttack.cs" id="2_3jir0"]
+
+[resource]
+script = ExtResource("2_3jir0")
+_topicRelatedQuotes = {
+0: "",
+1: "",
+2: "",
+3: "",
+4: "",
+5: "",
+6: "",
+8: "",
+9: ""
+}
+UnlockedTopics = [1, 2, 4]
+_bonusEffect = ExtResource("1_5dlx5")
+OwningCharacter = 0
+ConversationInterestDamage = 2
+IsFromItem = false
+AttackName = "Talk Shop"
+Animation = ""

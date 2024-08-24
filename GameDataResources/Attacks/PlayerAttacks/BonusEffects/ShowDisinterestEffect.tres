@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="ShowDisinterestEffect" load_steps=2 format=3 uid="uid://cyab1vrfahmeo"]
+
+[ext_resource type="Script" path="res://src/ResourceScripts/Attacks/BonusEffects/ShowDisinterestEffect.cs" id="1_2so1o"]
+
+[resource]
+script = ExtResource("1_2so1o")
+_description = ""
