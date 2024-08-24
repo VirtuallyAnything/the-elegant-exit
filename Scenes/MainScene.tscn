@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://dmyfdjltetw2d"]
 
 [ext_resource type="Script" path="res://src/SceneCode/MainScene.cs" id="1_klk3w"]
-[ext_resource type="Script" path="res://src/Player/PartyPlayer.cs" id="3_53yld"]
+[ext_resource type="Script" path="res://src/Party/Player/PartyPlayer.cs" id="3_53yld"]
 [ext_resource type="Resource" uid="uid://d0bu2gll3u4xb" path="res://GameDataResources/Attacks/PlayerData.tres" id="4_iwfah"]
 [ext_resource type="Texture2D" uid="uid://k4q8rnj22dsh" path="res://Assets/Textures/MainCharacterIcon.png" id="4_mph3w"]
 [ext_resource type="PackedScene" uid="uid://d21hljw8t080d" path="res://Scenes/Subscenes/SocialBattery.tscn" id="5_t55tw"]

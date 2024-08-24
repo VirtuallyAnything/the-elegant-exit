@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="EnemyAttack" load_steps=2 format=3 uid="uid://b2jae8ym7heos"]
 
-[ext_resource type="Script" path="res://src/ResourceScripts/EnemyAttack.cs" id="1_thddg"]
+[ext_resource type="Script" path="res://src/ResourceScripts/Attacks/EnemyAttack.cs" id="1_thddg"]
 
 [resource]
 script = ExtResource("1_thddg")

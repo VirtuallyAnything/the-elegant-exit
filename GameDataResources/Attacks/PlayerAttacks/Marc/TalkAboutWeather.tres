@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="SpecialPlayerAttack" load_steps=3 format=3 uid="uid://cs6bib4u6s2ou"]
 
-[ext_resource type="Script" path="res://src/ResourceScripts/SpecialPlayerAttack.cs" id="1_1yujq"]
+[ext_resource type="Script" path="res://src/ResourceScripts/Attacks/SpecialPlayerAttack.cs" id="1_1yujq"]
 [ext_resource type="Resource" uid="uid://fdsoq7qetf81" path="res://GameDataResources/Attacks/PlayerAttacks/BonusEffects/TalkAboutWeatherEffect.tres" id="1_mhc2s"]
 
 [resource]

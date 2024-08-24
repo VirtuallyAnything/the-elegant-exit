@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://src/SceneCode/PartyGroundFloor.cs" id="1_mj4je"]
 [ext_resource type="Texture2D" uid="uid://cxsgk2jxdn3" path="res://Assets/Levels/GroundFloor.png" id="2_vuute"]
 [ext_resource type="PackedScene" uid="uid://lk1nms6ylsx0" path="res://Scenes/Subscenes/Enemy.tscn" id="3_vs0d7"]
-[ext_resource type="Script" path="res://src/Map/Wall.cs" id="4_b5ob3"]
+[ext_resource type="Script" path="res://src/Party/Map/Wall.cs" id="4_b5ob3"]
 [ext_resource type="PackedScene" uid="uid://bve4wmvjohoh7" path="res://Scenes/Subscenes/Door.tscn" id="7_6wlcc"]
 [ext_resource type="Script" path="res://src/SceneCode/SceneSwitchArea.cs" id="8_ekoj5"]
 [ext_resource type="PackedScene" uid="uid://ba07kn2ollll2" path="res://Scenes/Subscenes/fow_light.tscn" id="8_svv30"]

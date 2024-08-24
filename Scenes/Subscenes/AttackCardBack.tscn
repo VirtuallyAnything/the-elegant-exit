@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://hpjm8ayi2spx"]
 
 [ext_resource type="Texture2D" uid="uid://b25kk6eoa8a2r" path="res://Assets/UI/ConversationCard.png" id="1_6yx0f"]
-[ext_resource type="Script" path="res://src/UI/AttackCardBack.cs" id="2_r0ahb"]
+[ext_resource type="Script" path="res://src/UI/AttackCard/AttackCardBack.cs" id="2_r0ahb"]
 [ext_resource type="Theme" uid="uid://7ps021sw2vqy" path="res://Assets/Themes/AttackCardTitle.tres" id="3_yw6m8"]
 
 [node name="AttackCardBack" type="TextureButton" node_paths=PackedStringArray("TopicGrid", "_attackName", "_conversationInterestDamage")]
@@ -35,6 +35,7 @@ offset_left = -99.0
 offset_top = 23.0
 offset_right = -59.0
 offset_bottom = 58.0
+grow_horizontal = 0
 theme = ExtResource("3_yw6m8")
 text = "5"
 horizontal_alignment = 2

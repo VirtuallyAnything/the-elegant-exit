@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="SpecialPlayerAttack" load_steps=3 format=3 uid="uid://4on4vfjohtjr"]
 
 [ext_resource type="Resource" uid="uid://cyab1vrfahmeo" path="res://GameDataResources/Attacks/PlayerAttacks/BonusEffects/ShowDisinterestEffect.tres" id="1_njnbm"]
-[ext_resource type="Script" path="res://src/ResourceScripts/SpecialPlayerAttack.cs" id="1_ri6hq"]
+[ext_resource type="Script" path="res://src/ResourceScripts/Attacks/SpecialPlayerAttack.cs" id="1_ri6hq"]
 
 [resource]
 script = ExtResource("1_ri6hq")

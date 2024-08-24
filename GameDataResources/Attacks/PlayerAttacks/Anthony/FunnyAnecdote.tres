@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="TopicalPlayerAttack" load_steps=2 format=3 uid="uid://clsno7agx4m40"]
 
-[ext_resource type="Script" path="res://src/ResourceScripts/TopicalPlayerAttack.cs" id="1_eoj8r"]
+[ext_resource type="Script" path="res://src/ResourceScripts/Attacks/TopicalPlayerAttack.cs" id="1_eoj8r"]
 
 [resource]
 script = ExtResource("1_eoj8r")

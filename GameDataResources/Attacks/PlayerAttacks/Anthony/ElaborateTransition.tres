@@ -1,21 +1,11 @@
 [gd_resource type="Resource" script_class="TopicalPlayerAttack" load_steps=3 format=3 uid="uid://v2k464qx813w"]
 
 [ext_resource type="Resource" uid="uid://b464do4eh4c2y" path="res://GameDataResources/Attacks/PlayerAttacks/BonusEffects/ElaborateTransitionEffect.tres" id="1_3r1wh"]
-[ext_resource type="Script" path="res://src/ResourceScripts/TopicalPlayerAttack.cs" id="1_rc41w"]
+[ext_resource type="Script" path="res://src/ResourceScripts/Attacks/TopicalPlayerAttack.cs" id="1_rc41w"]
 
 [resource]
 script = ExtResource("1_rc41w")
-_topicRelatedQuotes = {
-0: "",
-1: "",
-2: "",
-3: "",
-4: "",
-5: "",
-6: "",
-8: "",
-9: ""
-}
+_topicRelatedQuotes = []
 UnlockedTopics = [5, 3, 6]
 _bonusEffect = ExtResource("1_3r1wh")
 OwningCharacter = 1

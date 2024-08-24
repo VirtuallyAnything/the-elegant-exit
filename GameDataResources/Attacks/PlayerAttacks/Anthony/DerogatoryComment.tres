@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="TopicalPlayerAttack" load_steps=3 format=3 uid="uid://82xcndk1xvur"]
 
 [ext_resource type="Resource" uid="uid://cb1ewo23xjf2i" path="res://GameDataResources/Attacks/PlayerAttacks/BonusEffects/DerogatoryCommentEffect.tres" id="1_qbwqe"]
-[ext_resource type="Script" path="res://src/ResourceScripts/TopicalPlayerAttack.cs" id="2_goe1p"]
+[ext_resource type="Script" path="res://src/ResourceScripts/Attacks/TopicalPlayerAttack.cs" id="2_goe1p"]
 
 [resource]
 script = ExtResource("2_goe1p")

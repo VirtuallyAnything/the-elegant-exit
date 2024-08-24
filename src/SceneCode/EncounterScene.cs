@@ -19,7 +19,7 @@ namespace tee
 
 		[Export] private AttackCardContainer _attackCardContainer;
 		[Export] private AnimationPlayer _animationPlayer;
-		[Export] private Label _dialogueLine;
+		[Export] private RichTextLabel _dialogueLine;
 		[Export] private Label _mentalCapacityValue;
 		[Export] private Label _conversationInterestValue;
 		[Export] private Label _socialStandingValue;

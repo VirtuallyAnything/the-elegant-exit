@@ -1,9 +1,13 @@
-[gd_scene load_steps=18 format=3 uid="uid://cv7lwki55h2ma"]
+[gd_scene load_steps=22 format=3 uid="uid://cv7lwki55h2ma"]
 
 [ext_resource type="Script" path="res://src/SceneCode/EncounterScene.cs" id="1_qerod"]
-[ext_resource type="Script" path="res://src/CombatManager.cs" id="2_6eywl"]
+[ext_resource type="Script" path="res://src/Encounter/CombatManager.cs" id="2_6eywl"]
 [ext_resource type="Texture2D" uid="uid://c08irt6knvdnn" path="res://Assets/Textures/MainCharacters_scaled.png" id="3_ibufg"]
-[ext_resource type="Script" path="res://src/UI/AttackCardContainer.cs" id="7_3ynpm"]
+[ext_resource type="Theme" uid="uid://bpp0q38rfd1ms" path="res://Assets/Themes/Lobster.tres" id="6_wdmna"]
+[ext_resource type="Script" path="res://src/UI/AttackCard/AttackCardContainer.cs" id="7_3ynpm"]
+[ext_resource type="StyleBox" uid="uid://df0i6qdd6mfnl" path="res://Assets/Themes/SpeechBubbleStyleBox3.tres" id="7_ake03"]
+[ext_resource type="StyleBox" uid="uid://bf0xiyj7g4ohp" path="res://Assets/Themes/SpeechBubbleStyleBox3_hover.tres" id="8_2biqh"]
+[ext_resource type="Script" path="res://src/UI/VariableDialogueControl.cs" id="9_amiwj"]
 [ext_resource type="PackedScene" uid="uid://d21hljw8t080d" path="res://Scenes/Subscenes/SocialBattery.tscn" id="9_vlhst"]
 
 [sub_resource type="Gradient" id="Gradient_vp34m"]
@@ -90,7 +94,7 @@ _enemyDialogueColor = Color(0.807913, 0.00169103, 0.000926806, 1)
 _enemyName = NodePath("EnemyName")
 _attackCardContainer = NodePath("AttackCardContainer")
 _animationPlayer = NodePath("AnimationPlayer")
-_dialogueLine = NodePath("DialogLine")
+_dialogueLine = NodePath("Button2/Label")
 _mentalCapacityValue = NodePath("MentalCapacityValue")
 _conversationInterestValue = NodePath("ConversationInterestValue")
 _socialStandingValue = NodePath("SocialStandingValue")
@@ -229,3 +233,37 @@ offset_top = 629.0
 offset_right = 136.0
 offset_bottom = 669.0
 script = ExtResource("7_3ynpm")
+
+[node name="Button2" type="Button" parent="."]
+layout_mode = 0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -303.0
+offset_top = -288.0
+offset_right = 145.0
+offset_bottom = -175.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("6_wdmna")
+theme_override_styles/normal = ExtResource("7_ake03")
+theme_override_styles/hover = ExtResource("8_2biqh")
+theme_override_styles/pressed = ExtResource("7_ake03")
+theme_override_styles/disabled = ExtResource("7_ake03")
+theme_override_styles/focus = ExtResource("7_ake03")
+script = ExtResource("9_amiwj")
+
+[node name="Label" type="RichTextLabel" parent="Button2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.547
+anchor_top = 0.456
+anchor_right = 0.547
+anchor_bottom = 0.456
+offset_left = -57.056
+offset_top = -40.528
+offset_right = 56.944
+offset_bottom = 36.472
+theme = ExtResource("6_wdmna")
+bbcode_enabled = true

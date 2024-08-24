@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://b25kk6eoa8a2r" path="res://Assets/UI/ConversationCard.png" id="1_ghk2c"]
 [ext_resource type="Theme" uid="uid://7ps021sw2vqy" path="res://Assets/Themes/AttackCardTitle.tres" id="2_g2rnx"]
-[ext_resource type="Script" path="res://src/UI/AttackCardFront.cs" id="2_l7dg4"]
+[ext_resource type="Script" path="res://src/UI/AttackCard/AttackCardFront.cs" id="2_l7dg4"]
 [ext_resource type="Theme" uid="uid://cjbdvjn8wibud" path="res://Assets/Themes/DescriptionText.tres" id="3_ngfhf"]
 
 [node name="AttackCardFront" type="TextureButton" node_paths=PackedStringArray("_description", "_attackName", "_conversationInterestDamage")]

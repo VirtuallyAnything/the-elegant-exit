@@ -11,7 +11,7 @@
 [ext_resource type="Resource" uid="uid://bsbdgs8ylysay" path="res://GameDataResources/Attacks/EnemyAttacks/JohnParker/TestSports1.tres" id="8_c3kh0"]
 [ext_resource type="Texture2D" uid="uid://dloj826coufuu" path="res://Assets/Textures/Avatar_JP.png" id="8_kxcpj"]
 [ext_resource type="Resource" uid="uid://coqhbbohcylh8" path="res://GameDataResources/Attacks/EnemyAttacks/JohnParker/TestPolitics.tres" id="9_4t4nn"]
-[ext_resource type="Script" path="res://src/ResourceScripts/EnemyData.cs" id="9_7amvr"]
+[ext_resource type="Script" path="res://src/ResourceScripts/Data/EnemyData.cs" id="9_7amvr"]
 [ext_resource type="Resource" uid="uid://ct3w0a1qdbx6m" path="res://GameDataResources/Attacks/EnemyAttacks/JohnParker/TestArt.tres" id="10_rdmxu"]
 
 [resource]

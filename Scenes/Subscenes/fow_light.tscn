@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://ba07kn2ollll2"]
 
 [ext_resource type="Shader" path="res://Assets/Shaders/fow.gdshader" id="1_spnn6"]
-[ext_resource type="Script" path="res://src/Map/Veil.cs" id="2_ey08t"]
+[ext_resource type="Script" path="res://src/Party/Map/Veil.cs" id="2_ey08t"]
 [ext_resource type="Texture2D" uid="uid://bq267a13ala75" path="res://Assets/Textures/Veil.png" id="3_s6bkw"]
 [ext_resource type="Shader" path="res://Assets/Shaders/convert_light_mask.gdshader" id="4_2tidq"]
 
