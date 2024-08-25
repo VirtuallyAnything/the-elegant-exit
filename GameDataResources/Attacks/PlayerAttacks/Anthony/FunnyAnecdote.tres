@@ -1,20 +1,16 @@
-[gd_resource type="Resource" script_class="TopicalPlayerAttack" load_steps=2 format=3 uid="uid://clsno7agx4m40"]
+[gd_resource type="Resource" script_class="TopicalPlayerAttack" load_steps=4 format=3 uid="uid://clsno7agx4m40"]
 
 [ext_resource type="Script" path="res://src/ResourceScripts/Attacks/TopicalPlayerAttack.cs" id="1_eoj8r"]
+[ext_resource type="Script" path="res://src/ResourceScripts/TopicDialogue.cs" id="1_x8vv6"]
+
+[sub_resource type="Resource" id="Resource_7mpxb"]
+script = ExtResource("1_x8vv6")
+_topicName = 5
+_text = "Just recently I saw someone cutting a chunk of wall out of a house, because they thought the graffito on there must be a new Banksy."
 
 [resource]
 script = ExtResource("1_eoj8r")
-_topicRelatedQuotes = {
-0: "",
-1: "",
-2: "",
-3: "",
-4: "",
-5: "",
-6: "",
-8: "",
-9: ""
-}
+_topicRelatedQuotes = [SubResource("Resource_7mpxb")]
 UnlockedTopics = [5, 3, 6]
 OwningCharacter = 1
 ConversationInterestDamage = 3

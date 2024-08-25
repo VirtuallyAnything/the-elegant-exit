@@ -71,8 +71,8 @@ namespace tee
 			_player = new(GameManager.AvailableAttacks);
 			_socialBatteryTemp = GameManager.SocialBattery - 10;
 			_encounterScene.SetupCompleted += StartCombat;
-			EncounterScene.PlayerTurnAnimationComplete += EnemyAttack;
-			EncounterScene.EnemyTurnAnimationComplete += SetupNewAttack;
+			EncounterScene.PlayerTurnComplete += EnemyAttack;
+			EncounterScene.EnemyTurnComplete += SetupNewAttack;
 			AttackCard.AttackSelected += PlayerAttack;
 		}
 
@@ -219,8 +219,8 @@ namespace tee
 		{
 			//NumberedButton.OnButtonPressed -= PlayerAttack;
 			_encounterScene.SetupCompleted -= StartCombat;
-			EncounterScene.PlayerTurnAnimationComplete -= EnemyAttack;
-			EncounterScene.EnemyTurnAnimationComplete -= SetupNewAttack;
+			EncounterScene.PlayerTurnComplete -= EnemyAttack;
+			EncounterScene.EnemyTurnComplete -= SetupNewAttack;
 			AttackCard.AttackSelected -= PlayerAttack;
 		}
 	}

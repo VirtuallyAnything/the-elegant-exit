@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cv7lwki55h2ma"]
+[gd_scene load_steps=23 format=3 uid="uid://cv7lwki55h2ma"]
 
 [ext_resource type="Script" path="res://src/SceneCode/EncounterScene.cs" id="1_qerod"]
 [ext_resource type="Script" path="res://src/Encounter/CombatManager.cs" id="2_6eywl"]
@@ -7,8 +7,10 @@
 [ext_resource type="Script" path="res://src/UI/AttackCard/AttackCardContainer.cs" id="7_3ynpm"]
 [ext_resource type="StyleBox" uid="uid://df0i6qdd6mfnl" path="res://Assets/Themes/SpeechBubbleStyleBox3.tres" id="7_ake03"]
 [ext_resource type="StyleBox" uid="uid://bf0xiyj7g4ohp" path="res://Assets/Themes/SpeechBubbleStyleBox3_hover.tres" id="8_2biqh"]
-[ext_resource type="Script" path="res://src/UI/VariableDialogueControl.cs" id="9_amiwj"]
+[ext_resource type="Script" path="res://src/UI/VariableDialogueButton.cs" id="9_amiwj"]
 [ext_resource type="PackedScene" uid="uid://d21hljw8t080d" path="res://Scenes/Subscenes/SocialBattery.tscn" id="9_vlhst"]
+[ext_resource type="Script" path="res://src/UI/NotifyRichText.cs" id="10_qqenu"]
+[ext_resource type="StyleBox" uid="uid://yk0tno82ys2t" path="res://Assets/Themes/SpeechBubbleStyleBox3_mirrored.tres" id="11_shcrt"]
 
 [sub_resource type="Gradient" id="Gradient_vp34m"]
 offsets = PackedFloat32Array(0.0985507, 1)
@@ -17,9 +19,6 @@ colors = PackedColorArray(0.12549, 0.0431373, 0.145098, 1, 0.501961, 0.14902, 0.
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_g87ax"]
 gradient = SubResource("Gradient_vp34m")
 fill_from = Vector2(0, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_q7f4m"]
-font_size = 40
 
 [sub_resource type="Animation" id="Animation_5lmts"]
 resource_name = "PlayerTurn"
@@ -79,7 +78,7 @@ default_font_size = 35
 [sub_resource type="Theme" id="Theme_0tp7n"]
 default_font_size = 40
 
-[node name="EncounterScene" type="Control" node_paths=PackedStringArray("_playerSprite", "_enemySprite", "_enemyName", "_attackCardContainer", "_animationPlayer", "_dialogueLine", "_mentalCapacityValue", "_conversationInterestValue", "_socialStandingValue", "_socialBatteryProgress", "_leaveButton")]
+[node name="EncounterScene" type="Control" node_paths=PackedStringArray("_playerSprite", "_playerDialogue", "_enemySprite", "_enemyDialogue", "_enemyName", "_attackCardContainer", "_animationPlayer", "_mentalCapacityValue", "_conversationInterestValue", "_socialStandingValue", "_socialBatteryProgress", "_leaveButton")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -89,17 +88,20 @@ grow_vertical = 2
 script = ExtResource("1_qerod")
 _playerSprite = NodePath("PlayerSprite")
 _playerDialogueColor = Color(0.22184, 0.204197, 0.770126, 1)
+_playerDialogue = NodePath("SpeechbubblePlayer")
 _enemySprite = NodePath("EnemySprite")
 _enemyDialogueColor = Color(0.807913, 0.00169103, 0.000926806, 1)
+_enemyDialogue = NodePath("SpeechbubbleEnemy")
 _enemyName = NodePath("EnemyName")
 _attackCardContainer = NodePath("AttackCardContainer")
 _animationPlayer = NodePath("AnimationPlayer")
-_dialogueLine = NodePath("Button2/Label")
 _mentalCapacityValue = NodePath("MentalCapacityValue")
 _conversationInterestValue = NodePath("ConversationInterestValue")
 _socialStandingValue = NodePath("SocialStandingValue")
 _socialBatteryProgress = NodePath("TextureProgressBar")
 _leaveButton = NodePath("Button")
+metadata/_edit_vertical_guides_ = [575.0, 1299.0]
+metadata/_edit_horizontal_guides_ = [298.0]
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
@@ -122,25 +124,6 @@ flip_h = true
 [node name="PlayerSprite" type="Sprite2D" parent="."]
 position = Vector2(410, 457)
 texture = ExtResource("3_ibufg")
-
-[node name="DialogLine" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 0.106
-anchor_right = 0.5
-anchor_bottom = 0.163
-offset_left = -417.0
-offset_top = 159.52
-offset_right = 417.0
-offset_bottom = 243.52
-grow_horizontal = 2
-text = "\"And so I said to him, 'Lorem Ipsum!' Haha!\""
-label_settings = SubResource("LabelSettings_q7f4m")
-horizontal_alignment = 1
-autowrap_mode = 3
-visible_characters = 0
-visible_ratio = 0.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -234,18 +217,21 @@ offset_right = 136.0
 offset_bottom = 669.0
 script = ExtResource("7_3ynpm")
 
-[node name="Button2" type="Button" parent="."]
-layout_mode = 0
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -303.0
-offset_top = -288.0
-offset_right = 145.0
-offset_bottom = -175.0
+[node name="SpeechbubblePlayer" type="Button" parent="." node_paths=PackedStringArray("_RTlabel")]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.249
+anchor_top = 0.275
+anchor_right = 0.249
+anchor_bottom = 0.275
+offset_left = 96.92
+offset_top = -70.0
+offset_right = 695.92
+offset_bottom = 43.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_default_cursor_shape = 2
 theme = ExtResource("6_wdmna")
 theme_override_styles/normal = ExtResource("7_ake03")
 theme_override_styles/hover = ExtResource("8_2biqh")
@@ -253,17 +239,68 @@ theme_override_styles/pressed = ExtResource("7_ake03")
 theme_override_styles/disabled = ExtResource("7_ake03")
 theme_override_styles/focus = ExtResource("7_ake03")
 script = ExtResource("9_amiwj")
+_RTlabel = NodePath("../DialogueLinePlayer")
 
-[node name="Label" type="RichTextLabel" parent="Button2"]
+[node name="DialogueLinePlayer" type="RichTextLabel" parent="."]
+custom_minimum_size = Vector2(450, 0)
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.547
-anchor_top = 0.456
-anchor_right = 0.547
-anchor_bottom = 0.456
-offset_left = -57.056
-offset_top = -40.528
-offset_right = 56.944
-offset_bottom = 36.472
+anchor_left = 0.249
+anchor_top = 0.275
+anchor_right = 0.249
+anchor_bottom = 0.275
+offset_left = 192.92
+offset_top = -43.0
+offset_right = 642.92
+offset_bottom = -41.0
+mouse_filter = 2
+mouse_default_cursor_shape = 2
 theme = ExtResource("6_wdmna")
+theme_type_variation = &"RichTextDialogue"
 bbcode_enabled = true
+fit_content = true
+script = ExtResource("10_qqenu")
+
+[node name="SpeechbubbleEnemy" type="Button" parent="." node_paths=PackedStringArray("_RTlabel")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.722
+anchor_top = 0.277
+anchor_right = 0.722
+anchor_bottom = 0.277
+offset_left = -686.24
+offset_top = -72.16
+offset_right = -87.2402
+offset_bottom = 41.84
+grow_horizontal = 2
+grow_vertical = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("6_wdmna")
+theme_override_styles/normal = ExtResource("11_shcrt")
+theme_override_styles/hover = ExtResource("11_shcrt")
+theme_override_styles/pressed = ExtResource("11_shcrt")
+theme_override_styles/disabled = ExtResource("11_shcrt")
+theme_override_styles/focus = ExtResource("11_shcrt")
+script = ExtResource("9_amiwj")
+_RTlabel = NodePath("../DialogueLineEnemy")
+
+[node name="DialogueLineEnemy" type="RichTextLabel" parent="."]
+custom_minimum_size = Vector2(450, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.722
+anchor_top = 0.277
+anchor_right = 0.722
+anchor_bottom = 0.277
+offset_left = -646.24
+offset_top = -45.16
+offset_right = -196.24
+offset_bottom = -43.16
+grow_horizontal = 0
+mouse_filter = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("6_wdmna")
+theme_type_variation = &"RichTextDialogue"
+bbcode_enabled = true
+fit_content = true
+script = ExtResource("10_qqenu")

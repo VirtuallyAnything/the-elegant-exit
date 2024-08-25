@@ -25,6 +25,7 @@ namespace tee
         public void Setup(PlayerAttack attack)
         {
             _attackName.Text = attack.AttackName;
+            _conversationInterestDamage.Text = $"{attack.ConversationInterestDamage}";
             if (attack is TopicalPlayerAttack topicalPlayerAttack)
             {
                 foreach (TopicName conversationTopic in topicalPlayerAttack.UnlockedTopics)

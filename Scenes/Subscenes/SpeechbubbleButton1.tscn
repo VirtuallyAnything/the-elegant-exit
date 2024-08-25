@@ -15,6 +15,7 @@ offset_right = -60.0
 offset_bottom = 67.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_default_cursor_shape = 2
 theme = ExtResource("1_sr2qj")
 script = ExtResource("2_5f07d")
 
@@ -29,5 +30,6 @@ offset_left = -59.312
 offset_top = -38.792
 offset_right = 54.688
 offset_bottom = 38.208
+mouse_default_cursor_shape = 2
 theme = ExtResource("1_sr2qj")
 text = "Play"

@@ -12,7 +12,7 @@ namespace tee
 		public override void _Ready()
 		{
 			TopicButton.OnButtonPressed += DisableInput;
-			EncounterScene.EnemyTurnAnimationComplete += EnableInput;
+			EncounterScene.EnemyTurnComplete += EnableInput;
 			_attackCardFront = GD.Load<PackedScene>("res://Scenes/Subscenes/AttackCardFront.tscn");
 			_attackCardBack = GD.Load<PackedScene>("res://Scenes/Subscenes/AttackCardBack.tscn");
 		}
@@ -58,6 +58,7 @@ namespace tee
 				else
 				{
 					attackCard.Select();
+					DisableInput();
 				}
 			}
 			else
@@ -77,11 +78,13 @@ namespace tee
 
 		public void DisableInput()
 		{
+			Modulate = new Color(0.5f, 0.5f, 0.5f, 1);
 			PropagateCall("set_mouse_filter", [(int)Control.MouseFilterEnum.Ignore]);
 		}
 
 		public void EnableInput()
 		{
+			Modulate = new Color(1, 1, 1, 1);
 			PropagateCall("set_mouse_filter", [(int)Control.MouseFilterEnum.Pass]);
 			foreach (Control child in GetChildren())
 			{
@@ -92,7 +95,7 @@ namespace tee
 		public override void _ExitTree()
 		{
 			TopicButton.OnButtonPressed -= DisableInput;
-			EncounterScene.EnemyTurnAnimationComplete -= EnableInput;
+			EncounterScene.EnemyTurnComplete -= EnableInput;
 		}
 	}
 }

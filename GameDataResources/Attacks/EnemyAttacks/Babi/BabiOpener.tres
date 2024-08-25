@@ -4,6 +4,7 @@
 
 [resource]
 script = ExtResource("1_0fesq")
+_topic = 0
 SocialBatteryChange = -5
 MentalCapacityChange = -2.0
 Quote = ""

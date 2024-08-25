@@ -6,20 +6,25 @@ namespace tee
 	public partial class EncounterScene : Scene
 	{
 		public event EncounterSceneHandler SetupCompleted;
-		public static event EncounterSceneHandler PlayerTurnAnimationComplete;
-		public static event EncounterSceneHandler EnemyTurnAnimationComplete;
-		
+		public static event EncounterSceneHandler PlayerTurnComplete;
+		public static event EncounterSceneHandler EnemyTurnComplete;
+
 		[Export] private Sprite2D _playerSprite;
 		[Export] private Color _playerDialogueColor;
+		[Export] private VariableDialogueButton _playerDialogue;
 
 		[Export] private Sprite2D _enemySprite;
 		[Export] private Color _enemyDialogueColor;
+		[Export] private VariableDialogueButton _enemyDialogue;
 		[Export] private Label _enemyName;
 		private EnemyData _currentEnemy;
 
+		private Tween _activeDialogueTween;
+		private bool _dialogueAnimationFinished = true;
+		private bool _attackAnimationFinished = true;
+		private bool _isPlayerTurn;
 		[Export] private AttackCardContainer _attackCardContainer;
 		[Export] private AnimationPlayer _animationPlayer;
-		[Export] private RichTextLabel _dialogueLine;
 		[Export] private Label _mentalCapacityValue;
 		[Export] private Label _conversationInterestValue;
 		[Export] private Label _socialStandingValue;
@@ -45,41 +50,84 @@ namespace tee
 			_currentEnemy = enemyData;
 			_enemyName.Text = _currentEnemy.DisplayName;
 			_enemySprite.Texture = enemyData.Texture;
-			_dialogueLine.Text = "";
-			_dialogueLine.Modulate = _enemyDialogueColor;
+			_playerDialogue.Text = "";
+			_enemyDialogue.Text = "";
+			_playerDialogue.DialogueButtonPressed += OnSpeechBubblePressed;
+			_enemyDialogue.DialogueButtonPressed += OnSpeechBubblePressed;
+			//_dialogueLine.Modulate = _enemyDialogueColor;
 			_socialBatteryProgress.Value = GameManager.SocialBattery;
 			SetupCompleted?.Invoke();
 		}
 
-		public async void PlayCombatAnimation(PlayerAttack attack)
+		public void PlayCombatAnimation(PlayerAttack attack)
 		{
-			_dialogueLine.Text = attack.GetQuote();
-			_dialogueLine.Modulate = _playerDialogueColor;
-			Tween tween = _dialogueLine.CreateTween();
-			int textLength = _dialogueLine.Text.Length;
+			_playerDialogue.SetEntireVisibility(true);
+			_enemyDialogue.SetEntireVisibility(false);
+
+			_playerDialogue.Text = attack.GetQuote();
+			//_dialogueLine.Modulate = _playerDialogueColor;
+			_dialogueAnimationFinished = false;
+			_activeDialogueTween = _playerDialogue.CreateTween();
+			int textLength = _playerDialogue.Text.Length;
 			float animationLength = textLength * .05f;
-			PropertyTweener propTweener = tween.TweenProperty(
-				_dialogueLine, $"{Label.PropertyName.VisibleCharacters}", textLength, animationLength);
+			PropertyTweener propTweener = _activeDialogueTween.TweenProperty(
+				_playerDialogue.RTLabel, $"{Label.PropertyName.VisibleCharacters}", textLength, animationLength);
 			propTweener.From(0);
-			await ToSignal(GetTree().CreateTimer(animationLength * 2), SceneTreeTimer.SignalName.Timeout);
-			PlayAnimationsForAttack(attack);
+			_activeDialogueTween.TweenCallback(Callable.From(() => _dialogueAnimationFinished = true));
+			_activeDialogueTween.TweenCallback(Callable.From(() => PlayAnimationsForAttack(attack)));
 		}
 
 		public void PlayCombatAnimation(EnemyAttack attack)
 		{
-			_dialogueLine.Text = attack.Quote;
-			_dialogueLine.Modulate = _enemyDialogueColor;
-			Tween tween = _dialogueLine.CreateTween();
-			int textLength = _dialogueLine.Text.Length;
+			_enemyDialogue.SetEntireVisibility(true);
+			_enemyDialogue.Disabled = false;
+			_playerDialogue.SetEntireVisibility(false);
+			_enemyDialogue.Disabled = false;
+			_enemyDialogue.Text = attack.Quote;
+			//_dialogueLine.Modulate = _enemyDialogueColor;
+			Tween tween = _enemyDialogue.CreateTween();
+			int textLength = _enemyDialogue.Text.Length;
 			PropertyTweener propTweener = tween.TweenProperty(
-				_dialogueLine, $"{Label.PropertyName.VisibleCharacters}", textLength, .05f * textLength);
+				_enemyDialogue.RTLabel, $"{Label.PropertyName.VisibleCharacters}", textLength, .05f * textLength);
 			propTweener.From(0);
 			tween.TweenCallback(Callable.From(() => PlayAnimationsForAttack(attack)));
 		}
 
+		public void SkipDialogueAnimation(VariableDialogueButton variableDialogue)
+		{
+			if (_activeDialogueTween == null)
+			{
+				return;
+			}
+			_activeDialogueTween.Pause();
+			_activeDialogueTween.CustomStep(10);
+			variableDialogue.RTLabel.VisibleCharacters = -1;
+			_activeDialogueTween.Kill();
+		}
+
+		public void OnSpeechBubblePressed(VariableDialogueButton variableDialogue)
+		{
+			if (!_dialogueAnimationFinished)
+			{
+				SkipDialogueAnimation(variableDialogue);
+			}
+			else if (!_attackAnimationFinished)
+			{
+				//SkipAttackAnimation()
+			}
+			else
+			{
+				if (_isPlayerTurn)
+				{
+					PlayerTurnComplete?.Invoke();
+					_isPlayerTurn = false;
+				}
+			}
+		}
+
 		private void PlayAnimationsForAttack(PlayerAttack playerAttack)
 		{
-
+			_attackAnimationFinished = false;
 			if (playerAttack.ConversationInterestDamage < 0)
 			{
 				// Play Negative Feedback Animation
@@ -94,11 +142,15 @@ namespace tee
 			}else if(playerAttack.SocialStandingChange > 0){
 				//Play Positive Feedback Animation
 			}	*/
-			PlayerTurnAnimationComplete?.Invoke();
+			//PlayerTurnAnimationComplete?.Invoke();
+
+			//Let the player click again when all the animations have finished
+			_attackAnimationFinished = true;
 		}
 
 		private void PlayAnimationsForAttack(EnemyAttack enemyAttack)
 		{
+			_attackAnimationFinished = false;
 			if (enemyAttack.SocialBatteryChange < 0)
 			{
 				// Play Negative Feedback Animation	
@@ -116,7 +168,10 @@ namespace tee
 			{
 				//Play Positive Feedback Animation
 			}
-			EnemyTurnAnimationComplete?.Invoke();
+			_attackAnimationFinished = true;
+			EnemyTurnComplete?.Invoke();
+			_enemyDialogue.Disabled = true;
+			_isPlayerTurn = true;
 		}
 
 		public void UpdateUI(int socialBatteryNew, float socialStandingNew, float mentalCapacityNew, float interestNew)
@@ -130,5 +185,12 @@ namespace tee
 			_socialStandingValue.Text = $"{socialStandingNew}";
 			_conversationInterestValue.Text = $"{interestNew}";
 		}
-    }
+
+		public override void _ExitTree()
+		{
+			base._ExitTree();
+			_playerDialogue.DialogueButtonPressed -= OnSpeechBubblePressed;
+			_enemyDialogue.DialogueButtonPressed -= OnSpeechBubblePressed;
+		}
+	}
 }

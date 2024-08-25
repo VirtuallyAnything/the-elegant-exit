@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://b25kk6eoa8a2r" path="res://Assets/UI/ConversationCard.png" id="1_ghk2c"]
 [ext_resource type="Theme" uid="uid://7ps021sw2vqy" path="res://Assets/Themes/AttackCardTitle.tres" id="2_g2rnx"]
 [ext_resource type="Script" path="res://src/UI/AttackCard/AttackCardFront.cs" id="2_l7dg4"]
-[ext_resource type="Theme" uid="uid://cjbdvjn8wibud" path="res://Assets/Themes/DescriptionText.tres" id="3_ngfhf"]
+[ext_resource type="Theme" uid="uid://bpp0q38rfd1ms" path="res://Assets/Themes/Lobster.tres" id="4_bpp6j"]
 
 [node name="AttackCardFront" type="TextureButton" node_paths=PackedStringArray("_description", "_attackName", "_conversationInterestDamage")]
 offset_right = 589.0
@@ -36,7 +36,8 @@ offset_right = 537.0
 offset_bottom = 307.0
 mouse_filter = 2
 mouse_default_cursor_shape = 2
-theme = ExtResource("3_ngfhf")
+theme = ExtResource("4_bpp6j")
+theme_type_variation = &"RichTextRegular"
 bbcode_enabled = true
 text = "[ul]
 Description Description
