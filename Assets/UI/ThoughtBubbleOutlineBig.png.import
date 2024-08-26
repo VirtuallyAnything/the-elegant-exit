@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://70b3pt2my418"
-path="res://.godot/imported/InfoIcon.png-2cb2330428c3d9ef522d3ca582f718fc.ctex"
+uid="uid://bcgxjarmn8qgq"
+path="res://.godot/imported/ThoughtBubbleOutlineBig.png-94553372f584540d6fa0e8ed9e9190ff.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/UI/InfoIcon.png"
-dest_files=["res://.godot/imported/InfoIcon.png-2cb2330428c3d9ef522d3ca582f718fc.ctex"]
+source_file="res://Assets/UI/ThoughtBubbleOutlineBig.png"
+dest_files=["res://.godot/imported/ThoughtBubbleOutlineBig.png-94553372f584540d6fa0e8ed9e9190ff.ctex"]
 
 [params]
 

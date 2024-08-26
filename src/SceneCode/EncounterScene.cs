@@ -9,11 +9,11 @@ namespace tee
 		public static event EncounterSceneHandler PlayerTurnComplete;
 		public static event EncounterSceneHandler EnemyTurnComplete;
 
-		[Export] private Sprite2D _playerSprite;
+		[Export] private TextureRect _playerSprite;
 		[Export] private Color _playerDialogueColor;
 		[Export] private VariableDialogueButton _playerDialogue;
 
-		[Export] private Sprite2D _enemySprite;
+		[Export] private TextureRect _enemySprite;
 		[Export] private Color _enemyDialogueColor;
 		[Export] private VariableDialogueButton _enemyDialogue;
 		[Export] private Label _enemyName;

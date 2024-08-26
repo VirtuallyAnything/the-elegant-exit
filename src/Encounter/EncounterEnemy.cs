@@ -267,6 +267,10 @@ namespace tee
 		{
 			_topicPreferences[topic].ConversationTopic.DecreaseEnthusiasm();
 		}
+
+		public int GetEnthusiasmLevelFor(TopicName topic){
+			return _topicPreferences[topic].ConversationTopic.GetCurrentEnthusiasmLevel();
+		}
 		
 		public void DecreaseAnnoyance()
 		{

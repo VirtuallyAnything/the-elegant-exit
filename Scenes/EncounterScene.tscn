@@ -1,28 +1,35 @@
-[gd_scene load_steps=27 format=3 uid="uid://cv7lwki55h2ma"]
+[gd_scene load_steps=32 format=3 uid="uid://cv7lwki55h2ma"]
 
 [ext_resource type="Script" path="res://src/SceneCode/EncounterScene.cs" id="1_qerod"]
 [ext_resource type="Script" path="res://src/Encounter/CombatManager.cs" id="2_6eywl"]
 [ext_resource type="Texture2D" uid="uid://c08irt6knvdnn" path="res://Assets/Textures/MainCharacters_scaled.png" id="3_ibufg"]
+[ext_resource type="Texture2D" uid="uid://bwes58fuwh1ev" path="res://Assets/UI/Icons/ConversationInterestIcon.png" id="5_mc10u"]
 [ext_resource type="Theme" uid="uid://bpp0q38rfd1ms" path="res://Assets/Themes/Lobster.tres" id="6_wdmna"]
 [ext_resource type="Script" path="res://src/UI/AttackCard/AttackCardContainer.cs" id="7_3ynpm"]
 [ext_resource type="StyleBox" uid="uid://df0i6qdd6mfnl" path="res://Assets/Themes/SpeechBubbleStyleBox3.tres" id="7_ake03"]
+[ext_resource type="Texture2D" uid="uid://bgs43jg0rfljw" path="res://Assets/UI/Icons/MentalCapacityIcon.png" id="7_kn8i2"]
 [ext_resource type="StyleBox" uid="uid://bf0xiyj7g4ohp" path="res://Assets/Themes/SpeechBubbleStyleBox3_hover.tres" id="8_2biqh"]
 [ext_resource type="Script" path="res://src/UI/VariableDialogueButton.cs" id="9_amiwj"]
 [ext_resource type="PackedScene" uid="uid://d21hljw8t080d" path="res://Scenes/Subscenes/SocialBattery.tscn" id="9_vlhst"]
 [ext_resource type="Script" path="res://src/UI/NotifyRichText.cs" id="10_qqenu"]
 [ext_resource type="StyleBox" uid="uid://yk0tno82ys2t" path="res://Assets/Themes/SpeechBubbleStyleBox3_mirrored.tres" id="11_shcrt"]
-[ext_resource type="Texture2D" uid="uid://70b3pt2my418" path="res://Assets/UI/InfoIcon.png" id="12_l8di7"]
-[ext_resource type="Texture2D" uid="uid://dwn2tc7u6y4tt" path="res://Assets/UI/InfoIcon_hover.png" id="13_7yst1"]
+[ext_resource type="Texture2D" uid="uid://70b3pt2my418" path="res://Assets/UI/Icons/InfoIcon.png" id="12_l8di7"]
+[ext_resource type="Texture2D" uid="uid://dwn2tc7u6y4tt" path="res://Assets/UI/Icons/InfoIcon_hover.png" id="13_7yst1"]
 [ext_resource type="Script" path="res://src/UI/AddOverlayButton.cs" id="14_whhlr"]
-[ext_resource type="Script" path="res://src/UI/VerticalTabContainer.cs" id="15_gc0ea"]
+[ext_resource type="Script" path="res://src/UI/PreferenceDisplay.cs" id="17_de043"]
+[ext_resource type="Texture2D" uid="uid://dj0q8i0h0goec" path="res://Assets/UI/Icons/LikeIcon.png" id="18_vqv50"]
+[ext_resource type="Texture2D" uid="uid://binr4bnx3kgwn" path="res://Assets/UI/Icons/DislikeIcon.png" id="19_bhsfw"]
+[ext_resource type="Texture2D" uid="uid://ds1ekcdvrr301" path="res://Assets/UI/Icons/UnknownIcon.png" id="20_h7nvp"]
+[ext_resource type="Texture2D" uid="uid://bcgxjarmn8qgq" path="res://Assets/UI/ThoughtBubbleOutlineBig.png" id="21_7xnx4"]
 
 [sub_resource type="Gradient" id="Gradient_vp34m"]
-offsets = PackedFloat32Array(0.0985507, 1)
-colors = PackedColorArray(0.12549, 0.0431373, 0.145098, 1, 0.501961, 0.14902, 0.266667, 1)
+offsets = PackedFloat32Array(0.269542, 1)
+colors = PackedColorArray(0.501961, 0.14902, 0.266667, 1, 0.12549, 0.0431373, 0.145098, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_g87ax"]
 gradient = SubResource("Gradient_vp34m")
-fill_from = Vector2(0, 1)
+fill_from = Vector2(0, 0.512821)
+fill_to = Vector2(1, 1)
 
 [sub_resource type="Animation" id="Animation_5lmts"]
 resource_name = "PlayerTurn"
@@ -76,13 +83,10 @@ _data = {
 [sub_resource type="Theme" id="Theme_xfm6w"]
 default_font_size = 35
 
-[sub_resource type="Theme" id="Theme_0rxea"]
-default_font_size = 35
-
 [sub_resource type="Theme" id="Theme_0tp7n"]
 default_font_size = 40
 
-[node name="EncounterScene" type="Control" node_paths=PackedStringArray("_playerSprite", "_playerDialogue", "_enemySprite", "_enemyDialogue", "_enemyName", "_attackCardContainer", "_animationPlayer", "_mentalCapacityValue", "_conversationInterestValue", "_socialStandingValue", "_socialBatteryProgress", "_leaveButton")]
+[node name="EncounterScene" type="Control" node_paths=PackedStringArray("_playerSprite", "_playerDialogue", "_enemySprite", "_enemyDialogue", "_enemyName", "_attackCardContainer", "_animationPlayer", "_mentalCapacityValue", "_conversationInterestValue", "_socialBatteryProgress", "_leaveButton")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -101,11 +105,10 @@ _attackCardContainer = NodePath("AttackCardContainer")
 _animationPlayer = NodePath("AnimationPlayer")
 _mentalCapacityValue = NodePath("MentalCapacityValue")
 _conversationInterestValue = NodePath("ConversationInterestValue")
-_socialStandingValue = NodePath("SocialStandingValue")
 _socialBatteryProgress = NodePath("TextureProgressBar")
 _leaveButton = NodePath("Button")
 metadata/_edit_vertical_guides_ = [575.0, 1299.0]
-metadata/_edit_horizontal_guides_ = [298.0]
+metadata/_edit_horizontal_guides_ = [298.0, 149.0, 79.0]
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
@@ -117,17 +120,31 @@ grow_vertical = 2
 mouse_filter = 2
 texture = SubResource("GradientTexture2D_g87ax")
 
-[node name="Node" type="Node" parent="." node_paths=PackedStringArray("_encounterScene")]
+[node name="Node" type="Node" parent="." node_paths=PackedStringArray("_encounterScene", "_preferenceDisplay")]
 script = ExtResource("2_6eywl")
 _encounterScene = NodePath("..")
+_preferenceDisplay = NodePath("../Control")
 
-[node name="EnemySprite" type="Sprite2D" parent="."]
-position = Vector2(1579, 420)
+[node name="EnemySprite" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(100, 300)
+layout_mode = 0
+offset_left = 1490.0
+offset_top = 445.0
+offset_right = 1691.0
+offset_bottom = 988.0
+expand_mode = 1
+stretch_mode = 4
 flip_h = true
 
-[node name="PlayerSprite" type="Sprite2D" parent="."]
-position = Vector2(410, 457)
+[node name="PlayerSprite" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 204.0
+offset_top = 164.0
+offset_right = 604.0
+offset_bottom = 750.0
 texture = ExtResource("3_ibufg")
+expand_mode = 1
+stretch_mode = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -149,63 +166,65 @@ offset_right = 1361.0
 offset_bottom = 1029.0
 text = "Leave Fight"
 
-[node name="ConversationInterest" type="Label" parent="."]
+[node name="ConversationInterest" type="TextureRect" parent="."]
 layout_mode = 0
 offset_left = 1386.0
 offset_top = 79.0
 offset_right = 1770.0
-offset_bottom = 128.0
+offset_bottom = 164.0
+tooltip_text = "Conversation Interest"
 theme = SubResource("Theme_xfm6w")
-text = "Conversation Interest: "
+texture = ExtResource("5_mc10u")
+expand_mode = 1
+stretch_mode = 4
 
 [node name="ConversationInterestValue" type="Label" parent="."]
 layout_mode = 0
-offset_left = 1770.0
+offset_left = 1490.0
 offset_top = 79.0
-offset_right = 1899.0
-offset_bottom = 128.0
-theme = SubResource("Theme_0rxea")
+offset_right = 1619.0
+offset_bottom = 156.0
+theme = ExtResource("6_wdmna")
+text = "10"
 
-[node name="SocialStanding" type="Label" parent="."]
-layout_mode = 0
-offset_left = 829.0
-offset_top = 79.0
-offset_right = 1213.0
-offset_bottom = 128.0
+[node name="MentalCapacity" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.216
+anchor_top = 0.276
+anchor_right = 0.216
+anchor_bottom = 0.276
+offset_left = -41.72
+offset_top = -219.08
+offset_right = 40.28
+offset_bottom = -149.08
+tooltip_text = "Mental Capacity"
 theme = SubResource("Theme_xfm6w")
-text = "Social Standing:"
-
-[node name="SocialStandingValue" type="Label" parent="."]
-layout_mode = 0
-offset_left = 1213.0
-offset_top = 79.0
-offset_right = 1342.0
-offset_bottom = 128.0
-theme = SubResource("Theme_0rxea")
-
-[node name="MentalCapacity" type="Label" parent="."]
-layout_mode = 0
-offset_left = 410.0
-offset_top = 79.0
-offset_right = 700.0
-offset_bottom = 128.0
-theme = SubResource("Theme_xfm6w")
-text = "Mental Capacity: "
+texture = ExtResource("7_kn8i2")
+expand_mode = 1
+stretch_mode = 4
 
 [node name="MentalCapacityValue" type="Label" parent="."]
-layout_mode = 0
-offset_left = 700.0
-offset_top = 79.0
-offset_right = 829.0
-offset_bottom = 128.0
-theme = SubResource("Theme_0rxea")
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.215
+anchor_top = 0.277
+anchor_right = 0.215
+anchor_bottom = 0.277
+offset_left = 54.2
+offset_top = -220.16
+offset_right = 194.2
+offset_bottom = -143.16
+theme = ExtResource("6_wdmna")
+text = "10"
 
 [node name="EnemyName" type="Label" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 1361.0
-offset_top = 682.0
+offset_top = 863.0
 offset_right = 1816.0
-offset_bottom = 737.0
+offset_bottom = 918.0
 theme = SubResource("Theme_0tp7n")
 text = "Long Enemy Name here"
 horizontal_alignment = 1
@@ -268,14 +287,14 @@ script = ExtResource("10_qqenu")
 [node name="SpeechbubbleEnemy" type="Button" parent="." node_paths=PackedStringArray("_RTlabel")]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.722
-anchor_top = 0.277
-anchor_right = 0.722
-anchor_bottom = 0.277
-offset_left = -686.24
-offset_top = -72.16
-offset_right = -87.2402
-offset_bottom = 41.84
+anchor_left = 0.819
+anchor_top = 0.422
+anchor_right = 0.819
+anchor_bottom = 0.422
+offset_left = -872.48
+offset_top = -54.76
+offset_right = -273.48
+offset_bottom = 59.24
 grow_horizontal = 2
 grow_vertical = 2
 mouse_default_cursor_shape = 2
@@ -292,14 +311,14 @@ _RTlabel = NodePath("../DialogueLineEnemy")
 custom_minimum_size = Vector2(450, 0)
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.722
-anchor_top = 0.277
-anchor_right = 0.722
-anchor_bottom = 0.277
-offset_left = -646.24
-offset_top = -45.16
-offset_right = -196.24
-offset_bottom = -43.16
+anchor_left = 0.819
+anchor_top = 0.422
+anchor_right = 0.819
+anchor_bottom = 0.422
+offset_left = -832.48
+offset_top = -27.76
+offset_right = -382.48
+offset_bottom = -25.76
 grow_horizontal = 0
 mouse_filter = 2
 mouse_default_cursor_shape = 2
@@ -309,62 +328,168 @@ bbcode_enabled = true
 fit_content = true
 script = ExtResource("10_qqenu")
 
-[node name="TextureButton" type="TextureButton" parent="."]
+[node name="InfoButton" type="TextureButton" parent="."]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -150.0
-offset_top = -133.0
-offset_right = -98.0
-offset_bottom = -80.0
+offset_left = -104.0
+offset_top = -1036.0
+offset_right = -40.0
+offset_bottom = -971.0
+grow_horizontal = 0
+grow_vertical = 0
 texture_normal = ExtResource("12_l8di7")
 texture_pressed = ExtResource("13_7yst1")
 texture_hover = ExtResource("13_7yst1")
 script = ExtResource("14_whhlr")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="Control" type="Control" parent="." node_paths=PackedStringArray("_topicLabels")]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("17_de043")
+_topicLabels = [NodePath("ThoughtBubble1/RichTextLabel"), NodePath("ThoughtBubble2/RichTextLabel"), NodePath("ThoughtBubble3/RichTextLabel"), NodePath("ThoughtBubble4/RichTextLabel"), NodePath("ThoughtBubble5/RichTextLabel"), NodePath("ThoughtBubble6/RichTextLabel")]
+_likeIcon = ExtResource("18_vqv50")
+_dislikeIcon = ExtResource("19_bhsfw")
+_unknownIcon = ExtResource("20_h7nvp")
 
-[node name="TabContainer" type="TabContainer" parent="CanvasLayer"]
-visible = false
+[node name="ThoughtBubble1" type="TextureRect" parent="Control"]
+layout_mode = 0
+offset_left = 1236.0
+offset_top = 262.0
+offset_right = 1395.0
+offset_bottom = 371.0
+texture = ExtResource("21_7xnx4")
+expand_mode = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control/ThoughtBubble1"]
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -693.0
-offset_top = -376.0
-offset_right = 675.0
-offset_bottom = 356.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("6_wdmna")
+offset_left = -79.5
+offset_top = -19.5
+offset_right = 79.5
+offset_bottom = 23.5
+bbcode_enabled = true
+fit_content = true
 
-[node name="Enthusiasm" type="MarginContainer" parent="CanvasLayer/TabContainer"]
-layout_mode = 2
+[node name="ThoughtBubble2" type="TextureRect" parent="Control"]
+layout_mode = 0
+offset_left = 1361.0
+offset_top = 186.0
+offset_right = 1520.0
+offset_bottom = 295.0
+texture = ExtResource("21_7xnx4")
+expand_mode = 1
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/TabContainer/Enthusiasm"]
-layout_mode = 2
-text = "hjhvhv"
+[node name="RichTextLabel" type="RichTextLabel" parent="Control/ThoughtBubble2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -79.5
+offset_top = -19.5
+offset_right = 79.5
+offset_bottom = 23.5
+bbcode_enabled = true
+fit_content = true
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/TabContainer"]
-visible = false
-layout_mode = 2
+[node name="ThoughtBubble3" type="TextureRect" parent="Control"]
+layout_mode = 0
+offset_left = 1520.0
+offset_top = 164.0
+offset_right = 1679.0
+offset_bottom = 273.0
+texture = ExtResource("21_7xnx4")
+expand_mode = 1
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="CanvasLayer/TabContainer"]
-visible = false
-layout_mode = 2
+[node name="RichTextLabel" type="RichTextLabel" parent="Control/ThoughtBubble3"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -79.5
+offset_top = -19.5
+offset_right = 79.5
+offset_bottom = 23.5
+bbcode_enabled = true
+fit_content = true
 
-[node name="VerticalTabContainer" type="Container" parent="CanvasLayer"]
-offset_right = 1213.0
-offset_bottom = 750.0
-script = ExtResource("15_gc0ea")
+[node name="ThoughtBubble4" type="TextureRect" parent="Control"]
+layout_mode = 0
+offset_left = 1679.0
+offset_top = 186.0
+offset_right = 1838.0
+offset_bottom = 295.0
+texture = ExtResource("21_7xnx4")
+expand_mode = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/VerticalTabContainer"]
-layout_mode = 2
+[node name="RichTextLabel" type="RichTextLabel" parent="Control/ThoughtBubble4"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -79.5
+offset_top = -19.5
+offset_right = 79.5
+offset_bottom = 23.5
+bbcode_enabled = true
+fit_content = true
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/VerticalTabContainer"]
-visible = false
-layout_mode = 2
+[node name="ThoughtBubble5" type="TextureRect" parent="Control"]
+layout_mode = 0
+offset_left = 1747.0
+offset_top = 295.0
+offset_right = 1906.0
+offset_bottom = 404.0
+texture = ExtResource("21_7xnx4")
+expand_mode = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control/ThoughtBubble5"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -79.5
+offset_top = -19.5
+offset_right = 79.5
+offset_bottom = 23.5
+bbcode_enabled = true
+fit_content = true
+
+[node name="ThoughtBubble6" type="TextureRect" parent="Control"]
+layout_mode = 0
+offset_left = 1265.0
+offset_top = 373.0
+offset_right = 1424.0
+offset_bottom = 482.0
+texture = ExtResource("21_7xnx4")
+expand_mode = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control/ThoughtBubble6"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -79.5
+offset_top = -19.5
+offset_right = 79.5
+offset_bottom = 23.5
+bbcode_enabled = true
+fit_content = true

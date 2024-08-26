@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class AddOverlayButton : Button
+public partial class AddOverlayButton : TextureButton
 {
 	[Export]
 	private PackedScene _overlay;

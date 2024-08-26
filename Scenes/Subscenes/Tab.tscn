@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://blipjubw1hkhy"]
+
+[ext_resource type="Theme" uid="uid://bpp0q38rfd1ms" path="res://Assets/Themes/Lobster.tres" id="1_4gdhy"]
+
+[node name="Tab" type="VBoxContainer"]
+offset_left = 669.0
+offset_top = 270.0
+offset_right = 1675.0
+offset_bottom = 892.0
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+theme = ExtResource("1_4gdhy")
+text = "Header"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("1_4gdhy")
+theme_type_variation = &"RichTextDialogue"
+text = "Description"

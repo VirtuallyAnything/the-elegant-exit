@@ -8,6 +8,7 @@ namespace tee
 	{
 		public static event CombatEventHandler CombatEnded;
 		[Export] private EncounterScene _encounterScene;
+		[Export] private PreferenceDisplay _preferenceDisplay;
 
 		private int _socialBatteryTemp;
 		private EncounterPlayer _player;
@@ -151,6 +152,7 @@ namespace tee
 			if (!_player.DiscoveredEnemyPreferences.ContainsKey(_playerCurrentTopicName))
 			{
 				_player.DiscoveredEnemyPreferences.Add(_playerCurrentTopicName, _preferenceForCurrentTopic);
+				_preferenceDisplay.UpdatePreference(_playerCurrentTopicName, _preferenceForCurrentTopic);
 			}
 			_enemy.ConversationInterest -= conversationInterestBonusDamage + ConversationInterestDamage;
 			_isIgnoreCIBonusDamage = false;

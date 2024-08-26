@@ -1,7 +1,8 @@
-[gd_resource type="Theme" load_steps=10 format=3 uid="uid://bpp0q38rfd1ms"]
+[gd_resource type="Theme" load_steps=14 format=3 uid="uid://bpp0q38rfd1ms"]
 
 [ext_resource type="StyleBox" uid="uid://clf5eknolteml" path="res://Assets/Themes/SpeechBubbleStyleBox1.tres" id="1_2tqip"]
 [ext_resource type="StyleBox" uid="uid://dkdkw6mcmj715" path="res://Assets/Themes/SpeechBubbleStyleBox1_hover.tres" id="2_rd2ke"]
+[ext_resource type="StyleBox" uid="uid://bwy6i5wpddmsd" path="res://Assets/Themes/RegularButtonStylebox.tres" id="3_gei38"]
 
 [sub_resource type="SystemFont" id="SystemFont_jmwsj"]
 font_names = PackedStringArray("Franklin Gothic")
@@ -14,6 +15,24 @@ font_names = PackedStringArray("Franklin Gothic Book")
 
 [sub_resource type="SystemFont" id="SystemFont_rqdvg"]
 font_names = PackedStringArray("Franklin Gothic Book")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fk3w6"]
+bg_color = Color(0.152941, 0.2, 0.388235, 0.866667)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_37i7e"]
+bg_color = Color(0.12549, 0.0431373, 0.145098, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7ebnv"]
+bg_color = Color(0.178992, 0.230457, 0.43899, 1)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color(0.12549, 0.0431373, 0.145098, 1)
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
 
 [sub_resource type="SystemFont" id="SystemFont_6g7g0"]
 font_names = PackedStringArray("Franklin Gothic Book")
@@ -46,6 +65,14 @@ HeaderLarge/font_sizes/font_size = 200
 Label/colors/font_color = Color(1, 0.8, 0.701961, 1)
 Label/font_sizes/font_size = 67
 Label/fonts/font = SubResource("SystemFont_rqdvg")
+Overlay/base_type = &"Panel"
+Overlay/styles/panel = SubResource("StyleBoxFlat_fk3w6")
+Panel/styles/panel = SubResource("StyleBoxFlat_37i7e")
+RegularButton/base_type = &"Button"
+RegularButton/colors/font_color = Color(1, 0.8, 0.701961, 1)
+RegularButton/font_sizes/font_size = 36
+RegularButton/styles/normal = ExtResource("3_gei38")
+RegularButton/styles/pressed = SubResource("StyleBoxFlat_7ebnv")
 RichTextDialogue/base_type = &"RichTextLabel"
 RichTextDialogue/colors/default_color = Color(1, 0.8, 0.701961, 1)
 RichTextDialogue/constants/line_separation = 2
