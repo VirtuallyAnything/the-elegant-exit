@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bof3wrxapds3v" path="res://Assets/Textures/MainCharacters.png" id="3_5u531"]
 [ext_resource type="LabelSettings" uid="uid://bx6i6eo3rklk8" path="res://Assets/Themes/LobsterLabelSettings.tres" id="4_oqcpl"]
 [ext_resource type="Texture2D" uid="uid://ibsb083f86ee" path="res://Assets/UI/VS_withFlame.png" id="5_diw5j"]
-[ext_resource type="Script" path="res://src/SceneSwapButton.cs" id="6_tdx1t"]
+[ext_resource type="Script" path="res://src/SceneCode/SceneSwapButton.cs" id="6_tdx1t"]
 
 [sub_resource type="Theme" id="Theme_bya7o"]
 default_font_size = 85
@@ -176,4 +176,4 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("6_tdx1t")
-_sceneName = 10
+_sceneName = 11

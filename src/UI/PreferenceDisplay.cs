@@ -6,48 +6,47 @@ using tee;
 
 public partial class PreferenceDisplay : Control
 {
-	[Export] private Array<RichTextLabel> _topicLabels;
+	[Export] private Array<TopicRichTextLabel> _topicLabels;
 	[Export] private Texture2D _likeIcon, _dislikeIcon, _unknownIcon;
-	private Dictionary<TopicName, Preference> _topicPreferences = new(){
-		{TopicName.Art, Preference.Unknown},
-		{TopicName.Economy, Preference.Unknown},
-		{TopicName.Gossip, Preference.Unknown},
-		{TopicName.Lifestyle, Preference.Unknown},
-		{TopicName.Politics, Preference.Unknown},
-		{TopicName.Sport, Preference.Unknown}
-	};
-	// Called when the node enters the scene tree for the first time.
+
 	public override void _Ready()
 	{
-		Array <TopicName> keys = (Array<TopicName>)_topicPreferences.Keys;
-		for(int i = 0; i < _topicLabels.Count; i++){
-			_topicLabels[i].BbcodeEnabled = true;
-			TopicName topic = keys[i];
-			_topicLabels[i].Text = 
-			$"[hint='Preference: {Preference.Unknown}'][center]{topic}[img]{_unknownIcon.ResourcePath}[/img][/center]";
+		foreach(TopicRichTextLabel topicLabel in _topicLabels){
+			topicLabel.Text = 
+			$"[hint='Preference: {topicLabel.Preference}'][center]{topicLabel.TopicName}[img]{_unknownIcon.ResourcePath}[/img][/center]";
 		}
 	}
 
-	public void UpdatePreference(TopicName topicName, Preference preference){
-		foreach(RichTextLabel label in _topicLabels){
-			if(label.Text.Contains($"{topicName}")){
+	public void UpdatePreference(TopicName topicName, Preference preference, int enthusiasmLevel){
+		foreach(TopicRichTextLabel label in _topicLabels){
+			if(label.TopicName == topicName){
+				label.Preference = preference;
 				string iconPath = "[img]";
 				switch(preference){
 					case Preference.Like:
-					iconPath += _likeIcon.ResourcePath;
+					iconPath += _likeIcon.ResourcePath + "[/img]";
 					break;
 					case Preference.Dislike:
-					iconPath += _dislikeIcon.ResourcePath;
+					iconPath += _dislikeIcon.ResourcePath + "[/img]";
+					break;
+					default:
+					iconPath = "";
 					break;
 				}
-				iconPath += "[/img]";
+				
 				label.Text = 
-			$"[hint='Preference: {preference}'][center]{topicName}" + iconPath + "[/center]";
+			$"[hint='Preference: {preference}" + $"\nEnthusiasm: {enthusiasmLevel}" + $"'][center]{topicName}" + iconPath + "[/center]";
 			}
 		}
 	}
 
-	public void UpdateEnthusiasm(TopicName topicName, int to){
-		
+	public void UpdateEnthusiasm(TopicName topicName, int enthusiasmLevel){
+		foreach(TopicRichTextLabel label in _topicLabels){
+			if(label.TopicName == topicName){				
+				int index = label.Text.Find("Enthusiasm"); 
+				//label.Text.Replace()
+			}
+		}
 	}
+
 }

@@ -1,0 +1,47 @@
+[gd_scene load_steps=4 format=3 uid="uid://bchtcw35gtmyu"]
+
+[ext_resource type="Texture2D" uid="uid://6owi28lr85hn" path="res://Assets/UI/Icons/Arrow.png" id="2_ay43u"]
+[ext_resource type="Script" path="res://src/SceneCode/SceneSwapButton.cs" id="3_8ikyv"]
+[ext_resource type="Theme" uid="uid://bpp0q38rfd1ms" path="res://Assets/Themes/Lobster.tres" id="7_2e176"]
+
+[node name="StartScene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.501961, 0.14902, 0.266667, 1)
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_top = 150.0
+offset_right = 1920.0
+offset_bottom = 422.0
+theme = ExtResource("7_2e176")
+bbcode_enabled = true
+text = "[center] [font=res://Assets/Fonts/Lobster-Regular.ttf]Credits[/font][/center]"
+
+[node name="TextureRect" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.483
+anchor_right = 0.5
+anchor_bottom = 0.483
+offset_left = 773.0
+offset_top = 398.36
+offset_right = 864.0
+offset_bottom = 483.36
+texture_normal = ExtResource("2_ay43u")
+ignore_texture_size = true
+stretch_mode = 4
+script = ExtResource("3_8ikyv")

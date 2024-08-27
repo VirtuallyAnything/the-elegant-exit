@@ -27,19 +27,14 @@ namespace tee
 		[Export] private AnimationPlayer _animationPlayer;
 		[Export] private Label _mentalCapacityValue;
 		[Export] private Label _conversationInterestValue;
-		[Export] private Label _socialStandingValue;
 		[Export] private TextureProgressBar _socialBatteryProgress;
-		[Export] private Button _leaveButton;
 
 		public EnemyData CurrentEnemy
 		{
 			get { return _currentEnemy; }
 			set { _currentEnemy = value; }
 		}
-		public Button LeaveButton
-		{
-			get { return _leaveButton; }
-		}
+
 		public AttackCardContainer AttackCardContainer
 		{
 			get { return _attackCardContainer; }
@@ -174,7 +169,7 @@ namespace tee
 			_isPlayerTurn = true;
 		}
 
-		public void UpdateUI(int socialBatteryNew, float socialStandingNew, float mentalCapacityNew, float interestNew)
+		public void UpdateUI(int socialBatteryNew, float mentalCapacityNew, float interestNew)
 		{
 			Tween tween = _socialBatteryProgress.CreateTween();
 			PropertyTweener propTweener = tween.TweenProperty(
@@ -182,7 +177,6 @@ namespace tee
 			propTweener.From(_socialBatteryProgress.Value);
 
 			_mentalCapacityValue.Text = $"{mentalCapacityNew}";
-			_socialStandingValue.Text = $"{socialStandingNew}";
 			_conversationInterestValue.Text = $"{interestNew}";
 		}
 

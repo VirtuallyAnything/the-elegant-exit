@@ -44,6 +44,7 @@ namespace tee
 		{
 			_frontMostAttackCard.AttackCardPressed -= OnAttackCardPressed;
 			RemoveChild(_frontMostAttackCard);
+			_frontMostAttackCard.QueueFree();
 			AddNewAttackCard(newAttack);
 		}
 

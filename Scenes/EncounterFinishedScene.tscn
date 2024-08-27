@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://src/SceneCode/EncounterFinishedScene.cs" id="1_bfikk"]
 [ext_resource type="LabelSettings" uid="uid://bx6i6eo3rklk8" path="res://Assets/Themes/LobsterLabelSettings.tres" id="2_m70y3"]
-[ext_resource type="Script" path="res://src/SceneSwapButton.cs" id="3_56eoo"]
+[ext_resource type="Script" path="res://src/SceneCode/SceneSwapButton.cs" id="3_56eoo"]
 
 [node name="EncounterFinishedScene" type="Control"]
 layout_mode = 3
@@ -42,4 +42,4 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("3_56eoo")
-_sceneName = 8
+_sceneName = 9

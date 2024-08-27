@@ -124,7 +124,7 @@ namespace tee
 			if (topicOfAttack != TopicName.None)
 			{
 				_playerCurrentTopicName = topicOfAttack;
-				_preferenceForCurrentTopic = _enemy.GetPreferenceFor(topicOfAttack);
+				_preferenceForCurrentTopic = Enemy.GetPreferenceFor(topicOfAttack);
 				if (!_isIgnoreCIBonusDamage)
 				{
 					switch (_preferenceForCurrentTopic)
@@ -136,7 +136,7 @@ namespace tee
 							conversationInterestBonusDamage += 1;
 							if (_playerCurrentTopicName == _playerLastTopicName)
 							{
-								_enemy.Enrage(_playerCurrentTopicName);
+								Enemy.Enrage(_playerCurrentTopicName);
 							}
 							if (_player.DiscoveredEnemyPreferences.ContainsKey(_playerCurrentTopicName))
 							{
@@ -148,20 +148,21 @@ namespace tee
 			}
 
 			_player.Resolve(_selectedAttack, this);
-			_enemy.ReactTo(topicOfAttack);
+			Enemy.ReactTo(topicOfAttack);
 			if (!_player.DiscoveredEnemyPreferences.ContainsKey(_playerCurrentTopicName))
 			{
 				_player.DiscoveredEnemyPreferences.Add(_playerCurrentTopicName, _preferenceForCurrentTopic);
-				_preferenceDisplay.UpdatePreference(_playerCurrentTopicName, _preferenceForCurrentTopic);
+				_preferenceDisplay.UpdatePreference(
+					_playerCurrentTopicName, _preferenceForCurrentTopic, Enemy.GetEnthusiasmLevelFor(_playerCurrentTopicName));
 			}
-			_enemy.ConversationInterest -= conversationInterestBonusDamage + ConversationInterestDamage;
+			Enemy.ConversationInterest -= conversationInterestBonusDamage + ConversationInterestDamage;
 			_isIgnoreCIBonusDamage = false;
 
 			_encounterScene.PlayCombatAnimation(_selectedAttack);
-			_encounterScene.UpdateUI(_socialBatteryTemp, /*SocialStandingCombat*/0, _player.MentalCapacity, _enemy.ConversationInterest);
+			_encounterScene.UpdateUI(_socialBatteryTemp, _player.MentalCapacity, Enemy.ConversationInterest);
 			GD.Print($"Player attacks and does {conversationInterestBonusDamage + ConversationInterestDamage} damage to CI.");
-			GD.Print($"New Enemy CI: {_enemy.ConversationInterest}");
-			if (_enemy.ConversationInterest <= 0)
+			GD.Print($"New Enemy CI: {Enemy.ConversationInterest}");
+			if (Enemy.ConversationInterest <= 0)
 			{
 				CombatEnded?.Invoke();
 				return;
@@ -178,10 +179,10 @@ namespace tee
 			}
 			else
 			{
-				chosenTopicName = _enemy.ChooseTopic();
+				chosenTopicName = Enemy.ChooseTopic();
 			}
 
-			EnemyAttack enemyAttack = _enemy.ChooseAttack(chosenTopicName);
+			EnemyAttack enemyAttack = Enemy.ChooseAttack(chosenTopicName);
 
 			if (_isBlockNextEnemyAttack)
 			{
@@ -192,9 +193,9 @@ namespace tee
 				_socialBatteryTemp += enemyAttack.SocialBatteryChange;
 				_player.MentalCapacity += enemyAttack.MentalCapacityChange;
 			}
-
+			Enemy.IncreaseEnthusiasmFor(chosenTopicName);
 			_encounterScene.PlayCombatAnimation(enemyAttack);
-			_encounterScene.UpdateUI(_socialBatteryTemp, /*SocialStandingCombat*/0, _player.MentalCapacity, _enemy.ConversationInterest);
+			_encounterScene.UpdateUI(_socialBatteryTemp, _player.MentalCapacity, Enemy.ConversationInterest);
 		}
 
 		public void BlockNextEnemyAttack()

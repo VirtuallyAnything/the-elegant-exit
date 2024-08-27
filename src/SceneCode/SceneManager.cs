@@ -27,7 +27,7 @@ namespace tee
 		public override void _Ready()
 		{
 			CombatManager.CombatEnded += ChangeToEncounterFinishedScene;
-			GameManager.GameOver += ChangeToGameOverScene;	
+			GameManager.GameOver += ChangeToGameOverScene;
 		}
 
 		public void ChangeToScene(SceneName sceneName)
@@ -36,7 +36,10 @@ namespace tee
 			switch (sceneName)
 			{
 				case SceneName.MainMenu:
-					
+					ChangeToMainMenu();
+					break;
+				case SceneName.Credits:
+					ChangeToCreditsScene();
 					break;
 				case SceneName.MainScene:
 					ChangeToMainScene();
@@ -75,10 +78,20 @@ namespace tee
 			}
 		}
 
+		private void ChangeToMainMenu()
+		{
+			GetTree().CallDeferred("change_scene_to_file", "res://Scenes/StartScene.tscn");
+		}
+
+		private void ChangeToCreditsScene()
+		{
+			GetTree().CallDeferred("change_scene_to_file", "res://Scenes/CreditsScene.tscn");
+		}
+
 		private void ChangeToMainScene()
 		{
-			_partyGroundFloor = (PartyGroundFloor) ResourceLoader.Load<PackedScene>("res://Scenes/PartyGroundFloor.tscn").Instantiate();
-			_partyFirstFloor = (PartyFirstFloor) ResourceLoader.Load<PackedScene>("res://Scenes/PartyFirstFloor.tscn").Instantiate();
+			_partyGroundFloor = (PartyGroundFloor)ResourceLoader.Load<PackedScene>("res://Scenes/PartyGroundFloor.tscn").Instantiate();
+			_partyFirstFloor = (PartyFirstFloor)ResourceLoader.Load<PackedScene>("res://Scenes/PartyFirstFloor.tscn").Instantiate();
 			MainScene.MainSceneInit += ChangeToPartyGroundFloor;
 			GetTree().CallDeferred("change_scene_to_file", "res://Scenes/MainScene.tscn");
 		}
@@ -100,12 +113,12 @@ namespace tee
 
 		private void ChangeToPauseScene()
 		{
-
+			
 		}
 
 		private void ChangeToEncounterStartScene()
 		{
-			_encounterStartScene = (EncounterStartScreen) ResourceLoader.Load<PackedScene>("res://Scenes/EncounterStartScreen.tscn").Instantiate();
+			_encounterStartScene = (EncounterStartScreen)ResourceLoader.Load<PackedScene>("res://Scenes/EncounterStartScreen.tscn").Instantiate();
 			//_mainScene.CallDeferred(MethodName.RemoveChild, _mainScene.CurrentFloor);
 			_mainScene.EncounterLayer.AddChild(_encounterStartScene);
 			_mainScene.EncounterLayer.Visible = true;
@@ -114,20 +127,19 @@ namespace tee
 
 		private void ChangeToEncounterScene()
 		{
-			_encounterScene = (EncounterScene) ResourceLoader.Load<PackedScene>("res://Scenes/EncounterScene.tscn").Instantiate();
+			_encounterScene = (EncounterScene)ResourceLoader.Load<PackedScene>("res://Scenes/EncounterScene.tscn").Instantiate();
 			_mainScene.EncounterLayer.RemoveChild(_encounterStartScene);
 			_encounterStartScene.QueueFree();
 			_mainScene.EncounterLayer.AddChild(_encounterScene);
-			_encounterScene.LeaveButton.Pressed += ExitEncounter;
 			_encounterScene.SetupScene(GameManager.CurrentEnemy);
 		}
 
-		private void ChangeToEncounterFinishedScene(){
-			_encounterFinishedScene = (EncounterFinishedScene) ResourceLoader.Load<PackedScene>("res://Scenes/EncounterFinishedScene.tscn").Instantiate();
+		private void ChangeToEncounterFinishedScene()
+		{
+			_encounterFinishedScene = (EncounterFinishedScene)ResourceLoader.Load<PackedScene>("res://Scenes/EncounterFinishedScene.tscn").Instantiate();
 			_mainScene.EncounterLayer.RemoveChild(_encounterScene);
 			_encounterScene.QueueFree();
 			_mainScene.EncounterLayer.AddChild(_encounterFinishedScene);
-			_encounterScene.LeaveButton.Pressed += ExitEncounter;
 		}
 
 		public void ExitEncounter()
@@ -144,7 +156,7 @@ namespace tee
 			MainScene.MainSceneInit -= ChangeToPartyGroundFloor;
 			GetTree().CallDeferred("change_scene_to_file", "res://Scenes/GameOverScene.tscn");
 		}
-		
+
 		public override void _ExitTree()
 		{
 			CombatManager.CombatEnded -= ExitEncounter;

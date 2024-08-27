@@ -49,6 +49,8 @@ namespace tee
 			_currentFloor = scene;
 		}
 
+
+
 		public void UpdateUI()
 		{
 			_socialBattery.Value = GameManager.SocialBattery;

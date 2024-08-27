@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://cv7lwki55h2ma"]
+[gd_scene load_steps=33 format=3 uid="uid://cv7lwki55h2ma"]
 
 [ext_resource type="Script" path="res://src/SceneCode/EncounterScene.cs" id="1_qerod"]
 [ext_resource type="Script" path="res://src/Encounter/CombatManager.cs" id="2_6eywl"]
@@ -21,6 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://binr4bnx3kgwn" path="res://Assets/UI/Icons/DislikeIcon.png" id="19_bhsfw"]
 [ext_resource type="Texture2D" uid="uid://ds1ekcdvrr301" path="res://Assets/UI/Icons/UnknownIcon.png" id="20_h7nvp"]
 [ext_resource type="Texture2D" uid="uid://bcgxjarmn8qgq" path="res://Assets/UI/ThoughtBubbleOutlineBig.png" id="21_7xnx4"]
+[ext_resource type="Script" path="res://src/UI/TopicRichTextLabel.cs" id="22_ufc0k"]
 
 [sub_resource type="Gradient" id="Gradient_vp34m"]
 offsets = PackedFloat32Array(0.269542, 1)
@@ -86,7 +87,7 @@ default_font_size = 35
 [sub_resource type="Theme" id="Theme_0tp7n"]
 default_font_size = 40
 
-[node name="EncounterScene" type="Control" node_paths=PackedStringArray("_playerSprite", "_playerDialogue", "_enemySprite", "_enemyDialogue", "_enemyName", "_attackCardContainer", "_animationPlayer", "_mentalCapacityValue", "_conversationInterestValue", "_socialBatteryProgress", "_leaveButton")]
+[node name="EncounterScene" type="Control" node_paths=PackedStringArray("_playerSprite", "_playerDialogue", "_enemySprite", "_enemyDialogue", "_enemyName", "_attackCardContainer", "_animationPlayer", "_mentalCapacityValue", "_conversationInterestValue", "_socialBatteryProgress")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -106,7 +107,6 @@ _animationPlayer = NodePath("AnimationPlayer")
 _mentalCapacityValue = NodePath("MentalCapacityValue")
 _conversationInterestValue = NodePath("ConversationInterestValue")
 _socialBatteryProgress = NodePath("TextureProgressBar")
-_leaveButton = NodePath("Button")
 metadata/_edit_vertical_guides_ = [575.0, 1299.0]
 metadata/_edit_horizontal_guides_ = [298.0, 149.0, 79.0]
 
@@ -123,7 +123,7 @@ texture = SubResource("GradientTexture2D_g87ax")
 [node name="Node" type="Node" parent="." node_paths=PackedStringArray("_encounterScene", "_preferenceDisplay")]
 script = ExtResource("2_6eywl")
 _encounterScene = NodePath("..")
-_preferenceDisplay = NodePath("../Control")
+_preferenceDisplay = NodePath("../ThoughtBubbles")
 
 [node name="EnemySprite" type="TextureRect" parent="."]
 custom_minimum_size = Vector2(100, 300)
@@ -158,14 +158,6 @@ offset_top = 79.0
 offset_right = 237.0
 offset_bottom = 142.0
 
-[node name="Button" type="Button" parent="."]
-layout_mode = 0
-offset_left = 1265.0
-offset_top = 998.0
-offset_right = 1361.0
-offset_bottom = 1029.0
-text = "Leave Fight"
-
 [node name="ConversationInterest" type="TextureRect" parent="."]
 layout_mode = 0
 offset_left = 1386.0
@@ -185,7 +177,7 @@ offset_top = 79.0
 offset_right = 1619.0
 offset_bottom = 156.0
 theme = ExtResource("6_wdmna")
-text = "10"
+text = "20"
 
 [node name="MentalCapacity" type="TextureRect" parent="."]
 layout_mode = 1
@@ -346,7 +338,7 @@ texture_pressed = ExtResource("13_7yst1")
 texture_hover = ExtResource("13_7yst1")
 script = ExtResource("14_whhlr")
 
-[node name="Control" type="Control" parent="." node_paths=PackedStringArray("_topicLabels")]
+[node name="ThoughtBubbles" type="Control" parent="." node_paths=PackedStringArray("_topicLabels")]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -356,7 +348,7 @@ _likeIcon = ExtResource("18_vqv50")
 _dislikeIcon = ExtResource("19_bhsfw")
 _unknownIcon = ExtResource("20_h7nvp")
 
-[node name="ThoughtBubble1" type="TextureRect" parent="Control"]
+[node name="ThoughtBubble1" type="TextureRect" parent="ThoughtBubbles"]
 layout_mode = 0
 offset_left = 1236.0
 offset_top = 262.0
@@ -365,7 +357,7 @@ offset_bottom = 371.0
 texture = ExtResource("21_7xnx4")
 expand_mode = 1
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Control/ThoughtBubble1"]
+[node name="RichTextLabel" type="RichTextLabel" parent="ThoughtBubbles/ThoughtBubble1"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -376,10 +368,14 @@ offset_left = -79.5
 offset_top = -19.5
 offset_right = 79.5
 offset_bottom = 23.5
+grow_horizontal = 2
+grow_vertical = 2
 bbcode_enabled = true
 fit_content = true
+script = ExtResource("22_ufc0k")
+TopicName = 1
 
-[node name="ThoughtBubble2" type="TextureRect" parent="Control"]
+[node name="ThoughtBubble2" type="TextureRect" parent="ThoughtBubbles"]
 layout_mode = 0
 offset_left = 1361.0
 offset_top = 186.0
@@ -388,7 +384,7 @@ offset_bottom = 295.0
 texture = ExtResource("21_7xnx4")
 expand_mode = 1
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Control/ThoughtBubble2"]
+[node name="RichTextLabel" type="RichTextLabel" parent="ThoughtBubbles/ThoughtBubble2"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -399,10 +395,14 @@ offset_left = -79.5
 offset_top = -19.5
 offset_right = 79.5
 offset_bottom = 23.5
+grow_horizontal = 2
+grow_vertical = 2
 bbcode_enabled = true
 fit_content = true
+script = ExtResource("22_ufc0k")
+TopicName = 2
 
-[node name="ThoughtBubble3" type="TextureRect" parent="Control"]
+[node name="ThoughtBubble3" type="TextureRect" parent="ThoughtBubbles"]
 layout_mode = 0
 offset_left = 1520.0
 offset_top = 164.0
@@ -411,7 +411,7 @@ offset_bottom = 273.0
 texture = ExtResource("21_7xnx4")
 expand_mode = 1
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Control/ThoughtBubble3"]
+[node name="RichTextLabel" type="RichTextLabel" parent="ThoughtBubbles/ThoughtBubble3"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -422,10 +422,14 @@ offset_left = -79.5
 offset_top = -19.5
 offset_right = 79.5
 offset_bottom = 23.5
+grow_horizontal = 2
+grow_vertical = 2
 bbcode_enabled = true
 fit_content = true
+script = ExtResource("22_ufc0k")
+TopicName = 3
 
-[node name="ThoughtBubble4" type="TextureRect" parent="Control"]
+[node name="ThoughtBubble4" type="TextureRect" parent="ThoughtBubbles"]
 layout_mode = 0
 offset_left = 1679.0
 offset_top = 186.0
@@ -434,7 +438,7 @@ offset_bottom = 295.0
 texture = ExtResource("21_7xnx4")
 expand_mode = 1
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Control/ThoughtBubble4"]
+[node name="RichTextLabel" type="RichTextLabel" parent="ThoughtBubbles/ThoughtBubble4"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -445,10 +449,14 @@ offset_left = -79.5
 offset_top = -19.5
 offset_right = 79.5
 offset_bottom = 23.5
+grow_horizontal = 2
+grow_vertical = 2
 bbcode_enabled = true
 fit_content = true
+script = ExtResource("22_ufc0k")
+TopicName = 4
 
-[node name="ThoughtBubble5" type="TextureRect" parent="Control"]
+[node name="ThoughtBubble5" type="TextureRect" parent="ThoughtBubbles"]
 layout_mode = 0
 offset_left = 1747.0
 offset_top = 295.0
@@ -457,7 +465,7 @@ offset_bottom = 404.0
 texture = ExtResource("21_7xnx4")
 expand_mode = 1
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Control/ThoughtBubble5"]
+[node name="RichTextLabel" type="RichTextLabel" parent="ThoughtBubbles/ThoughtBubble5"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -468,10 +476,14 @@ offset_left = -79.5
 offset_top = -19.5
 offset_right = 79.5
 offset_bottom = 23.5
+grow_horizontal = 2
+grow_vertical = 2
 bbcode_enabled = true
 fit_content = true
+script = ExtResource("22_ufc0k")
+TopicName = 5
 
-[node name="ThoughtBubble6" type="TextureRect" parent="Control"]
+[node name="ThoughtBubble6" type="TextureRect" parent="ThoughtBubbles"]
 layout_mode = 0
 offset_left = 1265.0
 offset_top = 373.0
@@ -480,7 +492,7 @@ offset_bottom = 482.0
 texture = ExtResource("21_7xnx4")
 expand_mode = 1
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Control/ThoughtBubble6"]
+[node name="RichTextLabel" type="RichTextLabel" parent="ThoughtBubbles/ThoughtBubble6"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -491,5 +503,9 @@ offset_left = -79.5
 offset_top = -19.5
 offset_right = 79.5
 offset_bottom = 23.5
+grow_horizontal = 2
+grow_vertical = 2
 bbcode_enabled = true
 fit_content = true
+script = ExtResource("22_ufc0k")
+TopicName = 6

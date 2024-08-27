@@ -1,13 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://bhl5fccx2vo6m"]
+[gd_scene load_steps=6 format=3 uid="uid://bhl5fccx2vo6m"]
 
 [ext_resource type="Texture2D" uid="uid://bof3wrxapds3v" path="res://Assets/Textures/MainCharacters.png" id="2_dym4n"]
 [ext_resource type="Theme" uid="uid://bpp0q38rfd1ms" path="res://Assets/Themes/Lobster.tres" id="2_p0wqb"]
 [ext_resource type="PackedScene" uid="uid://dl3r57rxufb83" path="res://Scenes/Subscenes/SpeechbubbleButton1.tscn" id="3_dnpqh"]
-[ext_resource type="StyleBox" uid="uid://dl3ygowiq30p5" path="res://Assets/Themes/SpeechBubbleStyleBox2.tres" id="4_1y13y"]
-[ext_resource type="StyleBox" uid="uid://ktpv7alcaut6" path="res://Assets/Themes/SpeechBubbleStyleBox2_hover.tres" id="4_qadeg"]
-[ext_resource type="StyleBox" uid="uid://df0i6qdd6mfnl" path="res://Assets/Themes/SpeechBubbleStyleBox3.tres" id="4_uufm2"]
+[ext_resource type="Script" path="res://src/SceneCode/SceneSwapButton.cs" id="5_koig2"]
 [ext_resource type="Texture2D" uid="uid://b12srjfl8cur2" path="res://Assets/UI/arrow.png" id="6_4fm0u"]
-[ext_resource type="StyleBox" uid="uid://bf0xiyj7g4ohp" path="res://Assets/Themes/SpeechBubbleStyleBox3_hover.tres" id="6_35xfj"]
 
 [node name="StartScene" type="Control"]
 layout_mode = 3
@@ -36,55 +33,8 @@ texture = ExtResource("2_dym4n")
 
 [node name="PlayButton" parent="." instance=ExtResource("3_dnpqh")]
 layout_mode = 1
+offset_bottom = 60.0
 _sceneName = 1
-
-[node name="Button2" parent="." instance=ExtResource("3_dnpqh")]
-layout_mode = 1
-offset_left = -448.0
-offset_top = 74.0
-offset_right = 39.0
-offset_bottom = 200.0
-theme_override_styles/normal = ExtResource("4_1y13y")
-theme_override_styles/hover = ExtResource("4_qadeg")
-theme_override_styles/pressed = ExtResource("4_1y13y")
-theme_override_styles/disabled = ExtResource("4_1y13y")
-theme_override_styles/focus = ExtResource("4_1y13y")
-_sceneName = 3
-
-[node name="Label" parent="Button2" index="0"]
-anchor_left = 0.521
-anchor_top = 0.456
-anchor_right = 0.521
-anchor_bottom = 0.456
-offset_left = -162.727
-offset_top = -38.456
-offset_right = 162.273
-offset_bottom = 38.544
-text = "Scoreboard"
-
-[node name="Button3" parent="." instance=ExtResource("3_dnpqh")]
-layout_mode = 1
-anchors_preset = -1
-offset_left = -366.0
-offset_top = 252.0
-offset_right = 140.0
-offset_bottom = 380.0
-theme_override_styles/normal = ExtResource("4_uufm2")
-theme_override_styles/hover = ExtResource("6_35xfj")
-theme_override_styles/pressed = ExtResource("4_uufm2")
-theme_override_styles/disabled = ExtResource("4_uufm2")
-theme_override_styles/focus = ExtResource("4_uufm2")
-
-[node name="Label" parent="Button3" index="0"]
-anchor_left = 0.543
-anchor_top = 0.441
-anchor_right = 0.543
-anchor_bottom = 0.441
-offset_left = -56.758
-offset_top = -38.448
-offset_right = 57.242
-offset_bottom = 38.552
-text = "Quit"
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="."]
 layout_mode = 0
@@ -109,5 +59,57 @@ offset_bottom = 0.359985
 texture = ExtResource("6_4fm0u")
 stretch_mode = 4
 
-[editable path="Button2"]
-[editable path="Button3"]
+[node name="Scoreboard" type="Button" parent="."]
+layout_mode = 0
+offset_left = 531.0
+offset_top = 600.0
+offset_right = 1018.0
+offset_bottom = 732.0
+theme = ExtResource("2_p0wqb")
+theme_type_variation = &"SpeechBubbleButton2"
+script = ExtResource("5_koig2")
+
+[node name="Label" type="Label" parent="Scoreboard"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -193.0
+offset_right = 216.0
+offset_bottom = -21.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_p0wqb")
+theme_type_variation = &"HeaderMedium"
+text = "Scoreboard"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Credits" type="Button" parent="."]
+layout_mode = 0
+offset_left = 611.0
+offset_top = 778.0
+offset_right = 1099.0
+offset_bottom = 908.0
+theme = ExtResource("2_p0wqb")
+theme_type_variation = &"SpeechBubbleButton3"
+script = ExtResource("5_koig2")
+_sceneName = 2
+
+[node name="Label" type="Label" parent="Credits"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -193.0
+offset_right = 216.0
+offset_bottom = -21.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_p0wqb")
+theme_type_variation = &"HeaderMedium"
+text = "Credits"
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -1,25 +1,195 @@
-[gd_scene format=3 uid="uid://bkprvu4f5y5no"]
+[gd_scene load_steps=5 format=3 uid="uid://bkprvu4f5y5no"]
 
-[node name="PauseScene" type="Control"]
+[ext_resource type="Script" path="res://src/SceneCode/PauseScene.cs" id="1_3bihf"]
+[ext_resource type="Theme" uid="uid://bpp0q38rfd1ms" path="res://Assets/Themes/Lobster.tres" id="2_08iw4"]
+[ext_resource type="LabelSettings" uid="uid://bx6i6eo3rklk8" path="res://Assets/Themes/LobsterLabelSettings.tres" id="3_a8a6l"]
+[ext_resource type="Script" path="res://src/SceneCode/SceneSwapButton.cs" id="4_655v7"]
+
+[node name="PauseScene" type="Control" node_paths=PackedStringArray("_popup")]
+process_mode = 2
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_3bihf")
+_popup = NodePath("Button")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-modulate = Color(0.581033, 0.581033, 0.581033, 1)
-layout_mode = 0
-offset_left = 572.0
-offset_top = 370.0
-offset_right = 1372.0
-offset_bottom = 770.0
+[node name="Panel" type="Panel" parent="."]
+self_modulate = Color(1, 1, 1, 0.635294)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_08iw4")
+
+[node name="Panel2" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -250.0
+offset_right = 200.0
+offset_bottom = 250.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(200, 250)
+theme = ExtResource("2_08iw4")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_08iw4")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel2/MarginContainer"]
+layout_mode = 2
+
+[node name="Resume" type="Button" parent="Panel2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("2_08iw4")
+theme_type_variation = &"RegularButtonBright"
+text = "Resume"
+
+[node name="Control" type="Control" parent="Panel2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.6
+
+[node name="Glossary" type="Button" parent="Panel2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("2_08iw4")
+theme_type_variation = &"RegularButtonBright"
+text = "Glossary"
+
+[node name="Control2" type="Control" parent="Panel2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.6
+
+[node name="MainMenu" type="Button" parent="Panel2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("2_08iw4")
+theme_type_variation = &"RegularButtonBright"
+text = "Main Menu"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.269
+anchor_right = 0.5
+anchor_bottom = 0.269
+offset_left = -205.5
+offset_top = -135.52
+offset_right = 205.5
+offset_bottom = 44.48
+grow_horizontal = 2
+text = "Paused"
+label_settings = ExtResource("3_a8a6l")
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="Button" type="Button" parent="."]
-layout_mode = 0
-offset_left = 887.0
-offset_top = 503.0
-offset_right = 957.0
-offset_bottom = 534.0
-text = "Resume"
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Popup" type="HBoxContainer" parent="Button"]
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -152.0
+offset_bottom = 148.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Control2" type="Control" parent="Button/Popup"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.94
+
+[node name="Panel3" type="Panel" parent="Button/Popup"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.1
+theme = ExtResource("2_08iw4")
+
+[node name="MarginContainer" type="MarginContainer" parent="Button/Popup/Panel3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_08iw4")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Button/Popup/Panel3/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Button/Popup/Panel3/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("2_08iw4")
+theme_type_variation = &"HeaderMedium"
+text = "Return to Main Menu?"
+
+[node name="Control" type="Control" parent="Button/Popup/Panel3/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 4.715)
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 1.3
+
+[node name="Label2" type="Label" parent="Button/Popup/Panel3/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("2_08iw4")
+text = "Current progress will be lost."
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Button/Popup/Panel3/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Confirm" type="Button" parent="Button/Popup/Panel3/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Confirm"
+script = ExtResource("4_655v7")
+
+[node name="Control" type="Control" parent="Button/Popup/Panel3/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Cancel" type="Button" parent="Button/Popup/Panel3/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Cancel"
+
+[node name="Control" type="Control" parent="Button/Popup"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.94
+
+[connection signal="pressed" from="Panel2/MarginContainer/VBoxContainer/Resume" to="." method="OnGameResumed"]
+[connection signal="pressed" from="Panel2/MarginContainer/VBoxContainer/MainMenu" to="." method="OnMainMenuButtonPressed"]
+[connection signal="pressed" from="Button" to="." method="OnCancelButtonPressed"]
+[connection signal="pressed" from="Button/Popup/Panel3/MarginContainer/VBoxContainer/HBoxContainer/Cancel" to="." method="OnCancelButtonPressed"]

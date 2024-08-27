@@ -1,6 +1,7 @@
 public enum SceneName{
     MainMenu,
     MainScene,
+    Credits,
     PauseMenu,
     Scoreboard,
     NicknameScreen,

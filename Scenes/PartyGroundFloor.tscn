@@ -90,7 +90,7 @@ navigation_polygon = SubResource("NavigationPolygon_7giwx")
 
 [node name="Area2D" type="Area2D" parent="."]
 script = ExtResource("8_ekoj5")
-_sceneName = 6
+_sceneName = 7
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
 polygon = PackedVector2Array(3452, 1810, 3454, 2022, 3740, 2022, 3740, 1812)
@@ -98,7 +98,7 @@ polygon = PackedVector2Array(3452, 1810, 3454, 2022, 3740, 2022, 3740, 1812)
 [node name="Area2D2" type="Area2D" parent="."]
 position = Vector2(-60, 2447)
 script = ExtResource("8_ekoj5")
-_sceneName = 6
+_sceneName = 7
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D2"]
 position = Vector2(140, 0)

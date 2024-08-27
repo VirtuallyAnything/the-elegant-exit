@@ -2,7 +2,7 @@ using Godot;
 using System;
 using tee;
 
-public partial class SceneSwapButton : Button
+public partial class SceneSwapButton : BaseButton
 {
 	private SceneManager _sceneManager;
     [Export] private SceneName _sceneName;

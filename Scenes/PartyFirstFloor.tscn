@@ -35,7 +35,7 @@ visible = false
 [node name="StairsAreaUp" type="Area2D" parent="."]
 position = Vector2(-1407, 928)
 script = ExtResource("8_d007l")
-_sceneName = 7
+_sceneName = 8
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StairsAreaUp"]
 position = Vector2(-87, 0)
@@ -43,7 +43,7 @@ polygon = PackedVector2Array(3627, 1499, 3625, 1717, 3740, 1716, 3741, 1504)
 
 [node name="StairsAreaDown" type="Area2D" parent="."]
 script = ExtResource("8_d007l")
-_sceneName = 5
+_sceneName = 6
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StairsAreaDown"]
 position = Vector2(0, -109)
@@ -52,7 +52,7 @@ polygon = PackedVector2Array(3496, 1539, 3498, 1642, 3713, 1641, 3713, 1534)
 [node name="UStairsAreaDown" type="Area2D" parent="."]
 position = Vector2(-252, 2752)
 script = ExtResource("8_d007l")
-_sceneName = 5
+_sceneName = 6
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="UStairsAreaDown"]
 position = Vector2(-115, 0)

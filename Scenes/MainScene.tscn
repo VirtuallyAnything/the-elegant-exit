@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dmyfdjltetw2d"]
+[gd_scene load_steps=15 format=3 uid="uid://dmyfdjltetw2d"]
 
 [ext_resource type="Script" path="res://src/SceneCode/MainScene.cs" id="1_klk3w"]
 [ext_resource type="Script" path="res://src/Party/Player/PartyPlayer.cs" id="3_53yld"]
@@ -7,7 +7,11 @@
 [ext_resource type="PackedScene" uid="uid://d21hljw8t080d" path="res://Scenes/Subscenes/SocialBattery.tscn" id="5_t55tw"]
 [ext_resource type="Texture2D" uid="uid://ceb1ia7oecf7l" path="res://Assets/Textures/PlayerSightCone.png" id="6_k7ig0"]
 [ext_resource type="FontFile" uid="uid://dnj361fu4us32" path="res://Assets/Fonts/Lobster-Regular.ttf" id="6_q8ytb"]
+[ext_resource type="Theme" uid="uid://bpp0q38rfd1ms" path="res://Assets/Themes/Lobster.tres" id="7_yess5"]
 [ext_resource type="Script" path="res://src/GameTimer.cs" id="8_28aws"]
+[ext_resource type="Texture2D" uid="uid://c6bque4e81yg4" path="res://Assets/UI/Icons/PauseIcon.png" id="8_mivmb"]
+[ext_resource type="Texture2D" uid="uid://dw0fjgs4yx85r" path="res://Assets/UI/Icons/PauseIcon_hover.png" id="9_tqae0"]
+[ext_resource type="PackedScene" uid="uid://bkprvu4f5y5no" path="res://Scenes/PauseScene.tscn" id="12_3yaqs"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rv6dr"]
 radius = 14.6245
@@ -73,13 +77,32 @@ layout_direction = 2
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = 605.0
-offset_top = -460.0
-offset_right = 882.0
-offset_bottom = -280.0
+offset_left = 469.0
+offset_top = -514.0
+offset_right = 746.0
+offset_bottom = -334.0
 grow_horizontal = 0
 text = "0:00"
 label_settings = SubResource("LabelSettings_3w7eg")
+
+[node name="Label" type="Label" parent="Characters/Player/Camera2D/Countdown"]
+layout_mode = 0
+offset_top = 128.0
+offset_right = 40.0
+offset_bottom = 151.0
+theme = ExtResource("7_yess5")
+theme_type_variation = &"LabelShadow"
+theme_override_font_sizes/font_size = 22
+text = "Until Karaoke Time"
+
+[node name="PauseButton" type="TextureButton" parent="Characters/Player/Camera2D"]
+offset_left = 799.0
+offset_top = -482.0
+offset_right = 863.0
+offset_bottom = -417.0
+texture_normal = ExtResource("8_mivmb")
+texture_pressed = ExtResource("9_tqae0")
+texture_hover = ExtResource("9_tqae0")
 
 [node name="PointLight2D" type="PointLight2D" parent="Characters/Player" groups=["PlayerVision"]]
 shadow_enabled = true
@@ -94,3 +117,10 @@ visible = false
 one_shot = true
 script = ExtResource("8_28aws")
 _displayLabel = NodePath("../Characters/Player/Camera2D/Countdown")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PauseScene" parent="CanvasLayer" instance=ExtResource("12_3yaqs")]
+visible = false
+
+[connection signal="pressed" from="Characters/Player/Camera2D/PauseButton" to="CanvasLayer/PauseScene" method="OnPauseButtonPressed"]
