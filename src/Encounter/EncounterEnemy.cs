@@ -118,7 +118,8 @@ namespace tee
 			_topicPreferences[TopicName.Weather].ConversationTopic.Weight = 0;
 		}
 
-		public void SwitchTopicNextTurn(){
+		public void SwitchTopicNextTurn()
+		{
 			_switchTopic = true;
 		}
 
@@ -134,7 +135,8 @@ namespace tee
 			{
 				allTopics.Add(_topicPreferences[topic].ConversationTopic);
 			}
-			if(_switchTopic){
+			if (_switchTopic)
+			{
 				allTopics.Remove(_topicPreferences[_currentTopicName].ConversationTopic);
 				_switchTopic = false;
 			}
@@ -146,39 +148,51 @@ namespace tee
 
 		public EnemyAttack ChooseAttack(TopicName topicName)
 		{
-			_currentTopicName = topicName;
-			ConversationTopic chosenTopic = _topicPreferences[topicName].ConversationTopic;
+			// Out of all enemy attacks that are still in the attack pool, list those that have the correct topic
 			Array<EnemyAttack> potentialAttacks = new();
 			foreach (EnemyAttack attack in _attackPool)
 			{
-				if (attack.Topic == _currentTopicName)
+				if (attack.Topic == topicName)
 				{
 					potentialAttacks.Add(attack);
 				}
 			}
+			// If the list is empty, there must be no more attacks for this topic in the pool.
+			// Call function recursively with different topic???
+			if (potentialAttacks.Count == 0)
+			{
+				GD.Print($"No more attacks for topic {topicName} available. Choosing different topic.");
+				return ChooseAttack(ChooseTopic());
+			}
+			// Update last and current topic and their weights
+			_lastTopicName = _currentTopicName;
+			_currentTopicName = topicName;
 
+			ConversationTopic chosenTopic = _topicPreferences[topicName].ConversationTopic;
+
+			// With Count of 1, the list for this topic will be empty after this call.
+			// Set the weight for chosenTopic to zero, so that it won't be chosen again.
 			if (potentialAttacks.Count == 1)
 			{
 				chosenTopic.Weight = 0;
 			}
 			else
 			{
-				chosenTopic.Weight += 5;
+				if (_currentTopicName != _lastTopicName)
+				{
+					chosenTopic.Weight += 5;
+					if (_lastTopicName != TopicName.None)
+					{
+						_topicPreferences[_lastTopicName].ConversationTopic.Weight -= 5;
+					}
+				}
 			}
+			EnemyAttack chosenAttack = potentialAttacks.PickRandom();
+			GD.Print($"{DisplayName} has {potentialAttacks.Count} attacks for {chosenTopic.Name}. They choose {chosenAttack.AttackName}.");
 
-			if (potentialAttacks.Count == 0)
-			{
-				GD.Print($"No more attacks for topic {topicName} available. Choosing different topic.");
-				return ChooseAttack(ChooseTopic());
-			}
-			else
-			{
-				EnemyAttack chosenAttack = potentialAttacks.PickRandom();
-				GD.Print($"{DisplayName} has {potentialAttacks.Count} attacks for {chosenTopic.Name}. They choose {chosenAttack.AttackName}.");
-
-				_attackPool.Remove(chosenAttack);
-				return chosenAttack;
-			}
+			// Every attack is only used once and then removed from the attack pool
+			_attackPool.Remove(chosenAttack);
+			return chosenAttack;
 		}
 
 		public void ReactTo(TopicName topicName)
@@ -197,6 +211,13 @@ namespace tee
 			}
 
 			ConversationTopic currentConversationTopic = _topicPreferences[_currentTopicName].ConversationTopic;
+			// Current Topic gets +5 Weight, last Topic loses the extra Weight.
+			// If they're the same topic, the Weight doesn't need to be changed.
+			if (_currentTopicName != _lastTopicName)
+			{
+				_topicPreferences[_lastTopicName].ConversationTopic.Weight -= 5;
+				currentConversationTopic.Weight += 5;
+			}
 
 			//if there is a change of topic to a topic with less than two enthusiasm, increase annoyance.
 			if (_currentTopicName != _lastTopicName)
@@ -260,6 +281,10 @@ namespace tee
 
 		public void IncreaseEnthusiasmFor(TopicName topic)
 		{
+			if (_dislikes.Contains(topic))
+			{
+				return;
+			}
 			_topicPreferences[topic].ConversationTopic.IncreaseEnthusiasm();
 		}
 
@@ -268,10 +293,11 @@ namespace tee
 			_topicPreferences[topic].ConversationTopic.DecreaseEnthusiasm();
 		}
 
-		public int GetEnthusiasmLevelFor(TopicName topic){
+		public int GetEnthusiasmLevelFor(TopicName topic)
+		{
 			return _topicPreferences[topic].ConversationTopic.GetCurrentEnthusiasmLevel();
 		}
-		
+
 		public void DecreaseAnnoyance()
 		{
 			_annoyance.Decrease();

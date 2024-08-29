@@ -11,7 +11,13 @@ public partial class TopicRichTextLabel : RichTextLabel
 		get{return _topicName;}
 		set{_topicName = value;}
 	}
-	public int EnthusiasmLevel{
+	public string EnthusiasmLevel{
+		get; set;
+	}
+	public int EnthusiasmNumber{
+		get; set;
+	}
+	public string IconPath{
 		get; set;
 	}
 	public Preference Preference{

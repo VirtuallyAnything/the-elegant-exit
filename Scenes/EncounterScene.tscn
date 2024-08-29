@@ -270,7 +270,7 @@ script = ExtResource("1_qerod")
 _playerSprite = NodePath("PlayerSprite")
 _playerDialogueColor = Color(0.22184, 0.204197, 0.770126, 1)
 _playerDialogue = NodePath("SpeechbubblePlayer")
-_enemySprite = NodePath("EnemySprite")
+_enemySprite = NodePath("VBoxContainer/EnemySprite")
 _enemyDialogueColor = Color(0.807913, 0.00169103, 0.000926806, 1)
 _enemyDialogue = NodePath("SpeechbubbleEnemy")
 _enemyName = NodePath("EnemyName")
@@ -301,16 +301,42 @@ script = ExtResource("2_6eywl")
 _encounterScene = NodePath("..")
 _preferenceDisplay = NodePath("../ThoughtBubbles")
 
-[node name="EnemySprite" type="TextureRect" parent="."]
-custom_minimum_size = Vector2(100, 300)
-layout_mode = 0
-offset_left = 1490.0
-offset_top = 445.0
-offset_right = 1691.0
-offset_bottom = 988.0
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -525.0
+offset_top = -740.0
+offset_right = -209.0
+offset_bottom = -225.0
+alignment = 1
+
+[node name="EnemySprite" type="TextureRect" parent="VBoxContainer"]
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 2
 expand_mode = 1
 stretch_mode = 4
 flip_h = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("6_wdmna")
+text = "Annoyance:"
+horizontal_alignment = 1
+
+[node name="AnnoyanceValue" type="Label" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("6_wdmna")
+text = "0"
+horizontal_alignment = 1
 
 [node name="PlayerSprite" type="TextureRect" parent="."]
 layout_mode = 0
@@ -446,9 +472,9 @@ anchor_top = 0.422
 anchor_right = 0.819
 anchor_bottom = 0.422
 offset_left = -872.48
-offset_top = -54.76
+offset_top = -216.76
 offset_right = -273.48
-offset_bottom = 59.24
+offset_bottom = -102.76
 grow_horizontal = 2
 grow_vertical = 2
 mouse_default_cursor_shape = 2
@@ -466,9 +492,9 @@ anchor_top = 0.422
 anchor_right = 0.819
 anchor_bottom = 0.422
 offset_left = -832.48
-offset_top = -27.76
+offset_top = -189.76
 offset_right = -382.48
-offset_bottom = -25.76
+offset_bottom = -187.76
 grow_horizontal = 0
 mouse_filter = 2
 mouse_default_cursor_shape = 2
@@ -483,7 +509,7 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("17_de043")
-_topicLabels = [NodePath("ThoughtBubble1/RichTextLabel"), NodePath("ThoughtBubble2/RichTextLabel"), NodePath("ThoughtBubble3/RichTextLabel"), NodePath("ThoughtBubble4/RichTextLabel"), NodePath("ThoughtBubble5/RichTextLabel"), NodePath("ThoughtBubble6/RichTextLabel")]
+_topicLabels = [NodePath("ThoughtBubble1/RichTextLabel"), NodePath("ThoughtBubble2/RichTextLabel"), NodePath("ThoughtBubble3/RichTextLabel"), NodePath("ThoughtBubble4/RichTextLabel"), NodePath("ThoughtBubble5/RichTextLabel"), NodePath("ThoughtBubble6/RichTextLabel"), NodePath("ThoughtBubble7/RichTextLabel")]
 _likeIcon = ExtResource("18_vqv50")
 _dislikeIcon = ExtResource("19_bhsfw")
 _unknownIcon = ExtResource("20_h7nvp")
@@ -649,6 +675,33 @@ bbcode_enabled = true
 fit_content = true
 script = ExtResource("22_ufc0k")
 TopicName = 6
+
+[node name="ThoughtBubble7" type="TextureRect" parent="ThoughtBubbles"]
+layout_mode = 0
+offset_left = 1711.0
+offset_top = 408.0
+offset_right = 1870.0
+offset_bottom = 517.0
+texture = ExtResource("21_7xnx4")
+expand_mode = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ThoughtBubbles/ThoughtBubble7"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -79.5
+offset_top = -19.5
+offset_right = 79.5
+offset_bottom = 23.5
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+fit_content = true
+script = ExtResource("22_ufc0k")
+TopicName = 7
 
 [node name="Panel" type="Panel" parent="."]
 visible = false

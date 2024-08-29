@@ -6,6 +6,7 @@ namespace tee
     public partial class DerogatoryCommentEffect : BonusEffect
     {
         public override void Resolve(CombatManager combatManager){
+            combatManager.IgnoreNextEnthusiasm();
             Preference preference = combatManager.PreferenceForCurrentTopic;
             switch(preference){
                 case Preference.Like:

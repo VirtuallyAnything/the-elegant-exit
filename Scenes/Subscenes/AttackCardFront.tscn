@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://bcktmrgsvdu5b"]
+[gd_scene load_steps=6 format=3 uid="uid://bcktmrgsvdu5b"]
 
 [ext_resource type="Texture2D" uid="uid://b25kk6eoa8a2r" path="res://Assets/UI/ConversationCard.png" id="1_ghk2c"]
 [ext_resource type="Theme" uid="uid://7ps021sw2vqy" path="res://Assets/Themes/AttackCardTitle.tres" id="2_g2rnx"]
 [ext_resource type="Script" path="res://src/UI/AttackCard/AttackCardFront.cs" id="2_l7dg4"]
 [ext_resource type="Theme" uid="uid://bpp0q38rfd1ms" path="res://Assets/Themes/Lobster.tres" id="4_bpp6j"]
+[ext_resource type="Texture2D" uid="uid://bwes58fuwh1ev" path="res://Assets/UI/Icons/ConversationInterestIcon.png" id="5_ce5hu"]
 
 [node name="AttackCardFront" type="TextureButton" node_paths=PackedStringArray("_description", "_attackName", "_conversationInterestDamage")]
 offset_right = 589.0
@@ -14,7 +15,7 @@ texture_normal = ExtResource("1_ghk2c")
 script = ExtResource("2_l7dg4")
 _description = NodePath("Description")
 _attackName = NodePath("AttackName")
-_conversationInterestDamage = NodePath("ConversationInterestDamage")
+_conversationInterestDamage = NodePath("ConversationInterest/ConversationInterestDamage")
 
 [node name="AttackName" type="Label" parent="."]
 modulate = Color(0, 0, 0, 1)
@@ -46,13 +47,27 @@ Attack Explanation woooo
 Read, read, read all of it!
 [/ul]"
 
-[node name="ConversationInterestDamage" type="Label" parent="."]
+[node name="ConversationInterest" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.883
+anchor_top = 0.118
+anchor_right = 0.883
+anchor_bottom = 0.118
+offset_left = -59.087
+offset_top = -19.834
+offset_right = -19.087
+offset_bottom = 20.166
+texture = ExtResource("5_ce5hu")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="ConversationInterestDamage" type="Label" parent="ConversationInterest"]
 modulate = Color(0, 0, 0, 1)
 layout_mode = 0
-offset_left = 490.0
-offset_top = 23.0
-offset_right = 530.0
-offset_bottom = 58.0
+offset_left = 29.0
+offset_right = 69.0
+offset_bottom = 35.0
 mouse_default_cursor_shape = 2
 theme = ExtResource("2_g2rnx")
 text = "5"

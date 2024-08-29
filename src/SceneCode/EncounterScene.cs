@@ -27,6 +27,8 @@ namespace tee
 		[Export] private AttackCardContainer _attackCardContainer;
 		[Export] private AnimationPlayer _animationPlayer;
 
+		[Export] private Label _annoyanceValue;
+
 		[Export] private Label _mentalCapacityMax;
 		[Export] private Label _mentalCapacityValue;
 		[Export] private Label _mentalCapacityDamage;
@@ -51,6 +53,7 @@ namespace tee
 		{
 			_currentEnemy = enemyData;
 			_conversationInterestMax.Text = $"{_currentEnemy.ConversationInterest}";
+			_conversationInterestValue.Text = _conversationInterestMax.Text;
 			_enemyName.Text = _currentEnemy.DisplayName;
 			_enemySprite.Texture = enemyData.Texture;
 			_playerDialogue.Text = "";
@@ -80,7 +83,7 @@ namespace tee
 			_labelToTweak.Text = $"{toNumber}";
 		}
 
-		public void PlayCombatAnimation(PlayerAttack attack)
+		public void PlayDialogAnimation(PlayerAttack attack)
 		{
 			_playerDialogue.SetEntireVisibility(true);
 			_enemyDialogue.SetEntireVisibility(false);
@@ -98,18 +101,18 @@ namespace tee
 			_activeDialogueTween.TweenCallback(Callable.From(() => PlayAnimationsForAttack(attack)));
 		}
 
-		public void PlayCombatAnimation(EnemyAttack attack)
+		public void PlayDialogAnimation(EnemyAttack attack)
 		{
 			_enemyDialogue.SetEntireVisibility(true);
 			_playerDialogue.SetEntireVisibility(false);
 			_enemyDialogue.Text = attack.Quote;
-			//_dialogueLine.Modulate = _enemyDialogueColor;
+
 			Tween tween = _enemyDialogue.CreateTween();
 			int textLength = _enemyDialogue.Text.Length;
 			PropertyTweener propTweener = tween.TweenProperty(
 				_enemyDialogue.RTLabel, $"{Label.PropertyName.VisibleCharacters}", textLength, .05f * textLength);
 			propTweener.From(0);
-			tween.TweenCallback(Callable.From(() => PlayAnimationsForAttack(attack)));
+			//tween.TweenCallback(Callable.From(() => PlayAnimationsForAttack(attack)));
 		}
 
 		public void SkipDialogueAnimation(VariableDialogueControl variableDialogue)
@@ -137,6 +140,7 @@ namespace tee
 			if (playerAttack.ConversationInterestDamage < 0)
 			{
 				// Play Negative Feedback Animation
+				
 			}
 			else if (playerAttack.ConversationInterestDamage > 0)
 			{
@@ -153,19 +157,27 @@ namespace tee
 			//Let the player click again when all the animations have finished
 		}
 
-		private void PlayAnimationsForAttack(EnemyAttack enemyAttack)
+		public void PlayAnimationsForAttack(EnemyAttack enemyAttack)
 		{
 			_mentalCapacityDamage.Text = $"-{enemyAttack.MentalCapacityDamage}";
 
 			Tween tween = _mentalCapacityDamage.CreateTween();
+			// Fade-In Damage label
 			tween.TweenProperty(
 				_mentalCapacityDamage, $"{Control.PropertyName.SelfModulate}", Color.Color8(255, 255, 255, 255), 1f);
+			// Animate change to new value
 			_labelToTweak = _mentalCapacityValue;
 			int startValue = _mentalCapacityValue.Text.ToInt();
-			tween.TweenMethod(Callable.From<int>(SetLabelText), startValue, startValue + enemyAttack.MentalCapacityDamage, 1.0f).SetDelay(2f);
+			tween.TweenMethod(Callable.From<int>(SetLabelText), startValue, startValue - enemyAttack.MentalCapacityDamage, 1.0f).SetDelay(2f);
+			// Fade-Out label
 			tween.TweenProperty(
 				_mentalCapacityDamage, $"{Control.PropertyName.SelfModulate}", Color.Color8(255, 255, 255, 0), 1f);
-				tween.TweenCallback(Callable.From(() => EnemyTurnComplete?.Invoke()));	
+			// Animate Social Battery Progress
+			Tween batteryTween = _socialBatteryProgress.CreateTween();
+			PropertyTweener propTweener = batteryTween.TweenProperty(
+				_socialBatteryProgress, $"{TextureProgressBar.PropertyName.Value}", _socialBatteryProgress.Value + enemyAttack.SocialBatteryChange, 1f);
+			batteryTween.SetParallel(true);
+			tween.TweenCallback(Callable.From(() => EnemyTurnComplete?.Invoke()));
 		}
 
 		public void UpdateUI(int socialBatteryNew, float mentalCapacityNew, float interestNew)
