@@ -54,27 +54,7 @@ public partial class PreferenceDisplay : Control
 			{
 				label.EnthusiasmNumber = enthusiasmLevel;
 				string enthusiasmRomanNumeral = "\n";
-				switch (enthusiasmLevel)
-				{
-					case 0:
-						enthusiasmRomanNumeral = "";
-						break;
-					case 1:
-						enthusiasmRomanNumeral += "I";
-						break;
-					case 2:
-						enthusiasmRomanNumeral += "II";
-						break;
-					case 3:
-						enthusiasmRomanNumeral += "III";
-						break;
-					case 4:
-						enthusiasmRomanNumeral += "IV";
-						break;
-					case 5:
-						enthusiasmRomanNumeral += "V";
-						break;
-				}
+				enthusiasmRomanNumeral += enthusiasmLevel.ToRomanNumerals();
 				label.EnthusiasmLevel = enthusiasmRomanNumeral;
 				label.Text = $"[hint='Preference: {label.Preference}\nEnthusiasm: {label.EnthusiasmNumber}" + $"'][center]{topicName}" + label.IconPath + enthusiasmRomanNumeral + "[/center]";
 			}

@@ -55,9 +55,9 @@ namespace tee
 				}
 			}
 		}
-		public AnnoyanceLevel Annoyance
+		public int Annoyance
 		{
-			get { return _annoyance; }
+			get { return _annoyance.CurrentAnnoyance; }
 		}
 		public List<TopicName> Likes
 		{

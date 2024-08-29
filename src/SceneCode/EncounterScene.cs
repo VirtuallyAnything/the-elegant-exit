@@ -137,21 +137,18 @@ namespace tee
 
 		private void PlayAnimationsForAttack(PlayerAttack playerAttack)
 		{
-			if (playerAttack.ConversationInterestDamage < 0)
-			{
-				// Play Negative Feedback Animation
-				
-			}
-			else if (playerAttack.ConversationInterestDamage > 0)
-			{
-				//Play Positive Feedback Animation
-			}
+			_conversationInterestDamage.Text = $"-{playerAttack.ConversationInterestDamage}";
+			Tween tween = _conversationInterestDamage.CreateTween();
+			tween.TweenProperty(
+			_conversationInterestDamage, $"{Control.PropertyName.SelfModulate}", Color.Color8(255, 255, 255, 255), 1f);
+			// Animate change to new value
+			_labelToTweak = _conversationInterestValue;
+			int startValue = _conversationInterestValue.Text.ToInt();
+			tween.TweenMethod(Callable.From<int>(SetLabelText), startValue, startValue - playerAttack.ConversationInterestDamage, 1.0f).SetDelay(2f);
+			// Fade-Out label
+			tween.TweenProperty(
+				_conversationInterestDamage, $"{Control.PropertyName.SelfModulate}", Color.Color8(255, 255, 255, 0), 1f);
 
-			/*if(playerAttack.SocialStandingChange < 0){
-				// Play Negative Feedback Animation
-			}else if(playerAttack.SocialStandingChange > 0){
-				//Play Positive Feedback Animation
-			}	*/
 			//PlayerTurnAnimationComplete?.Invoke();
 
 			//Let the player click again when all the animations have finished
@@ -180,15 +177,9 @@ namespace tee
 			tween.TweenCallback(Callable.From(() => EnemyTurnComplete?.Invoke()));
 		}
 
-		public void UpdateUI(int socialBatteryNew, float mentalCapacityNew, float interestNew)
+		public void UpdateAnnoyance(int annoyanceNew)
 		{
-			Tween tween = _socialBatteryProgress.CreateTween();
-			PropertyTweener propTweener = tween.TweenProperty(
-				_socialBatteryProgress, $"{TextureProgressBar.PropertyName.Value}", socialBatteryNew, 1f);
-			propTweener.From(_socialBatteryProgress.Value);
-
-			_mentalCapacityValue.Text = $"{mentalCapacityNew}";
-			_conversationInterestValue.Text = $"{interestNew}";
+			_annoyanceValue.Text = annoyanceNew.ToRomanNumerals();
 		}
 
 		public override void _ExitTree()

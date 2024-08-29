@@ -259,7 +259,7 @@ default_font_size = 40
 shader = ExtResource("21_u5cww")
 shader_parameter/lod = 0.0
 
-[node name="EncounterScene" type="Control" node_paths=PackedStringArray("_playerSprite", "_playerDialogue", "_enemySprite", "_enemyDialogue", "_enemyName", "_attackCardContainer", "_animationPlayer", "_mentalCapacityMax", "_mentalCapacityValue", "_mentalCapacityDamage", "_conversationInterestMax", "_conversationInterestValue", "_conversationInterestDamage", "_socialBatteryProgress")]
+[node name="EncounterScene" type="Control" node_paths=PackedStringArray("_playerSprite", "_playerDialogue", "_enemySprite", "_enemyDialogue", "_enemyName", "_attackCardContainer", "_animationPlayer", "_annoyanceValue", "_mentalCapacityMax", "_mentalCapacityValue", "_mentalCapacityDamage", "_conversationInterestMax", "_conversationInterestValue", "_conversationInterestDamage", "_socialBatteryProgress")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -276,15 +276,16 @@ _enemyDialogue = NodePath("SpeechbubbleEnemy")
 _enemyName = NodePath("EnemyName")
 _attackCardContainer = NodePath("AttackCardContainer")
 _animationPlayer = NodePath("AnimationPlayer")
-_mentalCapacityMax = NodePath("MentalCapacity/HBoxContainer2/HBoxContainer/MentalCapacityMax")
-_mentalCapacityValue = NodePath("MentalCapacity/HBoxContainer2/HBoxContainer/MentalCapacityValue")
-_mentalCapacityDamage = NodePath("MentalCapacity/HBoxContainer2/MentalCapacityDamage")
-_conversationInterestMax = NodePath("ConversationInterest/HBoxContainer2/HBoxContainer/ConversationInterestMax")
-_conversationInterestValue = NodePath("ConversationInterest/HBoxContainer2/HBoxContainer/ConversationInterestValue")
-_conversationInterestDamage = NodePath("ConversationInterest/HBoxContainer2/ConversationInterestDamage")
+_annoyanceValue = NodePath("VBoxContainer/HBoxContainer/AnnoyanceValue")
+_mentalCapacityMax = NodePath("MentalCapacity/HBoxContainer/MentalCapacityMax")
+_mentalCapacityValue = NodePath("MentalCapacity/HBoxContainer/MentalCapacityValue")
+_mentalCapacityDamage = NodePath("MentalCapacity/MentalCapacityDamage")
+_conversationInterestMax = NodePath("ConversationInterest/HBoxContainer/ConversationInterestMax")
+_conversationInterestValue = NodePath("ConversationInterest/HBoxContainer/ConversationInterestValue")
+_conversationInterestDamage = NodePath("ConversationInterest/ConversationInterestDamage")
 _socialBatteryProgress = NodePath("TextureProgressBar")
 metadata/_edit_vertical_guides_ = [575.0, 1299.0]
-metadata/_edit_horizontal_guides_ = [298.0, 149.0, 79.0, 530.0]
+metadata/_edit_horizontal_guides_ = [298.0, 149.0, 79.0, 530.0, 40.0, 53.0]
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
@@ -312,6 +313,8 @@ offset_left = -525.0
 offset_top = -740.0
 offset_right = -209.0
 offset_bottom = -225.0
+grow_horizontal = 0
+grow_vertical = 0
 alignment = 1
 
 [node name="EnemySprite" type="TextureRect" parent="VBoxContainer"]
@@ -365,38 +368,46 @@ texture = ExtResource("5_mc10u")
 expand_mode = 1
 stretch_mode = 4
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="ConversationInterest"]
-layout_mode = 0
-offset_left = 97.0
-offset_right = 231.0
-offset_bottom = 71.0
-
-[node name="HBoxContainer" type="HBoxContainer" parent="ConversationInterest/HBoxContainer2"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="ConversationInterestMax" type="Label" parent="ConversationInterest/HBoxContainer2/HBoxContainer"]
-layout_mode = 2
-theme = ExtResource("6_wdmna")
-text = "0"
-
-[node name="OutOf" type="Label" parent="ConversationInterest/HBoxContainer2/HBoxContainer"]
-layout_mode = 2
-theme = ExtResource("6_wdmna")
-text = "/"
-
-[node name="ConversationInterestValue" type="Label" parent="ConversationInterest/HBoxContainer2/HBoxContainer"]
-layout_mode = 2
-theme = ExtResource("6_wdmna")
-text = "0"
-
-[node name="ConversationInterestDamage" type="Label" parent="ConversationInterest/HBoxContainer2"]
+[node name="ConversationInterestDamage" type="Label" parent="ConversationInterest"]
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
+anchor_left = 1.381
+anchor_top = 0.404
+anchor_right = 1.381
+anchor_bottom = 0.404
+offset_left = -45.957
+offset_top = -60.34
+offset_right = 35.043
+offset_bottom = -14.34
 size_flags_horizontal = 3
 theme = ExtResource("6_wdmna")
 text = "0
 "
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ConversationInterest"]
+layout_mode = 2
+offset_left = 97.0
+offset_right = 203.0
+offset_bottom = 71.0
+size_flags_horizontal = 3
+
+[node name="ConversationInterestValue" type="Label" parent="ConversationInterest/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("6_wdmna")
+text = "0"
+
+[node name="OutOf" type="Label" parent="ConversationInterest/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("6_wdmna")
+text = "/"
+
+[node name="ConversationInterestMax" type="Label" parent="ConversationInterest/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("6_wdmna")
+text = "0"
 
 [node name="EnemyName" type="Label" parent="."]
 visible = false
@@ -744,36 +755,37 @@ texture = ExtResource("7_kn8i2")
 expand_mode = 1
 stretch_mode = 4
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="MentalCapacity"]
-layout_mode = 0
+[node name="MentalCapacityDamage" type="Label" parent="MentalCapacity"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+offset_left = 91.0
+offset_top = -26.0
+offset_right = 155.0
+offset_bottom = 20.0
+size_flags_horizontal = 3
+theme = ExtResource("6_wdmna")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MentalCapacity"]
+layout_mode = 2
 offset_left = 97.0
 offset_right = 231.0
 offset_bottom = 71.0
-
-[node name="HBoxContainer" type="HBoxContainer" parent="MentalCapacity/HBoxContainer2"]
-layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="MentalCapacityMax" type="Label" parent="MentalCapacity/HBoxContainer2/HBoxContainer"]
+[node name="MentalCapacityValue" type="Label" parent="MentalCapacity/HBoxContainer"]
 layout_mode = 2
 theme = ExtResource("6_wdmna")
 text = "0"
 
-[node name="OutOf" type="Label" parent="MentalCapacity/HBoxContainer2/HBoxContainer"]
+[node name="OutOf" type="Label" parent="MentalCapacity/HBoxContainer"]
 layout_mode = 2
 theme = ExtResource("6_wdmna")
 text = "/"
 
-[node name="MentalCapacityValue" type="Label" parent="MentalCapacity/HBoxContainer2/HBoxContainer"]
+[node name="MentalCapacityMax" type="Label" parent="MentalCapacity/HBoxContainer"]
 layout_mode = 2
 theme = ExtResource("6_wdmna")
 text = "0"
-
-[node name="MentalCapacityDamage" type="Label" parent="MentalCapacity/HBoxContainer2"]
-self_modulate = Color(1, 1, 1, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-theme = ExtResource("6_wdmna")
 
 [node name="TextureProgressBar" parent="." instance=ExtResource("9_vlhst")]
 layout_mode = 0

@@ -164,6 +164,7 @@ namespace tee
 			_isIgnoreCIBonusDamage = false;
 
 			_encounterScene.PlayDialogAnimation(_selectedAttack);
+			_encounterScene.UpdateAnnoyance(_enemy.Annoyance);
 			GD.Print($"Player attacks and does {conversationInterestBonusDamage + ConversationInterestDamage} damage to CI.");
 			GD.Print($"New Enemy CI: {Enemy.ConversationInterest}");
 			if (Enemy.ConversationInterest <= 0)

@@ -55,4 +55,31 @@ public static class Extensions : Object
 
 		return selected; // when iterations end, selected is some element of sequence. 
 	}
+
+	public static string ToRomanNumerals(this int value)
+	{
+		string romanNumeral;
+		switch (value)
+		{
+			case 1:
+				romanNumeral = "I";
+				break;
+			case 2:
+				romanNumeral = "II";
+				break;
+			case 3:
+				romanNumeral = "III";
+				break;
+			case 4:
+				romanNumeral = "IV";
+				break;
+			case 5:
+				romanNumeral = "V";
+				break;
+			default:
+				romanNumeral = "";
+				break;
+		}
+		return romanNumeral;
+	}
 }
