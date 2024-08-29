@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://bhl5fccx2vo6m"]
+[gd_scene load_steps=7 format=3 uid="uid://bhl5fccx2vo6m"]
 
 [ext_resource type="Script" path="res://src/SceneCode/StartScene.cs" id="1_xh76m"]
 [ext_resource type="Texture2D" uid="uid://bof3wrxapds3v" path="res://Assets/Textures/MainCharacters.png" id="2_lprel"]
 [ext_resource type="Theme" uid="uid://bpp0q38rfd1ms" path="res://Assets/Themes/Lobster.tres" id="3_l63qc"]
 [ext_resource type="Script" path="res://src/SceneCode/SceneSwapButton.cs" id="4_ktip8"]
 [ext_resource type="Texture2D" uid="uid://b12srjfl8cur2" path="res://Assets/UI/arrow.png" id="5_wngc0"]
+[ext_resource type="Script" path="res://src/SceneCode/QuitButton.cs" id="6_mtxc5"]
 
 [node name="StartScene" type="Control"]
 layout_mode = 3
@@ -144,3 +145,22 @@ theme_type_variation = &"HeaderMedium"
 text = "Credits"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="QuitButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -127.0
+offset_top = -95.0
+offset_right = -42.0
+offset_bottom = -38.0
+grow_horizontal = 0
+grow_vertical = 0
+mouse_default_cursor_shape = 2
+theme = ExtResource("3_l63qc")
+theme_type_variation = &"FlatButton"
+text = "Quit"
+script = ExtResource("6_mtxc5")

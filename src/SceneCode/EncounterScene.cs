@@ -26,8 +26,12 @@ namespace tee
 		private bool _dialogueAnimationFinished = true;
 		[Export] private AttackCardContainer _attackCardContainer;
 		[Export] private AnimationPlayer _animationPlayer;
+
+		[Export] private Label _mentalCapacityMax;
 		[Export] private Label _mentalCapacityValue;
 		[Export] private Label _mentalCapacityDamage;
+
+		[Export] private Label _conversationInterestMax;
 		[Export] private Label _conversationInterestValue;
 		[Export] private Label _conversationInterestDamage;
 		[Export] private TextureProgressBar _socialBatteryProgress;
@@ -46,6 +50,7 @@ namespace tee
 		public void SetupScene(EnemyData enemyData)
 		{
 			_currentEnemy = enemyData;
+			_conversationInterestMax.Text = $"{_currentEnemy.ConversationInterest}";
 			_enemyName.Text = _currentEnemy.DisplayName;
 			_enemySprite.Texture = enemyData.Texture;
 			_playerDialogue.Text = "";
@@ -56,6 +61,7 @@ namespace tee
 
 		public async Task PlayCombatStartAnimation(int socialBatteryDifference)
 		{
+			_mentalCapacityMax.Text = $"{socialBatteryDifference}";
 			_animationPlayer.Play("SocialBatterySubtract");
 			await ToSignal(_animationPlayer, AnimationPlayer.SignalName.AnimationFinished);
 

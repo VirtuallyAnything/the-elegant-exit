@@ -87,6 +87,7 @@ namespace tee
 
 		private void ChangeToMainMenu()
 		{
+			GetTree().Paused = false;
 			GetTree().Root.CallDeferred("remove_child", _currentScene);
 			_currentScene = _mainMenu;
 			GetTree().Root.CallDeferred("add_child", _currentScene);

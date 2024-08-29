@@ -70,39 +70,8 @@ offset_left = -876.0
 offset_top = -460.0
 offset_right = -735.0
 offset_bottom = -397.0
+texture_progress_offset = Vector2(22.855, 23.94)
 metadata/_edit_use_anchors_ = true
-
-[node name="Countdown" type="Label" parent="Characters/Player/Camera2D"]
-layout_direction = 2
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = 469.0
-offset_top = -514.0
-offset_right = 746.0
-offset_bottom = -334.0
-grow_horizontal = 0
-text = "0:00"
-label_settings = SubResource("LabelSettings_3w7eg")
-
-[node name="Label" type="Label" parent="Characters/Player/Camera2D/Countdown"]
-layout_mode = 0
-offset_top = 128.0
-offset_right = 40.0
-offset_bottom = 151.0
-theme = ExtResource("7_yess5")
-theme_type_variation = &"LabelShadow"
-theme_override_font_sizes/font_size = 22
-text = "Until Karaoke Time"
-
-[node name="PauseButton" type="TextureButton" parent="Characters/Player/Camera2D"]
-offset_left = 799.0
-offset_top = -482.0
-offset_right = 863.0
-offset_bottom = -417.0
-texture_normal = ExtResource("8_mivmb")
-texture_pressed = ExtResource("9_tqae0")
-texture_hover = ExtResource("9_tqae0")
 
 [node name="PointLight2D" type="PointLight2D" parent="Characters/Player" groups=["PlayerVision"]]
 shadow_enabled = true
@@ -110,17 +79,53 @@ shadow_filter = 1
 texture = ExtResource("6_k7ig0")
 
 [node name="EncounterLayer" type="CanvasLayer" parent="."]
-layer = 3
+layer = 2
 visible = false
 
 [node name="Timer" type="Timer" parent="." node_paths=PackedStringArray("_displayLabel")]
 one_shot = true
 script = ExtResource("8_28aws")
-_displayLabel = NodePath("../Characters/Player/Camera2D/Countdown")
+_displayLabel = NodePath("../CanvasLayer/Countdown")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 3
 
 [node name="PauseScene" parent="CanvasLayer" instance=ExtResource("12_3yaqs")]
 visible = false
 
-[connection signal="pressed" from="Characters/Player/Camera2D/PauseButton" to="CanvasLayer/PauseScene" method="OnPauseButtonPressed"]
+[node name="PauseButton" type="TextureButton" parent="CanvasLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -64.0
+offset_bottom = 65.0
+grow_horizontal = 0
+texture_normal = ExtResource("8_mivmb")
+texture_pressed = ExtResource("9_tqae0")
+texture_hover = ExtResource("9_tqae0")
+
+[node name="Countdown" type="Label" parent="CanvasLayer"]
+layout_direction = 2
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -138.5
+offset_right = 138.5
+offset_bottom = 180.0
+grow_horizontal = 2
+text = "0:00"
+label_settings = SubResource("LabelSettings_3w7eg")
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/Countdown"]
+layout_mode = 0
+offset_top = 128.0
+offset_right = 250.0
+offset_bottom = 154.0
+theme = ExtResource("7_yess5")
+theme_type_variation = &"LabelShadow"
+theme_override_font_sizes/font_size = 22
+text = "Until Karaoke Time"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="CanvasLayer/PauseButton" to="CanvasLayer/PauseScene" method="OnPauseButtonPressed"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://cv7lwki55h2ma"]
+[gd_scene load_steps=33 format=3 uid="uid://cv7lwki55h2ma"]
 
 [ext_resource type="Script" path="res://src/SceneCode/EncounterScene.cs" id="1_qerod"]
 [ext_resource type="Script" path="res://src/Encounter/CombatManager.cs" id="2_6eywl"]
@@ -13,9 +13,6 @@
 [ext_resource type="PackedScene" uid="uid://d21hljw8t080d" path="res://Scenes/Subscenes/SocialBattery.tscn" id="9_vlhst"]
 [ext_resource type="Script" path="res://src/UI/NotifyRichText.cs" id="10_qqenu"]
 [ext_resource type="StyleBox" uid="uid://yk0tno82ys2t" path="res://Assets/Themes/SpeechBubbleStyleBox3_mirrored.tres" id="11_shcrt"]
-[ext_resource type="Texture2D" uid="uid://70b3pt2my418" path="res://Assets/UI/Icons/InfoIcon.png" id="12_l8di7"]
-[ext_resource type="Texture2D" uid="uid://dwn2tc7u6y4tt" path="res://Assets/UI/Icons/InfoIcon_hover.png" id="13_7yst1"]
-[ext_resource type="Script" path="res://src/UI/AddOverlayButton.cs" id="14_whhlr"]
 [ext_resource type="Script" path="res://src/UI/PreferenceDisplay.cs" id="17_de043"]
 [ext_resource type="Texture2D" uid="uid://dj0q8i0h0goec" path="res://Assets/UI/Icons/LikeIcon.png" id="18_vqv50"]
 [ext_resource type="Texture2D" uid="uid://binr4bnx3kgwn" path="res://Assets/UI/Icons/DislikeIcon.png" id="19_bhsfw"]
@@ -262,7 +259,7 @@ default_font_size = 40
 shader = ExtResource("21_u5cww")
 shader_parameter/lod = 0.0
 
-[node name="EncounterScene" type="Control" node_paths=PackedStringArray("_playerSprite", "_playerDialogue", "_enemySprite", "_enemyDialogue", "_enemyName", "_attackCardContainer", "_animationPlayer", "_mentalCapacityValue", "_mentalCapacityDamage", "_conversationInterestValue", "_conversationInterestDamage", "_socialBatteryProgress")]
+[node name="EncounterScene" type="Control" node_paths=PackedStringArray("_playerSprite", "_playerDialogue", "_enemySprite", "_enemyDialogue", "_enemyName", "_attackCardContainer", "_animationPlayer", "_mentalCapacityMax", "_mentalCapacityValue", "_mentalCapacityDamage", "_conversationInterestMax", "_conversationInterestValue", "_conversationInterestDamage", "_socialBatteryProgress")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -279,10 +276,12 @@ _enemyDialogue = NodePath("SpeechbubbleEnemy")
 _enemyName = NodePath("EnemyName")
 _attackCardContainer = NodePath("AttackCardContainer")
 _animationPlayer = NodePath("AnimationPlayer")
-_mentalCapacityValue = NodePath("MentalCapacity/MentalCapacityValue")
-_mentalCapacityDamage = NodePath("MentalCapacity/MentalCapacityDamage")
-_conversationInterestValue = NodePath("ConversationInterest/ConversationInterestValue")
-_conversationInterestDamage = NodePath("ConversationInterest/ConversationInterestDamage")
+_mentalCapacityMax = NodePath("MentalCapacity/HBoxContainer2/HBoxContainer/MentalCapacityMax")
+_mentalCapacityValue = NodePath("MentalCapacity/HBoxContainer2/HBoxContainer/MentalCapacityValue")
+_mentalCapacityDamage = NodePath("MentalCapacity/HBoxContainer2/MentalCapacityDamage")
+_conversationInterestMax = NodePath("ConversationInterest/HBoxContainer2/HBoxContainer/ConversationInterestMax")
+_conversationInterestValue = NodePath("ConversationInterest/HBoxContainer2/HBoxContainer/ConversationInterestValue")
+_conversationInterestDamage = NodePath("ConversationInterest/HBoxContainer2/ConversationInterestDamage")
 _socialBatteryProgress = NodePath("TextureProgressBar")
 metadata/_edit_vertical_guides_ = [575.0, 1299.0]
 metadata/_edit_horizontal_guides_ = [298.0, 149.0, 79.0, 530.0]
@@ -340,22 +339,35 @@ texture = ExtResource("5_mc10u")
 expand_mode = 1
 stretch_mode = 4
 
-[node name="ConversationInterestValue" type="Label" parent="ConversationInterest"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="ConversationInterest"]
 layout_mode = 0
 offset_left = 97.0
-offset_top = 12.0
-offset_right = 162.0
-offset_bottom = 58.0
-theme = ExtResource("6_wdmna")
-text = "20"
+offset_right = 231.0
+offset_bottom = 71.0
 
-[node name="ConversationInterestDamage" type="Label" parent="ConversationInterest"]
+[node name="HBoxContainer" type="HBoxContainer" parent="ConversationInterest/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ConversationInterestMax" type="Label" parent="ConversationInterest/HBoxContainer2/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("6_wdmna")
+text = "0"
+
+[node name="OutOf" type="Label" parent="ConversationInterest/HBoxContainer2/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("6_wdmna")
+text = "/"
+
+[node name="ConversationInterestValue" type="Label" parent="ConversationInterest/HBoxContainer2/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("6_wdmna")
+text = "0"
+
+[node name="ConversationInterestDamage" type="Label" parent="ConversationInterest/HBoxContainer2"]
 self_modulate = Color(1, 1, 1, 0)
-layout_mode = 0
-offset_left = 162.0
-offset_top = 12.0
-offset_right = 227.0
-offset_bottom = 58.0
+layout_mode = 2
+size_flags_horizontal = 3
 theme = ExtResource("6_wdmna")
 text = "0
 "
@@ -465,24 +477,6 @@ theme_type_variation = &"RichTextDialogue"
 bbcode_enabled = true
 fit_content = true
 script = ExtResource("10_qqenu")
-
-[node name="InfoButton" type="TextureButton" parent="."]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -104.0
-offset_top = -1036.0
-offset_right = -40.0
-offset_bottom = -971.0
-grow_horizontal = 0
-grow_vertical = 0
-texture_normal = ExtResource("12_l8di7")
-texture_pressed = ExtResource("13_7yst1")
-texture_hover = ExtResource("13_7yst1")
-script = ExtResource("14_whhlr")
 
 [node name="ThoughtBubbles" type="Control" parent="." node_paths=PackedStringArray("_topicLabels")]
 anchors_preset = 0
@@ -697,22 +691,35 @@ texture = ExtResource("7_kn8i2")
 expand_mode = 1
 stretch_mode = 4
 
-[node name="MentalCapacityValue" type="Label" parent="MentalCapacity"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="MentalCapacity"]
+layout_mode = 0
+offset_left = 97.0
+offset_right = 231.0
+offset_bottom = 71.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MentalCapacity/HBoxContainer2"]
 layout_mode = 2
-offset_left = 115.0
-offset_top = 12.0
-offset_right = 138.0
-offset_bottom = 58.0
+size_flags_horizontal = 3
+
+[node name="MentalCapacityMax" type="Label" parent="MentalCapacity/HBoxContainer2/HBoxContainer"]
+layout_mode = 2
 theme = ExtResource("6_wdmna")
 text = "0"
 
-[node name="MentalCapacityDamage" type="Label" parent="MentalCapacity"]
+[node name="OutOf" type="Label" parent="MentalCapacity/HBoxContainer2/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("6_wdmna")
+text = "/"
+
+[node name="MentalCapacityValue" type="Label" parent="MentalCapacity/HBoxContainer2/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("6_wdmna")
+text = "0"
+
+[node name="MentalCapacityDamage" type="Label" parent="MentalCapacity/HBoxContainer2"]
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
-offset_left = 155.0
-offset_top = 12.0
-offset_right = 183.0
-offset_bottom = 58.0
+size_flags_horizontal = 3
 theme = ExtResource("6_wdmna")
 
 [node name="TextureProgressBar" parent="." instance=ExtResource("9_vlhst")]
