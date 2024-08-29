@@ -10,12 +10,12 @@ namespace tee
 		[Export] private EncounterScene _encounterScene;
 		[Export] private PreferenceDisplay _preferenceDisplay;
 
-		private int _socialBatteryTemp;
 		private EncounterPlayer _player;
 		private int _conversationInterestDamage;
 		private TopicName _playerCurrentTopicName;
 		private TopicName _playerLastTopicName;
 		private PlayerAttack _selectedAttack;
+		private int _transferAmount = 10;
 		private bool _isFirstTurn = true;
 
 		private EncounterEnemy _enemy;
@@ -70,14 +70,14 @@ namespace tee
 		public override void _Ready()
 		{
 			_player = new(GameManager.AvailableAttacks);
-			_socialBatteryTemp = GameManager.SocialBattery - 10;
+			
 			_encounterScene.SetupCompleted += StartCombat;
 			EncounterScene.PlayerTurnComplete += EnemyAttack;
 			EncounterScene.EnemyTurnComplete += SetupNewAttack;
 			AttackCard.AttackSelected += PlayerAttack;
 		}
 
-		public void StartCombat()
+		public async void StartCombat()
 		{
 			PlayerAttack randomAttack;
 			for (int i = 0; i <= 2; i++)
@@ -88,6 +88,10 @@ namespace tee
 			}
 			_enemy = new(_encounterScene.CurrentEnemy);
 			_encounterScene.AttackCardContainer.DisableInput();
+			await _encounterScene.PlayCombatStartAnimation(_transferAmount);
+
+			GameManager.SocialBattery -= _transferAmount;
+			_player.MentalCapacity = _transferAmount;
 			EnemyAttack();
 		}
 
@@ -140,7 +144,7 @@ namespace tee
 							}
 							if (_player.DiscoveredEnemyPreferences.ContainsKey(_playerCurrentTopicName))
 							{
-								_socialBatteryTemp -= 1;
+								GameManager.SocialBattery -= 1;
 							}
 							break;
 					}
@@ -159,7 +163,7 @@ namespace tee
 			_isIgnoreCIBonusDamage = false;
 
 			_encounterScene.PlayCombatAnimation(_selectedAttack);
-			_encounterScene.UpdateUI(_socialBatteryTemp, _player.MentalCapacity, Enemy.ConversationInterest);
+			//_encounterScene.UpdateUI(GameManager.SocialBattery, _player.MentalCapacity, Enemy.ConversationInterest);
 			GD.Print($"Player attacks and does {conversationInterestBonusDamage + ConversationInterestDamage} damage to CI.");
 			GD.Print($"New Enemy CI: {Enemy.ConversationInterest}");
 			if (Enemy.ConversationInterest <= 0)
@@ -190,12 +194,12 @@ namespace tee
 			}
 			else
 			{
-				_socialBatteryTemp += enemyAttack.SocialBatteryChange;
-				_player.MentalCapacity += enemyAttack.MentalCapacityChange;
+				GameManager.SocialBattery += enemyAttack.SocialBatteryChange;
+				_player.MentalCapacity -= enemyAttack.MentalCapacityDamage;
 			}
 			Enemy.IncreaseEnthusiasmFor(chosenTopicName);
 			_encounterScene.PlayCombatAnimation(enemyAttack);
-			_encounterScene.UpdateUI(_socialBatteryTemp, _player.MentalCapacity, Enemy.ConversationInterest);
+			_encounterScene.UpdateUI(GameManager.SocialBattery, _player.MentalCapacity, Enemy.ConversationInterest);
 		}
 
 		public void BlockNextEnemyAttack()

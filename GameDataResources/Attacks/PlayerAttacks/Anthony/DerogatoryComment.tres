@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="TopicalPlayerAttack" load_steps=5 format=3 uid="uid://82xcndk1xvur"]
+[gd_resource type="Resource" script_class="TopicalPlayerAttack" load_steps=10 format=3 uid="uid://82xcndk1xvur"]
 
 [ext_resource type="Resource" uid="uid://cb1ewo23xjf2i" path="res://GameDataResources/Attacks/PlayerAttacks/BonusEffects/DerogatoryCommentEffect.tres" id="1_qbwqe"]
 [ext_resource type="Script" path="res://src/ResourceScripts/TopicDialogue.cs" id="2_708lr"]
@@ -7,11 +7,36 @@
 [sub_resource type="Resource" id="Resource_0621a"]
 script = ExtResource("2_708lr")
 _topicName = 5
-_text = "You know what? Art fucking sucks. You don't earn anything, nobody appreciates your work as work and in the end they will just replace you with AI. Art is futile, Humanity is futile! Why do we even exist??"
+_text = "I honestly don't get what people see in modern Art. I could splash some colors on a canvas too."
+
+[sub_resource type="Resource" id="Resource_s3a14"]
+script = ExtResource("2_708lr")
+_topicName = 1
+_text = "People who need Sports in their life are like dogs that need to be taken out for a walk."
+
+[sub_resource type="Resource" id="Resource_tldry"]
+script = ExtResource("2_708lr")
+_topicName = 2
+_text = "Influencers are all just artificial posers who would do anything for money."
+
+[sub_resource type="Resource" id="Resource_rspfc"]
+script = ExtResource("2_708lr")
+_topicName = 3
+_text = "People who work with money aren't providing a real service, they're just stuffing their own pockets."
+
+[sub_resource type="Resource" id="Resource_7rfl7"]
+script = ExtResource("2_708lr")
+_topicName = 4
+_text = "I say, we should stop the corrupt Politics and go back to chopping heads off!"
+
+[sub_resource type="Resource" id="Resource_nn7ei"]
+script = ExtResource("2_708lr")
+_topicName = 6
+_text = "Gossip is just about the biGossiping is a hobby for horrible, spiteful people."
 
 [resource]
 script = ExtResource("2_goe1p")
-_topicRelatedQuotes = [SubResource("Resource_0621a")]
+_topicRelatedQuotes = [SubResource("Resource_0621a"), SubResource("Resource_s3a14"), SubResource("Resource_tldry"), SubResource("Resource_rspfc"), SubResource("Resource_7rfl7"), SubResource("Resource_nn7ei")]
 UnlockedTopics = [1, 2, 3, 4, 5, 6]
 _bonusEffect = ExtResource("1_qbwqe")
 OwningCharacter = 1

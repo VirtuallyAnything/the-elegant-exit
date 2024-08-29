@@ -6,7 +6,7 @@
 script = ExtResource("1_vm0hw")
 _topic = 0
 SocialBatteryChange = -5
-MentalCapacityChange = -2.0
+MentalCapacityDamage = 0.0
 Quote = ""
 AttackName = "Set Up Hangout"
 Animation = ""

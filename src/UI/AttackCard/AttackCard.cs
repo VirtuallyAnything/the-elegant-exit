@@ -114,9 +114,10 @@ namespace tee
 
 		public override void _ExitTree()
 		{
-			_back.TopicPicked -= OnTopicButtonChildPressed;
+			if (_back != null)
+			{
+				_back.TopicPicked -= OnTopicButtonChildPressed;
+			}
 		}
-
-
 	}
 }

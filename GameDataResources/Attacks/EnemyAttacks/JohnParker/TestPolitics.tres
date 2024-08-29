@@ -5,8 +5,8 @@
 [resource]
 script = ExtResource("1_53vpf")
 _topic = 4
-SocialBatteryChange = 0
-MentalCapacityChange = 0.0
+SocialBatteryChange = 3
+MentalCapacityDamage = 1.0
 Quote = "Neutral Politics"
 AttackName = "Test Politics"
 Animation = ""

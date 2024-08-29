@@ -6,7 +6,7 @@
 script = ExtResource("1_vthjv")
 _topic = 6
 SocialBatteryChange = -3
-MentalCapacityChange = -3.0
+MentalCapacityDamage = 1.0
 Quote = "Attack about Gossip"
 AttackName = "Ask About Tailor"
 Animation = ""

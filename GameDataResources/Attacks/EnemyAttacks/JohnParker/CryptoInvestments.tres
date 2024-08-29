@@ -5,8 +5,8 @@
 [resource]
 script = ExtResource("1_hqqim")
 _topic = 7
-SocialBatteryChange = 0
-MentalCapacityChange = -1.0
+SocialBatteryChange = -3
+MentalCapacityDamage = 2.0
 Quote = "Attack about Special Interest"
 AttackName = "Crypto Investments"
 Animation = ""

@@ -6,7 +6,7 @@
 script = ExtResource("1_rlcto")
 _topic = 0
 SocialBatteryChange = 0
-MentalCapacityChange = -1.0
+MentalCapacityDamage = 0.0
 Quote = ""
 AttackName = "Talk About Stacy"
 Animation = ""

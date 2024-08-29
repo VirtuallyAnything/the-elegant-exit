@@ -17,7 +17,7 @@ namespace tee
 			set{_currentEnemy = value;}
 		}
 		private static int _socialStandingOverall;
-		private static int _socialBattery = 30;
+		private static int _socialBattery = 100;
 		public static Godot.Collections.Array<PlayerAttack> AvailableAttacks
 		{
 			get { return _availableAttacks; }
@@ -29,8 +29,8 @@ namespace tee
 			get { return _socialBattery; }
 			set 
 			{ 
-				if(value > 30){
-					_socialBattery = 30;
+				if(value > 100){
+					_socialBattery = 100;
 				}else if(value <= 0){
 					_socialBattery = 0;
 					EndGame();

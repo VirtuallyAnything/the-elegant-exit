@@ -6,7 +6,7 @@
 script = ExtResource("1_rxd7o")
 _topic = 0
 SocialBatteryChange = 2
-MentalCapacityChange = 0.0
+MentalCapacityDamage = 0.0
 Quote = ""
 AttackName = "Liking The Music"
 Animation = ""

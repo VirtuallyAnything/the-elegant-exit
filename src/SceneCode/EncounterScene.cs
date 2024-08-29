@@ -1,3 +1,5 @@
+using System.Reflection.Metadata.Ecma335;
+using System.Threading.Tasks;
 using Godot;
 
 namespace tee
@@ -11,22 +13,23 @@ namespace tee
 
 		[Export] private TextureRect _playerSprite;
 		[Export] private Color _playerDialogueColor;
-		[Export] private VariableDialogueButton _playerDialogue;
+		[Export] private VariableDialogueControl _playerDialogue;
 
 		[Export] private TextureRect _enemySprite;
 		[Export] private Color _enemyDialogueColor;
-		[Export] private VariableDialogueButton _enemyDialogue;
+		[Export] private VariableDialogueControl _enemyDialogue;
 		[Export] private Label _enemyName;
 		private EnemyData _currentEnemy;
 
+		private Label _labelToTweak;
 		private Tween _activeDialogueTween;
 		private bool _dialogueAnimationFinished = true;
-		private bool _attackAnimationFinished = true;
-		private bool _isPlayerTurn;
 		[Export] private AttackCardContainer _attackCardContainer;
 		[Export] private AnimationPlayer _animationPlayer;
 		[Export] private Label _mentalCapacityValue;
+		[Export] private Label _mentalCapacityDamage;
 		[Export] private Label _conversationInterestValue;
+		[Export] private Label _conversationInterestDamage;
 		[Export] private TextureProgressBar _socialBatteryProgress;
 
 		public EnemyData CurrentEnemy
@@ -47,11 +50,28 @@ namespace tee
 			_enemySprite.Texture = enemyData.Texture;
 			_playerDialogue.Text = "";
 			_enemyDialogue.Text = "";
-			_playerDialogue.DialogueButtonPressed += OnSpeechBubblePressed;
-			_enemyDialogue.DialogueButtonPressed += OnSpeechBubblePressed;
-			//_dialogueLine.Modulate = _enemyDialogueColor;
 			_socialBatteryProgress.Value = GameManager.SocialBattery;
 			SetupCompleted?.Invoke();
+		}
+
+		public async Task PlayCombatStartAnimation(int socialBatteryDifference)
+		{
+			_animationPlayer.Play("SocialBatterySubtract");
+			await ToSignal(_animationPlayer, AnimationPlayer.SignalName.AnimationFinished);
+
+			Tween valueTween = _socialBatteryProgress.CreateTween();
+			valueTween.Parallel().TweenProperty(
+				_socialBatteryProgress, $"{TextureProgressBar.PropertyName.Value}", _socialBatteryProgress.Value - socialBatteryDifference, 2f);
+			_labelToTweak = _mentalCapacityValue;
+			valueTween.Parallel().TweenMethod(Callable.From<int>(SetLabelText), 0.0f, socialBatteryDifference, 1.0f);
+			_animationPlayer.SpeedScale = -1;
+			valueTween.TweenCallback(Callable.From(() => _animationPlayer.Play("SocialBatterySubtract", -1, 1, true)));
+			await ToSignal(_animationPlayer, AnimationPlayer.SignalName.AnimationFinished);
+		}
+
+		public void SetLabelText(int toNumber)
+		{
+			_labelToTweak.Text = $"{toNumber}";
 		}
 
 		public void PlayCombatAnimation(PlayerAttack attack)
@@ -75,9 +95,7 @@ namespace tee
 		public void PlayCombatAnimation(EnemyAttack attack)
 		{
 			_enemyDialogue.SetEntireVisibility(true);
-			_enemyDialogue.Disabled = false;
 			_playerDialogue.SetEntireVisibility(false);
-			_enemyDialogue.Disabled = false;
 			_enemyDialogue.Text = attack.Quote;
 			//_dialogueLine.Modulate = _enemyDialogueColor;
 			Tween tween = _enemyDialogue.CreateTween();
@@ -88,7 +106,7 @@ namespace tee
 			tween.TweenCallback(Callable.From(() => PlayAnimationsForAttack(attack)));
 		}
 
-		public void SkipDialogueAnimation(VariableDialogueButton variableDialogue)
+		public void SkipDialogueAnimation(VariableDialogueControl variableDialogue)
 		{
 			if (_activeDialogueTween == null)
 			{
@@ -100,29 +118,16 @@ namespace tee
 			_activeDialogueTween.Kill();
 		}
 
-		public void OnSpeechBubblePressed(VariableDialogueButton variableDialogue)
+		public void OnSpeechBubblePressed()
 		{
-			if (!_dialogueAnimationFinished)
+			if (_dialogueAnimationFinished)
 			{
-				SkipDialogueAnimation(variableDialogue);
-			}
-			else if (!_attackAnimationFinished)
-			{
-				//SkipAttackAnimation()
-			}
-			else
-			{
-				if (_isPlayerTurn)
-				{
-					PlayerTurnComplete?.Invoke();
-					_isPlayerTurn = false;
-				}
+				PlayerTurnComplete?.Invoke();
 			}
 		}
 
 		private void PlayAnimationsForAttack(PlayerAttack playerAttack)
 		{
-			_attackAnimationFinished = false;
 			if (playerAttack.ConversationInterestDamage < 0)
 			{
 				// Play Negative Feedback Animation
@@ -140,33 +145,21 @@ namespace tee
 			//PlayerTurnAnimationComplete?.Invoke();
 
 			//Let the player click again when all the animations have finished
-			_attackAnimationFinished = true;
 		}
 
 		private void PlayAnimationsForAttack(EnemyAttack enemyAttack)
 		{
-			_attackAnimationFinished = false;
-			if (enemyAttack.SocialBatteryChange < 0)
-			{
-				// Play Negative Feedback Animation	
-			}
-			else if (enemyAttack.SocialBatteryChange > 0)
-			{
-				//Play Positive Feedback Animation
-			}
+			_mentalCapacityDamage.Text = $"-{enemyAttack.MentalCapacityDamage}";
 
-			if (enemyAttack.MentalCapacityChange < 0)
-			{
-				// Play Negative Feedback Animation
-			}
-			else if (enemyAttack.MentalCapacityChange > 0)
-			{
-				//Play Positive Feedback Animation
-			}
-			_attackAnimationFinished = true;
-			EnemyTurnComplete?.Invoke();
-			_enemyDialogue.Disabled = true;
-			_isPlayerTurn = true;
+			Tween tween = _mentalCapacityDamage.CreateTween();
+			tween.TweenProperty(
+				_mentalCapacityDamage, $"{Control.PropertyName.SelfModulate}", Color.Color8(255, 255, 255, 255), 1f);
+			_labelToTweak = _mentalCapacityValue;
+			int startValue = _mentalCapacityValue.Text.ToInt();
+			tween.TweenMethod(Callable.From<int>(SetLabelText), startValue, startValue + enemyAttack.MentalCapacityDamage, 1.0f).SetDelay(2f);
+			tween.TweenProperty(
+				_mentalCapacityDamage, $"{Control.PropertyName.SelfModulate}", Color.Color8(255, 255, 255, 0), 1f);
+				tween.TweenCallback(Callable.From(() => EnemyTurnComplete?.Invoke()));	
 		}
 
 		public void UpdateUI(int socialBatteryNew, float mentalCapacityNew, float interestNew)
@@ -183,8 +176,6 @@ namespace tee
 		public override void _ExitTree()
 		{
 			base._ExitTree();
-			_playerDialogue.DialogueButtonPressed -= OnSpeechBubblePressed;
-			_enemyDialogue.DialogueButtonPressed -= OnSpeechBubblePressed;
 		}
 	}
 }

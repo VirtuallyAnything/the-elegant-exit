@@ -6,7 +6,7 @@
 script = ExtResource("1_2i6if")
 _topic = 6
 SocialBatteryChange = -5
-MentalCapacityChange = -2.0
+MentalCapacityDamage = 1.0
 Quote = "Attack about Gossip"
 AttackName = "Comment On Looks"
 Animation = ""

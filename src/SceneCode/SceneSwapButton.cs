@@ -5,7 +5,12 @@ using tee;
 public partial class SceneSwapButton : BaseButton
 {
 	private SceneManager _sceneManager;
-    [Export] private SceneName _sceneName;
+    private SceneName _sceneName;
+    [Export]
+    public SceneName SceneName{
+        get{return _sceneName;}
+        set{_sceneName = value;}
+    }
 
     public override void _Ready()
     {

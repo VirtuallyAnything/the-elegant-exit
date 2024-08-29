@@ -5,8 +5,8 @@
 [resource]
 script = ExtResource("1_j5eby")
 _topic = 5
-SocialBatteryChange = 0
-MentalCapacityChange = 0.0
+SocialBatteryChange = -2
+MentalCapacityDamage = 1.0
 Quote = "Neutral Art"
 AttackName = "Test Art"
 Animation = ""

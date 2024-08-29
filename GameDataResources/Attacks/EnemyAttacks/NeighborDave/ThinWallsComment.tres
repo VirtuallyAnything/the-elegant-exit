@@ -6,7 +6,7 @@
 script = ExtResource("1_8ecoh")
 _topic = 0
 SocialBatteryChange = -10
-MentalCapacityChange = -5.0
+MentalCapacityDamage = 0.0
 Quote = ""
 AttackName = "Thin Walls Comment"
 Animation = ""

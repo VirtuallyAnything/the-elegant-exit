@@ -6,7 +6,7 @@
 script = ExtResource("1_thddg")
 _topic = 2
 SocialBatteryChange = -3
-MentalCapacityChange = -1.0
+MentalCapacityDamage = 2.0
 Quote = "Attack about Lifestyle"
 AttackName = "Who Invited You?"
 Animation = ""

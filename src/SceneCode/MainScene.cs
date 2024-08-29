@@ -4,7 +4,7 @@ using System;
 namespace tee
 {
 	public delegate void InitializationFinishedHandler();
-	public partial class MainScene : Node2D
+	public partial class MainScene : Scene
 	{
 		public static event InitializationFinishedHandler MainSceneInit;
 		[Export] private Scene _currentFloor;
@@ -30,12 +30,10 @@ namespace tee
 
 		public override void _Ready()
 		{
-			SceneManager.MainScene = this;
 			GameManager.Player = _player;
 			GameManager.SetupGame();
 			UpdateUI();
 			_camera.MakeCurrent();
-			MainSceneInit?.Invoke();
 		}
 
 		public void ChangeSubScene(Scene scene)
@@ -48,8 +46,6 @@ namespace tee
 			MoveChild(scene, 0);
 			_currentFloor = scene;
 		}
-
-
 
 		public void UpdateUI()
 		{

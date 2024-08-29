@@ -6,7 +6,7 @@
 script = ExtResource("1_j8xgk")
 _topic = 0
 SocialBatteryChange = -2
-MentalCapacityChange = -1.0
+MentalCapacityDamage = 0.0
 Quote = ""
 AttackName = "Celebrity Gossip"
 Animation = ""
