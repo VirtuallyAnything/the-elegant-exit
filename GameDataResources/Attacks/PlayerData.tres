@@ -1,4 +1,4 @@
-[gd_resource type="Resource" load_steps=8 format=3 uid="uid://d0bu2gll3u4xb"]
+[gd_resource type="Resource" load_steps=12 format=3 uid="uid://d0bu2gll3u4xb"]
 
 [ext_resource type="Resource" uid="uid://jcvldt15okdk" path="res://GameDataResources/Attacks/PlayerAttacks/Marc/AwkwardAnecdote.tres" id="1_32iky"]
 [ext_resource type="Script" path="res://src/ResourceScripts/Data/PlayerData.cs" id="3_rxbdb"]
@@ -7,7 +7,11 @@
 [ext_resource type="Resource" uid="uid://0jqdbyw83i7v" path="res://GameDataResources/Attacks/PlayerAttacks/Marc/Nod&Smile.tres" id="5_f3r0q"]
 [ext_resource type="Resource" uid="uid://cbqcfkv2twa4n" path="res://GameDataResources/Attacks/PlayerAttacks/Marc/AskForInterest.tres" id="5_syyrr"]
 [ext_resource type="Resource" uid="uid://82xcndk1xvur" path="res://GameDataResources/Attacks/PlayerAttacks/Anthony/DerogatoryComment.tres" id="6_sqlnd"]
+[ext_resource type="Resource" uid="uid://cs6bib4u6s2ou" path="res://GameDataResources/Attacks/PlayerAttacks/Marc/TalkAboutWeather.tres" id="7_ombqk"]
+[ext_resource type="Resource" uid="uid://4on4vfjohtjr" path="res://GameDataResources/Attacks/PlayerAttacks/Anthony/ShowDisinterest.tres" id="8_ymie0"]
+[ext_resource type="Resource" uid="uid://28s477g34qgo" path="res://GameDataResources/Attacks/PlayerAttacks/Anthony/GiveCompliment.tres" id="9_tq8rc"]
+[ext_resource type="Resource" uid="uid://v2k464qx813w" path="res://GameDataResources/Attacks/PlayerAttacks/Anthony/ElaborateTransition.tres" id="10_go3im"]
 
 [resource]
 script = ExtResource("3_rxbdb")
-_availableAttacks = Array[Resource]([ExtResource("1_32iky"), ExtResource("1_32iky"), ExtResource("5_f3r0q"), ExtResource("3_wjwpo"), ExtResource("4_fnsck"), ExtResource("4_fnsck"), ExtResource("5_syyrr"), ExtResource("6_sqlnd")])
+_availableAttacks = Array[Resource]([ExtResource("1_32iky"), ExtResource("1_32iky"), ExtResource("5_f3r0q"), ExtResource("3_wjwpo"), ExtResource("4_fnsck"), ExtResource("4_fnsck"), ExtResource("5_syyrr"), ExtResource("6_sqlnd"), ExtResource("7_ombqk"), ExtResource("8_ymie0"), ExtResource("9_tq8rc"), ExtResource("10_go3im")])

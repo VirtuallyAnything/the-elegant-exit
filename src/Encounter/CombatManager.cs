@@ -82,7 +82,7 @@ namespace tee
 		public async void StartCombat()
 		{
 			PlayerAttack randomAttack;
-			for (int i = 0; i <= 2; i++)
+			for (int i = 0; i <= 3; i++)
 			{
 				randomAttack = _player.ChooseRandomAttack();
 
@@ -172,14 +172,17 @@ namespace tee
 			// Actually subtract the damages from Conversation Interest
 			Enemy.ConversationInterest -= conversationInterestBonusDamage + ConversationInterestDamage;
 
-			if(topicOfAttack != TopicName.None){
-				_preferenceDisplay.UpdateEnthusiasm(_playerCurrentTopicName, Enemy.GetEnthusiasmLevelFor(_playerCurrentTopicName));
-			}
-			
 			_isIgnoreCIBonusDamage = false;
 
 			await _encounterScene.PlayDialogAnimation(_selectedAttack);
 			await _encounterScene.PlayAnimationsForAttack(_selectedAttack, conversationInterestBonusDamage);
+			await _encounterScene.UpdateConversationInterestMax();
+
+			if(topicOfAttack != TopicName.None){
+				_preferenceDisplay.UpdateEnthusiasm(_playerCurrentTopicName, Enemy.GetEnthusiasmLevelFor(_playerCurrentTopicName));
+				_encounterScene.UpdateTopic(topicOfAttack);
+			}
+			
 			_encounterScene.UpdateAnnoyance(Enemy.Annoyance);
 			_encounterScene.UpdateConversationInterestModifiers(Enemy.ConversationInterestModifierAnnoyance, Enemy.ConversationInterestModifierEnthusiasm);
 			GD.Print($"Player attacks and does {conversationInterestBonusDamage + ConversationInterestDamage} damage to CI.");
@@ -218,9 +221,11 @@ namespace tee
 				_player.MentalCapacity -= enemyAttack.MentalCapacityDamage;
 				await _encounterScene.PlayAnimationsForAttack(enemyAttack);
 			}
+			await _encounterScene.UpdateConversationInterestMax();
 			Enemy.IncreaseEnthusiasmFor(chosenTopicName);
 			_preferenceDisplay.UpdateEnthusiasm(chosenTopicName, Enemy.GetEnthusiasmLevelFor(chosenTopicName));
-			
+			_encounterScene.UpdateTopic(chosenTopicName);
+			GD.Print("Enemy selects Topic");
 			_encounterScene.UpdateConversationInterestModifiers(_enemy.ConversationInterestModifierAnnoyance, _enemy.ConversationInterestModifierEnthusiasm);
 			
 			EnemyTurnComplete?.Invoke();

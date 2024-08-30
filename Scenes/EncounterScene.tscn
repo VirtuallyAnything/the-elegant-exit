@@ -261,7 +261,7 @@ default_font_size = 40
 shader = ExtResource("21_u5cww")
 shader_parameter/lod = 0.0
 
-[node name="EncounterScene" type="Control" node_paths=PackedStringArray("_playerSprite", "_playerDialogue", "_enemySprite", "_enemyDialogue", "_enemyName", "_attackCardContainer", "_animationPlayer", "_annoyanceValue", "_currentMaxCIChanges", "_mentalCapacityMax", "_mentalCapacityValue", "_mentalCapacityDamage", "_conversationInterestMax", "_conversationInterestMaxChange", "_conversationInterestValue", "_conversationInterestDamage", "_socialBatteryProgress")]
+[node name="EncounterScene" type="Control" node_paths=PackedStringArray("_playerSprite", "_playerDialogue", "_enemySprite", "_enemyDialogue", "_enemyName", "_attackCardContainer", "_animationPlayer", "_currentTopic", "_annoyanceValue", "_currentMaxCIChanges", "_mentalCapacityMax", "_mentalCapacityValue", "_mentalCapacityDamage", "_conversationInterestMax", "_conversationInterestMaxChange", "_conversationInterestValue", "_conversationInterestDamage", "_socialBatteryProgress")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -278,6 +278,7 @@ _enemyDialogue = NodePath("SpeechbubbleEnemy")
 _enemyName = NodePath("EnemyName")
 _attackCardContainer = NodePath("AttackCardContainer")
 _animationPlayer = NodePath("AnimationPlayer")
+_currentTopic = NodePath("Panel2/MarginContainer/VBoxContainer/CurrentTopic")
 _annoyanceValue = NodePath("VBoxContainer/HBoxContainer/AnnoyanceValue")
 _currentMaxCIChanges = NodePath("ConversationInterest/HBoxContainer/CurrentMaxCIChanges")
 _mentalCapacityMax = NodePath("MentalCapacity/HBoxContainer/MentalCapacityMax")
@@ -839,5 +840,42 @@ stretch_margin_top = 30
 stretch_margin_right = 30
 stretch_margin_bottom = 30
 texture_progress_offset = Vector2(23.165, 23.41)
+
+[node name="Panel2" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -162.5
+offset_top = -220.0
+offset_right = 162.5
+offset_bottom = -70.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("6_wdmna")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("6_wdmna")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel2/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("6_2175l")
+text = "Current Topic:"
+horizontal_alignment = 1
+
+[node name="CurrentTopic" type="Label" parent="Panel2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+horizontal_alignment = 1
 
 [connection signal="pressed" from="SpeechbubblePlayer" to="." method="OnSpeechBubblePressed"]
