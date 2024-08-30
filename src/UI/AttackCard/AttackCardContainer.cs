@@ -12,7 +12,7 @@ namespace tee
 		public override void _Ready()
 		{
 			TopicButton.OnButtonPressed += DisableInput;
-			EncounterScene.EnemyTurnComplete += EnableInput;
+			CombatManager.EnemyTurnComplete += EnableInput;
 			_attackCardFront = GD.Load<PackedScene>("res://Scenes/Subscenes/AttackCardFront.tscn");
 			_attackCardBack = GD.Load<PackedScene>("res://Scenes/Subscenes/AttackCardBack.tscn");
 		}
@@ -96,7 +96,7 @@ namespace tee
 		public override void _ExitTree()
 		{
 			TopicButton.OnButtonPressed -= DisableInput;
-			EncounterScene.EnemyTurnComplete -= EnableInput;
+			CombatManager.EnemyTurnComplete -= EnableInput;
 		}
 	}
 }

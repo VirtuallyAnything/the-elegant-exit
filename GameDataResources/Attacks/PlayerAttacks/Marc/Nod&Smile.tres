@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("2_4gqqj")
-_quotes = []
+_quotes = [":)", "*Nod* *Nod*"]
 _bonusEffect = ExtResource("1_laqfd")
 OwningCharacter = 0
 ConversationInterestDamage = 2

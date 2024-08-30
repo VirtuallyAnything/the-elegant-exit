@@ -3,12 +3,12 @@ using System;
 
 namespace tee
 {
-    public delegate void AnnoyanceHandlerArg(int value);
+    public delegate void AnnoyanceHandlerArg(int value, GodotObject godotObject);
     public delegate void AnnoyanceHandler();
     public partial class AnnoyanceLevel : GodotObject
     {
         public event AnnoyanceHandlerArg SocialBatteryChanged;
-        public event AnnoyanceHandlerArg ConversationInterestChanged;
+        public static event AnnoyanceHandlerArg ConversationInterestChanged;
         public event AnnoyanceHandler LevelFiveReached;
         private int _currentAnnoyance;
         private int _socialStandingChange;
@@ -75,8 +75,8 @@ namespace tee
                 LevelFiveReached?.Invoke();
                 break;
             }
-            SocialBatteryChanged?.Invoke(_socialBatteryDamage);
-            ConversationInterestChanged?.Invoke(_conversationInterestModifier);
+            SocialBatteryChanged?.Invoke(_socialBatteryDamage, this);
+            ConversationInterestChanged?.Invoke(_conversationInterestModifier, this);
             GD.Print($"Annoyance Level increased to {CurrentAnnoyance}");
         }
 
@@ -113,7 +113,7 @@ namespace tee
                 _conversationInterestModifier = 4;
                 break;
             }
-            ConversationInterestChanged?.Invoke(_conversationInterestModifier);
+            ConversationInterestChanged?.Invoke(_conversationInterestModifier, this);
             GD.Print($"Annoyance Level decreased to {CurrentAnnoyance}");
         }
 

@@ -1,3 +1,4 @@
+using System;
 using System.Reflection.Metadata.Ecma335;
 using System.Threading.Tasks;
 using Godot;
@@ -9,7 +10,6 @@ namespace tee
 	{
 		public event EncounterSceneHandler SetupCompleted;
 		public static event EncounterSceneHandler PlayerTurnComplete;
-		public static event EncounterSceneHandler EnemyTurnComplete;
 
 		[Export] private TextureRect _playerSprite;
 		[Export] private Color _playerDialogueColor;
@@ -28,13 +28,16 @@ namespace tee
 		[Export] private AnimationPlayer _animationPlayer;
 
 		[Export] private Label _annoyanceValue;
+		[Export] private RichTextLabel _currentMaxCIChanges;
 
 		[Export] private Label _mentalCapacityMax;
-		[Export] private Label _mentalCapacityValue;
+		[Export] private TweenableLabel _mentalCapacityValue;
 		[Export] private Label _mentalCapacityDamage;
 
-		[Export] private Label _conversationInterestMax;
-		[Export] private Label _conversationInterestValue;
+		[Export] private TweenableLabel _conversationInterestMax;
+		[Export] private Label _conversationInterestMaxChange;
+		[Export] private TweenableLabel _conversationInterestValue;
+		private int _conversationInterestDelta;
 		[Export] private Label _conversationInterestDamage;
 		[Export] private TextureProgressBar _socialBatteryProgress;
 
@@ -51,6 +54,8 @@ namespace tee
 
 		public void SetupScene(EnemyData enemyData)
 		{
+			EnthusiasmLevel.ConversationInterestChanged += UpdateConversationInterest;
+			AnnoyanceLevel.ConversationInterestChanged += UpdateConversationInterest;
 			_currentEnemy = enemyData;
 			_conversationInterestMax.Text = $"{_currentEnemy.ConversationInterest}";
 			_conversationInterestValue.Text = _conversationInterestMax.Text;
@@ -70,20 +75,16 @@ namespace tee
 
 			Tween valueTween = _socialBatteryProgress.CreateTween();
 			valueTween.Parallel().TweenProperty(
-				_socialBatteryProgress, $"{TextureProgressBar.PropertyName.Value}", _socialBatteryProgress.Value - socialBatteryDifference, 2f);
-			_labelToTweak = _mentalCapacityValue;
-			valueTween.Parallel().TweenMethod(Callable.From<int>(SetLabelText), 0.0f, socialBatteryDifference, 1.0f);
+				_socialBatteryProgress, $"{TextureProgressBar.PropertyName.Value}", _socialBatteryProgress.Value - socialBatteryDifference, 1.0f);
+			valueTween.Parallel().TweenMethod(Callable.From<int>(_mentalCapacityValue.SetLabelText), 0.0f, socialBatteryDifference, 1.0f);
 			_animationPlayer.SpeedScale = -1;
 			valueTween.TweenCallback(Callable.From(() => _animationPlayer.Play("SocialBatterySubtract", -1, 1, true)));
 			await ToSignal(_animationPlayer, AnimationPlayer.SignalName.AnimationFinished);
 		}
 
-		public void SetLabelText(int toNumber)
-		{
-			_labelToTweak.Text = $"{toNumber}";
-		}
 
-		public void PlayDialogAnimation(PlayerAttack attack)
+
+		public async Task PlayDialogAnimation(PlayerAttack attack)
 		{
 			_playerDialogue.SetEntireVisibility(true);
 			_enemyDialogue.SetEntireVisibility(false);
@@ -98,7 +99,8 @@ namespace tee
 				_playerDialogue.RTLabel, $"{Label.PropertyName.VisibleCharacters}", textLength, animationLength);
 			propTweener.From(0);
 			_activeDialogueTween.TweenCallback(Callable.From(() => _dialogueAnimationFinished = true));
-			_activeDialogueTween.TweenCallback(Callable.From(() => PlayAnimationsForAttack(attack)));
+			//_activeDialogueTween.TweenCallback(Callable.From(() => PlayAnimationsForAttack(attack)));
+			await ToSignal(_activeDialogueTween, Tween.SignalName.Finished);
 		}
 
 		public void PlayDialogAnimation(EnemyAttack attack)
@@ -112,7 +114,6 @@ namespace tee
 			PropertyTweener propTweener = tween.TweenProperty(
 				_enemyDialogue.RTLabel, $"{Label.PropertyName.VisibleCharacters}", textLength, .05f * textLength);
 			propTweener.From(0);
-			//tween.TweenCallback(Callable.From(() => PlayAnimationsForAttack(attack)));
 		}
 
 		public void SkipDialogueAnimation(VariableDialogueControl variableDialogue)
@@ -131,30 +132,57 @@ namespace tee
 		{
 			if (_dialogueAnimationFinished)
 			{
-				PlayerTurnComplete?.Invoke();
+				//PlayerTurnComplete?.Invoke();
 			}
 		}
 
-		private void PlayAnimationsForAttack(PlayerAttack playerAttack)
+		public async Task PlayAnimationsForAttack(PlayerAttack playerAttack, int bonusDamage)
 		{
-			_conversationInterestDamage.Text = $"-{playerAttack.ConversationInterestDamage}";
+			// Add Icon to conversationInterestDamage.Text depending on
+			_conversationInterestDamage.Text = $"-{playerAttack.ConversationInterestDamage + bonusDamage}";
 			Tween tween = _conversationInterestDamage.CreateTween();
 			tween.TweenProperty(
 			_conversationInterestDamage, $"{Control.PropertyName.SelfModulate}", Color.Color8(255, 255, 255, 255), 1f);
 			// Animate change to new value
-			_labelToTweak = _conversationInterestValue;
 			int startValue = _conversationInterestValue.Text.ToInt();
-			tween.TweenMethod(Callable.From<int>(SetLabelText), startValue, startValue - playerAttack.ConversationInterestDamage, 1.0f).SetDelay(2f);
+			MethodTweener methodTween = tween.TweenMethod(Callable.From<int>(_conversationInterestValue.SetLabelText), startValue, startValue - playerAttack.ConversationInterestDamage - bonusDamage, 1.0f).SetDelay(2f);
+			await ToSignal(methodTween, Tween.SignalName.Finished);
+			startValue = _conversationInterestValue.Text.ToInt();
+
 			// Fade-Out label
+			tween?.Kill();
+			tween = _conversationInterestDamage.CreateTween();
 			tween.TweenProperty(
 				_conversationInterestDamage, $"{Control.PropertyName.SelfModulate}", Color.Color8(255, 255, 255, 0), 1f);
 
-			//PlayerTurnAnimationComplete?.Invoke();
+			if (_conversationInterestDelta == 0)
+			{
+				_conversationInterestMaxChange.Text = "";
+			}
+			else
+			{
+				_conversationInterestMaxChange.Text = $"-{_conversationInterestDelta}";
+			}
+
+			//Fade-In ConversationInterestMaxChange
+			tween.TweenProperty(
+			_conversationInterestMaxChange, $"{Control.PropertyName.SelfModulate}", Color.Color8(255, 255, 255, 255), 1f);
+			// Animate change to new Value
+
+			tween.TweenMethod(Callable.From<int>(_conversationInterestValue.SetLabelText), startValue, startValue + _conversationInterestDelta, 1.0f).SetDelay(2f);
+			int maxStartValue = _conversationInterestMax.Text.ToInt();
+			tween.TweenMethod(Callable.From<int>(_conversationInterestMax.SetLabelText), maxStartValue, maxStartValue + _conversationInterestDelta, 1.0f).SetDelay(2f);
+			//Fade-Out ConversationInterestMaxChange
+			PropertyTweener propertyTweener = tween.TweenProperty(
+						_conversationInterestMaxChange, $"{Control.PropertyName.SelfModulate}", Color.Color8(255, 255, 255, 0), 1f);
+			await ToSignal(propertyTweener, Tween.SignalName.Finished);
+			_conversationInterestDelta = 0;
+			PlayerTurnComplete?.Invoke();
 
 			//Let the player click again when all the animations have finished
 		}
 
-		public void PlayAnimationsForAttack(EnemyAttack enemyAttack)
+		public async Task PlayAnimationsForAttack(EnemyAttack enemyAttack)
 		{
 			_mentalCapacityDamage.Text = $"-{enemyAttack.MentalCapacityDamage}";
 
@@ -163,23 +191,59 @@ namespace tee
 			tween.TweenProperty(
 				_mentalCapacityDamage, $"{Control.PropertyName.SelfModulate}", Color.Color8(255, 255, 255, 255), 1f);
 			// Animate change to new value
-			_labelToTweak = _mentalCapacityValue;
 			int startValue = _mentalCapacityValue.Text.ToInt();
-			tween.TweenMethod(Callable.From<int>(SetLabelText), startValue, startValue - enemyAttack.MentalCapacityDamage, 1.0f).SetDelay(2f);
+			tween.TweenMethod(Callable.From<int>(_mentalCapacityValue.SetLabelText), startValue, startValue - enemyAttack.MentalCapacityDamage, 1.0f).SetDelay(2f);
 			// Fade-Out label
 			tween.TweenProperty(
 				_mentalCapacityDamage, $"{Control.PropertyName.SelfModulate}", Color.Color8(255, 255, 255, 0), 1f);
+
 			// Animate Social Battery Progress
 			Tween batteryTween = _socialBatteryProgress.CreateTween();
 			PropertyTweener propTweener = batteryTween.TweenProperty(
 				_socialBatteryProgress, $"{TextureProgressBar.PropertyName.Value}", _socialBatteryProgress.Value + enemyAttack.SocialBatteryChange, 1f);
 			batteryTween.SetParallel(true);
-			tween.TweenCallback(Callable.From(() => EnemyTurnComplete?.Invoke()));
+			//tween.TweenCallback(Callable.From(() => EnemyTurnComplete?.Invoke()));
+
+			if (_conversationInterestDelta == 0)
+			{
+				_conversationInterestMaxChange.Text = "";
+			}
+			else
+			{
+				_conversationInterestMaxChange.Text = $"-{_conversationInterestDelta}";
+				//Fade-In ConversationInterestMaxChange
+				tween.TweenProperty(
+				_conversationInterestMaxChange, $"{Control.PropertyName.SelfModulate}", Color.Color8(255, 255, 255, 255), 1f);
+				// Animate change to new Value
+
+				tween.TweenMethod(Callable.From<int>(_conversationInterestValue.SetLabelText), startValue, startValue + _conversationInterestDelta, 1.0f).SetDelay(2f);
+				int maxStartValue = _conversationInterestMax.Text.ToInt();
+				tween.TweenMethod(Callable.From<int>(_conversationInterestMax.SetLabelText), maxStartValue, maxStartValue + _conversationInterestDelta, 1.0f).SetDelay(2f);
+				//Fade-Out ConversationInterestMaxChange
+				PropertyTweener propertyTweener = tween.TweenProperty(
+							_conversationInterestMaxChange, $"{Control.PropertyName.SelfModulate}", Color.Color8(255, 255, 255, 0), 1f);
+				await ToSignal(propertyTweener, Tween.SignalName.Finished);
+				_conversationInterestDelta = 0;
+			}
+
+
 		}
 
 		public void UpdateAnnoyance(int annoyanceNew)
 		{
 			_annoyanceValue.Text = annoyanceNew.ToRomanNumerals();
+		}
+
+		public void UpdateConversationInterestModifiers(int valueThroughAnnoyance, int valueThroughEnthusiasm)
+		{
+			_currentMaxCIChanges.Text = $"[font=res://Assets/Fonts/Lobster-Regular.ttf]+{valueThroughEnthusiasm}[/font] from Enthusiasm\n[font=res://Assets/Fonts/Lobster-Regular.ttf]{valueThroughAnnoyance}[/font] from Annoyance";
+			//_conversationInterestValue.Text = $"{_conversationInterestValue.Text.ToInt() + newValue}";
+			//_conversationInterestMax.Text = $"{_conversationInterestMax.Text.ToInt() + newValue}";
+		}
+
+		public void UpdateConversationInterest(int value, GodotObject godotObject)
+		{
+			_conversationInterestDelta += value;
 		}
 
 		public override void _ExitTree()

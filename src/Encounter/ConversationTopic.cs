@@ -18,9 +18,13 @@ public partial class ConversationTopic : GodotObject
 			if (value > 35)
 			{
 				_weight = 35;
-			}else if(value < 0){
+			}
+			else if (value < 0)
+			{
 				_weight = 0;
-			}else{
+			}
+			else
+			{
 				_weight = value;
 			}
 		}
@@ -34,19 +38,31 @@ public partial class ConversationTopic : GodotObject
 	public void IncreaseEnthusiasm()
 	{
 		_enthusiasmLevel.Increase();
-		Weight += 5;
+		if (Weight != 0)
+		{
+			Weight += 5;
+		}
+
 		GD.Print($"Enthusiasm Increased. ConversationTopic {Name} now has Enthusiasm Level {_enthusiasmLevel.CurrentEnthusiasm} and a Weight of {Weight}.");
 	}
 
 	public void DecreaseEnthusiasm()
 	{
 		_enthusiasmLevel.Decrease();
-		Weight -= 5;
+		if (Weight != 0)
+		{
+			Weight -= 5;
+		}
+
 		GD.Print($"Enthusiasm Decreased. ConversationTopic {Name} now has Enthusiasm Level {_enthusiasmLevel.CurrentEnthusiasm} and a Weight of {Weight}.");
 	}
 
 	public int GetCurrentEnthusiasmLevel()
 	{
 		return _enthusiasmLevel.CurrentEnthusiasm;
+	}
+
+	public int GetConversationInterestModifier(){
+		return _enthusiasmLevel.ConversationInterestModifierTotal;
 	}
 }

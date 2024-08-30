@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_k3tcf")
 _topicRelatedQuotes = []
-UnlockedTopics = [1, 4, 2]
+UnlockedTopics = [5, 3, 6]
 OwningCharacter = 0
 ConversationInterestDamage = 3
 IsFromItem = false

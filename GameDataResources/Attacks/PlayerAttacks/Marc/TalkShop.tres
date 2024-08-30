@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("2_3jir0")
 _topicRelatedQuotes = []
-UnlockedTopics = [1, 2, 4]
+UnlockedTopics = [5, 3, 6]
 _bonusEffect = ExtResource("1_5dlx5")
 OwningCharacter = 0
 ConversationInterestDamage = 2

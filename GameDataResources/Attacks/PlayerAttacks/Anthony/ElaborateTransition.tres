@@ -6,23 +6,23 @@
 
 [sub_resource type="Resource" id="Resource_vjuay"]
 script = ExtResource("2_5evve")
-_topicName = 5
+_topicName = 1
 _text = ""
 
 [sub_resource type="Resource" id="Resource_76r51"]
 script = ExtResource("2_5evve")
-_topicName = 3
+_topicName = 4
 _text = ""
 
 [sub_resource type="Resource" id="Resource_mvvw4"]
 script = ExtResource("2_5evve")
-_topicName = 6
+_topicName = 2
 _text = ""
 
 [resource]
 script = ExtResource("1_rc41w")
 _topicRelatedQuotes = [SubResource("Resource_vjuay"), SubResource("Resource_76r51"), SubResource("Resource_mvvw4")]
-UnlockedTopics = [5, 3, 6]
+UnlockedTopics = [1, 4, 2]
 _bonusEffect = ExtResource("1_3r1wh")
 OwningCharacter = 1
 ConversationInterestDamage = 3

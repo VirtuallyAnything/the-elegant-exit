@@ -22,12 +22,17 @@ namespace tee
 			Preference = preference;
 		}
 	}
+	public delegate void EncounterEnemyHandler(int value);
 	public partial class EncounterEnemy : Node
 	{
+		public static event EncounterEnemyHandler ConversationInterestChanged;
 		private string _displayName;
 		private Array<EnemyAttack> _enemyAttacks;
 		private Array<EnemyAttack> _attackPool;
 		private int _conversationInterest;
+		private int _conversationInterestMax;
+		private int _conversationInterestModifierAnnoyance;
+		private int _conversationInterestModifierEnthusiasm;
 		private AnnoyanceLevel _annoyance = new();
 		private System.Collections.Generic.Dictionary<TopicName, TopicPreference> _topicPreferences;
 		private List<TopicName> _likes = new();
@@ -53,7 +58,32 @@ namespace tee
 				{
 					_conversationInterest = 0;
 				}
+				ConversationInterestChanged?.Invoke(_conversationInterest);
 			}
+		}
+		public int ConversationInterestMax
+		{
+			get { return _conversationInterestMax; }
+			set
+			{
+				if (value >= 0)
+				{
+					_conversationInterestMax = value;
+				}
+				else
+				{
+					_conversationInterestMax = 0;
+				}
+				ConversationInterestChanged?.Invoke(_conversationInterestMax);
+			}
+		}
+		public int ConversationInterestModifierAnnoyance
+		{
+			get { return _conversationInterestModifierAnnoyance; }
+		}
+		public int ConversationInterestModifierEnthusiasm
+		{
+			get { return _conversationInterestModifierEnthusiasm; }
 		}
 		public int Annoyance
 		{
@@ -85,7 +115,8 @@ namespace tee
 			_displayName = data.DisplayName;
 			_enemyAttacks = data.EnemyAttacks;
 			_attackPool = new(_enemyAttacks);
-			_conversationInterest = data.ConversationInterest;
+			ConversationInterest = data.ConversationInterest;
+			ConversationInterestMax = _conversationInterest;
 
 			_topicPreferences = new();
 			foreach (TopicName topicName in data.Likes)
@@ -108,14 +139,10 @@ namespace tee
 				_topicPreferences.Add(topicName, topicPreference);
 				_dislikes.Add(topicName);
 			}
-		}
 
-		public override void _Ready()
-		{
-			_annoyance.ConversationInterestChanged += UpdateConversationInterest;
+			AnnoyanceLevel.ConversationInterestChanged += UpdateConversationInterest;
+			EnthusiasmLevel.ConversationInterestChanged += UpdateConversationInterest;
 			EnthusiasmLevel.AnnoyanceLowered += DecreaseAnnoyance;
-			_topicPreferences[TopicName.None].ConversationTopic.Weight = 0;
-			_topicPreferences[TopicName.Weather].ConversationTopic.Weight = 0;
 		}
 
 		public void SwitchTopicNextTurn()
@@ -125,7 +152,6 @@ namespace tee
 
 		public TopicName ChooseTopic()
 		{
-
 			List<ConversationTopic> allTopics = [];
 			foreach (TopicName topic in _likes)
 			{
@@ -274,9 +300,23 @@ namespace tee
 			GD.Print($"{DisplayName} hates {dislikedTopicName}! Stop bringing it up!");
 		}
 
-		public void UpdateConversationInterest(int summand)
+		public void UpdateConversationInterest(int summand, GodotObject changedBy)
 		{
-			_conversationInterest += summand;
+			ConversationInterest += summand;
+			ConversationInterestMax += summand;
+			if (changedBy is EnthusiasmLevel)
+			{
+				_conversationInterestModifierEnthusiasm = 0;
+				IEnumerable<TopicName> combined = Likes.Concat(Neutrals);
+				foreach (TopicName topic in combined)
+				{
+					_conversationInterestModifierEnthusiasm += _topicPreferences[topic].ConversationTopic.GetConversationInterestModifier();
+				}
+			}
+			else if (changedBy is AnnoyanceLevel)
+			{
+				_conversationInterestModifierAnnoyance += summand;
+			}
 		}
 
 		public void IncreaseEnthusiasmFor(TopicName topic)
@@ -306,6 +346,14 @@ namespace tee
 		public void IncreaseAnnoyance()
 		{
 			_annoyance.Increase();
+		}
+
+		public override void _ExitTree()
+		{
+			base._ExitTree();
+			AnnoyanceLevel.ConversationInterestChanged -= UpdateConversationInterest;
+			EnthusiasmLevel.ConversationInterestChanged -= UpdateConversationInterest;
+			EnthusiasmLevel.AnnoyanceLowered -= DecreaseAnnoyance;
 		}
 	}
 }

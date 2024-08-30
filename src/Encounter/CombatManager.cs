@@ -7,6 +7,8 @@ namespace tee
 	public partial class CombatManager : Node
 	{
 		public static event CombatEventHandler CombatEnded;
+		public static event CombatEventHandler CombatLost;
+		public static event CombatEventHandler EnemyTurnComplete;
 		[Export] private EncounterScene _encounterScene;
 		[Export] private PreferenceDisplay _preferenceDisplay;
 
@@ -73,7 +75,7 @@ namespace tee
 			
 			_encounterScene.SetupCompleted += StartCombat;
 			EncounterScene.PlayerTurnComplete += EnemyAttack;
-			EncounterScene.EnemyTurnComplete += SetupNewAttack;
+			EnemyTurnComplete += SetupNewAttack;
 			AttackCard.AttackSelected += PlayerAttack;
 		}
 
@@ -113,11 +115,13 @@ namespace tee
 			_encounterScene.AttackCardContainer.SwapAttackCardOutFor(newAttack);
 		}
 
-		public void PlayerAttack(PlayerAttack playerAttack)
+		public async void PlayerAttack(PlayerAttack playerAttack)
 		{
 			_isFirstTurn = false;
 			ConversationInterestDamage = 0;
 			_playerLastTopicName = _playerCurrentTopicName;
+
+			// Set topic of attack to that of the player attack or none
 			TopicName topicOfAttack = TopicName.None;
 			if(playerAttack is TopicalPlayerAttack topicalPlayerAttack){
 				topicOfAttack = topicalPlayerAttack.SelectedTopicName;
@@ -127,12 +131,14 @@ namespace tee
 			int conversationInterestBonusDamage = 0;
 			if (topicOfAttack != TopicName.None)
 			{
+				//Only change the current Topic if the TopicName isn't none
 				_playerCurrentTopicName = topicOfAttack;
 				_preferenceForCurrentTopic = Enemy.GetPreferenceFor(topicOfAttack);
 				if (!_isIgnoreCIBonusDamage)
 				{
 					switch (_preferenceForCurrentTopic)
 					{
+						// Apply damage modifiers for Preferences
 						case Preference.Like:
 							conversationInterestBonusDamage -= 1;
 							break;
@@ -142,6 +148,7 @@ namespace tee
 							{
 								Enemy.Enrage(_playerCurrentTopicName);
 							}
+							// Subtract one social Battery if the player knowingly talks about a disliked topic
 							if (_player.DiscoveredEnemyPreferences.ContainsKey(_playerCurrentTopicName))
 							{
 								GameManager.SocialBattery -= 1;
@@ -151,22 +158,32 @@ namespace tee
 				}
 			}
 
+			// Set the base attack damage and resolve bonus effects if there are any
 			_player.Resolve(_selectedAttack, this);
 			Enemy.ReactTo(topicOfAttack);
+
+			// Add newly discovered preference
 			if (!_player.DiscoveredEnemyPreferences.ContainsKey(_playerCurrentTopicName))
 			{
 				_player.DiscoveredEnemyPreferences.Add(_playerCurrentTopicName, _preferenceForCurrentTopic);
 				_preferenceDisplay.UpdatePreference(
 					_playerCurrentTopicName, _preferenceForCurrentTopic);
 			}
+			// Actually subtract the damages from Conversation Interest
 			Enemy.ConversationInterest -= conversationInterestBonusDamage + ConversationInterestDamage;
-			_preferenceDisplay.UpdateEnthusiasm(_playerCurrentTopicName, Enemy.GetEnthusiasmLevelFor(_playerCurrentTopicName));
+
+			if(topicOfAttack != TopicName.None){
+				_preferenceDisplay.UpdateEnthusiasm(_playerCurrentTopicName, Enemy.GetEnthusiasmLevelFor(_playerCurrentTopicName));
+			}
+			
 			_isIgnoreCIBonusDamage = false;
 
-			_encounterScene.PlayDialogAnimation(_selectedAttack);
-			_encounterScene.UpdateAnnoyance(_enemy.Annoyance);
+			await _encounterScene.PlayDialogAnimation(_selectedAttack);
+			await _encounterScene.PlayAnimationsForAttack(_selectedAttack, conversationInterestBonusDamage);
+			_encounterScene.UpdateAnnoyance(Enemy.Annoyance);
+			_encounterScene.UpdateConversationInterestModifiers(Enemy.ConversationInterestModifierAnnoyance, Enemy.ConversationInterestModifierEnthusiasm);
 			GD.Print($"Player attacks and does {conversationInterestBonusDamage + ConversationInterestDamage} damage to CI.");
-			GD.Print($"New Enemy CI: {Enemy.ConversationInterest}");
+			GD.Print($"New Enemy CI: {Enemy.ConversationInterest}/{Enemy.ConversationInterestMax}");
 			if (Enemy.ConversationInterest <= 0)
 			{
 				CombatEnded?.Invoke();
@@ -174,9 +191,10 @@ namespace tee
 			}
 		}
 
-		public void EnemyAttack()
+		public async void EnemyAttack()
 		{
 			TopicName chosenTopicName;
+			//Check if next topic was already determined by player
 			if (NextTopicName != TopicName.None)
 			{
 				chosenTopicName = NextTopicName;
@@ -188,6 +206,7 @@ namespace tee
 			}
 
 			EnemyAttack enemyAttack = Enemy.ChooseAttack(chosenTopicName);
+			_encounterScene.PlayDialogAnimation(enemyAttack);
 
 			if (_isBlockNextEnemyAttack)
 			{
@@ -197,12 +216,14 @@ namespace tee
 			{
 				GameManager.SocialBattery += enemyAttack.SocialBatteryChange;
 				_player.MentalCapacity -= enemyAttack.MentalCapacityDamage;
-				_encounterScene.PlayAnimationsForAttack(enemyAttack);
+				await _encounterScene.PlayAnimationsForAttack(enemyAttack);
 			}
 			Enemy.IncreaseEnthusiasmFor(chosenTopicName);
 			_preferenceDisplay.UpdateEnthusiasm(chosenTopicName, Enemy.GetEnthusiasmLevelFor(chosenTopicName));
-			_encounterScene.PlayDialogAnimation(enemyAttack);
-			//_encounterScene.UpdateUI(GameManager.SocialBattery, _player.MentalCapacity, Enemy.ConversationInterest);
+			
+			_encounterScene.UpdateConversationInterestModifiers(_enemy.ConversationInterestModifierAnnoyance, _enemy.ConversationInterestModifierEnthusiasm);
+			
+			EnemyTurnComplete?.Invoke();
 		}
 
 		public void BlockNextEnemyAttack()
@@ -230,7 +251,7 @@ namespace tee
 			//NumberedButton.OnButtonPressed -= PlayerAttack;
 			_encounterScene.SetupCompleted -= StartCombat;
 			EncounterScene.PlayerTurnComplete -= EnemyAttack;
-			EncounterScene.EnemyTurnComplete -= SetupNewAttack;
+			EnemyTurnComplete -= SetupNewAttack;
 			AttackCard.AttackSelected -= PlayerAttack;
 		}
 	}
