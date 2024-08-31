@@ -121,7 +121,7 @@ namespace tee
 		public EncounterEnemy(EnemyData data)
 		{
 			_displayName = data.DisplayName;
-			_enemyAttacks = StaticData.GetLines(_displayName);
+			_enemyAttacks = StaticData.LoadJsonFile(data.PathToAttacks);
 			_attackPool = new(_enemyAttacks);
 			ConversationInterest = data.ConversationInterest;
 			ConversationInterestMax = _conversationInterest;

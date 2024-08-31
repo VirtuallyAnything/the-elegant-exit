@@ -95,6 +95,7 @@ texture = ExtResource("5_1t0is")
 expand_mode = 1
 
 [node name="AttackType" type="Label" parent="."]
+layout_mode = 0
 offset_left = 12.0
 offset_top = 2.0
 offset_right = 66.0

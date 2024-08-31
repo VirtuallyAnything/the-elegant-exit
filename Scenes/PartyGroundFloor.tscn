@@ -56,7 +56,6 @@ scale = Vector2(1.48704, 1.48704)
 texture = ExtResource("2_vuute")
 
 [node name="Enemy2" parent="." instance=ExtResource("3_vs0d7")]
-_speed = 200.0
 _triggerRange = 300.0
 
 [node name="Walls" type="Node2D" parent="."]
@@ -117,6 +116,7 @@ position = Vector2(2597, 3752)
 rotation = 1.57079
 
 [node name="FOW" parent="." instance=ExtResource("8_svv30")]
+visible = false
 offset_right = 5948.0
 offset_bottom = 4566.0
 _fowScaleFactor = 0.1

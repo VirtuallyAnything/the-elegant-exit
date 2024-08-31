@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=4 format=3 uid="uid://t3duk4fguusv"]
+
+[ext_resource type="Script" path="res://src/ResourceScripts/Data/EnemyData.cs" id="1_esdx5"]
+[ext_resource type="Texture2D" uid="uid://b6h02xnwx4s5l" path="res://Assets/Textures/Characters/GenericCharacterIcon.png" id="1_i8lb1"]
+[ext_resource type="Texture2D" uid="uid://gc3xvh75p5w8" path="res://Assets/Textures/Characters/GenericCharacter_Cropped.png" id="2_82now"]
+
+[resource]
+script = ExtResource("1_esdx5")
+_greeting = "Hello, hello darlings! What brought you two youngsters to talk to me?"
+DisplayName = "Anita Menow"
+EnemyAttacks = null
+Icon = ExtResource("1_i8lb1")
+Texture = ExtResource("2_82now")
+ConversationInterest = 20
+Likes = [7, 3, 4]
+Neutrals = [2, 1]
+Dislikes = Array[int]([5, 6])
+PathToAttacks = "res://Data/Cougar_Quotes.json"

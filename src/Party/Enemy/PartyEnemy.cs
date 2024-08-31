@@ -25,10 +25,6 @@ namespace tee
 		private Color _transparent = new Color(1, 1, 1, 0);
 		private SceneManager _sceneManager;
 
-		public bool IsInChase{
-			get{return _enemyMovement.IsInChase;}
-		}
-
 		public override void _Ready()
 		{
 			base._Ready();

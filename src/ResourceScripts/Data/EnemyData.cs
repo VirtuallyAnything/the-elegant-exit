@@ -3,10 +3,12 @@ using System;
 
 namespace tee
 {
+	[GlobalClass]
 	public partial class EnemyData : Resource
 	{
 		private string _displayName;
 		private Godot.Collections.Array<EnemyAttack> _enemyAttacks;
+		[Export] private string _greeting;
 		private Godot.Collections.Array<TopicName> _likes = new([TopicName.SpecialInterest]);
 		private Godot.Collections.Array<TopicName> _neutrals = new([
 			TopicName.Art, 
@@ -69,6 +71,9 @@ namespace tee
 		{
 			get { return _dislikes; }
 			set { _dislikes = value; }
+		}
+		[Export] public string PathToAttacks{
+			get; set;
 		}
 	}
 }

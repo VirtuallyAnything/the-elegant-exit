@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=4 format=3 uid="uid://dgtmypitorji3"]
+
+[ext_resource type="Script" path="res://src/ResourceScripts/Data/EnemyData.cs" id="1_aftnq"]
+[ext_resource type="Texture2D" uid="uid://b6h02xnwx4s5l" path="res://Assets/Textures/Characters/GenericCharacterIcon.png" id="1_bs0g8"]
+[ext_resource type="Texture2D" uid="uid://gc3xvh75p5w8" path="res://Assets/Textures/Characters/GenericCharacter_Cropped.png" id="2_o4j5p"]
+
+[resource]
+script = ExtResource("1_aftnq")
+_greeting = "Mr Bradshaw. Mr Sanders. Happy to see you two still being affiliated with my daughter."
+DisplayName = "Reginald Ambrose"
+EnemyAttacks = null
+Icon = ExtResource("1_bs0g8")
+Texture = ExtResource("2_o4j5p")
+ConversationInterest = 20
+Likes = [7, 1, 5]
+Neutrals = [3, 4]
+Dislikes = Array[int]([2, 6])
+PathToAttacks = "res://Data/Academic_Quotes.json"

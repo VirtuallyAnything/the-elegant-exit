@@ -1,0 +1,18 @@
+[gd_resource type="Resource" load_steps=4 format=3 uid="uid://c5u31lombgby3"]
+
+[ext_resource type="Texture2D" uid="uid://bjf1j776oy6qw" path="res://Assets/Textures/Characters/BeautyInfluencerIcon.png" id="1_rnt37"]
+[ext_resource type="Texture2D" uid="uid://0vvhqaym6mxj" path="res://Assets/Textures/Characters/BeautyInfluencer_Cropped.png" id="2_i8l6p"]
+[ext_resource type="Script" path="res://src/ResourceScripts/Data/EnemyData.cs" id="3_ju5lt"]
+
+[resource]
+script = ExtResource("3_ju5lt")
+_greeting = "Oh my god. You two! I want you in my reel!"
+DisplayName = "Gloria Venetti"
+EnemyAttacks = null
+Icon = ExtResource("1_rnt37")
+Texture = ExtResource("2_i8l6p")
+ConversationInterest = 20
+Likes = [7, 1, 2]
+Neutrals = [5, 6]
+Dislikes = Array[int]([4, 3])
+PathToAttacks = "res://Data/Influencer_Quotes.json"

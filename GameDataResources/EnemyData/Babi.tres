@@ -1,16 +1,18 @@
-[gd_resource type="Resource" load_steps=4 format=3 uid="uid://dgmh740a8kil7"]
+[gd_resource type="Resource" script_class="EnemyData" load_steps=4 format=3 uid="uid://dgmh740a8kil7"]
 
-[ext_resource type="Texture2D" uid="uid://cxykjoqtv188j" path="res://Assets/Textures/BabiIcon.png" id="1_o5vv7"]
-[ext_resource type="Texture2D" uid="uid://dgds5ddni47ev" path="res://Assets/Textures/Babi_Sprite.png" id="8_0arsa"]
+[ext_resource type="Texture2D" uid="uid://ckajcf3mrjotx" path="res://Assets/Textures/Characters/KFGIcon.png" id="1_6t2hv"]
+[ext_resource type="Texture2D" uid="uid://bcgl2kcxq1k5p" path="res://Assets/Textures/Characters/KFG_Cropped.png" id="2_54hti"]
 [ext_resource type="Script" path="res://src/ResourceScripts/Data/EnemyData.cs" id="9_casv8"]
 
 [resource]
 script = ExtResource("9_casv8")
-DisplayName = "Babi"
+_greeting = "Marc! Anthony! Isn't it great? We are all gonna sing Karaoke! Are you ready to party?!"
+DisplayName = "Chloe Antary"
 EnemyAttacks = Array[Resource]([])
-Icon = ExtResource("1_o5vv7")
-Texture = ExtResource("8_0arsa")
+Icon = ExtResource("1_6t2hv")
+Texture = ExtResource("2_54hti")
 ConversationInterest = 20
-Likes = [7]
-Neutrals = [0, 5, 3, 6, 2, 4, 1, 10]
-Dislikes = null
+Likes = [7, 2, 5]
+Neutrals = [3, 6]
+Dislikes = Array[int]([4, 1])
+PathToAttacks = "res://Data/KFG_Quotes.json"

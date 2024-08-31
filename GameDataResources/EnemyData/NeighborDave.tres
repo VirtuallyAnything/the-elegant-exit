@@ -1,16 +1,18 @@
 [gd_resource type="Resource" load_steps=4 format=3 uid="uid://bqgn3w6aagdea"]
 
-[ext_resource type="Texture2D" uid="uid://cvmv3sr1jrvrj" path="res://Assets/Textures/PersonIcon.png" id="1_6mlo7"]
-[ext_resource type="Texture2D" uid="uid://dloj826coufuu" path="res://Assets/Textures/Avatar_JP.png" id="8_1vo61"]
+[ext_resource type="Texture2D" uid="uid://b6h02xnwx4s5l" path="res://Assets/Textures/Characters/GenericCharacterIcon.png" id="1_oydse"]
+[ext_resource type="Texture2D" uid="uid://gc3xvh75p5w8" path="res://Assets/Textures/Characters/GenericCharacter_Cropped.png" id="2_mt5xt"]
 [ext_resource type="Script" path="res://src/ResourceScripts/Data/EnemyData.cs" id="9_hjvbu"]
 
 [resource]
 script = ExtResource("9_hjvbu")
+_greeting = "Anthony! Mark! Amazing Party! Great decision to come with you guys."
 DisplayName = "Neighbor Dave"
 EnemyAttacks = Array[Resource]([])
-Icon = ExtResource("1_6mlo7")
-Texture = ExtResource("8_1vo61")
+Icon = ExtResource("1_oydse")
+Texture = ExtResource("2_mt5xt")
 ConversationInterest = 20
-Likes = [7]
-Neutrals = [5, 3, 6, 2, 4, 1, 10]
-Dislikes = null
+Likes = [7, 4, 6]
+Neutrals = [2, 1]
+Dislikes = Array[int]([5, 3])
+PathToAttacks = "res://Data/Neighbor_Quotes.json"

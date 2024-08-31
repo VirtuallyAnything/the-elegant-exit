@@ -1,16 +1,18 @@
 [gd_resource type="Resource" load_steps=4 format=3 uid="uid://d4mv565km1snp"]
 
-[ext_resource type="Texture2D" uid="uid://y51ai85kj0r0" path="res://Assets/Textures/ElegantExitLogo.png" id="7_py1ro"]
-[ext_resource type="Texture2D" uid="uid://dloj826coufuu" path="res://Assets/Textures/Avatar_JP.png" id="8_kxcpj"]
+[ext_resource type="Texture2D" uid="uid://di72751v67fiy" path="res://Assets/Textures/Characters/CryptoBroIcon.png" id="1_qkp4f"]
+[ext_resource type="Texture2D" uid="uid://c4x2vu1y54a0i" path="res://Assets/Textures/Characters/CryptoBro_Cropped.png" id="2_1po63"]
 [ext_resource type="Script" path="res://src/ResourceScripts/Data/EnemyData.cs" id="9_7amvr"]
 
 [resource]
 script = ExtResource("9_7amvr")
+_greeting = "Anthony! So nice to see you here. And who is that? Marc, I thought you never leave the house, good to see ya. I suppose this means more ladies for the rest of us tonight."
 DisplayName = "John Parker"
 EnemyAttacks = Array[Resource]([])
-Icon = ExtResource("7_py1ro")
-Texture = ExtResource("8_kxcpj")
+Icon = ExtResource("1_qkp4f")
+Texture = ExtResource("2_1po63")
 ConversationInterest = 20
 Likes = [7, 3, 6]
 Neutrals = [5, 4]
 Dislikes = Array[int]([2, 1])
+PathToAttacks = "res://Data/CryptoBro_Quotes.json"

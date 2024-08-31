@@ -30,20 +30,8 @@ namespace tee
             _cougarLines = LoadJsonFile(_dataFilePathCougar);
         }
 
-        public static Array<EnemyAttack> GetLines(string forCharacter){
-            switch(forCharacter){
-                case "John Parker":
-                return _cryptoBroLines;
-                case "Babi":
-                return _influencerLines;
-                case "Neighbor Dave":
-                return _neighborLines;
-                
-            }
-            return null;
-        }
 
-        public Array<EnemyAttack> LoadJsonFile(string filePath)
+        public static Array<EnemyAttack> LoadJsonFile(string filePath)
         {
             if (FileAccess.FileExists(filePath))
             {
