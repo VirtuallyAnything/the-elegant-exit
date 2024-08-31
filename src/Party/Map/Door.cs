@@ -19,6 +19,7 @@ namespace tee
 			base._Ready();
 			_texture = GD.Load<Texture2D>("res://Assets/Textures/door.png");
 			_sprite.Texture = _texture;
+			_sprite.Scale = new Vector2(1.487f, 1.487f);
 			Vector2 textureSize = _texture.GetSize();
 			Vector2 center = textureSize / 2;
 
@@ -26,7 +27,8 @@ namespace tee
 			_triggerArea.Position = center;
 			_sprite.Offset = center;
 
-			CollisionCone collisionCone = new(){
+			CollisionCone collisionCone = new()
+			{
 				Radius = radius,
 				AngleRadians = Mathf.DegToRad(90),
 				Segments = 5
@@ -46,7 +48,8 @@ namespace tee
 			}
 			if (Input.IsActionJustPressed("Interact"))
 			{
-				if(_isOpen && _blockingBodies != 0 || _enemiesInRange != 0){
+				if (_isOpen && _blockingBodies != 0 || _enemiesInRange != 0)
+				{
 					return;
 				}
 				_sprite.RotationDegrees = _isOpen ? 0 : -90;
@@ -63,7 +66,8 @@ namespace tee
 			}
 			else if (body.IsInGroup("Enemy"))
 			{
-				if(!_isOpen){
+				if (!_isOpen)
+				{
 					_sprite.RotationDegrees = -90;
 					_isOpen = true;
 					_navRegion.Enabled = true;
@@ -77,18 +81,28 @@ namespace tee
 			if (body.IsInGroup("Player"))
 			{
 				_canBeUsed = false;
-			}else if (body.IsInGroup("Enemy"))
+			}
+			else if (body.IsInGroup("Enemy"))
 			{
 				_enemiesInRange--;
 			}
 		}
 
-		private void OnSwingConeEntered(Node2D body){
-			_blockingBodies++;
+		private void OnSwingConeEntered(Node2D body)
+		{
+			if (body.IsInGroup("Enemy") || body.IsInGroup("Player"))
+			{
+				_blockingBodies++;
+			}
+
 		}
 
-		private void OnSwingConeExited(Node2D body){
-			_blockingBodies--;
+		private void OnSwingConeExited(Node2D body)
+		{
+			if (body.IsInGroup("Enemy") || body.IsInGroup("Player"))
+			{
+				_blockingBodies--;
+			}
 		}
 	}
 }

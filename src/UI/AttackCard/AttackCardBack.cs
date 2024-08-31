@@ -39,6 +39,19 @@ namespace tee
                     _topicButtonsAttack.Add(button);
                     TopicGrid.AddChild(button);
                 }
+                _attackType.Text = "T";
+            }
+            else
+            {
+                _attackType.Text = "S";
+            }
+            if (attack.OwningCharacter == CharacterName.Marc)
+            {
+                _coloredCorner.Modulate = _marcColor;
+            }
+            else
+            {
+                _coloredCorner.Modulate = _anthonyColor;
             }
         }
 

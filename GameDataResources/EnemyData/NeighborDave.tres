@@ -1,4 +1,4 @@
-[gd_resource type="Resource" load_steps=4 format=3 uid="uid://bqgn3w6aagdea"]
+[gd_resource type="Resource" script_class="EnemyData" load_steps=4 format=3 uid="uid://bqgn3w6aagdea"]
 
 [ext_resource type="Texture2D" uid="uid://b6h02xnwx4s5l" path="res://Assets/Textures/Characters/GenericCharacterIcon.png" id="1_oydse"]
 [ext_resource type="Texture2D" uid="uid://gc3xvh75p5w8" path="res://Assets/Textures/Characters/GenericCharacter_Cropped.png" id="2_mt5xt"]

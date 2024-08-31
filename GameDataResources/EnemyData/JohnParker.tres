@@ -1,4 +1,4 @@
-[gd_resource type="Resource" load_steps=4 format=3 uid="uid://d4mv565km1snp"]
+[gd_resource type="Resource" script_class="EnemyData" load_steps=4 format=3 uid="uid://d4mv565km1snp"]
 
 [ext_resource type="Texture2D" uid="uid://di72751v67fiy" path="res://Assets/Textures/Characters/CryptoBroIcon.png" id="1_qkp4f"]
 [ext_resource type="Texture2D" uid="uid://c4x2vu1y54a0i" path="res://Assets/Textures/Characters/CryptoBro_Cropped.png" id="2_1po63"]

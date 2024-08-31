@@ -1,7 +1,8 @@
-[gd_scene load_steps=42 format=3 uid="uid://cv7lwki55h2ma"]
+[gd_scene load_steps=44 format=3 uid="uid://cv7lwki55h2ma"]
 
 [ext_resource type="Script" path="res://src/SceneCode/EncounterScene.cs" id="1_qerod"]
 [ext_resource type="Script" path="res://src/Encounter/CombatManager.cs" id="2_6eywl"]
+[ext_resource type="Texture2D" uid="uid://gc3xvh75p5w8" path="res://Assets/Textures/Characters/GenericCharacter_Cropped.png" id="3_dclcm"]
 [ext_resource type="Texture2D" uid="uid://c08irt6knvdnn" path="res://Assets/Textures/MainCharacters_scaled.png" id="3_ibufg"]
 [ext_resource type="Texture2D" uid="uid://bwes58fuwh1ev" path="res://Assets/UI/Icons/ConversationInterestIcon.png" id="5_mc10u"]
 [ext_resource type="FontFile" uid="uid://dnj361fu4us32" path="res://Assets/Fonts/Lobster-Regular.ttf" id="6_2175l"]
@@ -27,6 +28,7 @@
 [ext_resource type="Script" path="res://src/UI/AnnoyanceDisplay.cs" id="24_wl100"]
 [ext_resource type="Texture2D" uid="uid://csf0lc06m8cu0" path="res://Assets/UI/BigArrow.png" id="25_6brt4"]
 [ext_resource type="Texture2D" uid="uid://dujhcmisqeo3g" path="res://Assets/UI/Icons/ConversationInterestMaxIcon.png" id="26_nbp65"]
+[ext_resource type="Texture2D" uid="uid://bmd1mdiraueso" path="res://Assets/UI/ThoughtBubbleOutlineSmall.png" id="27_417i3"]
 [ext_resource type="Texture2D" uid="uid://41xm1pwy2r8m" path="res://Assets/UI/Icons/SocialStandingIcon.png" id="27_lf1cy"]
 [ext_resource type="Texture2D" uid="uid://biiv7jthgpe0n" path="res://Assets/UI/Icons/SocialBatteryIcon_2.png" id="28_2ddgd"]
 
@@ -333,10 +335,10 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -525.0
-offset_top = -740.0
-offset_right = -209.0
-offset_bottom = -225.0
+offset_left = -496.0
+offset_top = -785.0
+offset_right = -187.0
+offset_bottom = -253.0
 grow_horizontal = 0
 grow_vertical = 0
 alignment = 1
@@ -344,12 +346,10 @@ alignment = 1
 [node name="EnemySprite" type="TextureRect" parent="VBoxContainer"]
 custom_minimum_size = Vector2(300, 300)
 layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("3_dclcm")
 expand_mode = 1
 stretch_mode = 4
-flip_h = true
-
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
-layout_mode = 2
 
 [node name="PlayerSprite" type="TextureRect" parent="."]
 layout_mode = 0
@@ -485,9 +485,9 @@ anchor_top = 0.275
 anchor_right = 0.249
 anchor_bottom = 0.275
 offset_left = 96.92
-offset_top = -70.0
-offset_right = 695.92
-offset_bottom = 43.0
+offset_top = -71.0
+offset_right = 757.92
+offset_bottom = 45.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_default_cursor_shape = 2
@@ -510,7 +510,7 @@ anchor_right = 0.249
 anchor_bottom = 0.275
 offset_left = 192.92
 offset_top = -43.0
-offset_right = 642.92
+offset_right = 697.92
 offset_bottom = -41.0
 mouse_filter = 2
 mouse_default_cursor_shape = 2
@@ -527,7 +527,7 @@ anchor_left = 0.819
 anchor_top = 0.422
 anchor_right = 0.819
 anchor_bottom = 0.422
-offset_left = -872.48
+offset_left = -945.48
 offset_top = -216.76
 offset_right = -273.48
 offset_bottom = -102.76
@@ -539,7 +539,6 @@ script = ExtResource("9_amiwj")
 _RTlabel = NodePath("../DialogueLineEnemy")
 
 [node name="DialogueLineEnemy" type="RichTextLabel" parent="."]
-custom_minimum_size = Vector2(450, 0)
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.819
@@ -548,7 +547,7 @@ anchor_right = 0.819
 anchor_bottom = 0.422
 offset_left = -832.48
 offset_top = -189.76
-offset_right = -382.48
+offset_right = -403.48
 offset_bottom = -187.76
 grow_horizontal = 0
 mouse_filter = 2
@@ -791,10 +790,10 @@ _unknownIcon = ExtResource("20_h7nvp")
 
 [node name="ThoughtBubble1" type="TextureRect" parent="ThoughtBubbles"]
 layout_mode = 0
-offset_left = 1236.0
-offset_top = 262.0
-offset_right = 1395.0
-offset_bottom = 371.0
+offset_left = 1265.0
+offset_top = 353.0
+offset_right = 1424.0
+offset_bottom = 462.0
 texture = ExtResource("21_7xnx4")
 expand_mode = 1
 
@@ -816,11 +815,21 @@ fit_content = true
 script = ExtResource("22_ufc0k")
 TopicName = 1
 
+[node name="TextureRect" type="TextureRect" parent="ThoughtBubbles/ThoughtBubble1"]
+layout_mode = 0
+offset_left = 159.0
+offset_top = 12.0
+offset_right = 221.0
+offset_bottom = 53.0
+texture = ExtResource("27_417i3")
+expand_mode = 1
+stretch_mode = 4
+
 [node name="ThoughtBubble2" type="TextureRect" parent="ThoughtBubbles"]
 layout_mode = 0
-offset_left = 1361.0
+offset_left = 1299.0
 offset_top = 186.0
-offset_right = 1520.0
+offset_right = 1458.0
 offset_bottom = 295.0
 texture = ExtResource("21_7xnx4")
 expand_mode = 1
@@ -843,12 +852,22 @@ fit_content = true
 script = ExtResource("22_ufc0k")
 TopicName = 2
 
+[node name="TextureRect2" type="TextureRect" parent="ThoughtBubbles/ThoughtBubble2"]
+layout_mode = 0
+offset_left = 152.0
+offset_top = 76.0
+offset_right = 214.0
+offset_bottom = 117.0
+texture = ExtResource("27_417i3")
+expand_mode = 1
+stretch_mode = 4
+
 [node name="ThoughtBubble3" type="TextureRect" parent="ThoughtBubbles"]
 layout_mode = 0
-offset_left = 1520.0
-offset_top = 164.0
-offset_right = 1679.0
-offset_bottom = 273.0
+offset_left = 1501.0
+offset_top = 150.0
+offset_right = 1660.0
+offset_bottom = 259.0
 texture = ExtResource("21_7xnx4")
 expand_mode = 1
 
@@ -870,12 +889,21 @@ fit_content = true
 script = ExtResource("22_ufc0k")
 TopicName = 3
 
+[node name="TextureRect2" type="TextureRect" parent="ThoughtBubbles/ThoughtBubble3"]
+offset_left = 64.0
+offset_top = 112.0
+offset_right = 126.0
+offset_bottom = 153.0
+texture = ExtResource("27_417i3")
+expand_mode = 1
+stretch_mode = 4
+
 [node name="ThoughtBubble4" type="TextureRect" parent="ThoughtBubbles"]
 layout_mode = 0
-offset_left = 1679.0
-offset_top = 186.0
-offset_right = 1838.0
-offset_bottom = 295.0
+offset_left = 1692.0
+offset_top = 199.0
+offset_right = 1851.0
+offset_bottom = 308.0
 texture = ExtResource("21_7xnx4")
 expand_mode = 1
 
@@ -897,12 +925,21 @@ fit_content = true
 script = ExtResource("22_ufc0k")
 TopicName = 4
 
+[node name="TextureRect2" type="TextureRect" parent="ThoughtBubbles/ThoughtBubble4"]
+offset_left = -32.0
+offset_top = 99.0
+offset_right = 30.0
+offset_bottom = 140.0
+texture = ExtResource("27_417i3")
+expand_mode = 1
+stretch_mode = 4
+
 [node name="ThoughtBubble5" type="TextureRect" parent="ThoughtBubbles"]
 layout_mode = 0
-offset_left = 1747.0
-offset_top = 295.0
-offset_right = 1906.0
-offset_bottom = 404.0
+offset_left = 1720.0
+offset_top = 342.0
+offset_right = 1879.0
+offset_bottom = 451.0
 texture = ExtResource("21_7xnx4")
 expand_mode = 1
 
@@ -924,12 +961,21 @@ fit_content = true
 script = ExtResource("22_ufc0k")
 TopicName = 5
 
+[node name="TextureRect2" type="TextureRect" parent="ThoughtBubbles/ThoughtBubble5"]
+offset_left = -60.0
+offset_top = 64.0
+offset_right = 2.0
+offset_bottom = 105.0
+texture = ExtResource("27_417i3")
+expand_mode = 1
+stretch_mode = 4
+
 [node name="ThoughtBubble6" type="TextureRect" parent="ThoughtBubbles"]
 layout_mode = 0
-offset_left = 1265.0
-offset_top = 373.0
-offset_right = 1424.0
-offset_bottom = 482.0
+offset_left = 1236.0
+offset_top = 530.0
+offset_right = 1395.0
+offset_bottom = 639.0
 texture = ExtResource("21_7xnx4")
 expand_mode = 1
 
@@ -951,12 +997,21 @@ fit_content = true
 script = ExtResource("22_ufc0k")
 TopicName = 6
 
+[node name="TextureRect2" type="TextureRect" parent="ThoughtBubbles/ThoughtBubble6"]
+offset_left = 132.0
+offset_top = -30.0
+offset_right = 194.0
+offset_bottom = 11.0
+texture = ExtResource("27_417i3")
+expand_mode = 1
+stretch_mode = 4
+
 [node name="ThoughtBubble7" type="TextureRect" parent="ThoughtBubbles"]
 layout_mode = 0
-offset_left = 1711.0
-offset_top = 408.0
-offset_right = 1870.0
-offset_bottom = 517.0
+offset_left = 1720.0
+offset_top = 500.0
+offset_right = 1879.0
+offset_bottom = 609.0
 texture = ExtResource("21_7xnx4")
 expand_mode = 1
 
@@ -977,6 +1032,14 @@ bbcode_enabled = true
 fit_content = true
 script = ExtResource("22_ufc0k")
 TopicName = 7
+
+[node name="TextureRect2" type="TextureRect" parent="ThoughtBubbles/ThoughtBubble7"]
+offset_left = -48.0
+offset_right = 14.0
+offset_bottom = 41.0
+texture = ExtResource("27_417i3")
+expand_mode = 1
+stretch_mode = 4
 
 [node name="CurrentTopicBox" type="Panel" parent="."]
 layout_mode = 1
