@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://cv7lwki55h2ma"]
+[gd_scene load_steps=40 format=3 uid="uid://cv7lwki55h2ma"]
 
 [ext_resource type="Script" path="res://src/SceneCode/EncounterScene.cs" id="1_qerod"]
 [ext_resource type="Script" path="res://src/Encounter/CombatManager.cs" id="2_6eywl"]
@@ -23,6 +23,11 @@
 [ext_resource type="Shader" path="res://Assets/Shaders/SimpleBlur.gdshader" id="21_u5cww"]
 [ext_resource type="Texture2D" uid="uid://6owi28lr85hn" path="res://Assets/UI/Icons/Arrow.png" id="22_nhamm"]
 [ext_resource type="Script" path="res://src/UI/TopicRichTextLabel.cs" id="22_ufc0k"]
+[ext_resource type="Script" path="res://src/UI/AnnoyanceDisplay.cs" id="24_wl100"]
+[ext_resource type="Texture2D" uid="uid://csf0lc06m8cu0" path="res://Assets/UI/BigArrow.png" id="25_6brt4"]
+[ext_resource type="Texture2D" uid="uid://dujhcmisqeo3g" path="res://Assets/UI/Icons/ConversationInterestMaxIcon.png" id="26_nbp65"]
+[ext_resource type="Texture2D" uid="uid://41xm1pwy2r8m" path="res://Assets/UI/Icons/SocialStandingIcon.png" id="27_lf1cy"]
+[ext_resource type="Texture2D" uid="uid://biiv7jthgpe0n" path="res://Assets/UI/Icons/SocialBatteryIcon_2.png" id="28_2ddgd"]
 
 [sub_resource type="Gradient" id="Gradient_vp34m"]
 offsets = PackedFloat32Array(0.269542, 1)
@@ -278,7 +283,7 @@ _enemyDialogue = NodePath("SpeechbubbleEnemy")
 _enemyName = NodePath("EnemyName")
 _attackCardContainer = NodePath("AttackCardContainer")
 _animationPlayer = NodePath("AnimationPlayer")
-_currentTopic = NodePath("Panel2/MarginContainer/VBoxContainer/CurrentTopic")
+_currentTopic = NodePath("CurrentTopicBox/MarginContainer/VBoxContainer/CurrentTopic")
 _annoyanceValue = NodePath("VBoxContainer/HBoxContainer/AnnoyanceValue")
 _currentMaxCIChanges = NodePath("ConversationInterest/HBoxContainer/CurrentMaxCIChanges")
 _mentalCapacityMax = NodePath("MentalCapacity/HBoxContainer/MentalCapacityMax")
@@ -553,6 +558,94 @@ bbcode_enabled = true
 fit_content = true
 script = ExtResource("10_qqenu")
 
+[node name="AnnoyanceDisplay" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 1589.0
+offset_top = 804.0
+offset_right = 1870.0
+offset_bottom = 1084.0
+script = ExtResource("24_wl100")
+
+[node name="TextureRect" type="TextureRect" parent="AnnoyanceDisplay"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("25_6brt4")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="AnnoyanceDisplay/TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -29.0
+offset_bottom = 29.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("6_wdmna")
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 110
+theme_override_constants/margin_right = 130
+theme_override_constants/margin_bottom = 110
+
+[node name="VBoxContainer" type="VBoxContainer" parent="AnnoyanceDisplay/TextureRect/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="AnnoyanceDisplay/TextureRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="AnnoyanceDisplay/TextureRect/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("6_wdmna")
+theme_override_fonts/font = ExtResource("6_2175l")
+
+[node name="TextureRect" type="TextureRect" parent="AnnoyanceDisplay/TextureRect/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.8
+texture = ExtResource("26_nbp65")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="AnnoyanceDisplay/TextureRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label3" type="Label" parent="AnnoyanceDisplay/TextureRect/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("6_wdmna")
+theme_override_fonts/font = ExtResource("6_2175l")
+
+[node name="TextureRect3" type="TextureRect" parent="AnnoyanceDisplay/TextureRect/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.8
+texture = ExtResource("27_lf1cy")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="AnnoyanceDisplay/TextureRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="AnnoyanceDisplay/TextureRect/MarginContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("6_wdmna")
+theme_override_fonts/font = ExtResource("6_2175l")
+
+[node name="TextureRect2" type="TextureRect" parent="AnnoyanceDisplay/TextureRect/MarginContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.8
+texture = ExtResource("28_2ddgd")
+expand_mode = 1
+stretch_mode = 4
+
 [node name="ThoughtBubbles" type="Control" parent="." node_paths=PackedStringArray("_topicLabels")]
 anchors_preset = 0
 offset_right = 40.0
@@ -752,6 +845,43 @@ fit_content = true
 script = ExtResource("22_ufc0k")
 TopicName = 7
 
+[node name="CurrentTopicBox" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -162.5
+offset_top = -220.0
+offset_right = 162.5
+offset_bottom = -70.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("6_wdmna")
+
+[node name="MarginContainer" type="MarginContainer" parent="CurrentTopicBox"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("6_wdmna")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CurrentTopicBox/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CurrentTopicBox/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("6_2175l")
+text = "Current Topic:"
+horizontal_alignment = 1
+
+[node name="CurrentTopic" type="Label" parent="CurrentTopicBox/MarginContainer/VBoxContainer"]
+layout_mode = 2
+horizontal_alignment = 1
+
 [node name="Panel" type="Panel" parent="."]
 visible = false
 material = SubResource("ShaderMaterial_lkmg3")
@@ -840,42 +970,5 @@ stretch_margin_top = 30
 stretch_margin_right = 30
 stretch_margin_bottom = 30
 texture_progress_offset = Vector2(23.165, 23.41)
-
-[node name="Panel2" type="Panel" parent="."]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -162.5
-offset_top = -220.0
-offset_right = 162.5
-offset_bottom = -70.0
-grow_horizontal = 2
-grow_vertical = 0
-theme = ExtResource("6_wdmna")
-
-[node name="MarginContainer" type="MarginContainer" parent="Panel2"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("6_wdmna")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel2/MarginContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Panel2/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("6_2175l")
-text = "Current Topic:"
-horizontal_alignment = 1
-
-[node name="CurrentTopic" type="Label" parent="Panel2/MarginContainer/VBoxContainer"]
-layout_mode = 2
-horizontal_alignment = 1
 
 [connection signal="pressed" from="SpeechbubblePlayer" to="." method="OnSpeechBubblePressed"]

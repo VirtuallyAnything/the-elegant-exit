@@ -34,7 +34,7 @@ namespace tee
 		{
 			CombatManager.CombatEnded += ChangeToEncounterFinishedScene;
 			GameManager.GameOver += ChangeToGameOverScene;
-			_mainMenu = GetTree().Root.GetChild<StartScene>(2);
+			_mainMenu = GetTree().Root.GetChild<StartScene>(3);
 			_currentScene = _mainMenu;
 		}
 

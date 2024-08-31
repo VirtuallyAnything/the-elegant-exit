@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Text.Json.Serialization;
 
 namespace tee
 {
@@ -8,8 +9,6 @@ namespace tee
 	{
 		private float _mentalCapacityDamage;
 		private int _socialBatteryChange;
-		[Export]
-		private TopicName _topic;
 		private string _quote;
 		[Export]
 		public int SocialBatteryChange
@@ -23,13 +22,24 @@ namespace tee
 			get { return _mentalCapacityDamage; }
 			set { _mentalCapacityDamage = value; }
 		}
+		[JsonConverter(typeof(JsonStringEnumConverter))]
 		public TopicName Topic{
-			get{return _topic;}
+			get; set;
+		}
+		[JsonConverter(typeof(JsonStringEnumConverter))]
+    		public QuoteType Type{
+			get; set;
 		}
 		[Export]
 		public string Quote{
 			get{return _quote;}
 			set{_quote = value;}
+		}
+		public string DialogueID{
+			get; set;
+		}
+		public bool NeedsTransition{
+			get; set;
 		}
 	}
 }

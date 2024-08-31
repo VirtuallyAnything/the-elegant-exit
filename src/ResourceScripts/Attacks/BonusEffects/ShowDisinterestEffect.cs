@@ -8,7 +8,7 @@ namespace tee
         public override void Resolve(CombatManager combatManager){
             EncounterEnemy enemy = combatManager.Enemy;
             enemy.SwitchTopicNextTurn();
-            enemy.DecreaseEnthusiasmFor(combatManager.PlayerCurrentTopicName);
+            enemy.DecreaseEnthusiasmFor(combatManager.Enemy.CurrentTopicName);
         }
     }
 }

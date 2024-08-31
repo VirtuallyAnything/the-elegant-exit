@@ -41,7 +41,7 @@ script = ExtResource("3_53yld")
 _data = ExtResource("4_iwfah")
 _sightConeSegments = 10
 _sightConeAngleDegrees = 120.0
-_sightConeRadius = 500.0
+_sightConeRadius = 800.0
 _agent = NodePath("NavigationAgent2D")
 _movementSpeed = 150.0
 _discoveryLight = NodePath("PointLight2D")
@@ -67,9 +67,9 @@ debug_enabled = true
 
 [node name="TextureProgressBar" parent="Characters/Player/Camera2D" instance=ExtResource("5_t55tw")]
 offset_left = -876.0
-offset_top = -460.0
-offset_right = -735.0
-offset_bottom = -397.0
+offset_top = -506.0
+offset_right = -663.0
+offset_bottom = -404.0
 texture_progress_offset = Vector2(22.855, 23.94)
 metadata/_edit_use_anchors_ = true
 

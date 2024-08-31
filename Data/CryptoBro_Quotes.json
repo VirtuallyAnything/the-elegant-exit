@@ -1,0 +1,200 @@
+[
+  {
+    "Type": "MainLine",
+    "Topic": "SpecialInterest",
+    "DialogueID": "cb_topic_crypto_01",
+    "MentalCapacityDamage": 1,
+    "SocialBatteryChange": 0,
+    "NeedsTransition": true,
+    "Quote": "You should buy some [BAYC NFT]. They're the latest uproar in the scene. Can't be taken serious without one in your portfolio."
+  },
+  {
+    "Type": "MainLine",
+    "Topic": "SpecialInterest",
+    "DialogueID": "cb_topic_crypto_02",
+    "MentalCapacityDamage": 1,
+    "SocialBatteryChange": 0,
+    "NeedsTransition": true,
+    "Quote": "The Bitcoin farm in my mom's cellar is going full speed. Next year I'll be able to pay her recompese for 2 month of energy bills."
+  },
+  {
+    "Type": "MainLine",
+    "Topic": "SpecialInterest",
+    "DialogueID": "cb_topic_crypto_03",
+    "MentalCapacityDamage": 1,
+    "SocialBatteryChange": 0,
+    "NeedsTransition": true,
+    "Quote": "I just launched a new currency: Stacey Coin. I even have an amazing slogan for it: In Block Chain we trust. Buying Stace' Coins' a must!"
+  },
+  {
+    "Type": "MainLine",
+    "Topic": "SpecialInterest",
+    "DialogueID": "cb_topic_crypto_04",
+    "MentalCapacityDamage": 1,
+    "SocialBatteryChange": 0,
+    "NeedsTransition": true,
+    "Quote": "I gifted Stacey 1000 of my brand new Stacey Coins. There not worth much now, but you just wait through 5 years of exponential growth."
+  },
+  {
+    "Type": "MainLine",
+    "Topic": "Economy",
+    "DialogueID": "cb_topic_economy_01",
+    "MentalCapacityDamage": 1,
+    "SocialBatteryChange": 0,
+    "NeedsTransition": true,
+    "Quote": "I know people have been saying it is a bull market lately. But that is just an opportunity for visionary investors like me."
+  },
+  {
+    "Type": "MainLine",
+    "Topic": "Economy",
+    "DialogueID": "cb_topic_economy_02",
+    "MentalCapacityDamage": 1,
+    "SocialBatteryChange": 0,
+    "NeedsTransition": true,
+    "Quote": "If you ask me that bailout of Morgansons, Sons & Partners was just what the economy needed. Can you imagine the detrimental impact without it."
+  },
+  {
+    "Type": "MainLine",
+    "Topic": "Economy",
+    "DialogueID": "cb_topic_economy_03",
+    "MentalCapacityDamage": 1,
+    "SocialBatteryChange": 0,
+    "NeedsTransition": true,
+    "Quote": "I know tha XCHRE took a hit lately, but as my Idol always says. Diamond Hands baby! Diamond hands!"
+  },
+  {
+    "Type": "MainLine",
+    "Topic": "Economy",
+    "DialogueID": "cb_topic_economy_04",
+    "MentalCapacityDamage": 1,
+    "SocialBatteryChange": 0,
+    "NeedsTransition": false,
+    "Quote": "OMG. That sounds amazing. I should really invest in that!"
+  },
+  {
+    "Type": "MainLine",
+    "Topic": "Art",
+    "DialogueID": "cb_topic_art_01",
+    "MentalCapacityDamage": 1,
+    "SocialBatteryChange": 0,
+    "NeedsTransition": true,
+    "Quote": "You've seen my pin. It's my latest acquisition of [BAYC NFT]. Yes the printers now have a copy of it, but that's nothing without the blockchain to back it up."
+  },
+  {
+    "Type": "MainLine",
+    "Topic": "Art",
+    "DialogueID": "cb_topic_art_02",
+    "MentalCapacityDamage": 1,
+    "SocialBatteryChange": 0,
+    "NeedsTransition": true,
+    "Quote": "Have you seen that painting in the living room. That's a real Belmont, signature and all. Magnificient. The last time one was for auction was ages ago. I wonder how Stacey' dad got one."
+  },
+  {
+    "Type": "MainLine",
+    "Topic": "Art",
+    "DialogueID": "cb_topic_art_03",
+    "MentalCapacityDamage": 1,
+    "SocialBatteryChange": 0,
+    "NeedsTransition": true,
+    "Quote": "I went to Crypto Con and got myself a digital signature from the artist behind [NFT] on my [NFT]. It's theoretical sell price just went through the roof."
+  },
+  {
+    "Type": "MainLine",
+    "Topic": "Art",
+    "DialogueID": "cb_topic_art_04",
+    "MentalCapacityDamage": 2,
+    "SocialBatteryChange": -1,
+    "NeedsTransition": true,
+    "Quote": "That NFT I made you buy, the one with the [description]. Yeah better sell that fast. The tip wasn't as rock solid  as I'd hoped. Already sold mine, but you'll be lucky to find a buyer now."
+  },
+  {
+    "Type": "MainLine",
+    "Topic": "Politics",
+    "DialogueID": "cb_topic_politics_01",
+    "MentalCapacityDamage": 1,
+    "SocialBatteryChange": 0,
+    "NeedsTransition": true,
+    "Quote": "You know. Our work keeps the world going. I don't mean that librarian side hustle, no offense, but witout us Crypto Bros it would already be World war III."
+  },
+  {
+    "Type": "MainLine",
+    "Topic": "Politics",
+    "DialogueID": "cb_topic_politics_02",
+    "MentalCapacityDamage": 1,
+    "SocialBatteryChange": 0,
+    "NeedsTransition": true,
+    "Quote": "The High Court is planning to regulate the usage of Blockchain. They can't do that, there must be laws or something. On the other hand. My current portfolio could rise in value..."
+  },
+  {
+    "Type": "MainLine",
+    "Topic": "Politics",
+    "DialogueID": "cb_topic_politics_03",
+    "MentalCapacityDamage": 1,
+    "SocialBatteryChange": 0,
+    "NeedsTransition": true,
+    "Quote": "I have a guy that is doing lobbying work for fossil fuels. Great man. Inspiration to all of us."
+  },
+  {
+    "Type": "MainLine",
+    "Topic": "Politics",
+    "DialogueID": "cb_topic_politics_04",
+    "MentalCapacityDamage": 1,
+    "SocialBatteryChange": 0,
+    "NeedsTransition": true,
+    "Quote": "The latest trade embargo on graphics card has really put a dent into the growth potential of my Bitcoin farm."
+  },
+  {
+    "Type": "MainLine",
+    "Topic": "Gossip",
+    "DialogueID": "cb_topic_gossip_01",
+    "MentalCapacityDamage": 1,
+    "SocialBatteryChange": 0,
+    "NeedsTransition": true,
+    "Quote": "Do you have any insights more for me?"
+  },
+  {
+    "Type": "MainLine",
+    "Topic": "Gossip",
+    "DialogueID": "cb_topic_gossip_02",
+    "MentalCapacityDamage": 1,
+    "SocialBatteryChange": 0,
+    "NeedsTransition": true,
+    "Quote": "Have you seen Brad? He left with that chick Carla and now I have to party alone. I wonder what they're doing?"
+  },
+  {
+    "Type": "MainLine",
+    "Topic": "Gossip",
+    "DialogueID": "cb_topic_gossip_03",
+    "MentalCapacityDamage": 1,
+    "SocialBatteryChange": 0,
+    "NeedsTransition": true,
+    "Quote": "Wait! I just got a hot tip from my... you better don't know... Pork Belly is going down and I have to buy the dip. So let me just... and done. Where were we?"
+  },
+  {
+    "Type": "MainLine",
+    "Topic": "Gossip",
+    "DialogueID": "cb_topic_gossip_04",
+    "MentalCapacityDamage": 2,
+    "SocialBatteryChange": -1,
+    "NeedsTransition": true,
+    "Quote": "You know that one lady has giving me the look. Maybe I'll invest my time tonight with her."
+  },
+  {
+    "Type": "Enrage",
+    "Topic": "Sport",
+    "DialogueID": "cb_enrage_sports",
+    "MentalCapacityDamage": 2,
+    "SocialBatteryChange": -1,
+    "NeedsTransition": false,
+    "Quote": "Stop! I just can't. Sports betting really promotes some unhealthy gambling."
+  },
+  {
+    "Type": "Enrage",
+    "Topic": "Lifestyle",
+    "DialogueID": "cb_enrage_lifestyle",
+    "MentalCapacityDamage": 2,
+    "SocialBatteryChange": -1,
+    "NeedsTransition": false,
+    "Quote": "Let me stop you right there. Was I not punished enough having to talk to that internet \"star\" everyone else seems to be smitten with."
+  }
+]

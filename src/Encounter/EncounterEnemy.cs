@@ -109,11 +109,19 @@ namespace tee
 		{
 			get; set;
 		}
+		public TopicName CurrentTopicName
+		{
+			get { return _currentTopicName; }
+		}
+		public TopicName LastTopicName
+		{
+			get { return _lastTopicName; }
+		}
 
 		public EncounterEnemy(EnemyData data)
 		{
 			_displayName = data.DisplayName;
-			_enemyAttacks = data.EnemyAttacks;
+			_enemyAttacks = StaticData.GetLines(_displayName);
 			_attackPool = new(_enemyAttacks);
 			ConversationInterest = data.ConversationInterest;
 			ConversationInterestMax = _conversationInterest;
@@ -207,7 +215,7 @@ namespace tee
 				if (_currentTopicName != _lastTopicName)
 				{
 					chosenTopic.Weight += 5;
-					if (_lastTopicName != TopicName.None)
+					if (_lastTopicName != TopicName.None && _lastTopicName != TopicName.Weather)
 					{
 						_topicPreferences[_lastTopicName].ConversationTopic.Weight -= 5;
 					}
@@ -292,7 +300,15 @@ namespace tee
 
 		public Preference GetPreferenceFor(TopicName topic)
 		{
-			return _topicPreferences[topic].Preference;
+			if (_topicPreferences.Keys.Contains(topic))
+			{
+				return _topicPreferences[topic].Preference;
+			}
+			else
+			{
+				return Preference.Unknown;
+			}
+
 		}
 
 		public void Enrage(TopicName dislikedTopicName)
@@ -335,7 +351,12 @@ namespace tee
 
 		public int GetEnthusiasmLevelFor(TopicName topic)
 		{
-			return _topicPreferences[topic].ConversationTopic.GetCurrentEnthusiasmLevel();
+			if (_topicPreferences.Keys.Contains(topic))
+			{
+				return _topicPreferences[topic].ConversationTopic.GetCurrentEnthusiasmLevel();
+			}
+			return 0;
+
 		}
 
 		public void DecreaseAnnoyance()

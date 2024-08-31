@@ -42,19 +42,22 @@ namespace tee
 		public TopicName PlayerCurrentTopicName
 		{
 			get { return _playerCurrentTopicName; }
+			set { _playerCurrentTopicName = value; }
 		}
-		public TopicName PlayerLastTopicName{
-			get{return _playerLastTopicName;}
+		public TopicName PlayerLastTopicName
+		{
+			get { return _playerLastTopicName; }
 		}
-		public PlayerAttack SelectedAttack{
-			get{return _selectedAttack;}
+		public PlayerAttack SelectedAttack
+		{
+			get { return _selectedAttack; }
 		}
 		public TopicName NextTopicName
 		{
 			get { return _nextTopicName; }
 			set
 			{
-				if (_enemy.GetPreferenceFor(value) != Preference.Dislike)
+				if (_enemy.GetPreferenceFor(value) != Preference.Dislike && _enemy.GetPreferenceFor(value) != Preference.Unknown)
 				{
 					_nextTopicName = value;
 				}
@@ -72,7 +75,7 @@ namespace tee
 		public override void _Ready()
 		{
 			_player = new(GameManager.AvailableAttacks);
-			
+
 			_encounterScene.SetupCompleted += StartCombat;
 			EncounterScene.PlayerTurnComplete += EnemyAttack;
 			EnemyTurnComplete += SetupNewAttack;
@@ -89,6 +92,7 @@ namespace tee
 				_encounterScene.AttackCardContainer.AddNewAttackCard(randomAttack);
 			}
 			_enemy = new(_encounterScene.CurrentEnemy);
+
 			_encounterScene.AttackCardContainer.DisableInput();
 			await _encounterScene.PlayCombatStartAnimation(_transferAmount);
 
@@ -123,7 +127,8 @@ namespace tee
 
 			// Set topic of attack to that of the player attack or none
 			TopicName topicOfAttack = TopicName.None;
-			if(playerAttack is TopicalPlayerAttack topicalPlayerAttack){
+			if (playerAttack is TopicalPlayerAttack topicalPlayerAttack)
+			{
 				topicOfAttack = topicalPlayerAttack.SelectedTopicName;
 			};
 			_selectedAttack = playerAttack;
@@ -160,7 +165,11 @@ namespace tee
 
 			// Set the base attack damage and resolve bonus effects if there are any
 			_player.Resolve(_selectedAttack, this);
-			Enemy.ReactTo(topicOfAttack);
+			if(PlayerCurrentTopicName == TopicName.Weather){
+				Enemy.ReactTo(TopicName.Weather);
+			}else{
+				Enemy.ReactTo(topicOfAttack);
+			}
 
 			// Add newly discovered preference
 			if (!_player.DiscoveredEnemyPreferences.ContainsKey(_playerCurrentTopicName))
@@ -174,15 +183,21 @@ namespace tee
 
 			_isIgnoreCIBonusDamage = false;
 
+			//Wait for all the animations to finish
 			await _encounterScene.PlayDialogAnimation(_selectedAttack);
 			await _encounterScene.PlayAnimationsForAttack(_selectedAttack, conversationInterestBonusDamage);
 			await _encounterScene.UpdateConversationInterestMax();
 
-			if(topicOfAttack != TopicName.None){
-				_preferenceDisplay.UpdateEnthusiasm(_playerCurrentTopicName, Enemy.GetEnthusiasmLevelFor(_playerCurrentTopicName));
-				_encounterScene.UpdateTopic(topicOfAttack);
+			if (topicOfAttack != TopicName.None || PlayerCurrentTopicName == TopicName.Weather)
+			{
+				_preferenceDisplay.UpdateEnthusiasm(PlayerCurrentTopicName, Enemy.GetEnthusiasmLevelFor(PlayerCurrentTopicName));
+				_encounterScene.UpdateTopic(PlayerCurrentTopicName);
 			}
-			
+			else
+			{
+				_preferenceDisplay.UpdateEnthusiasm(Enemy.CurrentTopicName, Enemy.GetEnthusiasmLevelFor(Enemy.CurrentTopicName));
+			}
+
 			_encounterScene.UpdateAnnoyance(Enemy.Annoyance);
 			_encounterScene.UpdateConversationInterestModifiers(Enemy.ConversationInterestModifierAnnoyance, Enemy.ConversationInterestModifierEnthusiasm);
 			GD.Print($"Player attacks and does {conversationInterestBonusDamage + ConversationInterestDamage} damage to CI.");
@@ -221,13 +236,13 @@ namespace tee
 				_player.MentalCapacity -= enemyAttack.MentalCapacityDamage;
 				await _encounterScene.PlayAnimationsForAttack(enemyAttack);
 			}
-			await _encounterScene.UpdateConversationInterestMax();
 			Enemy.IncreaseEnthusiasmFor(chosenTopicName);
 			_preferenceDisplay.UpdateEnthusiasm(chosenTopicName, Enemy.GetEnthusiasmLevelFor(chosenTopicName));
-			_encounterScene.UpdateTopic(chosenTopicName);
-			GD.Print("Enemy selects Topic");
 			_encounterScene.UpdateConversationInterestModifiers(_enemy.ConversationInterestModifierAnnoyance, _enemy.ConversationInterestModifierEnthusiasm);
-			
+			await _encounterScene.UpdateConversationInterestMax();
+
+			_encounterScene.UpdateTopic(chosenTopicName);
+
 			EnemyTurnComplete?.Invoke();
 		}
 

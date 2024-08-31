@@ -17,6 +17,7 @@ config/icon="res://Assets/Textures/ElegantExitLogo.png"
 
 [autoload]
 
+StaticData="*res://src/StaticData.cs"
 SceneManager="*res://src/SceneCode/SceneManager.cs"
 GameManager="*res://src/GameManager.cs"
 

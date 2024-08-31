@@ -144,10 +144,12 @@ namespace tee
 			if (_conversationInterestDelta == 0)
 			{
 				_conversationInterestMaxChange.Text = "";
+				_attackAnimationsFinished = true;
+				return;
 			}
 			else
 			{
-				_conversationInterestMaxChange.Text = $"-{_conversationInterestDelta}";
+				_conversationInterestMaxChange.Text = $"{_conversationInterestDelta}";
 			}
 
 			//Fade-In ConversationInterestMaxChange
