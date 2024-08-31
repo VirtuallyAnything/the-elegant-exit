@@ -14,6 +14,7 @@ namespace tee
             if(preference == Preference.Like){
                 combatManager.SocialStanding += 1;
             }
+            GD.Print("Resolved AskForInterestEffect.");
         }
     }
 }

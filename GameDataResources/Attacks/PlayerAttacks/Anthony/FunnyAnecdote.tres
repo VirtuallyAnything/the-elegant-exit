@@ -1,10 +1,41 @@
-[gd_resource type="Resource" script_class="TopicalPlayerAttack" load_steps=2 format=3 uid="uid://clsno7agx4m40"]
+[gd_resource type="Resource" script_class="TopicalPlayerAttack" load_steps=9 format=3 uid="uid://clsno7agx4m40"]
 
+[ext_resource type="Script" path="res://src/ResourceScripts/TopicDialogue.cs" id="1_3xqc2"]
 [ext_resource type="Script" path="res://src/ResourceScripts/Attacks/TopicalPlayerAttack.cs" id="1_eoj8r"]
+
+[sub_resource type="Resource" id="Resource_qfs3w"]
+script = ExtResource("1_3xqc2")
+_topicName = 1
+_text = "While we were both still in college, I was the stroke for our rowing team against Fenwick. After our second yearly victory, the Fenwick bowman was so aggravated they all fell in the river."
+
+[sub_resource type="Resource" id="Resource_n4sff"]
+script = ExtResource("1_3xqc2")
+_topicName = 1
+_text = "I convinced Marc to go indoor bouldering last year. Marc was mostly doing yellow while I tried myself on some purple. Should have stuck with blue, might not have to carry my arm in a casket for two months."
+
+[sub_resource type="Resource" id="Resource_d84e2"]
+script = ExtResource("1_3xqc2")
+_topicName = 4
+_text = "When I volunteered as a poll worker for the last state elections we really had some curious cases. An old lady was trying for a \"darling young politician\"... from another state."
+
+[sub_resource type="Resource" id="Resource_co7a8"]
+script = ExtResource("1_3xqc2")
+_topicName = 4
+_text = "I've watched the latest TV debate and one of the candidates got pushed in on a wheelchair by his nurse. And I think the other was just an urn..."
+
+[sub_resource type="Resource" id="Resource_mnngg"]
+script = ExtResource("1_3xqc2")
+_topicName = 2
+_text = "GB did an article about how to keep your legs hairless for up to 3 months. A friend of mine tried it and we are now calling him \"flamingo\", because his thin legs were so irritated after the procedure."
+
+[sub_resource type="Resource" id="Resource_lv8hi"]
+script = ExtResource("1_3xqc2")
+_topicName = 2
+_text = "This summer I've really been into watermelons. Post-Lunch: Watermelon! Late-night snack: Watermelon! Cubed and with a ready fork they make the perfect snack!"
 
 [resource]
 script = ExtResource("1_eoj8r")
-_topicRelatedQuotes = []
+_topicRelatedQuotes = [SubResource("Resource_qfs3w"), SubResource("Resource_n4sff"), SubResource("Resource_d84e2"), SubResource("Resource_co7a8"), SubResource("Resource_mnngg"), SubResource("Resource_lv8hi")]
 UnlockedTopics = [1, 4, 2]
 OwningCharacter = 1
 ConversationInterestDamage = 3

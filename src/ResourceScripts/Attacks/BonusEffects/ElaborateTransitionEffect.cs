@@ -10,6 +10,7 @@ namespace tee
             combatManager.IgnoreNextAnnoyance();
             combatManager.Enemy.DecreaseEnthusiasmFor(combatManager.PlayerLastTopicName);
             combatManager.Enemy.DecreaseEnthusiasmFor(combatManager.PlayerLastTopicName);
+            GD.Print("Resolved ElaborateTransitionEffect.");
         }
     }
 }

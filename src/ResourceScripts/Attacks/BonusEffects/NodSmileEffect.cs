@@ -7,6 +7,7 @@ namespace tee
     {
         public override void Resolve(CombatManager combatManager){
             combatManager.BlockNextEnemyAttack();
+            GD.Print("Resolved NodSmileEffect.");
         }
     }
 }

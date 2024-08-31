@@ -11,13 +11,15 @@ namespace tee
             switch(preference){
                 case Preference.Like:
                 enemy.DecreaseAnnoyance();
-                enemy.IncreaseEnthusiasmFor(combatManager.PlayerCurrentTopicName);
+                //enemy.IncreaseEnthusiasmFor(combatManager.PlayerCurrentTopicName);
+                combatManager.SocialStanding += 1;
                 break;
                 case Preference.Dislike:
                 enemy.IncreaseAnnoyance();
                 combatManager.ConversationInterestDamage += 2;
                 break;
             }
+            GD.Print("Resolved TalkShopEffect.");
         }
     }
 }

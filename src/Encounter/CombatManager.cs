@@ -181,7 +181,8 @@ namespace tee
 			}
 			// Actually subtract the damages from Conversation Interest
 			Enemy.ConversationInterest -= conversationInterestBonusDamage + ConversationInterestDamage;
-
+			GD.Print($"Player attacks with {playerAttack.AttackName} and does {conversationInterestBonusDamage + ConversationInterestDamage} damage to CI.");
+			GD.Print($"New Enemy CI: {Enemy.ConversationInterest}/{Enemy.ConversationInterestMax}");
 			_isIgnoreCIBonusDamage = false;
 
 			//Wait for all the animations to finish
@@ -201,8 +202,7 @@ namespace tee
 
 			_encounterScene.UpdateAnnoyance(Enemy.Annoyance);
 			_encounterScene.UpdateConversationInterestModifiers(Enemy.ConversationInterestModifierAnnoyance, Enemy.ConversationInterestModifierEnthusiasm);
-			GD.Print($"Player attacks and does {conversationInterestBonusDamage + ConversationInterestDamage} damage to CI.");
-			GD.Print($"New Enemy CI: {Enemy.ConversationInterest}/{Enemy.ConversationInterestMax}");
+			
 			if (Enemy.ConversationInterest <= 0)
 			{
 				CombatEnded?.Invoke();

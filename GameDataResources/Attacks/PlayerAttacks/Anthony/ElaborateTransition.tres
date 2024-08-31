@@ -7,17 +7,17 @@
 [sub_resource type="Resource" id="Resource_vjuay"]
 script = ExtResource("2_5evve")
 _topicName = 1
-_text = ""
+_text = "For what you just said, there is a perfect analogy in sports. As star trainer Pepe Mourinho once said after the match against Madritico Real... Or was it Heinkel who said it? Then it also must have been after the Chitchester debacle. Did you see that live?"
 
 [sub_resource type="Resource" id="Resource_76r51"]
 script = ExtResource("2_5evve")
 _topicName = 4
-_text = ""
+_text = "Isn't there a law against that? I'm sure I read an article detailing the exact scenario you just pictured and the High Court was in favour of doing something about it."
 
 [sub_resource type="Resource" id="Resource_mvvw4"]
 script = ExtResource("2_5evve")
 _topicName = 2
-_text = ""
+_text = "I tried that once, but it really didn't fit well into my work-life-balance. Lately I'm trying to spend more time with Marc, since we both don't have to worry about making ends meet."
 
 [resource]
 script = ExtResource("1_rc41w")

@@ -1,10 +1,41 @@
-[gd_resource type="Resource" script_class="TopicalPlayerAttack" load_steps=2 format=3 uid="uid://jcvldt15okdk"]
+[gd_resource type="Resource" script_class="TopicalPlayerAttack" load_steps=9 format=3 uid="uid://jcvldt15okdk"]
 
 [ext_resource type="Script" path="res://src/ResourceScripts/Attacks/TopicalPlayerAttack.cs" id="1_k3tcf"]
+[ext_resource type="Script" path="res://src/ResourceScripts/TopicDialogue.cs" id="1_tc2q1"]
+
+[sub_resource type="Resource" id="Resource_qu76f"]
+script = ExtResource("1_tc2q1")
+_topicName = 5
+_text = "Back in college I had an art scholarship. \"Real\" art never became my passion though. Miniature figurines and landscapes. That's were it's at."
+
+[sub_resource type="Resource" id="Resource_jbel5"]
+script = ExtResource("1_tc2q1")
+_topicName = 5
+_text = "I won the award for Best Painted Army at a local Battlemace20k tournament. Took me days to reach that level of detail."
+
+[sub_resource type="Resource" id="Resource_8tm4w"]
+script = ExtResource("1_tc2q1")
+_topicName = 3
+_text = "Running my own store really leaves me to handle all the paperwork alone. I still don't feel like I have reached a good point of economic maturity."
+
+[sub_resource type="Resource" id="Resource_fxjs7"]
+script = ExtResource("1_tc2q1")
+_topicName = 3
+_text = "A friend of ours regularly gives us \"investment tips\", too more or less success... mostly less."
+
+[sub_resource type="Resource" id="Resource_bmdxm"]
+script = ExtResource("1_tc2q1")
+_topicName = 6
+_text = "What happened to Stacey's boyfriend Gerick, haven't seen him yet. Oh they... they are not together any more..."
+
+[sub_resource type="Resource" id="Resource_j1u7t"]
+script = ExtResource("1_tc2q1")
+_topicName = 6
+_text = "I once wrote a reader contribution for Boulevard Weekly and it actually got chosen! Couldn't bring myself to use my real name though..."
 
 [resource]
 script = ExtResource("1_k3tcf")
-_topicRelatedQuotes = []
+_topicRelatedQuotes = [SubResource("Resource_qu76f"), SubResource("Resource_jbel5"), SubResource("Resource_8tm4w"), SubResource("Resource_fxjs7"), SubResource("Resource_bmdxm"), SubResource("Resource_j1u7t")]
 UnlockedTopics = [5, 3, 6]
 OwningCharacter = 0
 ConversationInterestDamage = 3

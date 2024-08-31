@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("1_1yujq")
-_quotes = []
+_quotes = ["Perfect weather tonight... would have been a shame if we couldn't use the karaoke stage in the garden.", "Pretty hot lately... Wasn't that hot same time last year.", "Weather forecast said it's gonna rain again next Wednesday."]
 _bonusEffect = ExtResource("1_mhc2s")
 OwningCharacter = 0
 ConversationInterestDamage = 2

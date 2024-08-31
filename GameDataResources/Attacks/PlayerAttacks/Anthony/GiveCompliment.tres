@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("1_m6x6f")
-_quotes = []
+_quotes = ["You're a great conversation partner. Everyone must also be eager to talk with you."]
 _bonusEffect = ExtResource("1_bb22v")
 OwningCharacter = 1
 ConversationInterestDamage = 3

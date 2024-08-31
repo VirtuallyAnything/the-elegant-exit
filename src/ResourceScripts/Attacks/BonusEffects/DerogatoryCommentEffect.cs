@@ -17,6 +17,7 @@ namespace tee
                 combatManager.Enemy.DecreaseAnnoyance();
                 break;
             }
+            GD.Print("Resolved DerogatoryCommentEffect.");
         }
     }
 }

@@ -1,11 +1,27 @@
-[gd_resource type="Resource" script_class="TopicalPlayerAttack" load_steps=3 format=3 uid="uid://c3fig235sju03"]
+[gd_resource type="Resource" script_class="TopicalPlayerAttack" load_steps=7 format=3 uid="uid://c3fig235sju03"]
 
 [ext_resource type="Resource" uid="uid://1gca7gi773tf" path="res://GameDataResources/Attacks/PlayerAttacks/BonusEffects/TalkShopEffect.tres" id="1_5dlx5"]
 [ext_resource type="Script" path="res://src/ResourceScripts/Attacks/TopicalPlayerAttack.cs" id="2_3jir0"]
+[ext_resource type="Script" path="res://src/ResourceScripts/TopicDialogue.cs" id="2_c2q3w"]
+
+[sub_resource type="Resource" id="Resource_r4546"]
+script = ExtResource("2_c2q3w")
+_topicName = 5
+_text = "The Bell Curve distribution meme for painting miniatures really holds up. Drybrushing really is the way to go. Everyone pondering over each and every brushstroke, is probably also using 000 to paint their house, because they clearly have no other life."
+
+[sub_resource type="Resource" id="Resource_0i1yf"]
+script = ExtResource("2_c2q3w")
+_topicName = 3
+_text = "The latest antitrust to break Jackson&Jacksons duopoly on the toothbrush market has really spooked investors seeking to leverage this Pareto distribution to stay ahead of stagflation predicted to occur over the next 3 quarters."
+
+[sub_resource type="Resource" id="Resource_q26hk"]
+script = ExtResource("2_c2q3w")
+_topicName = 6
+_text = "The scandals are around Stanley Ashton just won't end. He's now been featured on the cover of Boulevard Weekly five weeks in a row. Have you heard about that thing with his cousins? Yes, the male and the female one. Both at the same time apparently."
 
 [resource]
 script = ExtResource("2_3jir0")
-_topicRelatedQuotes = []
+_topicRelatedQuotes = [SubResource("Resource_r4546"), SubResource("Resource_0i1yf"), SubResource("Resource_q26hk")]
 UnlockedTopics = [5, 3, 6]
 _bonusEffect = ExtResource("1_5dlx5")
 OwningCharacter = 0

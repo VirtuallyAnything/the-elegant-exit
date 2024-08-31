@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("1_ri6hq")
-_quotes = []
+_quotes = ["That's nice and all, but I really think this has been overhyped.", "*Yawn*"]
 _bonusEffect = ExtResource("1_njnbm")
 OwningCharacter = 1
 ConversationInterestDamage = 3
