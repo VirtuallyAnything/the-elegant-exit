@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Diagnostics;
 
 namespace tee
 {
@@ -16,17 +17,22 @@ namespace tee
 		private RayCast2D _rayCast = new();
 		private NavigationAgent2D _navAgent = new();
 		[Export] private float _playerFollowSeconds = 10;
-		[Export] private float _speed;
+		[Export] private float _speed = 200;
 		[Export] private float _turnSpeed = (float)Math.Tau;
+		private bool _isInChase;
 
 		private Tween _tween;
 		private Color _transparent = new Color(1, 1, 1, 0);
 		private SceneManager _sceneManager;
 
+		public bool IsInChase{
+			get{return _enemyMovement.IsInChase;}
+		}
+
 		public override void _Ready()
 		{
 			base._Ready();
-			Modulate = _transparent;
+			//Modulate = _transparent;
 			_sprite.Texture = _enemyData.Icon;
 			
 			AddChild(_navAgent);

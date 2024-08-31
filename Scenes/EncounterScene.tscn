@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://cv7lwki55h2ma"]
+[gd_scene load_steps=42 format=3 uid="uid://cv7lwki55h2ma"]
 
 [ext_resource type="Script" path="res://src/SceneCode/EncounterScene.cs" id="1_qerod"]
 [ext_resource type="Script" path="res://src/Encounter/CombatManager.cs" id="2_6eywl"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://d21hljw8t080d" path="res://Scenes/Subscenes/SocialBattery.tscn" id="9_vlhst"]
 [ext_resource type="Script" path="res://src/UI/NotifyRichText.cs" id="10_qqenu"]
 [ext_resource type="StyleBox" uid="uid://yk0tno82ys2t" path="res://Assets/Themes/SpeechBubbleStyleBox3_mirrored.tres" id="11_shcrt"]
+[ext_resource type="Texture2D" uid="uid://bw67h1b1jrvc7" path="res://Assets/UI/BigArrow_Left.png" id="15_1g4ff"]
 [ext_resource type="Script" path="res://src/UI/PreferenceDisplay.cs" id="17_de043"]
 [ext_resource type="Texture2D" uid="uid://dj0q8i0h0goec" path="res://Assets/UI/Icons/LikeIcon.png" id="18_vqv50"]
 [ext_resource type="Texture2D" uid="uid://binr4bnx3kgwn" path="res://Assets/UI/Icons/DislikeIcon.png" id="19_bhsfw"]
@@ -262,11 +263,23 @@ default_font_size = 35
 [sub_resource type="Theme" id="Theme_0tp7n"]
 default_font_size = 40
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3hh7p"]
+bg_color = Color(0.501961, 0.14902, 0.266667, 1)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lkmg3"]
 shader = ExtResource("21_u5cww")
 shader_parameter/lod = 0.0
 
-[node name="EncounterScene" type="Control" node_paths=PackedStringArray("_playerSprite", "_playerDialogue", "_enemySprite", "_enemyDialogue", "_enemyName", "_attackCardContainer", "_animationPlayer", "_currentTopic", "_annoyanceValue", "_currentMaxCIChanges", "_mentalCapacityMax", "_mentalCapacityValue", "_mentalCapacityDamage", "_conversationInterestMax", "_conversationInterestMaxChange", "_conversationInterestValue", "_conversationInterestDamage", "_socialBatteryProgress")]
+[node name="EncounterScene" type="Control" node_paths=PackedStringArray("_playerSprite", "_playerDialogue", "_annoyanceDisplay", "_enemySprite", "_enemyDialogue", "_enemyName", "_attackCardContainer", "_animationPlayer", "_currentTopic", "_annoyanceValue", "_currentMaxCIChanges", "_mentalCapacityMax", "_mentalCapacityValue", "_mentalCapacityDamage", "_conversationInterestMax", "_conversationInterestMaxChange", "_conversationInterestValue", "_conversationInterestDamage", "_socialBatteryProgress")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -277,6 +290,7 @@ script = ExtResource("1_qerod")
 _playerSprite = NodePath("PlayerSprite")
 _playerDialogueColor = Color(0.22184, 0.204197, 0.770126, 1)
 _playerDialogue = NodePath("SpeechbubblePlayer")
+_annoyanceDisplay = NodePath("AnnoyanceDisplay")
 _enemySprite = NodePath("VBoxContainer/EnemySprite")
 _enemyDialogueColor = Color(0.807913, 0.00169103, 0.000926806, 1)
 _enemyDialogue = NodePath("SpeechbubbleEnemy")
@@ -284,7 +298,7 @@ _enemyName = NodePath("EnemyName")
 _attackCardContainer = NodePath("AttackCardContainer")
 _animationPlayer = NodePath("AnimationPlayer")
 _currentTopic = NodePath("CurrentTopicBox/MarginContainer/VBoxContainer/CurrentTopic")
-_annoyanceValue = NodePath("VBoxContainer/HBoxContainer/AnnoyanceValue")
+_annoyanceValue = NodePath("AnnoyanceDisplay/AnnoyanceValue")
 _currentMaxCIChanges = NodePath("ConversationInterest/HBoxContainer/CurrentMaxCIChanges")
 _mentalCapacityMax = NodePath("MentalCapacity/HBoxContainer/MentalCapacityMax")
 _mentalCapacityValue = NodePath("MentalCapacity/HBoxContainer/MentalCapacityValue")
@@ -337,20 +351,6 @@ flip_h = true
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme = ExtResource("6_wdmna")
-text = "Annoyance:"
-horizontal_alignment = 1
-
-[node name="AnnoyanceValue" type="Label" parent="VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme = ExtResource("6_wdmna")
-text = "0"
-horizontal_alignment = 1
-
 [node name="PlayerSprite" type="TextureRect" parent="."]
 layout_mode = 0
 offset_left = 204.0
@@ -391,6 +391,7 @@ offset_right = 35.043
 offset_bottom = -14.34
 size_flags_horizontal = 3
 theme = ExtResource("6_wdmna")
+theme_type_variation = &"OutlinedLabel"
 text = "0
 "
 
@@ -470,9 +471,9 @@ position = Vector2(960, 540)
 [node name="AttackCardContainer" type="Container" parent="."]
 layout_mode = 0
 offset_left = 96.0
-offset_top = 629.0
+offset_top = 540.0
 offset_right = 136.0
-offset_bottom = 669.0
+offset_bottom = 580.0
 script = ExtResource("7_3ynpm")
 
 [node name="SpeechbubblePlayer" type="Button" parent="." node_paths=PackedStringArray("_RTlabel")]
@@ -558,51 +559,104 @@ bbcode_enabled = true
 fit_content = true
 script = ExtResource("10_qqenu")
 
-[node name="AnnoyanceDisplay" type="HBoxContainer" parent="."]
-layout_mode = 0
-offset_left = 1589.0
+[node name="AnnoyanceDisplay" type="Panel" parent="." node_paths=PackedStringArray("_arrowLeft", "_arrowRight", "_arrowRightCIPlusIcon", "_arrowRightSBPlusIcon", "_conversationInterestNext", "_conversationInterestLast", "_socialBatteryNext", "_maxLevelText", "_annoyanceValue")]
+layout_mode = 2
+offset_left = 1368.0
 offset_top = 804.0
-offset_right = 1870.0
-offset_bottom = 1084.0
+offset_right = 1692.0
+offset_bottom = 1050.0
+theme = ExtResource("6_wdmna")
+theme_override_styles/panel = SubResource("StyleBoxFlat_3hh7p")
 script = ExtResource("24_wl100")
+_arrowLeft = NodePath("HBoxContainer/ArrowLeft")
+_arrowRight = NodePath("HBoxContainer/ArrowRight")
+_arrowRightCIPlusIcon = NodePath("HBoxContainer/ArrowRight/MarginContainer/VBoxContainer/HBoxContainer")
+_arrowRightSBPlusIcon = NodePath("HBoxContainer/ArrowRight/MarginContainer/VBoxContainer/HBoxContainer3")
+_conversationInterestNext = NodePath("HBoxContainer/ArrowRight/MarginContainer/VBoxContainer/HBoxContainer/ConversationInterestNext")
+_conversationInterestLast = NodePath("HBoxContainer/ArrowLeft/MarginContainer/VBoxContainer/HBoxContainer/ConversationInterestLast")
+_socialBatteryNext = NodePath("HBoxContainer/ArrowRight/MarginContainer/VBoxContainer/HBoxContainer3/SocialBatteryNext")
+_maxLevelText = NodePath("HBoxContainer/ArrowRight/MarginContainer/VBoxContainer/MaxLevelString")
+_annoyanceValue = NodePath("AnnoyanceValue")
 
-[node name="TextureRect" type="TextureRect" parent="AnnoyanceDisplay"]
+[node name="Annoyance" type="Label" parent="AnnoyanceDisplay"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = -57.0
+offset_bottom = -7.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+theme = ExtResource("6_wdmna")
+theme_override_fonts/font = ExtResource("6_2175l")
+text = "Annoyance"
+horizontal_alignment = 1
+
+[node name="AnnoyanceValue" type="Label" parent="AnnoyanceDisplay"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -99.5
+offset_top = -85.0
+offset_right = 99.5
+offset_bottom = -39.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+theme = ExtResource("6_wdmna")
+text = "0"
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="AnnoyanceDisplay"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 46.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 30
+text = "Currently:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="AnnoyanceDisplay"]
+layout_mode = 0
+offset_left = -103.0
+offset_right = 502.0
+offset_bottom = 280.0
+
+[node name="ArrowLeft" type="TextureRect" parent="AnnoyanceDisplay/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture = ExtResource("25_6brt4")
+texture = ExtResource("15_1g4ff")
 expand_mode = 1
 stretch_mode = 4
 
-[node name="MarginContainer" type="MarginContainer" parent="AnnoyanceDisplay/TextureRect"]
+[node name="MarginContainer" type="MarginContainer" parent="AnnoyanceDisplay/HBoxContainer/ArrowLeft"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -29.0
-offset_bottom = 29.0
+offset_top = -49.0
+offset_bottom = 49.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("6_wdmna")
-theme_override_constants/margin_left = 40
+theme_override_constants/margin_left = 70
 theme_override_constants/margin_top = 110
 theme_override_constants/margin_right = 130
 theme_override_constants/margin_bottom = 110
 
-[node name="VBoxContainer" type="VBoxContainer" parent="AnnoyanceDisplay/TextureRect/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="AnnoyanceDisplay/HBoxContainer/ArrowLeft/MarginContainer"]
 layout_mode = 2
 alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="AnnoyanceDisplay/TextureRect/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="AnnoyanceDisplay/HBoxContainer/ArrowLeft/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="AnnoyanceDisplay/TextureRect/MarginContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme = ExtResource("6_wdmna")
-theme_override_fonts/font = ExtResource("6_2175l")
-
-[node name="TextureRect" type="TextureRect" parent="AnnoyanceDisplay/TextureRect/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="AnnoyanceDisplay/HBoxContainer/ArrowLeft/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.8
@@ -610,16 +664,16 @@ texture = ExtResource("26_nbp65")
 expand_mode = 1
 stretch_mode = 4
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="AnnoyanceDisplay/TextureRect/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Label3" type="Label" parent="AnnoyanceDisplay/TextureRect/MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="ConversationInterestLast" type="Label" parent="AnnoyanceDisplay/HBoxContainer/ArrowLeft/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("6_wdmna")
 theme_override_fonts/font = ExtResource("6_2175l")
 
-[node name="TextureRect3" type="TextureRect" parent="AnnoyanceDisplay/TextureRect/MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="AnnoyanceDisplay/HBoxContainer/ArrowLeft/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect3" type="TextureRect" parent="AnnoyanceDisplay/HBoxContainer/ArrowLeft/MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -628,21 +682,100 @@ texture = ExtResource("27_lf1cy")
 expand_mode = 1
 stretch_mode = 4
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="AnnoyanceDisplay/TextureRect/MarginContainer/VBoxContainer"]
+[node name="SocialStandingLast" type="Label" parent="AnnoyanceDisplay/HBoxContainer/ArrowLeft/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("6_wdmna")
+theme_override_fonts/font = ExtResource("6_2175l")
+text = "+?"
+
+[node name="ArrowRight" type="TextureRect" parent="AnnoyanceDisplay/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("25_6brt4")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="AnnoyanceDisplay/HBoxContainer/ArrowRight"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -49.0
+offset_bottom = 49.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("6_wdmna")
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 110
+theme_override_constants/margin_right = 150
+theme_override_constants/margin_bottom = 110
+
+[node name="VBoxContainer" type="VBoxContainer" parent="AnnoyanceDisplay/HBoxContainer/ArrowRight/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="MaxLevelString" type="Label" parent="AnnoyanceDisplay/HBoxContainer/ArrowRight/MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0.12549, 0.0431373, 0.145098, 1)
+theme_override_constants/outline_size = 15
+theme_override_font_sizes/font_size = 26
+text = "Lose 
+Conversation"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="AnnoyanceDisplay/HBoxContainer/ArrowRight/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label2" type="Label" parent="AnnoyanceDisplay/TextureRect/MarginContainer/VBoxContainer/HBoxContainer3"]
+[node name="ConversationInterestNext" type="Label" parent="AnnoyanceDisplay/HBoxContainer/ArrowRight/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("6_wdmna")
 theme_override_fonts/font = ExtResource("6_2175l")
 
-[node name="TextureRect2" type="TextureRect" parent="AnnoyanceDisplay/TextureRect/MarginContainer/VBoxContainer/HBoxContainer3"]
+[node name="TextureRect" type="TextureRect" parent="AnnoyanceDisplay/HBoxContainer/ArrowRight/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.8
+texture = ExtResource("26_nbp65")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="AnnoyanceDisplay/HBoxContainer/ArrowRight/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="SocialBatteryNext" type="Label" parent="AnnoyanceDisplay/HBoxContainer/ArrowRight/MarginContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("6_wdmna")
+theme_override_fonts/font = ExtResource("6_2175l")
+
+[node name="TextureRect2" type="TextureRect" parent="AnnoyanceDisplay/HBoxContainer/ArrowRight/MarginContainer/VBoxContainer/HBoxContainer3"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.8
 texture = ExtResource("28_2ddgd")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="AnnoyanceDisplay/HBoxContainer/ArrowRight/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="SocialStandingNext" type="Label" parent="AnnoyanceDisplay/HBoxContainer/ArrowRight/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("6_wdmna")
+theme_override_fonts/font = ExtResource("6_2175l")
+text = "-?"
+
+[node name="TextureRect3" type="TextureRect" parent="AnnoyanceDisplay/HBoxContainer/ArrowRight/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.8
+texture = ExtResource("27_lf1cy")
 expand_mode = 1
 stretch_mode = 4
 
@@ -932,6 +1065,7 @@ offset_right = 155.0
 offset_bottom = 20.0
 size_flags_horizontal = 3
 theme = ExtResource("6_wdmna")
+theme_type_variation = &"OutlinedLabel"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MentalCapacity"]
 layout_mode = 2

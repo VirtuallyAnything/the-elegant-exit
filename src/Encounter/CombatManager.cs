@@ -98,16 +98,17 @@ namespace tee
 
 			GameManager.SocialBattery -= _transferAmount;
 			_player.MentalCapacity = _transferAmount;
+			_encounterScene.UpdateAnnoyance(Enemy.Annoyance);
 			EnemyAttack();
 		}
 
 		private void SetupNewAttack()
 		{
-			if (_isFirstTurn)
+			/*if (_isFirstTurn)
 			{
 				_encounterScene.AttackCardContainer.EnableInput();
 				return;
-			}
+			}*/
 			if (_player.MentalCapacity <= 0)
 			{
 				CombatEnded?.Invoke();
@@ -224,7 +225,7 @@ namespace tee
 			}
 
 			EnemyAttack enemyAttack = Enemy.ChooseAttack(chosenTopicName);
-			_encounterScene.PlayDialogAnimation(enemyAttack);
+			await _encounterScene.PlayDialogAnimation(enemyAttack);
 
 			if (_isBlockNextEnemyAttack)
 			{

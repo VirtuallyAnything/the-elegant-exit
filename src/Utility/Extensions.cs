@@ -77,9 +77,17 @@ public static class Extensions : Object
 				romanNumeral = "V";
 				break;
 			default:
-				romanNumeral = "";
+				romanNumeral = "0";
 				break;
 		}
 		return romanNumeral;
+	}
+
+	public static string Signed(this int value){
+		if(value <= 0){
+			return $"{value}";
+		}else{
+			return $"+{value}";
+		}
 	}
 }

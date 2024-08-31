@@ -5,6 +5,8 @@ namespace tee
 {
     public delegate void AnnoyanceHandlerArg(int value, GodotObject godotObject);
     public delegate void AnnoyanceHandler();
+
+    
     public partial class AnnoyanceLevel : GodotObject
     {
         public event AnnoyanceHandlerArg SocialBatteryChanged;
@@ -33,11 +35,13 @@ namespace tee
                 }
             }
         }
-        public int SocialStandingChange{
-            get{return _socialStandingChange;}
+        public int SocialStandingChange
+        {
+            get { return _socialStandingChange; }
         }
-        public int ConversationInterestModifier{
-            get{return _conversationInterestModifier;}
+        public int ConversationInterestModifier
+        {
+            get { return _conversationInterestModifier; }
         }
 
         public void Increase()
@@ -49,39 +53,42 @@ namespace tee
             }
             CurrentAnnoyance++;
 
-            switch(CurrentAnnoyance){
+            switch (CurrentAnnoyance)
+            {
                 case 1:
-                _socialStandingChange = -1;
-                _conversationInterestModifier = -1;
-                _socialBatteryDamage = -1;
-                break;
+                    _socialStandingChange = -1;
+                    _conversationInterestModifier = -1;
+                    _socialBatteryDamage = -1;
+                    break;
                 case 2:
-                _socialStandingChange = -3;
-                _conversationInterestModifier = -2;
-                _socialBatteryDamage = -1;
-                break;
+                    _socialStandingChange = -3;
+                    _conversationInterestModifier = -2;
+                    _socialBatteryDamage = -1;
+                    break;
                 case 3:
-                _socialStandingChange = -6;
-                _conversationInterestModifier = -3;
-                _socialBatteryDamage = -2;
-                break;
+                    _socialStandingChange = -6;
+                    _conversationInterestModifier = -3;
+                    _socialBatteryDamage = -2;
+                    break;
                 case 4:
-                _socialStandingChange = -10;
-                _conversationInterestModifier = -4;
-                _socialBatteryDamage = -2;
-                break;
+                    _socialStandingChange = -10;
+                    _conversationInterestModifier = -4;
+                    _socialBatteryDamage = -2;
+                    break;
                 case 5:
-                _socialStandingChange = -15;
-                LevelFiveReached?.Invoke();
-                break;
+                    _socialStandingChange = -15;
+                    LevelFiveReached?.Invoke();
+                    break;
             }
             SocialBatteryChanged?.Invoke(_socialBatteryDamage, this);
             ConversationInterestChanged?.Invoke(_conversationInterestModifier, this);
             GD.Print($"Annoyance Level increased to {CurrentAnnoyance}");
         }
 
-        public void Increase(int amount){
-            for(int i = 0; i < amount; i++){
+        public void Increase(int amount)
+        {
+            for (int i = 0; i < amount; i++)
+            {
                 Increase();
             }
         }
@@ -95,32 +102,80 @@ namespace tee
             }
             CurrentAnnoyance--;
 
-            switch(CurrentAnnoyance){
+            switch (CurrentAnnoyance)
+            {
                 case 0:
-                _socialStandingChange = 0;
-                _conversationInterestModifier = 0;
-                break;
+                    _socialStandingChange = 0;
+                    _conversationInterestModifier = 0;
+                    break;
                 case 1:
-                _socialStandingChange = -1;
-                _conversationInterestModifier = 2;
-                break;
+                    _socialStandingChange = -1;
+                    _conversationInterestModifier = 2;
+                    break;
                 case 2:
-                _socialStandingChange = -3;
-                _conversationInterestModifier = 3;
-                break;
+                    _socialStandingChange = -3;
+                    _conversationInterestModifier = 3;
+                    break;
                 case 3:
-                _socialStandingChange = -6;
-                _conversationInterestModifier = 4;
-                break;
+                    _socialStandingChange = -6;
+                    _conversationInterestModifier = 4;
+                    break;
             }
             ConversationInterestChanged?.Invoke(_conversationInterestModifier, this);
             GD.Print($"Annoyance Level decreased to {CurrentAnnoyance}");
         }
 
-        public void Decrease(int amount){
-            for(int i = 0; i < amount; i++){
+
+        public void Decrease(int amount)
+        {
+            for (int i = 0; i < amount; i++)
+            {
                 Decrease();
             }
+        }
+
+        public int GetSocialBatteryDamageForLevel(int level)
+        {
+            switch (level)
+            {
+                case 1:
+                    return -1;
+                case 2:
+                    return -1;
+                case 3:
+                    return -2;
+                case 4:
+                    return -2;
+            }
+            return 0;
+        }
+
+        public int GetCIDeltaForIncreaseTo(int level){
+            switch(level){
+                case 1:
+                return -1;
+                case 2: 
+                return -2;
+                case 3:
+                return -3;
+                case 4:
+                return -4;
+            }
+            return 0;
+        }
+
+        public int GetCIDeltaForDecreaseTo(int level){
+            switch(level){
+                case 0:
+                return 1;
+                case 1:
+                return 2;
+                case 2:
+                return 3;
+                case 3:
+                return 4;
+            }
+            return 0;
         }
     }
 }

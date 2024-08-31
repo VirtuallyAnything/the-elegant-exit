@@ -56,8 +56,8 @@ scale = Vector2(1.48704, 1.48704)
 texture = ExtResource("2_vuute")
 
 [node name="Enemy2" parent="." instance=ExtResource("3_vs0d7")]
-_speed = 150.0
-_triggerRange = 400.0
+_speed = 200.0
+_triggerRange = 300.0
 
 [node name="Walls" type="Node2D" parent="."]
 

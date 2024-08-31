@@ -1,21 +1,15 @@
 [gd_scene load_steps=4 format=3 uid="uid://b5phjd7gfq25u"]
 
+[ext_resource type="Theme" uid="uid://bpp0q38rfd1ms" path="res://Assets/Themes/Lobster.tres" id="1_uctpo"]
 [ext_resource type="Script" path="res://src/UI/TopicButton.cs" id="1_wco5i"]
 
-[sub_resource type="SystemFont" id="SystemFont_16y0u"]
-font_names = PackedStringArray("Franklin Gothic")
-
-[sub_resource type="Theme" id="Theme_4vupp"]
-default_font_size = 28
-Button/colors/font_color = Color(0.501961, 0.14902, 0.266667, 1)
-Button/colors/font_hover_color = Color(0.12549, 0.0431373, 0.145098, 1)
-Button/colors/font_hover_pressed_color = Color(0.828953, 0.323106, 0.479959, 1)
-Button/fonts/font = SubResource("SystemFont_16y0u")
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t81bd"]
 
 [node name="TopicButton" type="Button"]
 offset_right = 120.0
 offset_bottom = 45.0
-theme = SubResource("Theme_4vupp")
+theme = ExtResource("1_uctpo")
 theme_type_variation = &"FlatButton"
+theme_override_styles/focus = SubResource("StyleBoxEmpty_t81bd")
 text = "Topic"
 script = ExtResource("1_wco5i")

@@ -85,9 +85,9 @@ namespace tee
 		{
 			get { return _conversationInterestModifierEnthusiasm; }
 		}
-		public int Annoyance
+		public AnnoyanceLevel Annoyance
 		{
-			get { return _annoyance.CurrentAnnoyance; }
+			get { return _annoyance; }
 		}
 		public List<TopicName> Likes
 		{

@@ -15,6 +15,7 @@ namespace tee
 		[Export] private Color _playerDialogueColor;
 		[Export] private VariableDialogueControl _playerDialogue;
 
+		[Export] private AnnoyanceDisplay _annoyanceDisplay;
 		[Export] private TextureRect _enemySprite;
 		[Export] private Color _enemyDialogueColor;
 		[Export] private VariableDialogueControl _enemyDialogue;
@@ -105,7 +106,7 @@ namespace tee
 			_dialogueAnimationFinished = true;
 		}
 
-		public void PlayDialogAnimation(EnemyAttack attack)
+		public async Task PlayDialogAnimation(EnemyAttack attack)
 		{
 			_enemyDialogue.SetEntireVisibility(true);
 			_playerDialogue.SetEntireVisibility(false);
@@ -116,6 +117,7 @@ namespace tee
 			PropertyTweener propTweener = tween.TweenProperty(
 				_enemyDialogue.RTLabel, $"{Label.PropertyName.VisibleCharacters}", textLength, .05f * textLength);
 			propTweener.From(0);
+			await ToSignal(propTweener, Tween.SignalName.Finished);
 		}
 
 		public void SkipDialogueAnimation(VariableDialogueControl variableDialogue)
@@ -214,9 +216,9 @@ namespace tee
 			await ToSignal(propTweener, Tween.SignalName.Finished);			
 		}
 
-		public void UpdateAnnoyance(int annoyanceNew)
+		public void UpdateAnnoyance(AnnoyanceLevel annoyanceLevel)
 		{
-			_annoyanceValue.Text = annoyanceNew.ToRomanNumerals();
+			_annoyanceDisplay.DisplayAnnoyance(annoyanceLevel);
 		}
 
 		public void UpdateTopic(TopicName topicName)
