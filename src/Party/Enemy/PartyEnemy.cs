@@ -9,16 +9,17 @@ namespace tee
 		[Export] private EnemyData _enemyData;
 		private CollisionShape2D _collisionShape;
 		private EnemyVision _enemyVision;
-		[Export] int _sightConeSegments;
-		[Export] float _sightConeAngleDegrees;
-		[Export] float _sightConeRadius;
+		[Export] int _sightConeSegments = 12;
+		[Export] float _sightConeAngleDegrees = 120;
+		[Export] float _sightConeRadius = 800;
 
 		private EnemyMovement _enemyMovement;
 		private RayCast2D _rayCast = new();
 		private NavigationAgent2D _navAgent = new();
-		[Export] private float _playerFollowSeconds = 10;
+		[Export] private float _playerFollowSeconds = 3;
 		[Export] private float _speed = 200;
 		[Export] private float _turnSpeed = (float)Math.Tau;
+		[Export] private float _startingRotationDeg;
 		private bool _isInChase;
 
 		private Tween _tween;
@@ -41,6 +42,7 @@ namespace tee
 			};
 			_enemyVision = new(_rayCast);
 			_enemyVision.AddChild(collisionCone);
+			_enemyVision.RotationDegrees = _startingRotationDeg;
 
 			AddChild(_enemyVision);
 			AddChild(_rayCast);

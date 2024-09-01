@@ -36,7 +36,7 @@ _player = NodePath("Characters/Player")
 follow_viewport_enabled = true
 
 [node name="Player" type="CharacterBody2D" parent="Characters" node_paths=PackedStringArray("_agent", "_discoveryLight") groups=["Player"]]
-position = Vector2(1119, 2738)
+position = Vector2(984, 4070)
 script = ExtResource("3_53yld")
 _data = ExtResource("4_iwfah")
 _sightConeSegments = 10
