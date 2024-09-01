@@ -4,4 +4,4 @@
 
 [resource]
 script = ExtResource("1_18spa")
-_description = "[ul]Ignores Enemy Preferences[/ul][ul]Enemy: Will talk about Chosen Topic unless DISLIKE[/ul][ul]If LIKE: +1 SSC[/ul]"
+_description = "[ul]Ignores Topic Change Penalty[/ul][ul]-2 Enthusiasm from Current Topic[/ul]"

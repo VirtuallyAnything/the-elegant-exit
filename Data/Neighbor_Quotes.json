@@ -1,0 +1,200 @@
+[
+  {
+    "Type": "MainLine",
+    "Topic": "SpecialInterest",
+    "DialogueID": "nd_topic_neighbour_01",
+    "MentalCapacityDamage": 2,
+    "SocialBatteryChange": -1,
+    "NeedsTransition": true,
+    "Quote": "Shame I can't stay long. I have to get up early tomorrow to mow the lawn."
+  },
+  {
+    "Type": "MainLine",
+    "Topic": "SpecialInterest",
+    "DialogueID": "nd_topic_neighbour_02",
+    "MentalCapacityDamage": 1,
+    "SocialBatteryChange": 0,
+    "NeedsTransition": true,
+    "Quote": "So nice of you two to choose me as your +1 neighbour to bring to the party... What do you mean that doesn't exist?"
+  },
+  {
+    "Type": "MainLine",
+    "Topic": "SpecialInterest",
+    "DialogueID": "nd_topic_neighbour_03",
+    "MentalCapacityDamage": 1,
+    "SocialBatteryChange": 0,
+    "NeedsTransition": true,
+    "Quote": "Wanna come over next weekend? The azaleas are in bloom and I can brew us some dandelion ice tea."
+  },
+  {
+    "Type": "MainLine",
+    "Topic": "SpecialInterest",
+    "DialogueID": "nd_topic_neighbour_04",
+    "MentalCapacityDamage": 2,
+    "SocialBatteryChange": -1,
+    "NeedsTransition": true,
+    "Quote": "We have pretty thin walls, don't we? Let me lend you some WD-40 when we're home again."
+  },
+  {
+    "Type": "MainLine",
+    "Topic": "Sport",
+    "DialogueID": "nd_topic_sport_01",
+    "MentalCapacityDamage": 1,
+    "SocialBatteryChange": 0,
+    "NeedsTransition": true,
+    "Quote": "Did you buy your season tickets for Badger matches yet. With the Carlo brothers as our newest defenders, I'd like to see them try scoring a single goal against us this season."
+  },
+  {
+    "Type": "MainLine",
+    "Topic": "Sport",
+    "DialogueID": "nd_topic_sport_02",
+    "MentalCapacityDamage": 2,
+    "SocialBatteryChange": -1,
+    "NeedsTransition": true,
+    "Quote": "I saw the green, white, blue flag through your window. My eyesight is not the best, but I recognize fellow Badgers fans when I see them."
+  },
+  {
+    "Type": "MainLine",
+    "Topic": "Sport",
+    "DialogueID": "nd_topic_sport_03",
+    "MentalCapacityDamage": 1,
+    "SocialBatteryChange": 0,
+    "NeedsTransition": true,
+    "Quote": "Nowadays gardening is the only work-out I get. And I wouldn't have it any other way."
+  },
+  {
+    "Type": "MainLine",
+    "Topic": "Sport",
+    "DialogueID": "nd_topic_sport_04",
+    "MentalCapacityDamage": 1,
+    "SocialBatteryChange": 0,
+    "NeedsTransition": true,
+    "Quote": "In my youth I also used to play for the Badgers. I was the goalie. The enemy team didn't even wanted to come close to our goal."
+  },
+  {
+    "Type": "MainLine",
+    "Topic": "Lifestyle",
+    "DialogueID": "nd_topic_lifestyle_01",
+    "MentalCapacityDamage": 1,
+    "SocialBatteryChange": 0,
+    "NeedsTransition": true,
+    "Quote": "Nice music on the party. Let me wiggle my fingers to the beat."
+  },
+  {
+    "Type": "MainLine",
+    "Topic": "Lifestyle",
+    "DialogueID": "nd_topic_lifestyle_02",
+    "MentalCapacityDamage": 1,
+    "SocialBatteryChange": 0,
+    "NeedsTransition": true,
+    "Quote": "3 tips for the best beard care routine: 1.Water is the enemy. 2. Food scraps, especially of animal origin, give the beard its healthy shine and luster. 3 Home-made special lotion."
+  },
+  {
+    "Type": "MainLine",
+    "Topic": "Lifestyle",
+    "DialogueID": "nd_topic_lifestyle_03",
+    "MentalCapacityDamage": 2,
+    "SocialBatteryChange": -1,
+    "NeedsTransition": true,
+    "Quote": "I've been feautured in Garden Beyond for growing my giant eggplant. The reporter said she'd never seen such a magnificient eggplant before. Wanna see it for yourselves?"
+  },
+  {
+    "Type": "MainLine",
+    "Topic": "Lifestyle",
+    "DialogueID": "nd_topic_lifestyle_04",
+    "MentalCapacityDamage": 1,
+    "SocialBatteryChange": 0,
+    "NeedsTransition": true,
+    "Quote": "I honestly don't mind this 5G scaremongering. I've documented a growth spurt in most of my plants since the satellites when online. Good for plants, good for humans, right?"
+  },
+  {
+    "Type": "MainLine",
+    "Topic": "Politics",
+    "DialogueID": "nd_topic_politics_01",
+    "MentalCapacityDamage": 1,
+    "SocialBatteryChange": 0,
+    "NeedsTransition": true,
+    "Quote": "I hate migrants. They should just do the jobs we don't want to do like bankers or lawyers. Instead they only ask to work in my garden. My garden! Nobody works in there except me!"
+  },
+  {
+    "Type": "MainLine",
+    "Topic": "Politics",
+    "DialogueID": "nd_topic_politics_02",
+    "MentalCapacityDamage": 1,
+    "SocialBatteryChange": 0,
+    "NeedsTransition": true,
+    "Quote": "How do I know snail people exist? I sprayed their last emissary, a door salesman, with a higly concentrated salt solution. It was highly effective against his eyes, just like a snail..."
+  },
+  {
+    "Type": "MainLine",
+    "Topic": "Politics",
+    "DialogueID": "nd_topic_politics_03",
+    "MentalCapacityDamage": 1,
+    "SocialBatteryChange": 0,
+    "NeedsTransition": true,
+    "Quote": "Psst, our government officials have all been replaced by snail people. That's why bureaucracy is so slow. Don't let them come for my garden!"
+  },
+  {
+    "Type": "MainLine",
+    "Topic": "Politics",
+    "DialogueID": "nd_topic_politics_04",
+    "MentalCapacityDamage": 1,
+    "SocialBatteryChange": 0,
+    "NeedsTransition": true,
+    "Quote": "Did you know that fracking accidents are an upper class ploy to prevent us from sustainable gardening."
+  },
+  {
+    "Type": "MainLine",
+    "Topic": "Gossip",
+    "DialogueID": "nd_topic_gossip_01",
+    "MentalCapacityDamage": 1,
+    "SocialBatteryChange": 0,
+    "NeedsTransition": true,
+    "Quote": "I hate our milkman. The milk always arrives barely chilled, just because he spends so much time at Mrs. Thompsons house."
+  },
+  {
+    "Type": "MainLine",
+    "Topic": "Gossip",
+    "DialogueID": "nd_topic_gossip_02",
+    "MentalCapacityDamage": 1,
+    "SocialBatteryChange": 0,
+    "NeedsTransition": true,
+    "Quote": "Hey, you know, your other neighbour, I once saw him trim his bushes by hand. Poor fool doesn't own electric!"
+  },
+  {
+    "Type": "MainLine",
+    "Topic": "Gossip",
+    "DialogueID": "nd_topic_gossip_03",
+    "MentalCapacityDamage": 1,
+    "SocialBatteryChange": 1,
+    "NeedsTransition": true,
+    "Quote": "I heard someone say ugly stuff behind your back, but not I. I think you're cute together."
+  },
+  {
+    "Type": "MainLine",
+    "Topic": "Gossip",
+    "DialogueID": "nd_topic_gossip_04",
+    "MentalCapacityDamage": 1,
+    "SocialBatteryChange": 0,
+    "NeedsTransition": true,
+    "Quote": "Have you seen a crisp, extravagantly clothed women my age? She's really cought my interest, but she has been avoiding me everytime I look her way."
+  },
+  {
+    "Type": "Enrage",
+    "Topic": "Economy",
+    "DialogueID": "nd_enrage_economy",
+    "MentalCapacityDamage": 2,
+    "SocialBatteryChange": -1,
+    "NeedsTransition": false,
+    "Quote": "Keep that governmental mumbo jumbo away from me!"
+  },
+  {
+    "Type": "Enrage",
+    "Topic": "Art",
+    "DialogueID": "nd_enrage_art",
+    "MentalCapacityDamage": 2,
+    "SocialBatteryChange": -1,
+    "NeedsTransition": false,
+    "Quote": "Art is just an excuse not to do any real work!"
+  }
+]

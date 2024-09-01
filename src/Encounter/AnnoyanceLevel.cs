@@ -106,7 +106,7 @@ namespace tee
             {
                 case 0:
                     _socialStandingChange = 0;
-                    _conversationInterestModifier = 0;
+                    _conversationInterestModifier = 1;
                     break;
                 case 1:
                     _socialStandingChange = -1;
@@ -133,6 +133,10 @@ namespace tee
                 Decrease();
             }
         }
+
+       public int GetTotalSocialStanding(){
+            return _socialStandingChange;
+       }
 
         public int GetSocialBatteryDamageForLevel(int level)
         {

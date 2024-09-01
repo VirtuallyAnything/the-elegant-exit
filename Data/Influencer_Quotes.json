@@ -1,0 +1,200 @@
+[
+  {
+    "Type": "MainLine",
+    "Topic": "SpecialInterest",
+    "DialogueID": "bi_topic_influencer_01",
+    "MentalCapacityDamage": 1,
+    "SocialBatteryChange": 0,
+    "NeedsTransition": true,
+    "Quote": "Also follow me on RapidGraphé for latest updates and reels."
+  },
+  {
+    "Type": "MainLine",
+    "Topic": "SpecialInterest",
+    "DialogueID": "bi_topic_influencer_02",
+    "MentalCapacityDamage": 1,
+    "SocialBatteryChange": 0,
+    "NeedsTransition": true,
+    "Quote": "It's hard being an lnfluencer you know. My routine takes ages now, so I can incorporate all the sponsorings."
+  },
+  {
+    "Type": "MainLine",
+    "Topic": "SpecialInterest",
+    "DialogueID": "bi_topic_influencer_03",
+    "MentalCapacityDamage": 2,
+    "SocialBatteryChange": -2,
+    "NeedsTransition": true,
+    "Quote": "About that reel. Just nod & smile. 1,2... Hey, my lovely Gloriettes. I'm here at the birthday party of my good friend Stacey and I just ran into two fans. One of them just told me how SilkSheen changed his life. Isn't that right? Best hair product. I mean... his hair just feels A-MAZE-ING. So full & shiny. That's it from me. Stay glorious!... And post. Where were we?"
+  },
+  {
+    "Type": "MainLine",
+    "Topic": "SpecialInterest",
+    "DialogueID": "bi_topic_influencer_04",
+    "MentalCapacityDamage": 1,
+    "SocialBatteryChange": 0,
+    "NeedsTransition": true,
+    "Quote": "Like, Follow & Subscribe to my second channel: GloriousHealth."
+  },
+  {
+    "Type": "MainLine",
+    "Topic": "Sport",
+    "DialogueID": "bi_topic_sport_01",
+    "MentalCapacityDamage": 1,
+    "SocialBatteryChange": 0,
+    "NeedsTransition": true,
+    "Quote": "Long Nights? Can't sleep? Taste of yesterday's energy drink bullshit still lingers on your tounge? Then I have something for you. ZENergy and tonight's waking hours are the sleep of tomorrow!"
+  },
+  {
+    "Type": "MainLine",
+    "Topic": "Sport",
+    "DialogueID": "bi_topic_sport_02",
+    "MentalCapacityDamage": 2,
+    "SocialBatteryChange": 1,
+    "NeedsTransition": true,
+    "Quote": "Have you ever tried the Inversed Bavarian Bretzel? I know it's a little advanced, but it really helps me relax. Plus it really loosens those joints."
+  },
+  {
+    "Type": "MainLine",
+    "Topic": "Sport",
+    "DialogueID": "bi_topic_sport_03",
+    "MentalCapacityDamage": 1,
+    "SocialBatteryChange": 0,
+    "NeedsTransition": true,
+    "Quote": "You wanny buy my relaxation CD? 2 hours of uncut ASMR of yours truly, Gloria. A capella or with soothing turtle song. Your mind will simply relax away."
+  },
+  {
+    "Type": "MainLine",
+    "Topic": "Sport",
+    "DialogueID": "bi_topic_sport_04",
+    "MentalCapacityDamage": 1,
+    "SocialBatteryChange": 1,
+    "NeedsTransition": true,
+    "Quote": "You have simply marvelous hair. Which product are you using? Do you have any special routines? Do tell me? I currently have problems with... Oops I am not allowed to say that."
+  },
+  {
+    "Type": "MainLine",
+    "Topic": "Lifestyle",
+    "DialogueID": "bi_topic_lifestyle_01",
+    "MentalCapacityDamage": 1,
+    "SocialBatteryChange": 0,
+    "NeedsTransition": true,
+    "Quote": "Like, Follow & Subscribe to my main channel: VenettiBeauty!"
+  },
+  {
+    "Type": "MainLine",
+    "Topic": "Lifestyle",
+    "DialogueID": "bi_topic_lifestyle_02",
+    "MentalCapacityDamage": 1,
+    "SocialBatteryChange": 0,
+    "NeedsTransition": true,
+    "Quote": "Stacey's dad is so fashionable, the colours of Belmont College really match his eyes so well. So spry at his age and without the use of online guides. How does he do it?"
+  },
+  {
+    "Type": "MainLine",
+    "Topic": "Lifestyle",
+    "DialogueID": "bi_topic_lifestyle_03",
+    "MentalCapacityDamage": 1,
+    "SocialBatteryChange": 0,
+    "NeedsTransition": true,
+    "Quote": "Have you tried SilkSheen Hair Elixir. \"For Lustrous Hair, No Money I Spare. SilkSheen!\""
+  },
+  {
+    "Type": "MainLine",
+    "Topic": "Lifestyle",
+    "DialogueID": "bi_topic_lifestyle_04",
+    "MentalCapacityDamage": 1,
+    "SocialBatteryChange": 0,
+    "NeedsTransition": true,
+    "Quote": "Have you tried AquaPure Hydrating Mist. \"Instant Hydration, Refreshes The Nation\" \"Thirst's Best Cure, AquaPure\""
+  },
+  {
+    "Type": "MainLine",
+    "Topic": "Art",
+    "DialogueID": "bi_topic_art_01",
+    "MentalCapacityDamage": 1,
+    "SocialBatteryChange": 0,
+    "NeedsTransition": true,
+    "Quote": "I'm not the greatest fan of this older art styles, but that painting in the living room. Amazing! Already made a reel about it."
+  },
+  {
+    "Type": "MainLine",
+    "Topic": "Art",
+    "DialogueID": "bi_topic_art_02",
+    "MentalCapacityDamage": 1,
+    "SocialBatteryChange": 0,
+    "NeedsTransition": true,
+    "Quote": "My tattoo artist is the bestest. He excells in making miniature designs. I have to keep their size little. To not ruin the canvas you know."
+  },
+  {
+    "Type": "MainLine",
+    "Topic": "Art",
+    "DialogueID": "bi_topic_art_03",
+    "MentalCapacityDamage": 1,
+    "SocialBatteryChange": 0,
+    "NeedsTransition": true,
+    "Quote": "I've just commissioned a portrait from this German artist who moved here lately. She does these photorealistic paintings. They just leave you in awe."
+  },
+  {
+    "Type": "MainLine",
+    "Topic": "Art",
+    "DialogueID": "bi_topic_art_04",
+    "MentalCapacityDamage": 1,
+    "SocialBatteryChange": 0,
+    "NeedsTransition": true,
+    "Quote": "Makeup is a type of art too you know. That means I'm an artist too. And not just in the stupid way other influencers use the therm."
+  },
+  {
+    "Type": "MainLine",
+    "Topic": "Gossip",
+    "DialogueID": "bi_topic_gossip_01",
+    "MentalCapacityDamage": 1,
+    "SocialBatteryChange": 0,
+    "NeedsTransition": true,
+    "Quote": "InvidiaCosmetics has been trying to also get a product placement deal with Jackson & Jackson. But tough luck for her. I am the their face for social media marketing and it's gonna stay this way."
+  },
+  {
+    "Type": "MainLine",
+    "Topic": "Gossip",
+    "DialogueID": "bi_topic_gossip_02",
+    "MentalCapacityDamage": 1,
+    "SocialBatteryChange": 1,
+    "NeedsTransition": true,
+    "Quote": "Ugh, I'm so not looking forward to this Karaoke business. And then there was this annoying girl who couldn't gush about anything else. Such a drag."
+  },
+  {
+    "Type": "MainLine",
+    "Topic": "Gossip",
+    "DialogueID": "bi_topic_gossip_03",
+    "MentalCapacityDamage": 1,
+    "SocialBatteryChange": 0,
+    "NeedsTransition": true,
+    "Quote": "There's this gross dwarf that has been following me all evening. Somebody should tell him that water can also be used on humans."
+  },
+  {
+    "Type": "MainLine",
+    "Topic": "Gossip",
+    "DialogueID": "bi_topic_gossip_04",
+    "MentalCapacityDamage": 1,
+    "SocialBatteryChange": 0,
+    "NeedsTransition": true,
+    "Quote": "I've heard weird noices from the western room of the 1st floor. Surely something naughty is going on in there."
+  },
+  {
+    "Type": "Enrage",
+    "Topic": "Economy",
+    "DialogueID": "bi_enrage_economy",
+    "MentalCapacityDamage": 2,
+    "SocialBatteryChange": -1,
+    "NeedsTransition": false,
+    "Quote": "I honestly don't know why everybody is always so worried about money. You just swipe your card and then there is more. It's soo simple."
+  },
+  {
+    "Type": "Enrage",
+    "Topic": "Politics",
+    "DialogueID": "bi_enrage_politics",
+    "MentalCapacityDamage": 2,
+    "SocialBatteryChange": -1,
+    "NeedsTransition": false,
+    "Quote": "Girl. Repeat after me. Politics. Are. Boring."
+  }
+]

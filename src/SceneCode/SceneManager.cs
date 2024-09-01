@@ -161,8 +161,8 @@ namespace tee
 			_mainScene.UpdateUI();
 			_mainScene.EncounterLayer.RemoveChild(_encounterFinishedScene);
 			_encounterFinishedScene.QueueFree();
-			_mainScene.AddChild(_mainScene.CurrentFloor);
-			_mainScene.MoveChild(_mainScene.CurrentFloor, 0);
+			//_mainScene.AddChild(_mainScene.CurrentFloor);
+			//_mainScene.MoveChild(_mainScene.CurrentFloor, 0);
 		}
 
 		private void ChangeToGameOverScene()

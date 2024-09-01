@@ -4,4 +4,4 @@
 
 [resource]
 script = ExtResource("1_og50w")
-_description = "[ul]If DISLIKE:[ul]+2 Bonus CI Damage[br]Annoyance +1[/ul]If NEUTRAL[ul]None[/ul]IF LIKE:[ul]Annoyance -1[br]Enthusiasm +1[/ul][/ul]"
+_description = "[ul]If LIKE: +1 SSC, -1 Annoyance[/ul][ul]If NEUTRAL: -[/ul][ul]If DISLIKE: +2 CI, +1 Annoyance[/ul]"

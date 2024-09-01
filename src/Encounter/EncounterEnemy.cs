@@ -346,7 +346,10 @@ namespace tee
 
 		public void DecreaseEnthusiasmFor(TopicName topic)
 		{
-			_topicPreferences[topic].ConversationTopic.DecreaseEnthusiasm();
+			if(_topicPreferences.Keys.Contains(topic)){
+				_topicPreferences[topic].ConversationTopic.DecreaseEnthusiasm();
+			}
+			
 		}
 
 		public int GetEnthusiasmLevelFor(TopicName topic)

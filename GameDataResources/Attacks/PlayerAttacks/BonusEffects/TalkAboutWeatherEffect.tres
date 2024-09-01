@@ -4,4 +4,4 @@
 
 [resource]
 script = ExtResource("1_hd3fc")
-_description = "Triggers no annoyance when changing the topic."
+_description = "[ul]Ignores Topic Change Penalty[/ul]"

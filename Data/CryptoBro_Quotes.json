@@ -3,10 +3,10 @@
     "Type": "MainLine",
     "Topic": "SpecialInterest",
     "DialogueID": "cb_topic_crypto_01",
-    "MentalCapacityDamage": 1,
-    "SocialBatteryChange": 0,
+    "MentalCapacityDamage": 2,
+    "SocialBatteryChange": -11,
     "NeedsTransition": true,
-    "Quote": "You should buy some [BAYC NFT]. They're the latest uproar in the scene. Can't be taken serious without one in your portfolio."
+    "Quote": "You should buy some Rubber Duck Freelance Consulting. They're the latest uproar in the scene. Can't be taken serious without a RDFC in your portfolio."
   },
   {
     "Type": "MainLine",
@@ -15,7 +15,7 @@
     "MentalCapacityDamage": 1,
     "SocialBatteryChange": 0,
     "NeedsTransition": true,
-    "Quote": "The Bitcoin farm in my mom's cellar is going full speed. Next year I'll be able to pay her recompese for 2 month of energy bills."
+    "Quote": "The Bitcoin farm in my mom's cellar is going full speed. Next year I'll be able to pay her recompense for 2 months of energy bills."
   },
   {
     "Type": "MainLine",
@@ -33,7 +33,7 @@
     "MentalCapacityDamage": 1,
     "SocialBatteryChange": 0,
     "NeedsTransition": true,
-    "Quote": "I gifted Stacey 1000 of my brand new Stacey Coins. There not worth much now, but you just wait through 5 years of exponential growth."
+    "Quote": "I gifted Stacey 1000 of my brand new Stacey Coins. They're not worth much now, but just you wait, 5 years of exponential growth and boom!"
   },
   {
     "Type": "MainLine",
@@ -57,8 +57,8 @@
     "Type": "MainLine",
     "Topic": "Economy",
     "DialogueID": "cb_topic_economy_03",
-    "MentalCapacityDamage": 1,
-    "SocialBatteryChange": 0,
+    "MentalCapacityDamage": 2,
+    "SocialBatteryChange": -1,
     "NeedsTransition": true,
     "Quote": "I know tha XCHRE took a hit lately, but as my Idol always says. Diamond Hands baby! Diamond hands!"
   },
@@ -78,7 +78,7 @@
     "MentalCapacityDamage": 1,
     "SocialBatteryChange": 0,
     "NeedsTransition": true,
-    "Quote": "You've seen my pin. It's my latest acquisition of [BAYC NFT]. Yes the printers now have a copy of it, but that's nothing without the blockchain to back it up."
+    "Quote": "You've seen my pin. It's my latest acquisition of RDFC: The TigerDuck! Yes the printers now have a copy of it, but that's nothing without the blockchain to back it up."
   },
   {
     "Type": "MainLine",
@@ -96,7 +96,7 @@
     "MentalCapacityDamage": 1,
     "SocialBatteryChange": 0,
     "NeedsTransition": true,
-    "Quote": "I went to Crypto Con and got myself a digital signature from the artist behind [NFT] on my [NFT]. It's theoretical sell price just went through the roof."
+    "Quote": "I went to Crypto Con and got myself a digital signature from the artist behind NuttyDesiresChipmunksSuprems on my NDCS. It's theoretical sell price just went through the roof."
   },
   {
     "Type": "MainLine",
@@ -105,7 +105,7 @@
     "MentalCapacityDamage": 2,
     "SocialBatteryChange": -1,
     "NeedsTransition": true,
-    "Quote": "That NFT I made you buy, the one with the [description]. Yeah better sell that fast. The tip wasn't as rock solid  as I'd hoped. Already sold mine, but you'll be lucky to find a buyer now."
+    "Quote": "That NFT I made you buy, the one with the spaghetti eating snails. Yeah better sell that fast. The tip wasn't as rock solid  as I'd hoped. Already sold mine, but you'll be lucky to find a buyer now."
   },
   {
     "Type": "MainLine",

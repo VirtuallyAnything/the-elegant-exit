@@ -1,0 +1,200 @@
+[
+  {
+    "Type": "MainLine",
+    "Topic": "SpecialInterest",
+    "DialogueID": "ddc_topic_dating_01",
+    "MentalCapacityDamage": 2,
+    "SocialBatteryChange": -1,
+    "NeedsTransition": true,
+    "Quote": "My preferences in men? I like a man who looks cartoonish, flat shaded and OMG... thick contours really get me going? If he then also wears simple geometry jewelry, mmmh."
+  },
+  {
+    "Type": "MainLine",
+    "Topic": "SpecialInterest",
+    "DialogueID": "ddc_topic_dating_02",
+    "MentalCapacityDamage": 1,
+    "SocialBatteryChange": 0,
+    "NeedsTransition": true,
+    "Quote": "You must be exceedingly popular with the young ladies. But let me show that experience outweighs whatever they have to offer."
+  },
+  {
+    "Type": "MainLine",
+    "Topic": "SpecialInterest",
+    "DialogueID": "ddc_topic_dating_03",
+    "MentalCapacityDamage": 2,
+    "SocialBatteryChange": -1,
+    "NeedsTransition": false,
+    "Quote": "Oh, you're so funny, you know that? I could listen to you for ages."
+  },
+  {
+    "Type": "MainLine",
+    "Topic": "SpecialInterest",
+    "DialogueID": "ddc_topic_dating_04",
+    "MentalCapacityDamage": 1,
+    "SocialBatteryChange": 0,
+    "NeedsTransition": true,
+    "Quote": "Can you hold me? I might have overdone it on the Sherry."
+  },
+  {
+    "Type": "MainLine",
+    "Topic": "Sport",
+    "DialogueID": "ddc_topic_sport_01",
+    "MentalCapacityDamage": 2,
+    "SocialBatteryChange": -1,
+    "NeedsTransition": true,
+    "Quote": "There is only one type of sport I like and that is for two players, three if you're feeling adventurous. But with more positions than baseball."
+  },
+  {
+    "Type": "MainLine",
+    "Topic": "Sport",
+    "DialogueID": "ddc_topic_sport_02",
+    "MentalCapacityDamage": 2,
+    "SocialBatteryChange": -1,
+    "NeedsTransition": true,
+    "Quote": "My father made me take Ballet classes. I can still be quite bendy if I want to."
+  },
+  {
+    "Type": "MainLine",
+    "Topic": "Sport",
+    "DialogueID": "ddc_topic_sport_03",
+    "MentalCapacityDamage": 1,
+    "SocialBatteryChange": 0,
+    "NeedsTransition": true,
+    "Quote": "Did you know Olympians average 2,5 condoms per day. Kind of makes you wish you could compete yourself."
+  },
+  {
+    "Type": "MainLine",
+    "Topic": "Sport",
+    "DialogueID": "ddc_topic_sport_04",
+    "MentalCapacityDamage": 1,
+    "SocialBatteryChange": 0,
+    "NeedsTransition": true,
+    "Quote": "I've been hatewatching Gloria Venetti's health series. Her routines are so good. On the other hand I can't stand these young fawns."
+  },
+  {
+    "Type": "MainLine",
+    "Topic": "Economy",
+    "DialogueID": "ddc_topic_economy_01",
+    "MentalCapacityDamage": 2,
+    "SocialBatteryChange": -1,
+    "NeedsTransition": true,
+    "Quote": "Fun Fact: Did you know that horse sperm is one of the most expensive fluids in the world. You're like a stallion yourself, I might have a business opportunity for you."
+  },
+  {
+    "Type": "MainLine",
+    "Topic": "Economy",
+    "DialogueID": "ddc_topic_economy_02",
+    "MentalCapacityDamage": 1,
+    "SocialBatteryChange": 0,
+    "NeedsTransition": true,
+    "Quote": "The rising price of condoms has really cut into my budget."
+  },
+  {
+    "Type": "MainLine",
+    "Topic": "Economy",
+    "DialogueID": "ddc_topic_economy_03",
+    "MentalCapacityDamage": 1,
+    "SocialBatteryChange": 0,
+    "NeedsTransition": true,
+    "Quote": "I really hate inheritance tax. My first husband left me finacially secure nonetheless. But that was the last time I'll have anything to do with an old guy."
+  },
+  {
+    "Type": "MainLine",
+    "Topic": "Economy",
+    "DialogueID": "ddc_topic_economy_04",
+    "MentalCapacityDamage": 1,
+    "SocialBatteryChange": 0,
+    "NeedsTransition": true,
+    "Quote": "I got myself some finance tips from John Parker. These Stacey Coins could really be next big thing."
+  },
+  {
+    "Type": "MainLine",
+    "Topic": "Lifestyle",
+    "DialogueID": "ddc_topic_lifestyle_01",
+    "MentalCapacityDamage": 1,
+    "SocialBatteryChange": 0,
+    "NeedsTransition": true,
+    "Quote": "Gngh, I usually would be clubbing right now. At least I can also find some energetic fledgelings here."
+  },
+  {
+    "Type": "MainLine",
+    "Topic": "Lifestyle",
+    "DialogueID": "ddc_topic_lifestyle_02",
+    "MentalCapacityDamage": 2,
+    "SocialBatteryChange": -1,
+    "NeedsTransition": true,
+    "Quote": "Oh, I am sooo prepared for Karaoke. I usually go for Ageless Fire. But I am also great in duet singing Whispered Promises by Lila Rose & Marcus Grey."
+  },
+  {
+    "Type": "MainLine",
+    "Topic": "Lifestyle",
+    "DialogueID": "ddc_topic_lifestyle_03",
+    "MentalCapacityDamage": 1,
+    "SocialBatteryChange": 0,
+    "NeedsTransition": true,
+    "Quote": "Did you happen to try the cheese platter? Fantastic! Stacey really didn't stinge on the catering. White Stilton Gold? I think I'm in love."
+  },
+  {
+    "Type": "MainLine",
+    "Topic": "Lifestyle",
+    "DialogueID": "ddc_topic_lifestyle_04",
+    "MentalCapacityDamage": 1,
+    "SocialBatteryChange": 0,
+    "NeedsTransition": true,
+    "Quote": "I'm so close to reaching the critical drunkeness limit, afterwards I am not liable for my actions anymore"
+  },
+  {
+    "Type": "MainLine",
+    "Topic": "Politics",
+    "DialogueID": "ddc_topic_politics_01",
+    "MentalCapacityDamage": 2,
+    "SocialBatteryChange": -1,
+    "NeedsTransition": true,
+    "Quote": "These Eastern Breeding Visas are taking all the vibrant young men away. Glad you're still here."
+  },
+  {
+    "Type": "MainLine",
+    "Topic": "Politics",
+    "DialogueID": "ddc_topic_politics_02",
+    "MentalCapacityDamage": 1,
+    "SocialBatteryChange": 0,
+    "NeedsTransition": true,
+    "Quote": "I miss being able to drink in public. Not that I don't know my way around a ticket."
+  },
+  {
+    "Type": "MainLine",
+    "Topic": "Politics",
+    "DialogueID": "ddc_topic_politics_03",
+    "MentalCapacityDamage": 1,
+    "SocialBatteryChange": 0,
+    "NeedsTransition": true,
+    "Quote": "I just vote for whoever is hot. Off course I also try to get to know them first. More intimate than the average voter would."
+  },
+  {
+    "Type": "MainLine",
+    "Topic": "Politics",
+    "DialogueID": "ddc_topic_politics_04",
+    "MentalCapacityDamage": 1,
+    "SocialBatteryChange": 0,
+    "NeedsTransition": true,
+    "Quote": "Fuck those birth control extremist! Oh you want to fuck me back? Too bad I don't have any contraceptives."
+  },
+  {
+    "Type": "Enrage",
+    "Topic": "Art",
+    "DialogueID": "ddc_enrage_art",
+    "MentalCapacityDamage": 2,
+    "SocialBatteryChange": 1,
+    "NeedsTransition": false,
+    "Quote": "Gng, I'm trying to hook up so stop talking about minor matters like Art! Where were we?"
+  },
+  {
+    "Type": "Enrage",
+    "Topic": "Gossip",
+    "DialogueID": "ddc_enrage_gossip",
+    "MentalCapacityDamage": 2,
+    "SocialBatteryChange": 1,
+    "NeedsTransition": false,
+    "Quote": "I'm not for interesting myself in the matters of the common folk. There's this gross dwarf that has been following me all evening. Somebody should tell him that water can also be used on humans."
+  }
+]

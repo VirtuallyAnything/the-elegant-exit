@@ -70,6 +70,8 @@ offset_left = -876.0
 offset_top = -506.0
 offset_right = -663.0
 offset_bottom = -404.0
+max_value = 100.0
+value = 100.0
 texture_progress_offset = Vector2(22.855, 23.94)
 metadata/_edit_use_anchors_ = true
 

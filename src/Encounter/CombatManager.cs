@@ -205,6 +205,9 @@ namespace tee
 			
 			if (Enemy.ConversationInterest <= 0)
 			{
+				GameManager.SocialBattery += (int) _player.MentalCapacity;
+				GameManager.SocialStandingOverall += SocialStanding;
+				GameManager.SocialStandingOverall += Enemy.Annoyance.GetTotalSocialStanding();
 				CombatEnded?.Invoke();
 				return;
 			}
