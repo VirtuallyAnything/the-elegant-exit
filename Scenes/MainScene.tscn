@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dmyfdjltetw2d"]
+[gd_scene load_steps=18 format=3 uid="uid://dmyfdjltetw2d"]
 
 [ext_resource type="Script" path="res://src/SceneCode/MainScene.cs" id="1_klk3w"]
 [ext_resource type="Script" path="res://src/Party/Player/PartyPlayer.cs" id="3_53yld"]
@@ -12,6 +12,8 @@
 [ext_resource type="Texture2D" uid="uid://c6bque4e81yg4" path="res://Assets/UI/Icons/PauseIcon.png" id="8_mivmb"]
 [ext_resource type="Texture2D" uid="uid://dw0fjgs4yx85r" path="res://Assets/UI/Icons/PauseIcon_hover.png" id="9_tqae0"]
 [ext_resource type="PackedScene" uid="uid://bkprvu4f5y5no" path="res://Scenes/PauseScene.tscn" id="12_3yaqs"]
+[ext_resource type="Script" path="res://src/UI/OneTimePanel.cs" id="13_slvwu"]
+[ext_resource type="Texture2D" uid="uid://6owi28lr85hn" path="res://Assets/UI/Icons/Arrow.png" id="14_rd8tr"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rv6dr"]
 radius = 14.6245
@@ -20,6 +22,15 @@ radius = 14.6245
 line_spacing = -35.0
 font = ExtResource("6_q8ytb")
 font_size = 110
+font_color = Color(1, 0.8, 0.701961, 1)
+shadow_size = 10
+shadow_color = Color(0.12549, 0.0431373, 0.145098, 1)
+shadow_offset = Vector2(8, 8)
+
+[sub_resource type="LabelSettings" id="LabelSettings_jpcul"]
+line_spacing = -35.0
+font = ExtResource("6_q8ytb")
+font_size = 75
 font_color = Color(1, 0.8, 0.701961, 1)
 shadow_size = 10
 shadow_color = Color(0.12549, 0.0431373, 0.145098, 1)
@@ -131,19 +142,20 @@ text = "Until Karaoke Time"
 horizontal_alignment = 1
 
 [node name="Panel" type="Panel" parent="CanvasLayer"]
-visible = false
+process_mode = 2
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -349.0
-offset_top = -179.0
-offset_right = 255.0
-offset_bottom = 324.0
+offset_left = -526.0
+offset_top = -411.0
+offset_right = 526.0
+offset_bottom = 437.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("7_yess5")
+script = ExtResource("13_slvwu")
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Panel"]
 layout_mode = 1
@@ -159,6 +171,37 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="CanvasLayer/Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("7_yess5")
 text = "Welcome to The Elegant Exit!"
+label_settings = SubResource("LabelSettings_jpcul")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("7_yess5")
+theme_type_variation = &"RichTextDialogue"
+text = "This game aims to simulate the feeling of being an introvert at a party.
+As such, the combat (Conversations) may seem difficult at times or hard to escape.
+This means it is working as intended.
+Enjoy the game!
+
+You play as Marc & Anthony, a gay couple, stranded at their friend Stacey’s birthday party. You’re almost on the cusp of leaving as you hear the announcement…
+It’s Karaoke and every guest has to sing! Your slot is scheduled in 30 minutes!
+That’s too much. You can’t be here when they drag you on stage and put you in the limelight!
+You have to get out!
+Point & Click your way through the Party. (Press E to use Doors).
+Hopefully nobody stops you for a Conversation. You don’t have the time nor the Social Battery to be here any longer. You might lose some Social Standing on the way, but that is just a small prize to pay for salvation.
+(Time pauses while pondering more extensive guides in the menu)
+Achieve The Elegant Exit!"
+
+[node name="StartButton" type="TextureButton" parent="CanvasLayer/Panel"]
+layout_mode = 0
+offset_left = 907.0
+offset_top = 707.0
+offset_right = 1038.0
+offset_bottom = 830.0
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("14_rd8tr")
 
 [connection signal="pressed" from="CanvasLayer/PauseButton" to="CanvasLayer/PauseScene" method="OnPauseButtonPressed"]
+[connection signal="pressed" from="CanvasLayer/Panel/StartButton" to="CanvasLayer/Panel" method="OnStartButtonPressed"]

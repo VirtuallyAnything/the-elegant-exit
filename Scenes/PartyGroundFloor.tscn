@@ -1,4 +1,4 @@
-[gd_scene load_steps=71 format=3 uid="uid://dmfp5lawyswyl"]
+[gd_scene load_steps=73 format=3 uid="uid://dmfp5lawyswyl"]
 
 [ext_resource type="Script" path="res://src/SceneCode/PartyGroundFloor.cs" id="1_mj4je"]
 [ext_resource type="Texture2D" uid="uid://cxsgk2jxdn3" path="res://Assets/Levels/GroundFloor.png" id="2_vuute"]
@@ -17,6 +17,7 @@
 [ext_resource type="Resource" uid="uid://c5u31lombgby3" path="res://GameDataResources/EnemyData/BeautyInfluencer.tres" id="10_lsurk"]
 [ext_resource type="Material" uid="uid://c63a2eerex2pi" path="res://Assets/Materials/Outlined.tres" id="10_rf80p"]
 [ext_resource type="Texture2D" uid="uid://dloj826coufuu" path="res://Assets/Textures/Avatar_JP.png" id="11_8oqdr"]
+[ext_resource type="Theme" uid="uid://bpp0q38rfd1ms" path="res://Assets/Themes/Lobster.tres" id="18_ysrxs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c47vx"]
 size = Vector2(49, 74.5001)
@@ -264,6 +265,9 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(0, -57, 0, 95, 190, 95, 190, -57)])
 source_geometry_group_name = &"navigation_polygon_source_group"
 agent_radius = 35.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vojli"]
+size = Vector2(564, 402)
 
 [node name="GroundFloor" type="Node2D"]
 script = ExtResource("1_mj4je")
@@ -864,7 +868,33 @@ scale = Vector2(0.194338, 0.194338)
 texture = ExtResource("9_6c1f4")
 
 [node name="FOW" parent="." instance=ExtResource("8_svv30")]
-visible = false
 offset_right = 5948.0
 offset_bottom = 4566.0
 _fowScaleFactor = 0.1
+
+[node name="Area2D3" type="Area2D" parent="."]
+position = Vector2(191, 3900)
+script = ExtResource("8_ekoj5")
+
+[node name="Panel" type="Panel" parent="Area2D3"]
+offset_left = -95.0
+offset_top = -47.0
+offset_right = 483.0
+offset_bottom = 254.0
+theme = ExtResource("18_ysrxs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D3"]
+position = Vector2(196, 191)
+shape = SubResource("RectangleShape2D_vojli")
+
+[node name="Label" type="RichTextLabel" parent="Area2D3"]
+offset_left = -80.0
+offset_top = -27.0
+offset_right = 465.0
+offset_bottom = 337.0
+theme = ExtResource("18_ysrxs")
+theme_override_constants/line_separation = 0
+theme_override_font_sizes/normal_font_size = 102
+bbcode_enabled = true
+text = "[center]The
+ [font=res://Assets/Fonts/Lobster-Regular.ttf]Elegant[/font] Exit[/center]"

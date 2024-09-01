@@ -109,6 +109,7 @@ namespace tee
 			_mainScene.Ready += ChangeToPartyGroundFloor;
 			GetTree().Root.AddChild(_mainScene);
 			_currentScene = _mainScene;
+			GetTree().Paused = true;
 		}
 
 		private void ChangeToPartyGroundFloor()

@@ -4,6 +4,7 @@ using System;
 public partial class PauseScene : Control
 {
 	[Export] private Control _popup;
+	[Export] private Control _glossary;
 		private void OnPauseButtonPressed()
 		{
 			GetTree().Paused = true;
@@ -17,6 +18,14 @@ public partial class PauseScene : Control
 
 		private void OnMainMenuButtonPressed(){
 			_popup.Visible = true;
+		}
+
+		private void OnGlossaryButtonPressed(){
+			_glossary.Visible = true;
+		}
+
+		private void OnGlossaryClosed(){
+			_glossary.Visible = false;
 		}
 
 		private void OnCancelButtonPressed(){
