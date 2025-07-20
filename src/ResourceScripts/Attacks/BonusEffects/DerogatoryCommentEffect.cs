@@ -8,14 +8,16 @@ namespace tee
         public override void Resolve(CombatManager combatManager){
             combatManager.IgnoreNextEnthusiasm();
             Preference preference = combatManager.PreferenceForCurrentTopic;
-            switch(preference){
+            combatManager.ConversationInterestBonusDamage *= -1;
+            switch (preference)
+            {
                 case Preference.Like:
-                combatManager.Enemy.IncreaseAnnoyance();
-                combatManager.ConversationInterestDamage += 2;
-                break;
+                    combatManager.Enemy.IncreaseAnnoyance();
+                    combatManager.ConversationInterestDamage += 2;
+                    break;
                 case Preference.Dislike:
-                combatManager.Enemy.DecreaseAnnoyance();
-                break;
+                    combatManager.Enemy.DecreaseAnnoyance();
+                    break;
             }
             GD.Print("Resolved DerogatoryCommentEffect.");
         }

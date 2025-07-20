@@ -77,7 +77,7 @@ public static class Extensions : Object
 				romanNumeral = "V";
 				break;
 			default:
-				romanNumeral = "0";
+				romanNumeral = "";
 				break;
 		}
 		return romanNumeral;

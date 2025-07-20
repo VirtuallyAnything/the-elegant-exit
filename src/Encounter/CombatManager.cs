@@ -14,6 +14,7 @@ namespace tee
 
 		private EncounterPlayer _player;
 		private int _conversationInterestDamage;
+		private int _conversationInterestBonusDamage;
 		private TopicName _playerCurrentTopicName;
 		private TopicName _playerLastTopicName;
 		private PlayerAttack _selectedAttack;
@@ -30,6 +31,12 @@ namespace tee
 		{
 			get { return _conversationInterestDamage; }
 			set { _conversationInterestDamage = value; }
+		}
+
+		public int ConversationInterestBonusDamage
+		{
+			get { return _conversationInterestBonusDamage; }
+			set { _conversationInterestBonusDamage = value; }
 		}
 		public Preference PreferenceForCurrentTopic
 		{
@@ -124,38 +131,43 @@ namespace tee
 		{
 			_isFirstTurn = false;
 			ConversationInterestDamage = 0;
-			_playerLastTopicName = _playerCurrentTopicName;
+			ConversationInterestBonusDamage = 0;
+			_playerLastTopicName = PlayerCurrentTopicName;
+			_preferenceForCurrentTopic = Preference.Unknown;
 
 			// Set topic of attack to that of the player attack or none
-			TopicName topicOfAttack = TopicName.None;
+			TopicName topicOfAttack;
 			if (playerAttack is TopicalPlayerAttack topicalPlayerAttack)
 			{
 				topicOfAttack = topicalPlayerAttack.SelectedTopicName;
-			};
+			}
+			else
+			{
+				topicOfAttack = TopicName.None;
+			}
 			_selectedAttack = playerAttack;
 
-			int conversationInterestBonusDamage = 0;
 			if (topicOfAttack != TopicName.None)
 			{
 				//Only change the current Topic if the TopicName isn't none
-				_playerCurrentTopicName = topicOfAttack;
+				PlayerCurrentTopicName = topicOfAttack;
 				_preferenceForCurrentTopic = Enemy.GetPreferenceFor(topicOfAttack);
 				if (!_isIgnoreCIBonusDamage)
 				{
 					switch (_preferenceForCurrentTopic)
 					{
 						// Apply damage modifiers for Preferences
-						case Preference.Like:
-							conversationInterestBonusDamage -= 1;
+						case Preference.Like:   //TODO: Give Player feedback for why they get -1 Damage to their attack
+							ConversationInterestBonusDamage -= 1;
 							break;
 						case Preference.Dislike:
-							conversationInterestBonusDamage += 1;
-							if (_playerCurrentTopicName == _playerLastTopicName)
+							ConversationInterestBonusDamage += 1;
+							if (PlayerCurrentTopicName == _playerLastTopicName)
 							{
-								Enemy.Enrage(_playerCurrentTopicName);
+								Enemy.Enrage(PlayerCurrentTopicName);
 							}
 							// Subtract one social Battery if the player knowingly talks about a disliked topic
-							if (_player.DiscoveredEnemyPreferences.ContainsKey(_playerCurrentTopicName))
+							if (_player.DiscoveredEnemyPreferences.ContainsKey(PlayerCurrentTopicName))
 							{
 								GameManager.SocialBattery -= 1;
 							}
@@ -166,39 +178,44 @@ namespace tee
 
 			// Set the base attack damage and resolve bonus effects if there are any
 			_player.Resolve(_selectedAttack, this);
-			if(PlayerCurrentTopicName == TopicName.Weather){
+
+			if (PlayerCurrentTopicName == TopicName.Weather)
+			{
 				Enemy.ReactTo(TopicName.Weather);
-			}else{
+			}
+			else
+			{
 				Enemy.ReactTo(topicOfAttack);
 			}
-
+			
 			// Add newly discovered preference
-			if (!_player.DiscoveredEnemyPreferences.ContainsKey(_playerCurrentTopicName))
+			if (!_player.DiscoveredEnemyPreferences.ContainsKey(PlayerCurrentTopicName))
 			{
-				_player.DiscoveredEnemyPreferences.Add(_playerCurrentTopicName, _preferenceForCurrentTopic);
+				_player.DiscoveredEnemyPreferences.Add(PlayerCurrentTopicName, _preferenceForCurrentTopic);
 				_preferenceDisplay.UpdatePreference(
-					_playerCurrentTopicName, _preferenceForCurrentTopic);
+					PlayerCurrentTopicName, _preferenceForCurrentTopic);
 			}
 			// Actually subtract the damages from Conversation Interest
-			Enemy.ConversationInterest -= conversationInterestBonusDamage + ConversationInterestDamage;
-			GD.Print($"Player attacks with {playerAttack.AttackName} and does {conversationInterestBonusDamage + ConversationInterestDamage} damage to CI.");
+			Enemy.ConversationInterest -= ConversationInterestBonusDamage + ConversationInterestDamage;
+			GD.Print($"Player attacks with {playerAttack.AttackName} and does {ConversationInterestBonusDamage + ConversationInterestDamage} damage to CI.");
 			GD.Print($"New Enemy CI: {Enemy.ConversationInterest}/{Enemy.ConversationInterestMax}");
 			_isIgnoreCIBonusDamage = false;
 
 			//Wait for all the animations to finish
 			await _encounterScene.PlayDialogAnimation(_selectedAttack);
-			await _encounterScene.PlayAnimationsForAttack(_selectedAttack, conversationInterestBonusDamage);
+			await _encounterScene.PlayAnimationsForAttack(_selectedAttack, ConversationInterestBonusDamage);
 			await _encounterScene.UpdateConversationInterestMax();
 
-			if (topicOfAttack != TopicName.None || PlayerCurrentTopicName == TopicName.Weather)
+			if (topicOfAttack != TopicName.None)
 			{
-				_preferenceDisplay.UpdateEnthusiasm(PlayerCurrentTopicName, Enemy.GetEnthusiasmLevelFor(PlayerCurrentTopicName));
 				_encounterScene.UpdateTopic(PlayerCurrentTopicName);
-			}
-			else
+			}//if special attack with no topic occurs, the topic of the player isn't none but weather!! Should change to "topic stays that of the enemy until player attacks with a topical attack"
+
+			if (PlayerCurrentTopicName != Enemy.CurrentTopicName)
 			{
-				_preferenceDisplay.UpdateEnthusiasm(Enemy.CurrentTopicName, Enemy.GetEnthusiasmLevelFor(Enemy.CurrentTopicName));
+				_preferenceDisplay.UpdateEnthusiasm(Enemy.LastTopicName, Enemy.GetEnthusiasmLevelFor(Enemy.LastTopicName));
 			}
+			_preferenceDisplay.UpdateEnthusiasm(PlayerCurrentTopicName, Enemy.GetEnthusiasmLevelFor(PlayerCurrentTopicName));
 
 			_encounterScene.UpdateAnnoyance(Enemy.Annoyance);
 			_encounterScene.UpdateConversationInterestModifiers(Enemy.ConversationInterestModifierAnnoyance, Enemy.ConversationInterestModifierEnthusiasm);
@@ -263,6 +280,11 @@ namespace tee
 		public void IgnoreNextAnnoyance()
 		{
 			_enemy.IgnoreNextAnnoyance = true;
+		}
+
+		public void IgnoreTopicSwitchAnnoyance()
+		{
+			_enemy.IgnoreTopicSwitchAnnoyance = true;
 		}
 
 		public void IgnoreNextEnthusiasm()

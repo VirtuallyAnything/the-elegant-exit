@@ -1,12 +1,12 @@
 [gd_resource type="Resource" script_class="SpecialPlayerAttack" load_steps=3 format=3 uid="uid://cs6bib4u6s2ou"]
 
-[ext_resource type="Script" path="res://src/ResourceScripts/Attacks/SpecialPlayerAttack.cs" id="1_1yujq"]
-[ext_resource type="Resource" uid="uid://fdsoq7qetf81" path="res://GameDataResources/Attacks/PlayerAttacks/BonusEffects/TalkAboutWeatherEffect.tres" id="1_mhc2s"]
+[ext_resource type="Resource" uid="uid://fdsoq7qetf81" path="res://GameDataResources/Attacks/PlayerAttacks/BonusEffects/TalkAboutWeatherEffect.tres" id="1_xbmb0"]
+[ext_resource type="Script" path="res://src/ResourceScripts/Attacks/SpecialPlayerAttack.cs" id="2_odd0c"]
 
 [resource]
-script = ExtResource("1_1yujq")
+script = ExtResource("2_odd0c")
 _quotes = ["Perfect weather tonight... would have been a shame if we couldn't use the karaoke stage in the garden.", "Pretty hot lately... Wasn't that hot same time last year.", "Weather forecast said it's gonna rain again next Wednesday."]
-_bonusEffect = ExtResource("1_mhc2s")
+_bonusEffect = ExtResource("1_xbmb0")
 OwningCharacter = 0
 ConversationInterestDamage = 2
 IsFromItem = false

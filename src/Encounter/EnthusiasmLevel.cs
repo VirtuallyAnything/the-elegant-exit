@@ -83,13 +83,13 @@ namespace tee
             {
                 case 1:
                     _socialStandingChange = 0;
-                    _conversationInterestModifier = 0;
-                    _conversationInterestModifierTotal = 0;
+                    _conversationInterestModifier = -2;
+                    _conversationInterestModifierTotal -= 2;
                     break;
                 case 2:
                     _socialStandingChange = 1;
-                    _conversationInterestModifier = -1;
-                    _conversationInterestModifierTotal -= 1;
+                    _conversationInterestModifier = -1; 
+                    _conversationInterestModifierTotal -= 1; 
                     break;
                 case 3:
                     _socialStandingChange = 2;

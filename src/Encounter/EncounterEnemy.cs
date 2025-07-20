@@ -105,6 +105,10 @@ namespace tee
 		{
 			get; set;
 		}
+		public bool IgnoreTopicSwitchAnnoyance
+		{
+			get; set;
+		}
 		public bool IgnoreNextEnthusiasm
 		{
 			get; set;
@@ -171,7 +175,7 @@ namespace tee
 			}
 			if (_switchTopic)
 			{
-				allTopics.Remove(_topicPreferences[_currentTopicName].ConversationTopic);
+				allTopics.Remove(_topicPreferences[_lastTopicName].ConversationTopic);
 				_switchTopic = false;
 			}
 
@@ -241,6 +245,7 @@ namespace tee
 
 			if (topicName == TopicName.Weather)
 			{
+				_topicPreferences[_lastTopicName].ConversationTopic.Weight -= 5;
 				return;
 			}
 
@@ -256,7 +261,7 @@ namespace tee
 			//if there is a change of topic to a topic with less than two enthusiasm, increase annoyance.
 			if (_currentTopicName != _lastTopicName)
 			{
-				if (currentConversationTopic.GetCurrentEnthusiasmLevel() < 2 && !IgnoreNextAnnoyance)
+				if (currentConversationTopic.GetCurrentEnthusiasmLevel() < 2 && !IgnoreTopicSwitchAnnoyance)
 				{
 					ConversationTopic lastConversationTopic = _topicPreferences[_lastTopicName].ConversationTopic;
 					int currentEnthusiasm = lastConversationTopic.GetCurrentEnthusiasmLevel();
@@ -265,17 +270,18 @@ namespace tee
 						case 2:
 						case 3:
 							_annoyance.Increase();
-							GD.Print($"{DisplayName} was annoyed to be changing the topic. Annoyance increases by one to {_annoyance.CurrentAnnoyance}.");
+							GD.Print($"{DisplayName} was annoyed to be changing the topic from something they were enthusiastic about. Annoyance increases by one to {_annoyance.CurrentAnnoyance}.");
 							break;
 						case 4:
 						case 5:
 							_annoyance.Increase(2);
-							GD.Print($"{DisplayName} was very annoyed to be changing the topic. Annoyance increases by two to {_annoyance.CurrentAnnoyance}.");
+							GD.Print($"{DisplayName} was very annoyed to be changing the topic from something they were enthusiastic about. Annoyance increases by two to {_annoyance.CurrentAnnoyance}.");
 							break;
 					}
 				}
 			}
 
+			// Increase Enthusiasm for the topic if the topic is liked or neutral in preference
 			Preference preference = GetPreferenceFor(_currentTopicName);
 			switch (preference)
 			{
@@ -294,7 +300,10 @@ namespace tee
 					break;
 			}
 			GD.Print($"{DisplayName} Preference for {_currentTopicName}: {preference}");
+
+			// Reset all one-time effect booleans
 			IgnoreNextAnnoyance = false;
+			IgnoreTopicSwitchAnnoyance = false;
 			IgnoreNextEnthusiasm = false;
 		}
 
@@ -359,7 +368,6 @@ namespace tee
 				return _topicPreferences[topic].ConversationTopic.GetCurrentEnthusiasmLevel();
 			}
 			return 0;
-
 		}
 
 		public void DecreaseAnnoyance()
