@@ -101,15 +101,15 @@ namespace tee
 		{
 			get { return _dislikes; }
 		}
-		public bool IgnoreNextAnnoyance
+		public bool IsIgnoreNextAnnoyance
 		{
 			get; set;
 		}
-		public bool IgnoreTopicSwitchAnnoyance
+		public bool IsIgnoreTopicSwitchAnnoyance
 		{
 			get; set;
 		}
-		public bool IgnoreNextEnthusiasm
+		public bool IsIgnoreNextEnthusiasm
 		{
 			get; set;
 		}
@@ -259,9 +259,9 @@ namespace tee
 			}
 
 			//if there is a change of topic to a topic with less than two enthusiasm, increase annoyance.
-			if (_currentTopicName != _lastTopicName)
+			if (_currentTopicName != _lastTopicName && !IsIgnoreTopicSwitchAnnoyance)
 			{
-				if (currentConversationTopic.GetCurrentEnthusiasmLevel() < 2 && !IgnoreTopicSwitchAnnoyance)
+				if (currentConversationTopic.GetCurrentEnthusiasmLevel() < 2 )
 				{
 					ConversationTopic lastConversationTopic = _topicPreferences[_lastTopicName].ConversationTopic;
 					int currentEnthusiasm = lastConversationTopic.GetCurrentEnthusiasmLevel();
@@ -287,13 +287,13 @@ namespace tee
 			{
 				case Preference.Like:
 				case Preference.Neutral:
-					if (!IgnoreNextEnthusiasm)
+					if (!IsIgnoreNextEnthusiasm)
 					{
 						currentConversationTopic.IncreaseEnthusiasm();
 					}
 					break;
 				case Preference.Dislike:
-					if (!IgnoreNextAnnoyance)
+					if (!IsIgnoreNextAnnoyance)
 					{
 						_annoyance.Increase();
 					}
@@ -302,9 +302,9 @@ namespace tee
 			GD.Print($"{DisplayName} Preference for {_currentTopicName}: {preference}");
 
 			// Reset all one-time effect booleans
-			IgnoreNextAnnoyance = false;
-			IgnoreTopicSwitchAnnoyance = false;
-			IgnoreNextEnthusiasm = false;
+			IsIgnoreNextAnnoyance = false;
+			IsIgnoreTopicSwitchAnnoyance = false;
+			IsIgnoreNextEnthusiasm = false;
 		}
 
 		public Preference GetPreferenceFor(TopicName topic)

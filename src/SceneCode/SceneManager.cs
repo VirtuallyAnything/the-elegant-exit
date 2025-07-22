@@ -8,7 +8,7 @@ namespace tee
 	{
 		private static Scene _currentScene;
 		private static EncounterScene _encounterScene;
-		private EncounterStartScreen _encounterStartScene;
+		private EncounterStartScene _encounterStartScene;
 		private EncounterFinishedScene _encounterFinishedScene;
 		private static PartyGroundFloor _partyGroundFloor;
 		private static PartyFirstFloor _partyFirstFloor;
@@ -134,7 +134,7 @@ namespace tee
 
 		private void ChangeToEncounterStartScene()
 		{
-			_encounterStartScene = (EncounterStartScreen)ResourceLoader.Load<PackedScene>("res://Scenes/EncounterStartScreen.tscn").Instantiate();
+			_encounterStartScene = (EncounterStartScene)ResourceLoader.Load<PackedScene>("res://Scenes/EncounterStartScreen.tscn").Instantiate();
 			_mainScene.EncounterLayer.AddChild(_encounterStartScene);
 			_mainScene.EncounterLayer.Visible = true;
 			_encounterStartScene.SetProcess(true);

@@ -52,6 +52,7 @@ theme_type_variation = &"SpeechBubbleButton"
 text = "
 "
 script = ExtResource("4_ktip8")
+SceneName = 1
 
 [node name="Label" type="Label" parent="PlayButton"]
 layout_mode = 1
@@ -101,6 +102,7 @@ offset_bottom = 732.0
 theme = ExtResource("3_l63qc")
 theme_type_variation = &"SpeechBubbleButton2"
 script = ExtResource("4_ktip8")
+SceneName = 4
 
 [node name="Label" type="Label" parent="Scoreboard"]
 layout_mode = 1
@@ -128,6 +130,7 @@ offset_bottom = 908.0
 theme = ExtResource("3_l63qc")
 theme_type_variation = &"SpeechBubbleButton3"
 script = ExtResource("4_ktip8")
+SceneName = 2
 
 [node name="Label" type="Label" parent="Credits"]
 layout_mode = 1

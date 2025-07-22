@@ -2,7 +2,7 @@ using Godot;
 using System;
 using tee;
 
-public partial class EncounterStartScreen : Control
+public partial class EncounterStartScene : Control
 {
 	[Export] private Label _enemyName;
 	[Export] private TextureRect _enemyTexture;

@@ -15,6 +15,7 @@ dest_files=["res://.godot/imported/Lobster-Regular.ttf-b45ad077a6852f5fa1d04c7ed
 Rendering=null
 antialiasing=1
 generate_mipmaps=false
+disable_embedded_bitmaps=true
 multichannel_signed_distance_field=false
 msdf_pixel_range=8
 msdf_size=48
