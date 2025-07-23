@@ -32,25 +32,6 @@ theme = ExtResource("7_2e176")
 bbcode_enabled = true
 text = "[center] [font=res://Assets/Fonts/Lobster-Regular.ttf]Credits[/font][/center]"
 
-[node name="Label" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 0.432
-anchor_right = 0.5
-anchor_bottom = 0.432
-offset_left = -443.0
-offset_top = 0.440002
-offset_right = 448.0
-offset_bottom = 215.44
-mouse_default_cursor_shape = 2
-theme = ExtResource("7_2e176")
-theme_type_variation = &"HeaderMedium"
-text = "Nils Klegraf Gracia: 	Character Art
-Julia Porsch: Programming, UI, Idea
-Julius Steib: Game Design, Writing
-"
-
 [node name="TextureRect" type="TextureButton" parent="."]
 layout_mode = 1
 anchors_preset = -1
@@ -66,3 +47,40 @@ texture_normal = ExtResource("2_ay43u")
 ignore_texture_size = true
 stretch_mode = 4
 script = ExtResource("3_8ikyv")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.455
+anchor_right = 0.5
+anchor_bottom = 0.455
+offset_left = -524.0
+offset_top = -0.400024
+offset_right = 616.0
+offset_bottom = 212.6
+grow_horizontal = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("7_2e176")
+theme_type_variation = &"HeaderMedium"
+text = "Nils Klegraf Gracia: 	
+Julia Porsch: 
+Julius Steib: 
+"
+
+[node name="Label2" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+mouse_default_cursor_shape = 2
+theme = ExtResource("7_2e176")
+theme_type_variation = &"HeaderMedium"
+text = "Character Art
+Programming, UI, Idea
+Game Design, Writing
+"
+horizontal_alignment = 2
