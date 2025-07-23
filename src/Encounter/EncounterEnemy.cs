@@ -281,10 +281,12 @@ namespace tee
 				}
 			}
 
-			// Increase Enthusiasm for the topic if the topic is liked or neutral in preference
+			// Increase Enthusiasm for the topic if the topic is liked or neutral in preference, 
+			// otherwise increase annoyance
 			Preference preference = GetPreferenceFor(_currentTopicName);
 			switch (preference)
 			{
+				// Missing content: Reaction dialogue based on preference for topic
 				case Preference.Like:
 				case Preference.Neutral:
 					if (!IsIgnoreNextEnthusiasm)

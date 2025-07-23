@@ -111,11 +111,6 @@ namespace tee
 
 		private void SetupNewAttack()
 		{
-			/*if (_isFirstTurn)
-			{
-				_encounterScene.AttackCardContainer.EnableInput();
-				return;
-			}*/
 			if (_player.MentalCapacity <= 0)
 			{
 				CombatEnded?.Invoke();
@@ -199,16 +194,10 @@ namespace tee
 			GD.Print($"New Enemy CI: {Enemy.ConversationInterest}/{Enemy.ConversationInterestMax}");
 			_isIgnoreCIBonusDamage = false;
 			
-			if (topicOfAttack != TopicName.None)
-			{
-				
-			}
-			//Wait for all the animations to finish
+			// Wait for all the animations to finish
 			await _encounterScene.PlayDialogAnimation(_selectedAttack);
 			await _encounterScene.PlayAnimationsForAttack(_selectedAttack, ConversationInterestBonusDamage);
 			await _encounterScene.UpdateConversationInterestMax();
-
-			//if special attack with no topic occurs, the topic of the player isn't none but weather!! Should change to "topic stays that of the enemy until player attacks with a topical attack"
 
 			if (PlayerCurrentTopicName != Enemy.CurrentTopicName)
 			{

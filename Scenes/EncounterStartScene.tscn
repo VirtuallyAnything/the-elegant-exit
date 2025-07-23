@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://dqpcyi5i0xyjh"]
 
-[ext_resource type="Script" path="res://src/SceneCode/EncounterStartScreen.cs" id="1_5g70q"]
+[ext_resource type="Script" path="res://src/SceneCode/EncounterStartScene.cs" id="1_fo1sk"]
 [ext_resource type="Texture2D" uid="uid://b1on62evvvcee" path="res://Assets/UI/EncounterStartScreen.png" id="2_j3cag"]
 [ext_resource type="Texture2D" uid="uid://bof3wrxapds3v" path="res://Assets/Textures/MainCharacters.png" id="3_5u531"]
 [ext_resource type="LabelSettings" uid="uid://bx6i6eo3rklk8" path="res://Assets/Themes/LobsterLabelSettings.tres" id="4_oqcpl"]
@@ -78,7 +78,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_5g70q")
+script = ExtResource("1_fo1sk")
 _enemyName = NodePath("EnemyName")
 _enemyTexture = NodePath("EnemyName/TextureRect")
 _animationPlayer = NodePath("AnimationPlayer")
@@ -134,9 +134,9 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = 1217.0
+offset_left = -703.0
 offset_top = 94.0
-offset_right = 1796.0
+offset_right = -124.0
 offset_bottom = 497.0
 grow_horizontal = 0
 theme = SubResource("Theme_bya7o")
@@ -158,10 +158,10 @@ anchor_left = 0.501
 anchor_top = 0.5
 anchor_right = 0.501
 anchor_bottom = 0.5
-offset_left = 716.0
-offset_top = 181.0
-offset_right = 1206.0
-offset_bottom = 774.0
+offset_left = -245.92
+offset_top = -359.0
+offset_right = 244.08
+offset_bottom = 234.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("5_diw5j")

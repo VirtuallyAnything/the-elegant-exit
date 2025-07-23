@@ -10,24 +10,10 @@ namespace tee
 		private static EncounterScene _encounterScene;
 		private EncounterStartScene _encounterStartScene;
 		private EncounterFinishedScene _encounterFinishedScene;
-		private static PartyGroundFloor _partyGroundFloor;
-		private static PartyFirstFloor _partyFirstFloor;
+		private static PartyFloorScene _partyGroundFloor;
+		private static PartyFloorScene _partyFirstFloor;
 		private static MainScene _mainScene;
 		private static StartScene _mainMenu;
-		public static PartyGroundFloor PartyGroundFloor
-		{
-			get { return _partyGroundFloor; }
-			set { _partyGroundFloor = value; }
-		}
-		public static MainScene MainScene
-		{
-			get { return _mainScene; }
-			set { _mainScene = value; }
-		}
-		public static Scene CurrentScene{
-			get{return _currentScene;}
-			set{_currentScene = value;}
-		}
 
 		// Called when the node enters the scene tree for the first time.
 		public override void _Ready()
@@ -104,8 +90,8 @@ namespace tee
 		{
 			GetTree().Root.RemoveChild(_currentScene);
 			_mainScene = (MainScene)ResourceLoader.Load<PackedScene>("res://Scenes/MainScene.tscn").Instantiate();
-			_partyGroundFloor = (PartyGroundFloor)ResourceLoader.Load<PackedScene>("res://Scenes/PartyGroundFloor.tscn").Instantiate();
-			_partyFirstFloor = (PartyFirstFloor)ResourceLoader.Load<PackedScene>("res://Scenes/PartyFirstFloor.tscn").Instantiate();
+			_partyGroundFloor = (PartyFloorScene)ResourceLoader.Load<PackedScene>("res://Scenes/PartyGroundFloor.tscn").Instantiate();
+			_partyFirstFloor = (PartyFloorScene)ResourceLoader.Load<PackedScene>("res://Scenes/PartyFirstFloor.tscn").Instantiate();
 			_mainScene.Ready += ChangeToPartyGroundFloor;
 			GetTree().Root.AddChild(_mainScene);
 			_currentScene = _mainScene;
@@ -134,7 +120,6 @@ namespace tee
 
 		private void ChangeToEncounterStartScene()
 		{
-			_encounterStartScene = (EncounterStartScene)ResourceLoader.Load<PackedScene>("res://Scenes/EncounterStartScreen.tscn").Instantiate();
 			_mainScene.EncounterLayer.AddChild(_encounterStartScene);
 			_mainScene.EncounterLayer.Visible = true;
 			_encounterStartScene.SetProcess(true);
@@ -162,8 +147,6 @@ namespace tee
 			_mainScene.UpdateUI();
 			_mainScene.EncounterLayer.RemoveChild(_encounterFinishedScene);
 			_encounterFinishedScene.QueueFree();
-			//_mainScene.AddChild(_mainScene.CurrentFloor);
-			//_mainScene.MoveChild(_mainScene.CurrentFloor, 0);
 		}
 
 		private void ChangeToGameOverScene()

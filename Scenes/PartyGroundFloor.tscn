@@ -1,6 +1,6 @@
 [gd_scene load_steps=73 format=3 uid="uid://dmfp5lawyswyl"]
 
-[ext_resource type="Script" path="res://src/SceneCode/PartyGroundFloor.cs" id="1_mj4je"]
+[ext_resource type="Script" path="res://src/SceneCode/PartyFloorScene.cs" id="1_x3j5x"]
 [ext_resource type="Texture2D" uid="uid://cxsgk2jxdn3" path="res://Assets/Levels/GroundFloor.png" id="2_vuute"]
 [ext_resource type="PackedScene" uid="uid://lk1nms6ylsx0" path="res://Scenes/Subscenes/Enemy.tscn" id="3_vs0d7"]
 [ext_resource type="Resource" uid="uid://dgtmypitorji3" path="res://GameDataResources/EnemyData/AloofAcademic.tres" id="4_aoy74"]
@@ -270,7 +270,7 @@ agent_radius = 35.0
 size = Vector2(564, 402)
 
 [node name="GroundFloor" type="Node2D"]
-script = ExtResource("1_mj4je")
+script = ExtResource("1_x3j5x")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.529067, 0.529067, 0.529067, 1)

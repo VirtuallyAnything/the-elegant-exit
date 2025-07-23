@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://damjwt0d5a1y8"]
 
-[ext_resource type="Script" path="res://src/SceneCode/PartyFirstFloor.cs" id="1_me5vh"]
+[ext_resource type="Script" path="res://src/SceneCode/PartyFloorScene.cs" id="1_r4p01"]
 [ext_resource type="Texture2D" uid="uid://bcwv3jtxpxt4a" path="res://Assets/Levels/FirstFloor.png" id="2_ka8sf"]
 [ext_resource type="Script" path="res://src/Party/Enemy/PartyEnemy.cs" id="4_kpk03"]
 [ext_resource type="Resource" uid="uid://bqgn3w6aagdea" path="res://GameDataResources/EnemyData/NeighborDave.tres" id="5_tsw0b"]
@@ -15,7 +15,7 @@ source_geometry_group_name = &"navigation_polygon_source_group"
 agent_radius = 35.0
 
 [node name="Node2D" type="Node2D"]
-script = ExtResource("1_me5vh")
+script = ExtResource("1_r4p01")
 
 [node name="FirstFloor" type="Node2D" parent="."]
 

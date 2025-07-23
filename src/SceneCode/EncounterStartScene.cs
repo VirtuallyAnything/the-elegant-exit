@@ -16,6 +16,4 @@ public partial class EncounterStartScene : Control
 		GetTree().CreateTimer(2);
 		_animationPlayer.Play("FlyIn");
     }
-
-
 }

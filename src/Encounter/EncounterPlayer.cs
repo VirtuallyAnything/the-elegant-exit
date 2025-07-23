@@ -64,11 +64,7 @@ namespace tee
 		/// <param name="combatManager">
 		///	The CombatManager to resolve this PlayerAttack on.
 		/// </param>
-		public void Resolve(PlayerAttack attack, CombatManager combatManager)
-        {
-            combatManager.ConversationInterestDamage = attack.ConversationInterestDamage;
-            attack.BonusEffect?.Resolve(combatManager);
-        }
+	
 
         public PlayerAttack SwapAttackOut(PlayerAttack attack)
         {

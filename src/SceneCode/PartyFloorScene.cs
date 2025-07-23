@@ -3,7 +3,7 @@ using System;
 
 namespace tee
 {
-	public partial class PartyGroundFloor : Scene
+	public partial class PartyFloorScene : Scene
 	{
         public override void _Ready()
         {
