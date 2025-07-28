@@ -521,6 +521,7 @@ fit_content = true
 script = ExtResource("10_qqenu")
 
 [node name="SpeechbubbleEnemy" type="Panel" parent="." node_paths=PackedStringArray("_RTlabel")]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.819
@@ -530,7 +531,7 @@ anchor_bottom = 0.422
 offset_left = -945.48
 offset_top = -216.76
 offset_right = -273.48
-offset_bottom = -102.76
+offset_bottom = -92.76
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("6_wdmna")
@@ -548,7 +549,7 @@ anchor_bottom = 0.422
 offset_left = -901.48
 offset_top = -189.76
 offset_right = -424.48
-offset_bottom = -187.76
+offset_bottom = -139.76
 grow_horizontal = 0
 mouse_filter = 2
 mouse_default_cursor_shape = 2

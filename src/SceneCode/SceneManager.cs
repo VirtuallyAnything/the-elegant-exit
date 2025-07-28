@@ -120,6 +120,7 @@ namespace tee
 
 		private void ChangeToEncounterStartScene()
 		{
+			_encounterStartScene = (EncounterStartScene)ResourceLoader.Load<PackedScene>("res://Scenes/EncounterStartScene.tscn").Instantiate();
 			_mainScene.EncounterLayer.AddChild(_encounterStartScene);
 			_mainScene.EncounterLayer.Visible = true;
 			_encounterStartScene.SetProcess(true);

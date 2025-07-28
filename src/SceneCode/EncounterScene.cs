@@ -90,7 +90,7 @@ namespace tee
 			_dialogueAnimationFinished = false;
 			_playerDialogue.SetEntireVisibility(true);
 			_enemyDialogue.SetEntireVisibility(false);
-
+			_playerDialogue.RTLabel.VisibleCharacters = 0;
 			_playerDialogue.Text = attack.GetQuote();
 			//_dialogueLine.Modulate = _playerDialogueColor;
 
@@ -110,6 +110,7 @@ namespace tee
 		{
 			_enemyDialogue.SetEntireVisibility(true);
 			_playerDialogue.SetEntireVisibility(false);
+			_enemyDialogue.RTLabel.VisibleCharacters = 0;
 			_enemyDialogue.Text = attack.Quote;
 
 			Tween tween = _enemyDialogue.CreateTween();
