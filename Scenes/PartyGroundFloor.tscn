@@ -176,9 +176,9 @@ source_geometry_group_name = &"navigation_polygon_source_group"
 agent_radius = 35.0
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_mpj6m"]
-vertices = PackedVector2Array(4584, 3928, 4583, 3813, 4609, 3815, 4609, 3929, 4774, 2428, 4890, 2427, 4890, 2457, 4774, 2452, 5822, 2458, 5822, 4234, 4901, 4233, 4769, 4237, 4610, 4237, 4608, 2455, 4897, 4261, 4771, 4262)
+vertices = PackedVector2Array(4584.64, 3928.41, 4583.4, 3812.82, 4609.03, 3814.8, 4608.89, 3929.42, 4774, 2428.63, 4890.8, 2427.38, 4889.82, 2456.92, 4774, 2452.37, 5822, 2458.92, 5822, 4234.92, 4900.56, 4232.93, 4769.41, 4237, 4609.89, 4237, 4608.02, 2455.36, 4897.51, 4261.32, 4771.38, 4262.65)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 7), PackedInt32Array(8, 9, 10, 6), PackedInt32Array(10, 11, 12, 3, 2, 7, 6), PackedInt32Array(2, 13, 7), PackedInt32Array(11, 10, 14, 15)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(4575, 4272, 4737, 4272, 4739, 4298, 4929, 4296, 4932, 4268, 5857, 4270, 5857, 2424, 4926, 2422, 4927, 2392, 4739, 2394, 4739, 2418, 4573, 2421, 4574, 3777, 4548, 3775, 4550, 3962, 4574, 3963)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(4575, 4272, 4737, 4272, 4739, 4298, 4929, 4296, 4932, 4268, 5857, 4270, 5857, 2424, 4926, 2422, 4927, 2392, 4739, 2394, 4739, 2418, 4573, 2421, 4574, 3777, 4548, 3775, 4550, 3962, 4574, 3963), PackedVector2Array(4840, 2810, 4840, 3006, 5036, 3007, 5035, 2812), PackedVector2Array(5296, 3559, 5296, 3753, 5493, 3753, 5494, 3559)])
 source_geometry_group_name = &"navigation_polygon_source_group"
 agent_radius = 35.0
 
@@ -281,6 +281,7 @@ scale = Vector2(1.48704, 1.48704)
 texture = ExtResource("2_vuute")
 
 [node name="AloofAcademic" parent="." instance=ExtResource("3_vs0d7")]
+process_mode = 4
 position = Vector2(1880, 2897)
 _enemyData = ExtResource("4_aoy74")
 _sightConeSegments = 12
@@ -288,12 +289,14 @@ _sightConeAngleDegrees = 120.0
 _triggerRange = 300.0
 
 [node name="KaraokeFanGirl" type="CharacterBody2D" parent="."]
+process_mode = 4
 position = Vector2(1534, 3365)
 script = ExtResource("5_ao272")
 _enemyData = ExtResource("6_qnsln")
 _startingRotationDeg = 90.0
 
 [node name="DesperateCougar" type="CharacterBody2D" parent="."]
+process_mode = 4
 position = Vector2(191, 2308)
 script = ExtResource("5_ao272")
 _enemyData = ExtResource("7_2ysbw")
@@ -301,12 +304,14 @@ _startingRotationDeg = 5.0
 _triggerRange = 200.0
 
 [node name="NeighborDave" type="CharacterBody2D" parent="."]
+process_mode = 4
 position = Vector2(4149, 4173)
 script = ExtResource("5_ao272")
 _enemyData = ExtResource("8_n7tcn")
 _startingRotationDeg = -90.0
 
 [node name="CryptoBro" type="CharacterBody2D" parent="."]
+process_mode = 4
 position = Vector2(5134, 1995)
 script = ExtResource("5_ao272")
 _enemyData = ExtResource("9_wohom")
@@ -314,6 +319,7 @@ _startingRotationDeg = 180.0
 _triggerRange = 200.0
 
 [node name="BeautyInfluencer" type="CharacterBody2D" parent="."]
+process_mode = 4
 position = Vector2(2873, 1537)
 script = ExtResource("5_ao272")
 _enemyData = ExtResource("10_lsurk")
@@ -752,13 +758,14 @@ position = Vector2(3598, 3159)
 rotation = 1.57079
 script = ExtResource("8_hsavl")
 _navRegion = NodePath("NavigationRegion2D")
+_triggerRange = 180.0
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="Doors/Door8"]
 navigation_polygon = SubResource("NavigationPolygon_1utfk")
 enabled = false
 
 [node name="Door9" type="Node2D" parent="Doors" node_paths=PackedStringArray("_navRegion")]
-position = Vector2(3574, 2874)
+position = Vector2(3597, 2873)
 rotation = 1.57079
 script = ExtResource("8_hsavl")
 _navRegion = NodePath("NavigationRegion2D")
@@ -868,6 +875,7 @@ scale = Vector2(0.194338, 0.194338)
 texture = ExtResource("9_6c1f4")
 
 [node name="FOW" parent="." instance=ExtResource("8_svv30")]
+visible = false
 offset_right = 5948.0
 offset_bottom = 4566.0
 _fowScaleFactor = 0.1

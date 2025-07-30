@@ -13,6 +13,7 @@ namespace tee
 		private Texture2D _texture;
 		[Export] private NavigationRegion2D _navRegion = new();
 		private Area2D _swingCone = new();
+		private LightOccluder2D _lightOccluder = new();
 
 		public override void _Ready()
 		{
@@ -38,6 +39,13 @@ namespace tee
 			_swingCone.BodyEntered += OnSwingConeEntered;
 			_swingCone.BodyExited += OnSwingConeExited;
 			AddChild(_swingCone);
+
+			_lightOccluder.Occluder = new OccluderPolygon2D()
+			{
+				Polygon = textureSize.ToVertices(_sprite.Position, false)
+			};
+			_lightOccluder.AddToGroup("Occluder", true);
+			_sprite.AddChild(_lightOccluder);
 		}
 
 		public override void _Input(InputEvent @event)
