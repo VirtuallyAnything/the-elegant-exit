@@ -63,7 +63,7 @@ public partial class Veil : TextureRect
 		GetNode<TextureRect>("MaskSubViewport/TextureRect").Size = _sizeVec;
 
 		// mask
-		_maskImage = Image.Create((int)display_width, (int)display_height, false, Image.Format.Rgba8);
+		_maskImage = Godot.Image.CreateEmpty((int)display_width, (int)display_height, false, Image.Format.Rgba8);
 		_maskImage.Fill(Color.Color8(0, 0, 0, 255));
 		_maskTexture = ImageTexture.CreateFromImage(_maskImage);
 
@@ -82,7 +82,8 @@ public partial class Veil : TextureRect
 			if (occluder is LightOccluder2D)
 			{
 				LightOccluder2D occluderDup = (LightOccluder2D)occluder.Duplicate();
-				occluderDup.Position *= _fowScaleFactor;
+				occluderDup.Position = occluder.GlobalPosition * _fowScaleFactor;
+				occluderDup.Rotation = occluder.GlobalRotation;
 				occluderDup.ApplyScale(_fowScaleFactor * Vector2.One);
 				_lightSV.AddChild(occluderDup);
 				_occluderDupsDict[occluder.GetInstanceId()] = occluderDup;
