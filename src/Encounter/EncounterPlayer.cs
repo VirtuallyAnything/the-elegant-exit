@@ -7,6 +7,14 @@ namespace tee
     public partial class EncounterPlayer : GodotObject
     {
         private float _mentalCapacity = 10;
+        private Array<PlayerAttack> _allPlayerAttacks;
+        private Array<PlayerAttack> _attackPool;
+        private Array<PlayerAttack> _currentAttacks = new();
+        private System.Collections.Generic.Dictionary<TopicName, Preference> _discoveredEnemyPreferences = new();
+        public System.Collections.Generic.Dictionary<TopicName, Preference> DiscoveredEnemyPreferences
+        {
+            get { return _discoveredEnemyPreferences; }
+        }
         public float MentalCapacity
         {
             get { return _mentalCapacity; }
@@ -26,20 +34,11 @@ namespace tee
                 }
             }
         }
-        private Array<PlayerAttack> _allPlayerAttacks;
-        private Array<PlayerAttack> _attackPool;
-        private Array<PlayerAttack> _currentAttacks = new();
-
-        private System.Collections.Generic.Dictionary<TopicName, Preference> _discoveredEnemyPreferences = new();
-        public System.Collections.Generic.Dictionary<TopicName, Preference> DiscoveredEnemyPreferences
-        {
-            get { return _discoveredEnemyPreferences; }
-        }
-
         public EncounterPlayer(Array<PlayerAttack> playerAttacks)
         {
             _allPlayerAttacks = playerAttacks;
             _attackPool = new Array<PlayerAttack>(_allPlayerAttacks);
+            CombatManager.PreferenceDiscovered += AddEnemyPreference;
         }
 
         public PlayerAttack ChooseRandomAttack()
@@ -58,20 +57,28 @@ namespace tee
             return randomAttack;
         }
 
-        /// <summary>
-		/// Resolves the stats of this PlayerAttack and its BonusEffect, if it is not null.
-		/// </summary>
-		/// <param name="combatManager">
-		///	The CombatManager to resolve this PlayerAttack on.
-		/// </param>
-	
-
         public PlayerAttack SwapAttackOut(PlayerAttack attack)
         {
             _currentAttacks.Remove(attack);
             PlayerAttack newAttack = ChooseRandomAttack();
             _currentAttacks.Add(newAttack);
             return newAttack;
+        }
+
+        public void AddEnemyPreference(TopicName topicName, Preference preference)
+        {
+            if (!DiscoveredEnemyPreferences.ContainsKey(topicName))
+            {
+                DiscoveredEnemyPreferences.Add(topicName, preference);
+            }
+        }
+
+        public override void _Notification(int what)
+        {
+            if (what == NotificationPredelete)
+            {
+                CombatManager.PreferenceDiscovered -= AddEnemyPreference;
+            }
         }
     }
 }

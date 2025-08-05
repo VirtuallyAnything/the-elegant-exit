@@ -16,6 +16,8 @@ public partial class PreferenceDisplay : Control
 			topicLabel.Text =
 			$"[hint='Preference: {topicLabel.Preference}'][center]{topicLabel.TopicName}[img=30]{_unknownIcon.ResourcePath}[/img][/center]";
 		}
+		CombatManager.PreferenceDiscovered += UpdatePreference;
+		CombatManager.EnthusiasmChanged += UpdateEnthusiasm;
 	}
 
 	public void UpdatePreference(TopicName topicName, Preference preference)
@@ -59,6 +61,13 @@ public partial class PreferenceDisplay : Control
 				label.Text = $"[hint='Preference: {label.Preference}\nEnthusiasm: {label.EnthusiasmNumber}" + $"'][center]{topicName}" + label.IconPath + enthusiasmRomanNumeral + "[/center]";
 			}
 		}
+	}
+
+	public override void _ExitTree()
+	{
+		base._ExitTree();
+		CombatManager.PreferenceDiscovered -= UpdatePreference;
+		CombatManager.EnthusiasmChanged -= UpdateEnthusiasm;
 	}
 
 }

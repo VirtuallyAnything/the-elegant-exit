@@ -4,14 +4,16 @@ using Godot.Collections;
 namespace tee
 {
 	public delegate void CombatEventHandler();
+	public delegate void EnthusiasmEventHandler(TopicName topicName, int enthusiasm);
+	public delegate void PreferenceEventHandler(TopicName topicName, Preference preference);
 	public partial class CombatManager : Node
 	{
 		public static event CombatEventHandler CombatEnded;
 		public static event CombatEventHandler CombatLost;
 		public static event CombatEventHandler EnemyTurnComplete;
+		public static event EnthusiasmEventHandler EnthusiasmChanged;
+		public static event PreferenceEventHandler PreferenceDiscovered;
 		[Export] private EncounterScene _encounterScene;
-		[Export] private PreferenceDisplay _preferenceDisplay;
-
 		private EncounterPlayer _player;
 		private int _conversationInterestDamage;
 		private int _conversationInterestBonusDamage;
@@ -71,7 +73,8 @@ namespace tee
 				else
 				{
 					_nextTopicName = TopicName.None;
-				};
+				}
+				;
 			}
 		}
 		public int SocialStanding
@@ -180,37 +183,37 @@ namespace tee
 			{
 				Enemy.ReactTo(topicOfAttack);
 			}
-			
+
 			// Add newly discovered preference
-			if (PlayerCurrentTopicName != TopicName.None && !_player.DiscoveredEnemyPreferences.ContainsKey(PlayerCurrentTopicName))
+			if (PlayerCurrentTopicName != TopicName.None)
 			{
-				_player.DiscoveredEnemyPreferences.Add(PlayerCurrentTopicName, _preferenceForCurrentTopic);
-				_preferenceDisplay.UpdatePreference(
-					PlayerCurrentTopicName, _preferenceForCurrentTopic);
+				PreferenceDiscovered?.Invoke(PlayerCurrentTopicName, _preferenceForCurrentTopic);
 			}
+
 			// Actually subtract the damages from Conversation Interest
 			Enemy.ConversationInterest -= ConversationInterestBonusDamage + ConversationInterestDamage;
 			GD.Print($"Player attacks with {playerAttack.AttackName} and does {ConversationInterestBonusDamage + ConversationInterestDamage} damage to CI.");
 			GD.Print($"New Enemy CI: {Enemy.ConversationInterest}/{Enemy.ConversationInterestMax}");
 			_isIgnoreCIBonusDamage = false;
-			
+
 			// Wait for all the animations to finish
 			await _encounterScene.PlayDialogAnimation(_selectedAttack);
 			await _encounterScene.PlayAnimationsForAttack(_selectedAttack, ConversationInterestBonusDamage);
 			await _encounterScene.UpdateConversationInterestMax();
 
+			// Invoke events to update UI on Enthusiasm
 			if (PlayerCurrentTopicName != Enemy.CurrentTopicName)
 			{
-				_preferenceDisplay.UpdateEnthusiasm(Enemy.LastTopicName, Enemy.GetEnthusiasmLevelFor(Enemy.LastTopicName));
+				EnthusiasmChanged?.Invoke(Enemy.LastTopicName, Enemy.GetEnthusiasmLevelFor(Enemy.LastTopicName));
 			}
-			_preferenceDisplay.UpdateEnthusiasm(PlayerCurrentTopicName, Enemy.GetEnthusiasmLevelFor(PlayerCurrentTopicName));
+			EnthusiasmChanged?.Invoke(PlayerCurrentTopicName, Enemy.GetEnthusiasmLevelFor(PlayerCurrentTopicName));
 
 			_encounterScene.UpdateAnnoyance(Enemy.Annoyance);
 			_encounterScene.UpdateConversationInterestModifiers(Enemy.ConversationInterestModifierAnnoyance, Enemy.ConversationInterestModifierEnthusiasm);
-			
+
 			if (Enemy.ConversationInterest <= 0)
 			{
-				GameManager.SocialBattery += (int) _player.MentalCapacity;
+				GameManager.SocialBattery += (int)_player.MentalCapacity;
 				GameManager.SocialStandingOverall += SocialStanding;
 				GameManager.SocialStandingOverall += Enemy.Annoyance.GetTotalSocialStanding();
 				CombatEnded?.Invoke();
@@ -246,7 +249,7 @@ namespace tee
 				await _encounterScene.PlayAnimationsForAttack(enemyAttack);
 			}
 			Enemy.IncreaseEnthusiasmFor(chosenTopicName);
-			_preferenceDisplay.UpdateEnthusiasm(chosenTopicName, Enemy.GetEnthusiasmLevelFor(chosenTopicName));
+			EnthusiasmChanged?.Invoke(chosenTopicName, Enemy.GetEnthusiasmLevelFor(chosenTopicName));
 			_encounterScene.UpdateConversationInterestModifiers(_enemy.ConversationInterestModifierAnnoyance, _enemy.ConversationInterestModifierEnthusiasm);
 			await _encounterScene.UpdateConversationInterestMax();
 
