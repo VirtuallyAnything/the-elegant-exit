@@ -83,11 +83,29 @@ public static class Extensions : Object
 		return romanNumeral;
 	}
 
-	public static string Signed(this int value){
-		if(value <= 0){
+	public static string Signed(this int value)
+	{
+		if (value <= 0)
+		{
 			return $"{value}";
-		}else{
+		}
+		else
+		{
 			return $"+{value}";
 		}
+	}
+
+	public static T GetFirstChildOfType<T>(this Node node) where T : class
+	{
+		Godot.Collections.Array<Godot.Node> children = node.GetChildren();
+		foreach (var item in children)
+		{
+			if (item.GetType() == typeof(T))
+			{
+				return (T)(object)item;
+			}
+		}
+		GD.PrintErr($"No child matching type {typeof(T)}found.");
+		return default(T);
 	}
 }

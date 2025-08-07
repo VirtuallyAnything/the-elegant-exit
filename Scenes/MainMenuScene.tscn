@@ -40,12 +40,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -508.0
-offset_top = -113.0
-offset_right = -60.0
-offset_bottom = 60.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_left = -510.0
+offset_top = -77.0
+offset_right = -62.0
+offset_bottom = 96.0
 mouse_default_cursor_shape = 2
 theme = ExtResource("3_l63qc")
 theme_type_variation = &"SpeechBubbleButton"
@@ -70,35 +68,46 @@ theme = ExtResource("3_l63qc")
 theme_type_variation = &"HeaderMedium"
 text = "Play"
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="."]
-layout_mode = 0
-offset_top = 150.0
-offset_right = 1920.0
-offset_bottom = 422.0
-theme = ExtResource("3_l63qc")
-bbcode_enabled = true
-text = "[center]The [font=res://Assets/Fonts/Lobster-Regular.ttf]Elegant[/font] Exit[/center]"
-
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="TextureRect" type="TextureRect" parent="PlayButton"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
 anchor_top = 0.483
 anchor_right = 0.5
 anchor_bottom = 0.483
-offset_left = -76.0
-offset_top = -146.64
-offset_right = 762.0
-offset_bottom = 0.359985
+offset_left = 209.0
+offset_top = -140.199
+offset_right = 1047.0
+offset_bottom = 6.80097
 texture = ExtResource("5_wngc0")
 stretch_mode = 4
 
+[node name="RichTextLabel2" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -960.0
+offset_top = -350.0
+offset_right = 960.0
+offset_bottom = -78.0
+theme = ExtResource("3_l63qc")
+bbcode_enabled = true
+text = "[center]The [font=res://Assets/Fonts/Lobster-Regular.ttf]Elegant[/font] Exit[/center]"
+
 [node name="Scoreboard" type="Button" parent="."]
-layout_mode = 0
-offset_left = 531.0
-offset_top = 600.0
-offset_right = 1018.0
-offset_bottom = 732.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -429.0
+offset_top = 100.0
+offset_right = 58.0
+offset_bottom = 232.0
 theme = ExtResource("3_l63qc")
 theme_type_variation = &"SpeechBubbleButton2"
 script = ExtResource("4_ktip8")
@@ -122,11 +131,16 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Credits" type="Button" parent="."]
-layout_mode = 0
-offset_left = 611.0
-offset_top = 778.0
-offset_right = 1099.0
-offset_bottom = 908.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -349.0
+offset_top = 278.0
+offset_right = 139.0
+offset_bottom = 408.0
 theme = ExtResource("3_l63qc")
 theme_type_variation = &"SpeechBubbleButton3"
 script = ExtResource("4_ktip8")
@@ -156,10 +170,10 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -127.0
-offset_top = -95.0
-offset_right = -42.0
-offset_bottom = -38.0
+offset_left = -201.0
+offset_top = -143.0
+offset_right = -58.0
+offset_bottom = -58.0
 grow_horizontal = 0
 grow_vertical = 0
 mouse_default_cursor_shape = 2

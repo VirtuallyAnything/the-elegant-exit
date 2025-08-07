@@ -54,7 +54,7 @@ shadow_offset = Vector2(6, 8)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8dqoi"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f3uyv"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jt5ua"]
 
 [sub_resource type="SystemFont" id="SystemFont_rqdvg"]
 font_names = PackedStringArray("Franklin Gothic Book")
@@ -141,7 +141,7 @@ Button/styles/pressed = ExtResource("4_8bpcw")
 FlatButton/styles/disabled = SubResource("StyleBoxEmpty_ahc8s")
 FlatButton/styles/hover = SubResource("StyleBoxEmpty_x03n1")
 FlatButton/styles/normal = SubResource("StyleBoxEmpty_8dqoi")
-FlatButton/styles/pressed = SubResource("StyleBoxEmpty_f3uyv")
+FlatButton/styles/pressed = SubResource("StyleBoxEmpty_jt5ua")
 HeaderLarge/font_sizes/font_size = 200
 HeaderMedium/font_sizes/font_size = 60
 Label/colors/font_color = Color(1, 0.8, 0.701961, 1)

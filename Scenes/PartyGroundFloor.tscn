@@ -678,6 +678,11 @@ visible = false
 material = ExtResource("10_rf80p")
 texture = ExtResource("11_8oqdr")
 
+[node name="FOW" parent="." instance=ExtResource("8_svv30")]
+offset_right = 5948.0
+offset_bottom = 4566.0
+_fowScaleFactor = 0.1
+
 [node name="Doors" type="Node2D" parent="."]
 
 [node name="Door2" type="Node2D" parent="Doors" node_paths=PackedStringArray("_navRegion")]
@@ -873,11 +878,6 @@ texture = ExtResource("9_6c1f4")
 position = Vector2(3598, 2207)
 scale = Vector2(0.194338, 0.194338)
 texture = ExtResource("9_6c1f4")
-
-[node name="FOW" parent="." instance=ExtResource("8_svv30")]
-offset_right = 5948.0
-offset_bottom = 4566.0
-_fowScaleFactor = 0.1
 
 [node name="Area2D3" type="Area2D" parent="."]
 position = Vector2(191, 3900)

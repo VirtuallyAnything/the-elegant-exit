@@ -323,10 +323,9 @@ grow_vertical = 2
 mouse_filter = 2
 texture = SubResource("GradientTexture2D_g87ax")
 
-[node name="Node" type="Node" parent="." node_paths=PackedStringArray("_encounterScene", "_preferenceDisplay")]
+[node name="Node" type="Node" parent="." node_paths=PackedStringArray("_encounterScene")]
 script = ExtResource("2_6eywl")
 _encounterScene = NodePath("..")
-_preferenceDisplay = NodePath("../ThoughtBubbles")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1

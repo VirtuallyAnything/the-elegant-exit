@@ -13,7 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://dw0fjgs4yx85r" path="res://Assets/UI/Icons/PauseIcon_hover.png" id="9_tqae0"]
 [ext_resource type="PackedScene" uid="uid://bkprvu4f5y5no" path="res://Scenes/PauseScene.tscn" id="12_3yaqs"]
 [ext_resource type="Script" path="res://src/UI/OneTimePanel.cs" id="13_slvwu"]
-[ext_resource type="Texture2D" uid="uid://6owi28lr85hn" path="res://Assets/UI/Icons/Arrow.png" id="14_rd8tr"]
+[ext_resource type="Texture2D" uid="uid://l6pgu7u0da8x" path="res://Assets/UI/Icons/Arrow_2.png" id="14_05esd"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rv6dr"]
 radius = 14.6245
@@ -131,9 +131,13 @@ label_settings = SubResource("LabelSettings_3w7eg")
 horizontal_alignment = 1
 
 [node name="Label" type="Label" parent="CanvasLayer/Countdown"]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.451
+anchor_right = 0.451
+offset_left = -124.927
 offset_top = 128.0
-offset_right = 250.0
+offset_right = 125.073
 offset_bottom = 154.0
 theme = ExtResource("7_yess5")
 theme_type_variation = &"LabelShadow"
@@ -201,7 +205,7 @@ offset_top = 707.0
 offset_right = 1038.0
 offset_bottom = 830.0
 mouse_default_cursor_shape = 2
-texture_normal = ExtResource("14_rd8tr")
+texture_normal = ExtResource("14_05esd")
 
 [connection signal="pressed" from="CanvasLayer/PauseButton" to="CanvasLayer/PauseScene" method="OnPauseButtonPressed"]
 [connection signal="pressed" from="CanvasLayer/Panel/StartButton" to="CanvasLayer/Panel" method="OnStartButtonPressed"]

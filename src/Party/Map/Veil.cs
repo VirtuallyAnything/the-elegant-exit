@@ -7,7 +7,7 @@ using System.Threading;
 using tee;
 
 //Code Source: https://github.com/87PizzaStudios/godot_light_fow/tree/main?tab=MIT-1-ov-file#readme
-// Translated to C#
+// Translated to C# and adapted
 public partial class Veil : TextureRect
 {
 	private PlayerMovement _playerMovement;
@@ -73,9 +73,24 @@ public partial class Veil : TextureRect
 		_playerVisionDup.Color = Color.Color8(255, 255, 255, 255);
 		_playerVisionDup.Position = _playerVision.GlobalPosition * _fowScaleFactor;
 		_playerVisionDup.ApplyScale(_fowScaleFactor * Vector2.One);
-		_lightSV.AddChild(_playerVisionDup);
+		_lightSV.AddChild(_playerVisionDup);	
 
+		// set shader params
+		ShaderMaterial maskMaterial = (ShaderMaterial)_mask.Material;
+		maskMaterial.SetShaderParameter("persistent_reveal", _persistentReveal);
+		ShaderMaterial thisMaterial = (ShaderMaterial)Material;
+		thisMaterial.SetShaderParameter("fog_scroll_velocity", _fogScrollVelocity);
+		thisMaterial.SetShaderParameter("fog_texture", _fogTexture);
+		thisMaterial.SetShaderParameter("mask_texture", _maskTexture);
+		if (_persistentReveal)
+		{
+			maskMaterial.SetShaderParameter("mask_texture", _maskTexture);
+		}
+	}
 
+	// To be called only after all occluders on the current floor have been initiated
+	public void SetupOccluders()
+	{
 		// add copies of the light occluders to the light subviewport
 		foreach (LightOccluder2D occluder in GetTree().GetNodesInGroup(_lightOccluderGroup).Cast<LightOccluder2D>())
 		{
@@ -88,18 +103,6 @@ public partial class Veil : TextureRect
 				_lightSV.AddChild(occluderDup);
 				_occluderDupsDict[occluder.GetInstanceId()] = occluderDup;
 			}
-		}
-
-		// set shader params
-		ShaderMaterial maskMaterial = (ShaderMaterial)_mask.Material;
-		maskMaterial.SetShaderParameter("persistent_reveal", _persistentReveal);
-		ShaderMaterial thisMaterial = (ShaderMaterial)Material;
-		thisMaterial.SetShaderParameter("fog_scroll_velocity", _fogScrollVelocity);
-		thisMaterial.SetShaderParameter("fog_texture", _fogTexture);
-		thisMaterial.SetShaderParameter("mask_texture", _maskTexture);
-		if (_persistentReveal)
-		{
-			maskMaterial.SetShaderParameter("mask_texture", _maskTexture);
 		}
 
 		// reveal at initial light locations
