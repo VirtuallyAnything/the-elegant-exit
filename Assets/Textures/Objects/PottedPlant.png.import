@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bqrxurddwi4dn"
-path="res://.godot/imported/EncounterBackdrop.png-518ee025eb6324e6e5601b613ffc7752.ctex"
+uid="uid://cljajbfrck442"
+path="res://.godot/imported/PottedPlant.png-3ea19996a6f8f0018a24ff57c4989343.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Textures/EncounterBackdrop.png"
-dest_files=["res://.godot/imported/EncounterBackdrop.png-518ee025eb6324e6e5601b613ffc7752.ctex"]
+source_file="res://Assets/Textures/Objects/PottedPlant.png"
+dest_files=["res://.godot/imported/PottedPlant.png-3ea19996a6f8f0018a24ff57c4989343.ctex"]
 
 [params]
 

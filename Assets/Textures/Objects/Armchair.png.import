@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dloj826coufuu"
-path="res://.godot/imported/Avatar_JP.png-9aa4e94992c0eb1c892a6bd7dfad94d8.ctex"
+uid="uid://reygv826f8h6"
+path="res://.godot/imported/Armchair.png-f6c22d14b9f7e38d2ca91900074aa83a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Textures/Avatar_JP.png"
-dest_files=["res://.godot/imported/Avatar_JP.png-9aa4e94992c0eb1c892a6bd7dfad94d8.ctex"]
+source_file="res://Assets/Textures/Objects/Armchair.png"
+dest_files=["res://.godot/imported/Armchair.png-f6c22d14b9f7e38d2ca91900074aa83a.ctex"]
 
 [params]
 

@@ -3,11 +3,10 @@ using Godot.Collections;
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Threading;
 using tee;
 
 //Code Source: https://github.com/87PizzaStudios/godot_light_fow/tree/main?tab=MIT-1-ov-file#readme
-// Translated to C# and adapted
+// Translated to C# and adapted for The Elegant Exit
 public partial class Veil : TextureRect
 {
 	private PlayerMovement _playerMovement;
@@ -43,11 +42,12 @@ public partial class Veil : TextureRect
 	{
 		base._EnterTree();
 		PlayerMovement.NodeMoved += OnPlayerMoved;
+		DynamicLightOccluder2D.PositionChanged += UpdateOccluderPosition;
+		DynamicLightOccluder2D.RotationChanged += UpdateOccluderRotation;
 	}
 
 	public override void _Ready()
-	{
-		GD.Print($"_Ready called by {this}");
+	{	
 		_lightSV = GetNode<SubViewport>("LightSubViewport");
 		_maskSV = GetNode<SubViewport>("MaskSubViewport");
 		_mask = GetNode<TextureRect>("MaskSubViewport/TextureRect");
@@ -99,6 +99,7 @@ public partial class Veil : TextureRect
 				LightOccluder2D occluderDup = (LightOccluder2D)occluder.Duplicate();
 				occluderDup.Position = occluder.GlobalPosition * _fowScaleFactor;
 				occluderDup.Rotation = occluder.GlobalRotation;
+				occluderDup.Scale = occluder.GlobalScale;
 				occluderDup.ApplyScale(_fowScaleFactor * Vector2.One);
 				_lightSV.AddChild(occluderDup);
 				_occluderDupsDict[occluder.GetInstanceId()] = occluderDup;
@@ -111,6 +112,20 @@ public partial class Veil : TextureRect
 			// workaround for node initialization order (possible engine bug?)
 			InitialReveal();
 		}
+	}
+
+	private void UpdateOccluderRotation(LightOccluder2D occluder)
+	{
+		LightOccluder2D occluderDup = _occluderDupsDict[occluder.GetInstanceId()];
+		occluderDup.Rotation = occluder.GlobalRotation;
+		OnPlayerMoved(_playerVisionDup.GlobalPosition);
+	}
+
+	private void UpdateOccluderPosition(LightOccluder2D occluder)
+	{
+		LightOccluder2D occluderDup = _occluderDupsDict[occluder.GetInstanceId()];
+		occluderDup.Position = occluder.GlobalPosition * _fowScaleFactor;
+		OnPlayerMoved(_playerVisionDup.GlobalPosition);
 	}
 
 	private async void InitialReveal()
@@ -141,5 +156,7 @@ public partial class Veil : TextureRect
 	{
 		base._ExitTree();
 		PlayerMovement.NodeMoved -= OnPlayerMoved;
+		DynamicLightOccluder2D.PositionChanged -= UpdateOccluderPosition;
+		DynamicLightOccluder2D.RotationChanged -= UpdateOccluderRotation;
 	}
 }

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b3iq1r4aqyun"
-path="res://.godot/imported/Environment.png-ce8733d1cf26f647e7670bc38ccc5661.ctex"
+uid="uid://bshflmibicrre"
+path="res://.godot/imported/FruitBowl.png-33d629617956f7c050de47564df531b7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Textures/Environment.png"
-dest_files=["res://.godot/imported/Environment.png-ce8733d1cf26f647e7670bc38ccc5661.ctex"]
+source_file="res://Assets/Textures/Objects/FruitBowl.png"
+dest_files=["res://.godot/imported/FruitBowl.png-33d629617956f7c050de47564df531b7.ctex"]
 
 [params]
 

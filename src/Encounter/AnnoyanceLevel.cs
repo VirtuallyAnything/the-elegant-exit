@@ -5,7 +5,6 @@ namespace tee
 {
     public delegate void AnnoyanceHandlerArg(int value, GodotObject godotObject);
     public delegate void AnnoyanceHandler();
-
     
     public partial class AnnoyanceLevel : GodotObject
     {

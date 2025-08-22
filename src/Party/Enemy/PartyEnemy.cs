@@ -4,14 +4,15 @@ using System.Diagnostics;
 
 namespace tee
 {
-	public partial class PartyEnemy : Interactable
+	public partial class PartyEnemy : Interactable, IPlayerVisible
 	{
 		[Export] private EnemyData _enemyData;
 		private CollisionShape2D _collisionShape;
 		private EnemyVision _enemyVision;
-		[Export] int _sightConeSegments = 12;
-		[Export] float _sightConeAngleDegrees = 120;
-		[Export] float _sightConeRadius = 800;
+		[Export] private int _sightConeSegments = 12;
+		[Export] private float _sightConeAngleDegrees = 120;
+		[Export] private float _sightConeRadius = 800;
+		private Sprite2D _sprite;
 
 		private EnemyMovement _enemyMovement;
 		private RayCast2D _rayCast = new();
@@ -23,14 +24,27 @@ namespace tee
 		private bool _isInChase;
 
 		private Tween _tween;
-		private Color _transparent = new Color(1, 1, 1, 0);
 		private SceneManager _sceneManager;
 
-		public override void _Ready()
+        public void OnSightConeEntered()
+        {
+			this.AppearInView(_tween);
+        }
+
+		public void OnSightConeExited()
+		{
+			this.FadeFromView(_tween);
+			// Maybe add a sprite at the last player-known location to symbolize where the enemy was last. 
+			// Sprite is deleted as soon as it or the actual enemy is in player sight cone
+        }
+
+        public override void _Ready()
 		{
 			base._Ready();
-			//Modulate = _transparent;
+
+			_sprite = new();
 			_sprite.Texture = _enemyData.Icon;
+			Modulate = new Color(1, 1, 1, 0);
 			
 			AddChild(_navAgent);
 
@@ -77,19 +91,9 @@ namespace tee
 			}
 		}
 
-		public void FadeFromView(){
-			_tween = CreateTween();
-			float animationLength = 2f;
-			Color currentColor = Modulate;
-			PropertyTweener propTweener = _tween.TweenProperty(
-				this, $"{PropertyName.Modulate}", _transparent, animationLength);
-			propTweener.From(currentColor);
-		}
-
-		public void AppearInView(){
-			_tween?.Kill();
-			Modulate = Color.Color8(255, 255, 255, 255);
-		}
-
-	}
+        protected override void OnTriggerAreaExited(Node2D body)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }

@@ -3,8 +3,10 @@ using System;
 using System.Collections.Generic;
 using tee;
 
-public static class Extensions : Object
+public static class Extensions : object
 {
+	private static Color _transparent = new Color(1, 1, 1, 0);
+
 	public static Vector2[] ToVertices(this Vector2 size, Vector2 origin, bool centerVerticesAroundOrigin = false)
 	{
 		Vector2[] vertices = new Vector2[4];
@@ -107,5 +109,22 @@ public static class Extensions : Object
 		}
 		GD.PrintErr($"No child matching type {typeof(T)}found.");
 		return default(T);
+	}
+
+	public static Tween FadeFromView(this Node2D node, Tween tween)
+	{
+		tween = node.CreateTween();
+		float animationLength = 2f;
+		Color currentColor = node.Modulate;
+		PropertyTweener propTweener = tween.TweenProperty(
+			node, $"{Node2D.PropertyName.Modulate}", _transparent, animationLength);
+		propTweener.From(currentColor);
+		return tween;
+	}
+
+	public static void AppearInView(this Node2D node, Tween tween)
+	{
+		tween?.Kill();
+		node.Modulate = Color.Color8(255, 255, 255, 255);
 	}
 }

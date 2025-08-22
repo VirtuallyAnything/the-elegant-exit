@@ -1,6 +1,4 @@
 using Godot;
-using System;
-using System.Runtime.CompilerServices;
 
 namespace tee
 {
@@ -75,6 +73,7 @@ namespace tee
 		{
 			GetTree().Paused = false;
 			GetTree().Root.CallDeferred("remove_child", _currentScene);
+			_currentScene.QueueFree();
 			_currentScene = _mainMenu;
 			GetTree().Root.CallDeferred("add_child", _currentScene);
 		}
@@ -159,6 +158,7 @@ namespace tee
 		{
 			CombatManager.CombatEnded -= ExitEncounter;
 			GameManager.GameOver -= ChangeToGameOverScene;
+			_currentScene.QueueFree();
 		}
 	}
 }

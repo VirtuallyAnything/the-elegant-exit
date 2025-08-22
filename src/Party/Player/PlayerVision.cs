@@ -20,14 +20,14 @@ namespace tee
         protected override void OnSightConeEntered(Node2D body)
         {
             if(body is PartyEnemy enemy){
-				//enemy.AppearInView();
+				enemy.OnSightConeEntered();
 			}
         }
 
         protected override void OnSightConeExited(Node2D body)
         {
             if(body is PartyEnemy enemy){
-				//enemy.FadeFromView();
+				enemy.OnSightConeExited();
 			}
         }
     }

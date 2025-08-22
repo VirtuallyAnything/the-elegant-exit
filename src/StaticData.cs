@@ -51,5 +51,11 @@ namespace tee
             }
             return null;
         }
+
+        public override void _ExitTree()
+		{
+			base._ExitTree();
+			QueueFree();
+		}
     }
 }

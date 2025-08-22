@@ -1,6 +1,4 @@
 using Godot;
-using System;
-using System.ComponentModel;
 
 namespace tee
 {
@@ -10,23 +8,19 @@ namespace tee
 		private bool _canBeUsed;
 		private int _blockingBodies;
 		private int _enemiesInRange;
-		private Texture2D _texture;
-		[Export] private NavigationRegion2D _navRegion = new();
+		[Export] private Sprite2D _sprite;
+		[Export] private NavigationRegion2D _navRegion;
 		private Area2D _swingCone = new();
-		private LightOccluder2D _lightOccluder = new();
+		private DynamicLightOccluder2D _lightOccluder = new();
 
 		public override void _Ready()
 		{
 			base._Ready();
-			_texture = GD.Load<Texture2D>("res://Assets/Textures/door.png");
-			_sprite.Texture = _texture;
-			_sprite.Scale = new Vector2(1.487f, 1.487f);
-			Vector2 textureSize = _texture.GetSize();
+			Vector2 textureSize = _sprite.Texture.GetSize();
 			Vector2 center = textureSize / 2;
 
 			float radius = textureSize.X;
 			_triggerArea.Position = center;
-			_sprite.Offset = center;
 
 			CollisionCone collisionCone = new()
 			{
@@ -63,6 +57,7 @@ namespace tee
 				_sprite.RotationDegrees = _isOpen ? 0 : -90;
 				_navRegion.Enabled = !_navRegion.Enabled;
 				_isOpen = !_isOpen;
+				_lightOccluder.OnRotationChanged();
 			}
 		}
 

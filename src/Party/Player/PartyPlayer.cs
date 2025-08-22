@@ -3,7 +3,6 @@ using System;
 
 namespace tee
 {
-
 	public partial class PartyPlayer : Node2D
 	{
 		[Export] private PlayerData _data;

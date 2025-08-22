@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cn0t6610slev"
-path="res://.godot/imported/CrowdBlock.png-e988e7f453d4d6b8401d224d051a57d7.ctex"
+uid="uid://d3hx3upwa0rgm"
+path="res://.godot/imported/Door.png-224bd7ee9dc64b6fe816ad8433d4d2fc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Textures/CrowdBlock.png"
-dest_files=["res://.godot/imported/CrowdBlock.png-e988e7f453d4d6b8401d224d051a57d7.ctex"]
+source_file="res://Assets/Textures/Objects/Door.png"
+dest_files=["res://.godot/imported/Door.png-224bd7ee9dc64b6fe816ad8433d4d2fc.ctex"]
 
 [params]
 

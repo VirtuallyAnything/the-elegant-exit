@@ -1,4 +1,4 @@
-[gd_scene load_steps=73 format=3 uid="uid://dmfp5lawyswyl"]
+[gd_scene load_steps=68 format=3 uid="uid://dmfp5lawyswyl"]
 
 [ext_resource type="Script" path="res://src/SceneCode/PartyFloorScene.cs" id="1_x3j5x"]
 [ext_resource type="Texture2D" uid="uid://cxsgk2jxdn3" path="res://Assets/Levels/GroundFloor.png" id="2_vuute"]
@@ -9,15 +9,21 @@
 [ext_resource type="Resource" uid="uid://dgmh740a8kil7" path="res://GameDataResources/EnemyData/Babi.tres" id="6_qnsln"]
 [ext_resource type="Resource" uid="uid://t3duk4fguusv" path="res://GameDataResources/EnemyData/Cougar.tres" id="7_2ysbw"]
 [ext_resource type="Script" path="res://src/SceneCode/SceneSwitchArea.cs" id="8_ekoj5"]
-[ext_resource type="Script" path="res://src/Party/Map/Door.cs" id="8_hsavl"]
 [ext_resource type="Resource" uid="uid://bqgn3w6aagdea" path="res://GameDataResources/EnemyData/NeighborDave.tres" id="8_n7tcn"]
 [ext_resource type="PackedScene" uid="uid://ba07kn2ollll2" path="res://Scenes/Subscenes/fow_light.tscn" id="8_svv30"]
-[ext_resource type="Texture2D" uid="uid://cn0t6610slev" path="res://Assets/Textures/CrowdBlock.png" id="9_6c1f4"]
+[ext_resource type="Texture2D" uid="uid://cn0t6610slev" path="res://Assets/Textures/Objects/CrowdBlock.png" id="9_6c1f4"]
 [ext_resource type="Resource" uid="uid://d4mv565km1snp" path="res://GameDataResources/EnemyData/JohnParker.tres" id="9_wohom"]
 [ext_resource type="Resource" uid="uid://c5u31lombgby3" path="res://GameDataResources/EnemyData/BeautyInfluencer.tres" id="10_lsurk"]
-[ext_resource type="Material" uid="uid://c63a2eerex2pi" path="res://Assets/Materials/Outlined.tres" id="10_rf80p"]
-[ext_resource type="Texture2D" uid="uid://dloj826coufuu" path="res://Assets/Textures/Avatar_JP.png" id="11_8oqdr"]
+[ext_resource type="PackedScene" uid="uid://bxv5wxeuo28nj" path="res://Scenes/Subscenes/Door.tscn" id="14_4biyx"]
+[ext_resource type="Texture2D" uid="uid://cljajbfrck442" path="res://Assets/Textures/Objects/PottedPlant.png" id="16_kgqe5"]
+[ext_resource type="Texture2D" uid="uid://bxnuaui6bm03o" path="res://Assets/Textures/Objects/Couch.png" id="17_7bklq"]
+[ext_resource type="Texture2D" uid="uid://reygv826f8h6" path="res://Assets/Textures/Objects/Armchair.png" id="18_hgu5w"]
 [ext_resource type="Theme" uid="uid://bpp0q38rfd1ms" path="res://Assets/Themes/Lobster.tres" id="18_ysrxs"]
+[ext_resource type="Texture2D" uid="uid://bydjaimqcsdf4" path="res://Assets/Textures/Objects/LCounter.png" id="19_rynbe"]
+[ext_resource type="Texture2D" uid="uid://qpodfvm0dd5r" path="res://Assets/Textures/Objects/StoveTop.png" id="20_0u225"]
+[ext_resource type="Texture2D" uid="uid://bshflmibicrre" path="res://Assets/Textures/Objects/FruitBowl.png" id="21_3meyr"]
+[ext_resource type="Texture2D" uid="uid://dof5m0e1h7jqb" path="res://Assets/Textures/Objects/ICounter.png" id="22_dtvy5"]
+[ext_resource type="Texture2D" uid="uid://bfpdi04e8c4fu" path="res://Assets/Textures/Objects/Fridge.png" id="23_p5qa1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c47vx"]
 size = Vector2(49, 74.5001)
@@ -68,7 +74,7 @@ size = Vector2(49, 975)
 size = Vector2(49, 454)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jqlte"]
-size = Vector2(49, 95)
+size = Vector2(49, 105)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fnoya"]
 size = Vector2(49, 908.999)
@@ -134,9 +140,9 @@ source_geometry_group_name = &"navigation_polygon_source_group"
 agent_radius = 35.0
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_o7d8p"]
-vertices = PackedVector2Array(2867, 3432, 2867, 3164, 2967, 3382, 2967, 3669, 2600, 3431, 2538, 3668, 2227, 3473, 3224, 2530, 3248, 2456, 3538, 2453, 3538, 3383, 2495, 2529, 2602, 3166, 1633, 3476, 1634, 3668, 1276, 3667, 1277, 3096, 2539, 4240, 2225, 4240, 801, 3096, 801, 2454, 1619, 2454, 1619, 2524, 2096, 2532, 2096, 2455, 2205, 2455, 2205, 3285, 2324, 2454, 2495, 2454, 2323, 3288)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 0, 3, 5, 6), PackedInt32Array(7, 8, 9, 10, 2), PackedInt32Array(7, 2, 1), PackedInt32Array(11, 7, 1, 12), PackedInt32Array(13, 14, 15, 16), PackedInt32Array(17, 18, 6, 5), PackedInt32Array(16, 19, 20, 21, 22), PackedInt32Array(23, 24, 25, 26), PackedInt32Array(27, 28, 11, 29), PackedInt32Array(29, 11, 12, 4), PackedInt32Array(26, 29, 4, 6, 13), PackedInt32Array(16, 22, 23, 26, 13)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(3573, 2418, 3573, 3419, 3002, 3417, 3002, 3705, 2573, 3703, 2575, 4275, 2190, 4276, 2192, 3508, 1668, 3511, 1670, 3704, 1241, 3702, 1242, 3131, 766, 3131, 767, 2419, 1655.11, 2419.6, 1654, 2490, 2061, 2496, 2060.99, 2419.88, 2240, 2420, 2240, 3251, 2288, 3252, 2289, 2419, 2530.21, 2418.81, 2530, 2494, 3199, 2495, 3224, 2422), PackedVector2Array(2637, 3201, 2635, 3396, 2832, 3397, 2832, 3199)])
+vertices = PackedVector2Array(2495.04, 2476.98, 2323.93, 2474.95, 2323.95, 2453.97, 2495.11, 2453.83, 2480.39, 3075.13, 2485.91, 3066.75, 2486.21, 3114.73, 2967, 3381.88, 2967, 3669.83, 2867, 3432.18, 2867, 3163.64, 2942.22, 3118.27, 2599.64, 3430.82, 2537.88, 3667.84, 2227.09, 3472.8, 2388.17, 3095.45, 2322.96, 3287.74, 1632.64, 3476.2, 1634.63, 3668.83, 1276.06, 3667.16, 1277.06, 3096, 801.047, 3096, 801.953, 2454.02, 1619.55, 2454.57, 1618.45, 2524.48, 3224, 2530.04, 3249.1, 2456.71, 3538, 2453.4, 3538, 3383.87, 2323.38, 2930.96, 2332.23, 2931.01, 2330.81, 3034.71, 2539.87, 4240.09, 2225.09, 4240.9, 2531, 2882.08, 2531, 2529, 2940.79, 2885.27, 2602.35, 3166.35, 2096, 2531.52, 2095.99, 2454.9, 2205, 2454.97, 2205, 3285.28)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6), PackedInt32Array(7, 8, 9, 10, 11), PackedInt32Array(12, 9, 8, 13, 14), PackedInt32Array(15, 4, 6, 16), PackedInt32Array(17, 18, 19, 20), PackedInt32Array(21, 22, 23, 24, 20), PackedInt32Array(25, 26, 27, 28, 7), PackedInt32Array(29, 30, 31, 16), PackedInt32Array(16, 31, 15), PackedInt32Array(32, 33, 14, 13), PackedInt32Array(34, 35, 25, 36), PackedInt32Array(36, 25, 7, 11), PackedInt32Array(6, 11, 10, 37), PackedInt32Array(38, 39, 40, 41), PackedInt32Array(6, 37, 12, 14, 16), PackedInt32Array(41, 16, 14, 17), PackedInt32Array(20, 24, 38, 41, 17)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(3573, 2418, 3573, 3419, 3002, 3417, 3002, 3705, 2573, 3703, 2575, 4275, 2190, 4276, 2192, 3508, 1668, 3511, 1670, 3704, 1241, 3702, 1242, 3131, 766, 3131, 767, 2419, 1655.11, 2419.6, 1654, 2490, 2061, 2496, 2060.99, 2419.88, 2240, 2420, 2240, 3251, 2288, 3252, 2289, 2419, 2530.21, 2418.81, 2530, 2494, 3199, 2495, 3224, 2422), PackedVector2Array(2637, 3201, 2635, 3396, 2832, 3397, 2832, 3199), PackedVector2Array(2521, 3080, 2907, 3083, 2906, 2920, 2520, 2917), PackedVector2Array(2329, 2896, 2496, 2897, 2496, 2512, 2327, 2510), PackedVector2Array(2416, 2913, 2367, 2948, 2366, 3021, 2400, 3057, 2459, 3044, 2492, 2994, 2483, 2945)])
 source_geometry_group_name = &"navigation_polygon_source_group"
 agent_radius = 35.0
 
@@ -186,83 +192,6 @@ agent_radius = 35.0
 vertices = PackedVector2Array(5832, 107, 5844, 2335, 5281, 611, 5273, 334, 3253, 107, 5002, 333, 3814, 1056, 4996, 609, 4893, 2336, 4777, 2336, 3859, 2335, 3253, 915, 3372, 1048, 4892, 2359, 4775, 2359, 2494, 2259, 2495, 2334, 2099, 2334, 2098, 2257, 668, 4281, 103, 4286, 119, 109, 685, 2335, 3355, 2335, 3234, 2335, 3234, 2259, 1351, 1477, 1664, 912, 1611, 2260, 1611, 2335, 705, 1479, 708, 836, 1661, 109, 988, 590, 1346, 841, 988, 838, 720, 585, 714, 836)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 0, 3, 5), PackedInt32Array(6, 7, 2, 1, 8, 9, 10), PackedInt32Array(11, 4, 5, 7, 6, 12), PackedInt32Array(13, 14, 9, 8), PackedInt32Array(15, 16, 17, 18), PackedInt32Array(19, 20, 21, 22), PackedInt32Array(23, 24, 25, 12), PackedInt32Array(26, 27, 11, 12, 25, 15, 18), PackedInt32Array(26, 18, 28), PackedInt32Array(26, 28, 29, 22, 30), PackedInt32Array(30, 22, 21, 31), PackedInt32Array(21, 32, 27, 33), PackedInt32Array(34, 35, 33), PackedInt32Array(36, 37, 31, 21), PackedInt32Array(27, 26, 34), PackedInt32Array(33, 36, 21), PackedInt32Array(27, 34, 33)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(4739, 2394, 4926, 2395, 4927, 2371, 5880, 2370, 5867, 72, 3218.02, 73.3744, 3218, 880, 1699, 877, 1696.32, 74.1639, 85, 75, 68, 4322, 703, 4316, 720, 2370, 1646, 2371, 1646, 2295, 2063, 2292, 2064, 2369, 2530, 2369, 2529, 2294, 3199, 2294, 3199, 2370, 3390.13, 2370.12, 3407, 1084, 3780, 1090, 3825.72, 2370.41, 4740, 2371), PackedVector2Array(1311, 876, 1316, 1442, 740, 1444, 743, 871), PackedVector2Array(5036, 368, 5239, 369, 5245, 576, 5032, 574), PackedVector2Array(754, 621, 953, 624, 953, 848, 750, 847)])
-source_geometry_group_name = &"navigation_polygon_source_group"
-agent_radius = 35.0
-
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_4i8qw"]
-vertices = PackedVector2Array(155, 60, 35, 60, 35, -22, 155, -22)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(0, -57, 0, 95, 190, 95, 190, -57)])
-source_geometry_group_name = &"navigation_polygon_source_group"
-agent_radius = 35.0
-
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_qp0ad"]
-vertices = PackedVector2Array(155, 60, 35, 60, 35, -22, 155, -22)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(0, -57, 0, 95, 190, 95, 190, -57)])
-source_geometry_group_name = &"navigation_polygon_source_group"
-agent_radius = 35.0
-
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_vgpqi"]
-vertices = PackedVector2Array(155, 60, 35, 60, 35, -22, 155, -22)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(0, -57, 0, 95, 190, 95, 190, -57)])
-source_geometry_group_name = &"navigation_polygon_source_group"
-agent_radius = 35.0
-
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_eqotq"]
-vertices = PackedVector2Array(155, 60, 35, 60, 35, -22, 155, -22)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(0, -57, 0, 95, 190, 95, 190, -57)])
-source_geometry_group_name = &"navigation_polygon_source_group"
-agent_radius = 35.0
-
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_o0ys8"]
-vertices = PackedVector2Array(155, 60, 35, 60, 35, -22, 155, -22)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(0, -57, 0, 95, 190, 95, 190, -57)])
-source_geometry_group_name = &"navigation_polygon_source_group"
-agent_radius = 35.0
-
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_8apsq"]
-vertices = PackedVector2Array(155, 60, 35, 60, 35, -22, 155, -22)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(0, -57, 0, 95, 190, 95, 190, -57)])
-source_geometry_group_name = &"navigation_polygon_source_group"
-agent_radius = 35.0
-
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_xmsfc"]
-vertices = PackedVector2Array(155, 60, 35, 60, 35, -22, 155, -22)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(0, -57, 0, 95, 190, 95, 190, -57)])
-source_geometry_group_name = &"navigation_polygon_source_group"
-agent_radius = 35.0
-
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_1utfk"]
-vertices = PackedVector2Array(155, 60, 35, 60, 35, -22, 155, -22)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(0, -57, 0, 95, 190, 95, 190, -57)])
-source_geometry_group_name = &"navigation_polygon_source_group"
-agent_radius = 35.0
-
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_iwfnb"]
-vertices = PackedVector2Array(155, 60, 35, 60, 35, -22, 155, -22)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(0, -57, 0, 95, 190, 95, 190, -57)])
-source_geometry_group_name = &"navigation_polygon_source_group"
-agent_radius = 35.0
-
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_gp77i"]
-vertices = PackedVector2Array(155, 60, 35, 60, 35, -22, 155, -22)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(0, -57, 0, 95, 190, 95, 190, -57)])
-source_geometry_group_name = &"navigation_polygon_source_group"
-agent_radius = 35.0
-
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_ypbcn"]
-vertices = PackedVector2Array(155, 60, 35, 60, 35, -22, 155, -22)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(0, -57, 0, 95, 190, 95, 190, -57)])
 source_geometry_group_name = &"navigation_polygon_source_group"
 agent_radius = 35.0
 
@@ -495,7 +424,7 @@ position = Vector2(3600, 2597)
 script = ExtResource("4_b5ob3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D20"]
-position = Vector2(-2.5, 511.5)
+position = Vector2(-2.5, 506.5)
 shape = SubResource("RectangleShape2D_jqlte")
 
 [node name="StaticBody2D21" type="StaticBody2D" parent="Walls"]
@@ -673,11 +602,6 @@ _sceneName = 7
 position = Vector2(140, 0)
 polygon = PackedVector2Array(3408, 1794, 3408, 2018, 3534, 2020, 3532, 1794)
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-visible = false
-material = ExtResource("10_rf80p")
-texture = ExtResource("11_8oqdr")
-
 [node name="FOW" parent="." instance=ExtResource("8_svv30")]
 offset_right = 5948.0
 offset_bottom = 4566.0
@@ -685,122 +609,18 @@ _fowScaleFactor = 0.1
 
 [node name="Doors" type="Node2D" parent="."]
 
-[node name="Door2" type="Node2D" parent="Doors" node_paths=PackedStringArray("_navRegion")]
-position = Vector2(2597, 3752)
-rotation = 1.57079
-script = ExtResource("8_hsavl")
-_navRegion = NodePath("NavigationRegion2D")
-_triggerRange = 180.0
-
-[node name="NavigationRegion2D" type="NavigationRegion2D" parent="Doors/Door2"]
-navigation_polygon = SubResource("NavigationPolygon_4i8qw")
-enabled = false
-
-[node name="Door4" type="Node2D" parent="Doors" node_paths=PackedStringArray("_navRegion")]
-position = Vector2(1455, 3703)
-script = ExtResource("8_hsavl")
-_navRegion = NodePath("NavigationRegion2D")
-_triggerRange = 180.0
-
-[node name="NavigationRegion2D" type="NavigationRegion2D" parent="Doors/Door4"]
-navigation_polygon = SubResource("NavigationPolygon_qp0ad")
-enabled = false
-
-[node name="Door5" type="Node2D" parent="Doors" node_paths=PackedStringArray("_navRegion")]
-position = Vector2(1741, 3513)
-script = ExtResource("8_hsavl")
-_navRegion = NodePath("NavigationRegion2D")
-_triggerRange = 180.0
-
-[node name="NavigationRegion2D" type="NavigationRegion2D" parent="Doors/Door5"]
-navigation_polygon = SubResource("NavigationPolygon_vgpqi")
-enabled = false
-
-[node name="Door" type="Node2D" parent="Doors" node_paths=PackedStringArray("_navRegion")]
-position = Vector2(932, 3135)
-script = ExtResource("8_hsavl")
-_navRegion = NodePath("NavigationRegion2D")
-_triggerRange = 180.0
-
-[node name="NavigationRegion2D" type="NavigationRegion2D" parent="Doors/Door"]
-navigation_polygon = SubResource("NavigationPolygon_eqotq")
-enabled = false
-
-[node name="Door3" type="Node2D" parent="Doors" node_paths=PackedStringArray("_navRegion")]
-position = Vector2(3811, 3776)
-rotation = 1.57079
-script = ExtResource("8_hsavl")
-_navRegion = NodePath("NavigationRegion2D")
-_triggerRange = 180.0
-
-[node name="NavigationRegion2D" type="NavigationRegion2D" parent="Doors/Door3"]
-navigation_polygon = SubResource("NavigationPolygon_o0ys8")
-enabled = false
-
-[node name="Door6" type="Node2D" parent="Doors" node_paths=PackedStringArray("_navRegion")]
-position = Vector2(4574, 3776)
-rotation = 1.57079
-script = ExtResource("8_hsavl")
-_navRegion = NodePath("NavigationRegion2D")
-_triggerRange = 180.0
-
-[node name="NavigationRegion2D" type="NavigationRegion2D" parent="Doors/Door6"]
-navigation_polygon = SubResource("NavigationPolygon_8apsq")
-enabled = false
-
-[node name="Door7" type="Node2D" parent="Doors" node_paths=PackedStringArray("_navRegion")]
-position = Vector2(3086, 3419)
-script = ExtResource("8_hsavl")
-_navRegion = NodePath("NavigationRegion2D")
-_triggerRange = 180.0
-
-[node name="NavigationRegion2D" type="NavigationRegion2D" parent="Doors/Door7"]
-navigation_polygon = SubResource("NavigationPolygon_xmsfc")
-enabled = false
-
-[node name="Door8" type="Node2D" parent="Doors" node_paths=PackedStringArray("_navRegion")]
-position = Vector2(3598, 3159)
-rotation = 1.57079
-script = ExtResource("8_hsavl")
-_navRegion = NodePath("NavigationRegion2D")
-_triggerRange = 180.0
-
-[node name="NavigationRegion2D" type="NavigationRegion2D" parent="Doors/Door8"]
-navigation_polygon = SubResource("NavigationPolygon_1utfk")
-enabled = false
-
-[node name="Door9" type="Node2D" parent="Doors" node_paths=PackedStringArray("_navRegion")]
-position = Vector2(3597, 2873)
-rotation = 1.57079
-script = ExtResource("8_hsavl")
-_navRegion = NodePath("NavigationRegion2D")
-_triggerRange = 180.0
-
-[node name="NavigationRegion2D" type="NavigationRegion2D" parent="Doors/Door9"]
-navigation_polygon = SubResource("NavigationPolygon_iwfnb")
-enabled = false
-
-[node name="Door10" type="Node2D" parent="Doors" node_paths=PackedStringArray("_navRegion")]
-position = Vector2(4739, 2371)
-script = ExtResource("8_hsavl")
-_navRegion = NodePath("NavigationRegion2D")
-_triggerRange = 180.0
-
-[node name="NavigationRegion2D" type="NavigationRegion2D" parent="Doors/Door10"]
-navigation_polygon = SubResource("NavigationPolygon_gp77i")
-enabled = false
-
-[node name="Door11" type="Node2D" parent="Doors" node_paths=PackedStringArray("_navRegion")]
-position = Vector2(2598, 4111)
-rotation = -1.5708
+[node name="Door5" parent="Doors" instance=ExtResource("14_4biyx")]
+position = Vector2(3085, 3419)
+rotation = 0.0
 scale = Vector2(1, -1)
-script = ExtResource("8_hsavl")
-_navRegion = NodePath("NavigationRegion2D")
-_triggerRange = 180.0
 
-[node name="NavigationRegion2D" type="NavigationRegion2D" parent="Doors/Door11"]
-navigation_polygon = SubResource("NavigationPolygon_ypbcn")
-enabled = false
+[node name="Door4" parent="Doors" instance=ExtResource("14_4biyx")]
+position = Vector2(1456, 3720)
+rotation = 0.0
+scale = Vector2(1, -1)
+
+[node name="Door2" parent="Doors" instance=ExtResource("14_4biyx")]
+position = Vector2(1048, 3878)
 
 [node name="Crowds" type="Node2D" parent="."]
 
@@ -878,6 +698,47 @@ texture = ExtResource("9_6c1f4")
 position = Vector2(3598, 2207)
 scale = Vector2(0.194338, 0.194338)
 texture = ExtResource("9_6c1f4")
+
+[node name="NonOccludingObjects" type="Node2D" parent="."]
+
+[node name="PottedPlant" type="Sprite2D" parent="NonOccludingObjects"]
+position = Vector2(2427, 2987)
+texture = ExtResource("16_kgqe5")
+
+[node name="Couch" type="Sprite2D" parent="NonOccludingObjects"]
+position = Vector2(2412, 2703)
+rotation = -1.57079
+texture = ExtResource("17_7bklq")
+
+[node name="Couch2" type="Sprite2D" parent="NonOccludingObjects"]
+position = Vector2(2713, 3000)
+rotation = 3.14159
+texture = ExtResource("17_7bklq")
+
+[node name="Armchair" type="Sprite2D" parent="NonOccludingObjects"]
+position = Vector2(3006, 2715)
+rotation = 1.57079
+texture = ExtResource("18_hgu5w")
+
+[node name="LCounter" type="Sprite2D" parent="NonOccludingObjects"]
+position = Vector2(4251, 2951)
+texture = ExtResource("19_rynbe")
+
+[node name="StoveTop" type="Sprite2D" parent="NonOccludingObjects"]
+position = Vector2(4457, 2738)
+texture = ExtResource("20_0u225")
+
+[node name="FruitBowl" type="Sprite2D" parent="NonOccludingObjects"]
+position = Vector2(4450, 3003)
+texture = ExtResource("21_3meyr")
+
+[node name="ICounter" type="Sprite2D" parent="NonOccludingObjects"]
+position = Vector2(3985, 2678)
+texture = ExtResource("22_dtvy5")
+
+[node name="Fridge" type="Sprite2D" parent="NonOccludingObjects"]
+position = Vector2(3878, 3013)
+texture = ExtResource("23_p5qa1")
 
 [node name="Area2D3" type="Area2D" parent="."]
 position = Vector2(191, 3900)

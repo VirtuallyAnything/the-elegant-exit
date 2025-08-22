@@ -3,7 +3,6 @@ using System;
 
 namespace tee
 {
-
 	public partial class EnemyMovement : Movement
 	{
 		private PartyPlayer _player;
@@ -15,7 +14,7 @@ namespace tee
 		private bool _isPlayerInSightCone;
 		private EnemyVision _enemyVision;
 
-		public PartyPlayer PlayerReference
+		public PartyPlayer Player
 		{
 			get { return _player; }
 			set { _player = value; }
