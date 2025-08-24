@@ -1,7 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://bxv5wxeuo28nj"]
+[gd_scene load_steps=8 format=3 uid="uid://bxv5wxeuo28nj"]
 
 [ext_resource type="Script" path="res://src/Party/Map/Door.cs" id="1_d2nwp"]
-[ext_resource type="Texture2D" uid="uid://d3hx3upwa0rgm" path="res://Assets/Textures/Objects/Door.png" id="2_1e545"]
+[ext_resource type="Shader" path="res://Assets/Shaders/outline.gdshader" id="2_k3cjy"]
+[ext_resource type="Texture2D" uid="uid://cu2jlkqetc3wq" path="res://Assets/Textures/Objects/Door2.png" id="3_0n4om"]
+[ext_resource type="Script" path="res://src/Party/Map/DynamicLightOccluder2D.cs" id="3_ubngv"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_584cc"]
+shader = ExtResource("2_k3cjy")
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_4i8qw"]
 vertices = PackedVector2Array(155, 110, 34.8281, 110, 34.1719, -26, 155, -26)
@@ -10,12 +15,19 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(-0.999756, -50, -1.0009
 source_geometry_group_name = &"navigation_polygon_source_group"
 agent_radius = 35.0
 
-[node name="Door2" type="Node2D" node_paths=PackedStringArray("_sprite", "_navRegion")]
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_mmw8h"]
+polygon = PackedVector2Array(-2.00024, 17, 179, 17.0012, 179, -1.99878, -2, -3)
+
+[node name="Door2" type="Node2D" node_paths=PackedStringArray("_rotationPoint", "_sprite", "_navRegion", "_lightOccluder")]
 position = Vector2(2597, 3752)
 rotation = 1.57079
 script = ExtResource("1_d2nwp")
-_sprite = NodePath("Sprite2D")
+_rotationPoint = NodePath("Node2D")
+_sprite = NodePath("Node2D/Sprite2D")
 _navRegion = NodePath("NavigationRegion2D")
+_activeShader = SubResource("ShaderMaterial_584cc")
+_outlineWidth = 5.0
+_lightOccluder = NodePath("Node2D/DynamicLightOccluder2D")
 _triggerRange = 180.0
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
@@ -23,8 +35,14 @@ position = Vector2(-0.999781, -35)
 navigation_polygon = SubResource("NavigationPolygon_4i8qw")
 enabled = false
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-8.07126e-05, 8.58307e-05)
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="DynamicLightOccluder2D" type="LightOccluder2D" parent="Node2D"]
+occluder = SubResource("OccluderPolygon2D_mmw8h")
+script = ExtResource("3_ubngv")
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D"]
+position = Vector2(0, -1.39136)
 scale = Vector2(1.39126, 1)
-texture = ExtResource("2_1e545")
+texture = ExtResource("3_0n4om")
 offset = Vector2(63.98, 8.54)

@@ -22,7 +22,7 @@
 [ext_resource type="Texture2D" uid="uid://binr4bnx3kgwn" path="res://Assets/UI/Icons/DislikeIcon.png" id="19_bhsfw"]
 [ext_resource type="Texture2D" uid="uid://ds1ekcdvrr301" path="res://Assets/UI/Icons/UnknownIcon.png" id="20_h7nvp"]
 [ext_resource type="Texture2D" uid="uid://bcgxjarmn8qgq" path="res://Assets/UI/ThoughtBubbleOutlineBig.png" id="21_7xnx4"]
-[ext_resource type="Shader" path="res://Assets/Shaders/SimpleBlur.gdshader" id="21_u5cww"]
+[ext_resource type="Shader" path="res://Assets/Shaders/simple_blur.gdshader" id="21_u5cww"]
 [ext_resource type="Texture2D" uid="uid://6owi28lr85hn" path="res://Assets/UI/Icons/Arrow.png" id="22_nhamm"]
 [ext_resource type="Script" path="res://src/UI/TopicRichTextLabel.cs" id="22_ufc0k"]
 [ext_resource type="Script" path="res://src/UI/AnnoyanceDisplay.cs" id="24_wl100"]
