@@ -47,15 +47,15 @@ _player = NodePath("Characters/Player")
 follow_viewport_enabled = true
 
 [node name="Player" type="CharacterBody2D" parent="Characters" node_paths=PackedStringArray("_agent", "_discoveryLight") groups=["Player"]]
-position = Vector2(984, 4070)
+position = Vector2(739, 4133)
 script = ExtResource("3_53yld")
 _data = ExtResource("4_iwfah")
+_agent = NodePath("NavigationAgent2D")
+_discoveryLight = NodePath("PointLight2D")
 _sightConeSegments = 10
 _sightConeAngleDegrees = 120.0
 _sightConeRadius = 800.0
-_agent = NodePath("NavigationAgent2D")
 _movementSpeed = 150.0
-_discoveryLight = NodePath("PointLight2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Characters/Player" groups=["Player"]]
 scale = Vector2(3.285, 3.285)
@@ -69,7 +69,6 @@ texture = ExtResource("4_mph3w")
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="Characters/Player"]
 path_desired_distance = 21.25
 target_desired_distance = 21.25
-avoidance_enabled = true
 radius = 20.0
 time_horizon_agents = 0.66
 debug_enabled = true

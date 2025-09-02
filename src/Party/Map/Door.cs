@@ -2,29 +2,34 @@ using Godot;
 
 namespace tee
 {
-	public partial class Door : Interactable
+	public partial class Door : OccludingPartyObject, ITriggerActivator, ITriggerDeactivator
 	{
 		private bool _isOpen;
 		private bool _canBeUsed;
 		private int _blockingBodies;
 		private int _enemiesInRange;
+		private CircleTrigger _trigger;
 		[Export] private Node2D _rotationPoint;
 		[Export] private Sprite2D _sprite;
 		[Export] private NavigationRegion2D _navRegion;
 		[Export] ShaderMaterial _activeShader;
 		[Export] private float _outlineWidth;
 		[Export] private DynamicLightOccluder2D _lightOccluder;
-
 		private Area2D _swingCone = new();
 
 		public override void _Ready()
 		{
 			base._Ready();
+			_trigger = new()
+			{
+				Range = 100
+			};
 			Vector2 textureSize = _sprite.Texture.GetSize();
 			Vector2 center = textureSize / 2;
 
 			float radius = textureSize.X;
-			_triggerArea.Position = center;
+			_trigger.Position = center;
+			AddChild(_trigger);
 
 			CollisionCone collisionCone = new()
 			{
@@ -38,7 +43,6 @@ namespace tee
 			_swingCone.BodyExited += OnSwingConeExited;
 			AddChild(_swingCone);
 
-			_lightOccluder.AddToGroup("Occluder", true);
 			_activeShader.SetShaderParameter("outline_width", _outlineWidth);
 		}
 
@@ -61,7 +65,7 @@ namespace tee
 			}
 		}
 
-		protected override void OnTriggerAreaEntered(Node2D body)
+		public void OnTriggerAreaEntered(Node2D body)
 		{
 			if (body.IsInGroup("Player"))
 			{
@@ -80,7 +84,7 @@ namespace tee
 			}
 		}
 
-		protected override void OnTriggerAreaExited(Node2D body)
+		public void OnTriggerAreaExited(Node2D body)
 		{
 			if (body.IsInGroup("Player"))
 			{
@@ -99,7 +103,6 @@ namespace tee
 			{
 				_blockingBodies++;
 			}
-
 		}
 
 		private void OnSwingConeExited(Node2D body)

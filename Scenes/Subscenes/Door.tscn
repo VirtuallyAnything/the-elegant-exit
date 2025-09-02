@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bxv5wxeuo28nj"]
+[gd_scene load_steps=9 format=3 uid="uid://bxv5wxeuo28nj"]
 
 [ext_resource type="Script" path="res://src/Party/Map/Door.cs" id="1_d2nwp"]
 [ext_resource type="Shader" path="res://Assets/Shaders/outline.gdshader" id="2_k3cjy"]
@@ -9,16 +9,19 @@
 shader = ExtResource("2_k3cjy")
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_4i8qw"]
-vertices = PackedVector2Array(155, 110, 34.8281, 110, 34.1719, -26, 155, -26)
+vertices = PackedVector2Array(144, 84, 34, 84, 34, -3, 144, -3)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-0.999756, -50, -1.00098, 125, 189.999, 125.001, 190, -47.9988)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-0.999756, -38, -1.00073, 119, 178.999, 119.001, 179, -37.9988)])
 source_geometry_group_name = &"navigation_polygon_source_group"
 agent_radius = 35.0
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_mmw8h"]
 polygon = PackedVector2Array(-2.00024, 17, 179, 17.0012, 179, -1.99878, -2, -3)
 
-[node name="Door2" type="Node2D" node_paths=PackedStringArray("_rotationPoint", "_sprite", "_navRegion", "_lightOccluder")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l2wwd"]
+size = Vector2(180, 20.0001)
+
+[node name="Door2" type="AnimatableBody2D" node_paths=PackedStringArray("_rotationPoint", "_sprite", "_navRegion", "_lightOccluder")]
 position = Vector2(2597, 3752)
 rotation = 1.57079
 script = ExtResource("1_d2nwp")
@@ -28,7 +31,6 @@ _navRegion = NodePath("NavigationRegion2D")
 _activeShader = SubResource("ShaderMaterial_584cc")
 _outlineWidth = 5.0
 _lightOccluder = NodePath("Node2D/DynamicLightOccluder2D")
-_triggerRange = 180.0
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 position = Vector2(-0.999781, -35)
@@ -46,3 +48,7 @@ position = Vector2(0, -1.39136)
 scale = Vector2(1.39126, 1)
 texture = ExtResource("3_0n4om")
 offset = Vector2(63.98, 8.54)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(88, 7.00122)
+shape = SubResource("RectangleShape2D_l2wwd")

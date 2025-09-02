@@ -19,15 +19,15 @@ namespace tee
 
         protected override void OnSightConeEntered(Node2D body)
         {
-            if(body is PartyEnemy enemy){
-				enemy.OnSightConeEntered();
+            if(body is IDynamicallyVisible playerVisibleObject){
+				playerVisibleObject.OnSightConeEntered();
 			}
         }
 
         protected override void OnSightConeExited(Node2D body)
         {
-            if(body is PartyEnemy enemy){
-				enemy.OnSightConeExited();
+            if(body is IDynamicallyVisible playerVisibleObject){
+				playerVisibleObject.OnSightConeExited();
 			}
         }
     }
