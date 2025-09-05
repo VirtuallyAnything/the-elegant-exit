@@ -2,21 +2,24 @@ using Godot;
 
 namespace tee
 {
-    public delegate void OccluderHandler(DynamicLightOccluder2D occluder);
+    public delegate void DynamicOccluderHandler(DynamicLightOccluder2D occluder);
     [GlobalClass]
     public partial class DynamicLightOccluder2D : LightOccluder2D
     {
-        public static event OccluderHandler PositionChanged;
-        public static event OccluderHandler RotationChanged;
+        public static event DynamicOccluderHandler TransformChanged;
 
-        public void OnRotationChanged()
+        public override void _Ready()
         {
-            RotationChanged(this);
+            base._Ready();
+            GD.Print("Instance ID:" + GetInstanceId() + "Parent: " + GetParent());
         }
 
-        public void OnPositionChanged()
+        public override void _Notification(int what)
         {
-            PositionChanged(this);
+            if (what == NotificationTransformChanged)
+            {
+                TransformChanged?.Invoke(this);
+            }
         }
     }
 }

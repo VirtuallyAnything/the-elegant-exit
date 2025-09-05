@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://b6h02xnwx4s5l" path="res://Assets/Textures/Characters/GenericCharacterIcon.png" id="1_oydse"]
 [ext_resource type="Texture2D" uid="uid://gc3xvh75p5w8" path="res://Assets/Textures/Characters/GenericCharacter_Cropped.png" id="2_mt5xt"]
-[ext_resource type="Script" path="res://src/ResourceScripts/Data/EnemyData.cs" id="9_hjvbu"]
+[ext_resource type="Script" uid="uid://bjgqs46yuwvg1" path="res://src/ResourceScripts/Data/EnemyData.cs" id="9_hjvbu"]
 
 [resource]
 script = ExtResource("9_hjvbu")
@@ -12,7 +12,7 @@ EnemyAttacks = Array[Resource]([])
 Icon = ExtResource("1_oydse")
 Texture = ExtResource("2_mt5xt")
 ConversationInterest = 20
-Likes = [7, 4, 6]
-Neutrals = [2, 1]
+Likes = Array[int]([7, 4, 6])
+Neutrals = Array[int]([2, 1])
 Dislikes = Array[int]([5, 3])
 PathToAttacks = "res://Data/Neighbor_Quotes.json"

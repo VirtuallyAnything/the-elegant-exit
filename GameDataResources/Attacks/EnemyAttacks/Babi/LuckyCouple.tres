@@ -1,10 +1,9 @@
 [gd_resource type="Resource" script_class="EnemyAttack" load_steps=2 format=3 uid="uid://ovwf8sk2vu86"]
 
-[ext_resource type="Script" path="res://src/ResourceScripts/Attacks/EnemyAttack.cs" id="1_w2fvi"]
+[ext_resource type="Script" uid="uid://ckxgkvkf1071t" path="res://src/ResourceScripts/Attacks/EnemyAttack.cs" id="1_w2fvi"]
 
 [resource]
 script = ExtResource("1_w2fvi")
-_topic = 0
 SocialBatteryChange = 4
 MentalCapacityDamage = 0.0
 Quote = ""

@@ -1,54 +1,52 @@
 [gd_scene load_steps=9 format=3 uid="uid://bxv5wxeuo28nj"]
 
-[ext_resource type="Script" path="res://src/Party/Map/Door.cs" id="1_d2nwp"]
-[ext_resource type="Shader" path="res://Assets/Shaders/outline.gdshader" id="2_k3cjy"]
+[ext_resource type="Script" uid="uid://cwb67k7yogjfc" path="res://src/Party/Map/Door.cs" id="1_d2nwp"]
+[ext_resource type="Shader" uid="uid://bqjjcltwx6i71" path="res://Assets/Shaders/outline.gdshader" id="2_k3cjy"]
 [ext_resource type="Texture2D" uid="uid://cu2jlkqetc3wq" path="res://Assets/Textures/Objects/Door2.png" id="3_0n4om"]
-[ext_resource type="Script" path="res://src/Party/Map/DynamicLightOccluder2D.cs" id="3_ubngv"]
+[ext_resource type="Script" uid="uid://dca8mkyn7vtcm" path="res://src/Party/Map/DynamicLightOccluder2D.cs" id="3_ubngv"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_584cc"]
-shader = ExtResource("2_k3cjy")
-
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_4i8qw"]
-vertices = PackedVector2Array(144, 84, 34, 84, 34, -3, 144, -3)
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_ksni7"]
+vertices = PackedVector2Array(56, 48.7031, -55, 48.7031, -55, -48.7031, 56, -48.7031)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-0.999756, -38, -1.00073, 119, 178.999, 119.001, 179, -37.9988)])
-source_geometry_group_name = &"navigation_polygon_source_group"
+outlines = Array[PackedVector2Array]([PackedVector2Array(-89.9996, -83.6963, -90.0005, 83.695, 90.9995, 83.6963, 91.0004, -83.695)])
 agent_radius = 35.0
 
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_mmw8h"]
-polygon = PackedVector2Array(-2.00024, 17, 179, 17.0012, 179, -1.99878, -2, -3)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8t0eg"]
+shader = ExtResource("2_k3cjy")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l2wwd"]
 size = Vector2(180, 20.0001)
 
-[node name="Door2" type="AnimatableBody2D" node_paths=PackedStringArray("_rotationPoint", "_sprite", "_navRegion", "_lightOccluder")]
-position = Vector2(2597, 3752)
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_mmw8h"]
+polygon = PackedVector2Array(-2.00024, 17, 179, 17.0012, 179, -1.99878, -2, -3)
+
+[node name="Door2" type="Node2D"]
 rotation = 1.57079
-script = ExtResource("1_d2nwp")
-_rotationPoint = NodePath("Node2D")
-_sprite = NodePath("Node2D/Sprite2D")
-_navRegion = NodePath("NavigationRegion2D")
-_activeShader = SubResource("ShaderMaterial_584cc")
-_outlineWidth = 5.0
-_lightOccluder = NodePath("Node2D/DynamicLightOccluder2D")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
-position = Vector2(-0.999781, -35)
-navigation_polygon = SubResource("NavigationPolygon_4i8qw")
+position = Vector2(88, 7.00056)
+scale = Vector2(1, 0.92)
+navigation_polygon = SubResource("NavigationPolygon_ksni7")
 enabled = false
 
-[node name="Node2D" type="Node2D" parent="."]
+[node name="AnimatableBody2D" type="AnimatableBody2D" parent="." node_paths=PackedStringArray("_sprite", "_navRegion", "_lightOccluder")]
+script = ExtResource("1_d2nwp")
+_sprite = NodePath("Sprite2D")
+_navRegion = NodePath("../NavigationRegion2D")
+_activeShader = SubResource("ShaderMaterial_8t0eg")
+_outlineWidth = 5.0
+_lightOccluder = NodePath("DynamicLightOccluder2D")
 
-[node name="DynamicLightOccluder2D" type="LightOccluder2D" parent="Node2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatableBody2D"]
+position = Vector2(88, 7.00146)
+shape = SubResource("RectangleShape2D_l2wwd")
+
+[node name="DynamicLightOccluder2D" type="LightOccluder2D" parent="AnimatableBody2D"]
 occluder = SubResource("OccluderPolygon2D_mmw8h")
 script = ExtResource("3_ubngv")
 
-[node name="Sprite2D" type="Sprite2D" parent="Node2D"]
+[node name="Sprite2D" type="Sprite2D" parent="AnimatableBody2D"]
 position = Vector2(0, -1.39136)
 scale = Vector2(1.39126, 1)
 texture = ExtResource("3_0n4om")
 offset = Vector2(63.98, 8.54)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(88, 7.00122)
-shape = SubResource("RectangleShape2D_l2wwd")

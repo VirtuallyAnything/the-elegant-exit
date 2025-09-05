@@ -11,6 +11,7 @@ namespace tee
         public override void _Ready()
         {
             _lightOccluder.AddToGroup("Occluder", true);
+            GD.Print("OccludingPartyObject: LightOccluder Instance ID: " + _lightOccluder.GetInstanceId());
             Modulate = new Color(1, 1, 1, 0);
         }
 

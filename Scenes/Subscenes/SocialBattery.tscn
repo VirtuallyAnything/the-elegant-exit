@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://b7g4o5wujfi7m" path="res://Assets/Textures/SocialBatteryIcon.png" id="1_m3m15"]
 [ext_resource type="Texture2D" uid="uid://7rkwkdxdfmn8" path="res://Assets/Textures/SocialBatteryProgress.png" id="2_s1cl3"]
 [ext_resource type="Theme" uid="uid://bpp0q38rfd1ms" path="res://Assets/Themes/Lobster.tres" id="3_27ei3"]
-[ext_resource type="Script" path="res://src/UI/TextSetter.cs" id="3_ls56a"]
+[ext_resource type="Script" uid="uid://gt7eksnchv6o" path="res://src/UI/TextSetter.cs" id="3_ls56a"]
 
 [node name="TextureProgressBar" type="TextureProgressBar"]
 offset_left = 60.0

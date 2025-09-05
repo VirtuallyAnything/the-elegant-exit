@@ -1,10 +1,9 @@
 [gd_resource type="Resource" script_class="EnemyAttack" load_steps=2 format=3 uid="uid://dgo8yh8plpcen"]
 
-[ext_resource type="Script" path="res://src/ResourceScripts/Attacks/EnemyAttack.cs" id="1_vthjv"]
+[ext_resource type="Script" uid="uid://ckxgkvkf1071t" path="res://src/ResourceScripts/Attacks/EnemyAttack.cs" id="1_vthjv"]
 
 [resource]
 script = ExtResource("1_vthjv")
-_topic = 6
 SocialBatteryChange = -3
 MentalCapacityDamage = 1.0
 Quote = "Attack about Gossip"

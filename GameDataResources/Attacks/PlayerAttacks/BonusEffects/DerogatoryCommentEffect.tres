@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="DerogatoryCommentEffect" load_steps=2 format=3 uid="uid://cb1ewo23xjf2i"]
 
-[ext_resource type="Script" path="res://src/ResourceScripts/Attacks/BonusEffects/DerogatoryCommentEffect.cs" id="1_pepfc"]
+[ext_resource type="Script" uid="uid://b05laagr240eo" path="res://src/ResourceScripts/Attacks/BonusEffects/DerogatoryCommentEffect.cs" id="1_pepfc"]
 
 [resource]
 script = ExtResource("1_pepfc")

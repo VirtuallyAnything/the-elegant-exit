@@ -6,12 +6,12 @@ float normaliseValue(float unnormalisedValue, float maxValue){
 	return (unnormalisedValue - 0.0) / maxValue;
 }
 
-void vertex() 
+void vertex()
 {
 	// Called for every vertex the material is visible on.
 }
 
-void fragment() 
+void fragment()
 {
 	vec2 size = vec2(textureSize(TEXTURE, 0));
 	ivec2 UVtoTexel = ivec2(UV * vec2(size));
@@ -42,7 +42,6 @@ void fragment()
 		float normalizedDistance = normaliseValue(distanceToNearestEdge, maxDistance);
 		float alpha = 1.0 - normalizedDistance;
 		vec3 colorWhite = vec3(1.0, 1.0, 1.0);
-		COLOR = vec4(colorWhite, alpha);	
+		COLOR = vec4(colorWhite, alpha);
 	}
 }
-	

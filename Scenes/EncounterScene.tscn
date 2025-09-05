@@ -1,31 +1,31 @@
 [gd_scene load_steps=44 format=3 uid="uid://cv7lwki55h2ma"]
 
-[ext_resource type="Script" path="res://src/SceneCode/EncounterScene.cs" id="1_qerod"]
-[ext_resource type="Script" path="res://src/Encounter/CombatManager.cs" id="2_6eywl"]
+[ext_resource type="Script" uid="uid://cxid571ug53su" path="res://src/SceneCode/EncounterScene.cs" id="1_qerod"]
+[ext_resource type="Script" uid="uid://ptv5xl7v8wlo" path="res://src/Encounter/CombatManager.cs" id="2_6eywl"]
 [ext_resource type="Texture2D" uid="uid://c08irt6knvdnn" path="res://Assets/Textures/MainCharacters_scaled.png" id="3_ibufg"]
 [ext_resource type="Texture2D" uid="uid://0vvhqaym6mxj" path="res://Assets/Textures/Characters/BeautyInfluencer_Cropped.png" id="3_k222k"]
 [ext_resource type="Texture2D" uid="uid://bwes58fuwh1ev" path="res://Assets/UI/Icons/ConversationInterestIcon.png" id="5_mc10u"]
 [ext_resource type="FontFile" uid="uid://dnj361fu4us32" path="res://Assets/Fonts/Lobster-Regular.ttf" id="6_2175l"]
-[ext_resource type="Script" path="res://src/UI/TweenableLabel.cs" id="6_kpb5h"]
+[ext_resource type="Script" uid="uid://cd1bwd8en4h4w" path="res://src/UI/TweenableLabel.cs" id="6_kpb5h"]
 [ext_resource type="Theme" uid="uid://bpp0q38rfd1ms" path="res://Assets/Themes/Lobster.tres" id="6_wdmna"]
-[ext_resource type="Script" path="res://src/UI/AttackCard/AttackCardContainer.cs" id="7_3ynpm"]
+[ext_resource type="Script" uid="uid://cqpmbb6dbtdkb" path="res://src/UI/AttackCard/AttackCardContainer.cs" id="7_3ynpm"]
 [ext_resource type="StyleBox" uid="uid://df0i6qdd6mfnl" path="res://Assets/Themes/SpeechBubbleStyleBox3.tres" id="7_ake03"]
 [ext_resource type="Texture2D" uid="uid://bgs43jg0rfljw" path="res://Assets/UI/Icons/MentalCapacityIcon.png" id="7_kn8i2"]
 [ext_resource type="StyleBox" uid="uid://bf0xiyj7g4ohp" path="res://Assets/Themes/SpeechBubbleStyleBox3_hover.tres" id="8_2biqh"]
-[ext_resource type="Script" path="res://src/UI/VariableDialogueControl.cs" id="9_amiwj"]
+[ext_resource type="Script" uid="uid://ifq1ekgpd2tr" path="res://src/UI/VariableDialogueControl.cs" id="9_amiwj"]
 [ext_resource type="PackedScene" uid="uid://d21hljw8t080d" path="res://Scenes/Subscenes/SocialBattery.tscn" id="9_vlhst"]
-[ext_resource type="Script" path="res://src/UI/NotifyRichText.cs" id="10_qqenu"]
+[ext_resource type="Script" uid="uid://ckd3cwx5n3gbt" path="res://src/UI/NotifyRichText.cs" id="10_qqenu"]
 [ext_resource type="StyleBox" uid="uid://yk0tno82ys2t" path="res://Assets/Themes/SpeechBubbleStyleBox3_mirrored.tres" id="11_shcrt"]
 [ext_resource type="Texture2D" uid="uid://bw67h1b1jrvc7" path="res://Assets/UI/BigArrow_Left.png" id="15_1g4ff"]
-[ext_resource type="Script" path="res://src/UI/PreferenceDisplay.cs" id="17_de043"]
+[ext_resource type="Script" uid="uid://id8xtw4gs5af" path="res://src/UI/PreferenceDisplay.cs" id="17_de043"]
 [ext_resource type="Texture2D" uid="uid://dj0q8i0h0goec" path="res://Assets/UI/Icons/LikeIcon.png" id="18_vqv50"]
 [ext_resource type="Texture2D" uid="uid://binr4bnx3kgwn" path="res://Assets/UI/Icons/DislikeIcon.png" id="19_bhsfw"]
 [ext_resource type="Texture2D" uid="uid://ds1ekcdvrr301" path="res://Assets/UI/Icons/UnknownIcon.png" id="20_h7nvp"]
 [ext_resource type="Texture2D" uid="uid://bcgxjarmn8qgq" path="res://Assets/UI/ThoughtBubbleOutlineBig.png" id="21_7xnx4"]
-[ext_resource type="Shader" path="res://Assets/Shaders/simple_blur.gdshader" id="21_u5cww"]
+[ext_resource type="Shader" uid="uid://dbtab1afypd3l" path="res://Assets/Shaders/simple_blur.gdshader" id="21_u5cww"]
 [ext_resource type="Texture2D" uid="uid://6owi28lr85hn" path="res://Assets/UI/Icons/Arrow.png" id="22_nhamm"]
-[ext_resource type="Script" path="res://src/UI/TopicRichTextLabel.cs" id="22_ufc0k"]
-[ext_resource type="Script" path="res://src/UI/AnnoyanceDisplay.cs" id="24_wl100"]
+[ext_resource type="Script" uid="uid://jchlbum4ftrw" path="res://src/UI/TopicRichTextLabel.cs" id="22_ufc0k"]
+[ext_resource type="Script" uid="uid://dmfvkrq3e013t" path="res://src/UI/AnnoyanceDisplay.cs" id="24_wl100"]
 [ext_resource type="Texture2D" uid="uid://csf0lc06m8cu0" path="res://Assets/UI/BigArrow.png" id="25_6brt4"]
 [ext_resource type="Texture2D" uid="uid://dujhcmisqeo3g" path="res://Assets/UI/Icons/ConversationInterestMaxIcon.png" id="26_nbp65"]
 [ext_resource type="Texture2D" uid="uid://bmd1mdiraueso" path="res://Assets/UI/ThoughtBubbleOutlineSmall.png" id="27_417i3"]
@@ -252,11 +252,11 @@ resource_name = "SocialStandingChange"
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_y5wym"]
 _data = {
-"PlayerTurn": SubResource("Animation_5lmts"),
-"RESET": SubResource("Animation_2j1rs"),
-"SlideLeft": SubResource("Animation_y12pc"),
-"SocialBatterySubtract": SubResource("Animation_7kv2e"),
-"SocialStandingChange": SubResource("Animation_6mr0s")
+&"PlayerTurn": SubResource("Animation_5lmts"),
+&"RESET": SubResource("Animation_2j1rs"),
+&"SlideLeft": SubResource("Animation_y12pc"),
+&"SocialBatterySubtract": SubResource("Animation_7kv2e"),
+&"SocialStandingChange": SubResource("Animation_6mr0s")
 }
 
 [sub_resource type="Theme" id="Theme_xfm6w"]
@@ -363,7 +363,7 @@ stretch_mode = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_y5wym")
+&"": SubResource("AnimationLibrary_y5wym")
 }
 
 [node name="ConversationInterest" type="TextureRect" parent="."]

@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://di72751v67fiy" path="res://Assets/Textures/Characters/CryptoBroIcon.png" id="1_qkp4f"]
 [ext_resource type="Texture2D" uid="uid://c4x2vu1y54a0i" path="res://Assets/Textures/Characters/CryptoBro_Cropped.png" id="2_1po63"]
-[ext_resource type="Script" path="res://src/ResourceScripts/Data/EnemyData.cs" id="9_7amvr"]
+[ext_resource type="Script" uid="uid://bjgqs46yuwvg1" path="res://src/ResourceScripts/Data/EnemyData.cs" id="9_7amvr"]
 
 [resource]
 script = ExtResource("9_7amvr")
@@ -12,7 +12,7 @@ EnemyAttacks = Array[Resource]([])
 Icon = ExtResource("1_qkp4f")
 Texture = ExtResource("2_1po63")
 ConversationInterest = 20
-Likes = [7, 3, 6]
-Neutrals = [5, 4]
+Likes = Array[int]([7, 3, 6])
+Neutrals = Array[int]([5, 4])
 Dislikes = Array[int]([2, 1])
 PathToAttacks = "res://Data/CryptoBro_Quotes.json"

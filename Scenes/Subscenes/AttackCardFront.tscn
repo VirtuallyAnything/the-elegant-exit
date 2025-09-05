@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://b25kk6eoa8a2r" path="res://Assets/UI/ConversationCard.png" id="1_ghk2c"]
 [ext_resource type="Theme" uid="uid://7ps021sw2vqy" path="res://Assets/Themes/AttackCardTitle.tres" id="2_g2rnx"]
-[ext_resource type="Script" path="res://src/UI/AttackCard/AttackCardFront.cs" id="2_l7dg4"]
+[ext_resource type="Script" uid="uid://dw23rfo3g1idw" path="res://src/UI/AttackCard/AttackCardFront.cs" id="2_l7dg4"]
 [ext_resource type="Theme" uid="uid://bpp0q38rfd1ms" path="res://Assets/Themes/Lobster.tres" id="4_bpp6j"]
 [ext_resource type="Texture2D" uid="uid://bwes58fuwh1ev" path="res://Assets/UI/Icons/ConversationInterestIcon.png" id="5_ce5hu"]
 [ext_resource type="Texture2D" uid="uid://cpjddkrool3ba" path="res://Assets/Textures/RectMask.png" id="6_vxf43"]

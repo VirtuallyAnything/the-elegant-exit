@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="TopicalPlayerAttack" load_steps=7 format=3 uid="uid://c3fig235sju03"]
 
 [ext_resource type="Resource" uid="uid://1gca7gi773tf" path="res://GameDataResources/Attacks/PlayerAttacks/BonusEffects/TalkShopEffect.tres" id="1_5dlx5"]
-[ext_resource type="Script" path="res://src/ResourceScripts/Attacks/TopicalPlayerAttack.cs" id="2_3jir0"]
-[ext_resource type="Script" path="res://src/ResourceScripts/TopicDialogue.cs" id="2_c2q3w"]
+[ext_resource type="Script" uid="uid://cd6g6ys33lp84" path="res://src/ResourceScripts/Attacks/TopicalPlayerAttack.cs" id="2_3jir0"]
+[ext_resource type="Script" uid="uid://jfen4on7wfpv" path="res://src/ResourceScripts/TopicDialogue.cs" id="2_c2q3w"]
 
 [sub_resource type="Resource" id="Resource_r4546"]
 script = ExtResource("2_c2q3w")
@@ -21,8 +21,8 @@ _text = "The scandals are around Stanley Ashton just won't end. He's now been fe
 
 [resource]
 script = ExtResource("2_3jir0")
-_topicRelatedQuotes = [SubResource("Resource_r4546"), SubResource("Resource_0i1yf"), SubResource("Resource_q26hk")]
-UnlockedTopics = [5, 3, 6]
+_topicRelatedQuotes = Array[ExtResource("2_c2q3w")]([SubResource("Resource_r4546"), SubResource("Resource_0i1yf"), SubResource("Resource_q26hk")])
+UnlockedTopics = Array[int]([5, 3, 6])
 _bonusEffect = ExtResource("1_5dlx5")
 OwningCharacter = 0
 ConversationInterestDamage = 2

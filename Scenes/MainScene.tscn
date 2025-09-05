@@ -1,18 +1,18 @@
 [gd_scene load_steps=18 format=3 uid="uid://dmyfdjltetw2d"]
 
-[ext_resource type="Script" path="res://src/SceneCode/MainScene.cs" id="1_klk3w"]
-[ext_resource type="Script" path="res://src/Party/Player/PartyPlayer.cs" id="3_53yld"]
+[ext_resource type="Script" uid="uid://t6642lxnuqwn" path="res://src/SceneCode/MainScene.cs" id="1_klk3w"]
+[ext_resource type="Script" uid="uid://lcb2jtbtmhll" path="res://src/Party/Player/PartyPlayer.cs" id="3_53yld"]
 [ext_resource type="Resource" uid="uid://d0bu2gll3u4xb" path="res://GameDataResources/Attacks/PlayerData.tres" id="4_iwfah"]
 [ext_resource type="Texture2D" uid="uid://k4q8rnj22dsh" path="res://Assets/Textures/MainCharacterIcon.png" id="4_mph3w"]
 [ext_resource type="PackedScene" uid="uid://d21hljw8t080d" path="res://Scenes/Subscenes/SocialBattery.tscn" id="5_t55tw"]
 [ext_resource type="Texture2D" uid="uid://ceb1ia7oecf7l" path="res://Assets/Textures/PlayerSightCone.png" id="6_k7ig0"]
 [ext_resource type="FontFile" uid="uid://dnj361fu4us32" path="res://Assets/Fonts/Lobster-Regular.ttf" id="6_q8ytb"]
 [ext_resource type="Theme" uid="uid://bpp0q38rfd1ms" path="res://Assets/Themes/Lobster.tres" id="7_yess5"]
-[ext_resource type="Script" path="res://src/GameTimer.cs" id="8_28aws"]
+[ext_resource type="Script" uid="uid://bfeb44fa5i8t6" path="res://src/GameTimer.cs" id="8_28aws"]
 [ext_resource type="Texture2D" uid="uid://c6bque4e81yg4" path="res://Assets/UI/Icons/PauseIcon.png" id="8_mivmb"]
 [ext_resource type="Texture2D" uid="uid://dw0fjgs4yx85r" path="res://Assets/UI/Icons/PauseIcon_hover.png" id="9_tqae0"]
 [ext_resource type="PackedScene" uid="uid://bkprvu4f5y5no" path="res://Scenes/PauseScene.tscn" id="12_3yaqs"]
-[ext_resource type="Script" path="res://src/UI/OneTimePanel.cs" id="13_slvwu"]
+[ext_resource type="Script" uid="uid://se3aejl44w0c" path="res://src/UI/OneTimePanel.cs" id="13_slvwu"]
 [ext_resource type="Texture2D" uid="uid://l6pgu7u0da8x" path="res://Assets/UI/Icons/Arrow_2.png" id="14_05esd"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rv6dr"]
@@ -47,7 +47,7 @@ _player = NodePath("Characters/Player")
 follow_viewport_enabled = true
 
 [node name="Player" type="CharacterBody2D" parent="Characters" node_paths=PackedStringArray("_agent", "_discoveryLight") groups=["Player"]]
-position = Vector2(739, 4133)
+position = Vector2(925, 4148)
 script = ExtResource("3_53yld")
 _data = ExtResource("4_iwfah")
 _agent = NodePath("NavigationAgent2D")

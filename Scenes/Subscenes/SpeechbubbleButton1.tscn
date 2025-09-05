@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dl3r57rxufb83"]
 
 [ext_resource type="Theme" uid="uid://bpp0q38rfd1ms" path="res://Assets/Themes/Lobster.tres" id="1_sr2qj"]
-[ext_resource type="Script" path="res://src/SceneCode/SceneSwapButton.cs" id="2_5f07d"]
+[ext_resource type="Script" uid="uid://diy0f8mk31o2x" path="res://src/SceneCode/SceneSwapButton.cs" id="2_5f07d"]
 
 [node name="Button" type="Button"]
 anchors_preset = 8

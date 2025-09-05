@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://vaysy8febaxk"]
 
-[ext_resource type="Script" path="res://src/UI/VerticalTabContainer.cs" id="1_3f36r"]
+[ext_resource type="Script" uid="uid://cdilti0it4mig" path="res://src/UI/VerticalTabContainer.cs" id="1_3f36r"]
 [ext_resource type="PackedScene" uid="uid://blipjubw1hkhy" path="res://Scenes/Subscenes/Tab.tscn" id="2_hv38r"]
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_aqn5s"]

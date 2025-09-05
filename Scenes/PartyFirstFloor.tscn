@@ -1,11 +1,11 @@
 [gd_scene load_steps=8 format=3 uid="uid://damjwt0d5a1y8"]
 
-[ext_resource type="Script" path="res://src/SceneCode/PartyFloorScene.cs" id="1_r4p01"]
+[ext_resource type="Script" uid="uid://dv8xoosipxjyi" path="res://src/SceneCode/PartyFloorScene.cs" id="1_r4p01"]
 [ext_resource type="Texture2D" uid="uid://bcwv3jtxpxt4a" path="res://Assets/Levels/FirstFloor.png" id="2_ka8sf"]
-[ext_resource type="Script" path="res://src/Party/Enemy/PartyEnemy.cs" id="4_kpk03"]
+[ext_resource type="Script" uid="uid://cqyp40usrqog3" path="res://src/Party/Enemy/PartyEnemy.cs" id="4_kpk03"]
 [ext_resource type="Resource" uid="uid://bqgn3w6aagdea" path="res://GameDataResources/EnemyData/NeighborDave.tres" id="5_tsw0b"]
 [ext_resource type="PackedScene" uid="uid://ba07kn2ollll2" path="res://Scenes/Subscenes/fow_light.tscn" id="6_yuf7y"]
-[ext_resource type="Script" path="res://src/SceneCode/SceneSwitchArea.cs" id="8_d007l"]
+[ext_resource type="Script" uid="uid://k2spb5yyskn7" path="res://src/SceneCode/SceneSwitchArea.cs" id="8_d007l"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_ky745"]
 vertices = PackedVector2Array(1737, 360, 1739, 291, 2504, 184, 3014, 184, 3016, 553, 3014, 611, 2611, 723, 2555, 720, 3117, 611, 3117, 553, 3118, 175, 3923, 175, 3925, 1373, 3118, 1373, 3117, 1154, 3116, 1096, 2504, 1491, 2207, 1491, 2210, 1426, 2429, 1416, 2504, 1155, 2427, 1348, 3015, 1154, 3015, 1096, 1297, 98, 1299, 290, 1286, 290, 1197, 267, 1197, -69, 3015, 723, 2365, -505, 2487, -505, 2486, -172, 2453, -170, 2395, -174, 1390, 1002, 1389, 360, 2440, 720, 1992, 979, 1517, 1107, 2617, 825, 3015, 825, 3015, 978, 2541, 978, 2541, 822, 2558, 822, 1992, 1080, 2503, 1080, 2503, 1096, 2605, 1096, 2605, 1080, 3015, 1080, 2605, 1155, 3015, 1362, 2605, 1362, 2093, 1348, 2093, 1281, 1991, 1284, 1991, 1362, 1517, 1362, 1517, 1283, 1415, 1283, 1415, 1363, 1196, 1363, 1196, 1209, 1415, 1209, 1415, 1225, 1517, 1225, 1095, 962, 1095, 1362, 557, 1362, 557, 888, 1095, 888, 1095, 906, 1197, 962, 1197, 906, 1288, 999, 1095, 514, 1095, 787, 556, 787, 556, 441, 1095, 441, 1095, 457, 1198, 457, 1197, 517, 1095, 323, 1095, 339, 558, 339, 558, -71, 1094, -71, 1095, 264, 1195, 323, 2365, -174, 2395, -73, 2456, -71, 2440, 978, 1197, 1106, 2502, -71, 1734, 167, 1732, 99, 1458, 279, 1458, 181)

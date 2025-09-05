@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="ElaborateTransitionEffect" load_steps=2 format=3 uid="uid://b464do4eh4c2y"]
 
-[ext_resource type="Script" path="res://src/ResourceScripts/Attacks/BonusEffects/ElaborateTransitionEffect.cs" id="1_18spa"]
+[ext_resource type="Script" uid="uid://cierh5sk22fii" path="res://src/ResourceScripts/Attacks/BonusEffects/ElaborateTransitionEffect.cs" id="1_18spa"]
 
 [resource]
 script = ExtResource("1_18spa")

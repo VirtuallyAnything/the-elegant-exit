@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="TopicalPlayerAttack" load_steps=9 format=3 uid="uid://jcvldt15okdk"]
 
-[ext_resource type="Script" path="res://src/ResourceScripts/Attacks/TopicalPlayerAttack.cs" id="1_k3tcf"]
-[ext_resource type="Script" path="res://src/ResourceScripts/TopicDialogue.cs" id="1_tc2q1"]
+[ext_resource type="Script" uid="uid://cd6g6ys33lp84" path="res://src/ResourceScripts/Attacks/TopicalPlayerAttack.cs" id="1_k3tcf"]
+[ext_resource type="Script" uid="uid://jfen4on7wfpv" path="res://src/ResourceScripts/TopicDialogue.cs" id="1_tc2q1"]
 
 [sub_resource type="Resource" id="Resource_qu76f"]
 script = ExtResource("1_tc2q1")
@@ -35,8 +35,8 @@ _text = "I once wrote a reader contribution for Boulevard Weekly and it actually
 
 [resource]
 script = ExtResource("1_k3tcf")
-_topicRelatedQuotes = [SubResource("Resource_qu76f"), SubResource("Resource_jbel5"), SubResource("Resource_8tm4w"), SubResource("Resource_fxjs7"), SubResource("Resource_bmdxm"), SubResource("Resource_j1u7t")]
-UnlockedTopics = [5, 3, 6]
+_topicRelatedQuotes = Array[ExtResource("1_tc2q1")]([SubResource("Resource_qu76f"), SubResource("Resource_jbel5"), SubResource("Resource_8tm4w"), SubResource("Resource_fxjs7"), SubResource("Resource_bmdxm"), SubResource("Resource_j1u7t")])
+UnlockedTopics = Array[int]([5, 3, 6])
 OwningCharacter = 0
 ConversationInterestDamage = 3
 IsFromItem = false

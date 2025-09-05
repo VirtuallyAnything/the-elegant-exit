@@ -1,11 +1,11 @@
 [gd_resource type="Resource" script_class="SpecialPlayerAttack" load_steps=3 format=3 uid="uid://4on4vfjohtjr"]
 
 [ext_resource type="Resource" uid="uid://cyab1vrfahmeo" path="res://GameDataResources/Attacks/PlayerAttacks/BonusEffects/ShowDisinterestEffect.tres" id="1_njnbm"]
-[ext_resource type="Script" path="res://src/ResourceScripts/Attacks/SpecialPlayerAttack.cs" id="1_ri6hq"]
+[ext_resource type="Script" uid="uid://c4x5eovomhhr0" path="res://src/ResourceScripts/Attacks/SpecialPlayerAttack.cs" id="1_ri6hq"]
 
 [resource]
 script = ExtResource("1_ri6hq")
-_quotes = ["That's nice and all, but I really think this has been overhyped.", "*Yawn*"]
+_quotes = Array[String](["That's nice and all, but I really think this has been overhyped.", "*Yawn*"])
 _bonusEffect = ExtResource("1_njnbm")
 OwningCharacter = 1
 ConversationInterestDamage = 3

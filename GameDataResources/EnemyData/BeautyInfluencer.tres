@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bjf1j776oy6qw" path="res://Assets/Textures/Characters/BeautyInfluencerIcon.png" id="1_rnt37"]
 [ext_resource type="Texture2D" uid="uid://0vvhqaym6mxj" path="res://Assets/Textures/Characters/BeautyInfluencer_Cropped.png" id="2_i8l6p"]
-[ext_resource type="Script" path="res://src/ResourceScripts/Data/EnemyData.cs" id="3_ju5lt"]
+[ext_resource type="Script" uid="uid://bjgqs46yuwvg1" path="res://src/ResourceScripts/Data/EnemyData.cs" id="3_ju5lt"]
 
 [resource]
 script = ExtResource("3_ju5lt")
@@ -12,7 +12,7 @@ EnemyAttacks = null
 Icon = ExtResource("1_rnt37")
 Texture = ExtResource("2_i8l6p")
 ConversationInterest = 20
-Likes = [7, 1, 2]
-Neutrals = [5, 6]
+Likes = Array[int]([7, 1, 2])
+Neutrals = Array[int]([5, 6])
 Dislikes = Array[int]([4, 3])
 PathToAttacks = "res://Data/Influencer_Quotes.json"

@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="TalkAboutWeatherEffect" load_steps=2 format=3 uid="uid://fdsoq7qetf81"]
 
-[ext_resource type="Script" path="res://src/ResourceScripts/Attacks/BonusEffects/TalkAboutWeatherEffect.cs" id="1_hd3fc"]
+[ext_resource type="Script" uid="uid://b23thl1pdibbu" path="res://src/ResourceScripts/Attacks/BonusEffects/TalkAboutWeatherEffect.cs" id="1_hd3fc"]
 
 [resource]
 script = ExtResource("1_hd3fc")

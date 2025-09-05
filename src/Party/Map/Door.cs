@@ -9,12 +9,10 @@ namespace tee
 		private int _blockingBodies;
 		private int _enemiesInRange;
 		private CircleTrigger _trigger;
-		[Export] private Node2D _rotationPoint;
 		[Export] private Sprite2D _sprite;
 		[Export] private NavigationRegion2D _navRegion;
 		[Export] ShaderMaterial _activeShader;
 		[Export] private float _outlineWidth;
-		[Export] private DynamicLightOccluder2D _lightOccluder;
 		private Area2D _swingCone = new();
 
 		public override void _Ready()
@@ -58,10 +56,9 @@ namespace tee
 				{
 					return;
 				}
-				_rotationPoint.RotationDegrees = _isOpen ? 0 : -90;
+				RotationDegrees = _isOpen ? 0 : -90;
 				_navRegion.Enabled = !_navRegion.Enabled;
 				_isOpen = !_isOpen;
-				_lightOccluder.OnRotationChanged();
 			}
 		}
 
@@ -70,13 +67,13 @@ namespace tee
 			if (body.IsInGroup("Player"))
 			{
 				_canBeUsed = true;
-				_sprite.Material =_activeShader;
+				_sprite.Material = _activeShader;
 			}
 			else if (body.IsInGroup("Enemy"))
 			{
 				if (!_isOpen)
 				{
-					_rotationPoint.RotationDegrees = -90;
+					RotationDegrees = -90;
 					_isOpen = true;
 					_navRegion.Enabled = true;
 				}
@@ -111,6 +108,13 @@ namespace tee
 			{
 				_blockingBodies--;
 			}
+		}
+
+		public override void _ExitTree()
+		{
+			base._ExitTree();
+			_swingCone.BodyEntered -= OnSwingConeEntered;
+			_swingCone.BodyExited -= OnSwingConeExited;
 		}
 	}
 }

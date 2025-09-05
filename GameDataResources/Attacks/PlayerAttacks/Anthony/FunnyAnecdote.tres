@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="TopicalPlayerAttack" load_steps=9 format=3 uid="uid://clsno7agx4m40"]
 
-[ext_resource type="Script" path="res://src/ResourceScripts/TopicDialogue.cs" id="1_3xqc2"]
-[ext_resource type="Script" path="res://src/ResourceScripts/Attacks/TopicalPlayerAttack.cs" id="1_eoj8r"]
+[ext_resource type="Script" uid="uid://jfen4on7wfpv" path="res://src/ResourceScripts/TopicDialogue.cs" id="1_3xqc2"]
+[ext_resource type="Script" uid="uid://cd6g6ys33lp84" path="res://src/ResourceScripts/Attacks/TopicalPlayerAttack.cs" id="1_eoj8r"]
 
 [sub_resource type="Resource" id="Resource_qfs3w"]
 script = ExtResource("1_3xqc2")
@@ -35,8 +35,8 @@ _text = "This summer I've really been into watermelons. Post-Lunch: Watermelon! 
 
 [resource]
 script = ExtResource("1_eoj8r")
-_topicRelatedQuotes = [SubResource("Resource_qfs3w"), SubResource("Resource_n4sff"), SubResource("Resource_d84e2"), SubResource("Resource_co7a8"), SubResource("Resource_mnngg"), SubResource("Resource_lv8hi")]
-UnlockedTopics = [1, 4, 2]
+_topicRelatedQuotes = Array[ExtResource("1_3xqc2")]([SubResource("Resource_qfs3w"), SubResource("Resource_n4sff"), SubResource("Resource_d84e2"), SubResource("Resource_co7a8"), SubResource("Resource_mnngg"), SubResource("Resource_lv8hi")])
+UnlockedTopics = Array[int]([1, 4, 2])
 OwningCharacter = 1
 ConversationInterestDamage = 3
 IsFromItem = false

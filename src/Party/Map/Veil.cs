@@ -42,12 +42,11 @@ public partial class Veil : TextureRect
 	{
 		base._EnterTree();
 		PlayerMovement.NodeMoved += OnPlayerMoved;
-		DynamicLightOccluder2D.PositionChanged += UpdateOccluderPosition;
-		DynamicLightOccluder2D.RotationChanged += UpdateOccluderRotation;
+		DynamicLightOccluder2D.TransformChanged += UpdateOccluderTransform;
 	}
 
 	public override void _Ready()
-	{	
+	{
 		_lightSV = GetNode<SubViewport>("LightSubViewport");
 		_maskSV = GetNode<SubViewport>("MaskSubViewport");
 		_mask = GetNode<TextureRect>("MaskSubViewport/TextureRect");
@@ -73,7 +72,7 @@ public partial class Veil : TextureRect
 		_playerVisionDup.Color = Color.Color8(255, 255, 255, 255);
 		_playerVisionDup.Position = _playerVision.GlobalPosition * _fowScaleFactor;
 		_playerVisionDup.ApplyScale(_fowScaleFactor * Vector2.One);
-		_lightSV.AddChild(_playerVisionDup);	
+		_lightSV.AddChild(_playerVisionDup);
 
 		// set shader params
 		ShaderMaterial maskMaterial = (ShaderMaterial)_mask.Material;
@@ -96,7 +95,12 @@ public partial class Veil : TextureRect
 		{
 			if (occluder is LightOccluder2D)
 			{
+				if (occluder is DynamicLightOccluder2D)
+				{
+					occluder.SetNotifyTransform(true);
+				}
 				LightOccluder2D occluderDup = (LightOccluder2D)occluder.Duplicate();
+				occluderDup.SetNotifyTransform(false);
 				occluderDup.Position = occluder.GlobalPosition * _fowScaleFactor;
 				occluderDup.Rotation = occluder.GlobalRotation;
 				occluderDup.Scale = occluder.GlobalScale;
@@ -114,16 +118,11 @@ public partial class Veil : TextureRect
 		}
 	}
 
-	private void UpdateOccluderRotation(LightOccluder2D occluder)
+	private void UpdateOccluderTransform(LightOccluder2D occluder)
 	{
+		GD.Print("Passed Instance ID: " + occluder.GetInstanceId());
 		LightOccluder2D occluderDup = _occluderDupsDict[occluder.GetInstanceId()];
 		occluderDup.Rotation = occluder.GlobalRotation;
-		OnPlayerMoved(_playerVisionDup.GlobalPosition);
-	}
-
-	private void UpdateOccluderPosition(LightOccluder2D occluder)
-	{
-		LightOccluder2D occluderDup = _occluderDupsDict[occluder.GetInstanceId()];
 		occluderDup.Position = occluder.GlobalPosition * _fowScaleFactor;
 		OnPlayerMoved(_playerVisionDup.GlobalPosition);
 	}
@@ -156,7 +155,6 @@ public partial class Veil : TextureRect
 	{
 		base._ExitTree();
 		PlayerMovement.NodeMoved -= OnPlayerMoved;
-		DynamicLightOccluder2D.PositionChanged -= UpdateOccluderPosition;
-		DynamicLightOccluder2D.RotationChanged -= UpdateOccluderRotation;
+		DynamicLightOccluder2D.TransformChanged -= UpdateOccluderTransform;
 	}
 }

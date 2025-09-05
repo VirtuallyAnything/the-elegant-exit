@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://hpjm8ayi2spx"]
 
 [ext_resource type="Texture2D" uid="uid://b25kk6eoa8a2r" path="res://Assets/UI/ConversationCard.png" id="1_6yx0f"]
-[ext_resource type="Script" path="res://src/UI/AttackCard/AttackCardBack.cs" id="2_r0ahb"]
+[ext_resource type="Script" uid="uid://dkc46rsbe6xwu" path="res://src/UI/AttackCard/AttackCardBack.cs" id="2_r0ahb"]
 [ext_resource type="Theme" uid="uid://bpp0q38rfd1ms" path="res://Assets/Themes/Lobster.tres" id="3_abehn"]
 [ext_resource type="Texture2D" uid="uid://bwes58fuwh1ev" path="res://Assets/UI/Icons/ConversationInterestIcon.png" id="4_wp1ni"]
 [ext_resource type="Texture2D" uid="uid://cpjddkrool3ba" path="res://Assets/Textures/RectMask.png" id="5_1t0is"]

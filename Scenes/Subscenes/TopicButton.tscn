@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://b5phjd7gfq25u"]
 
 [ext_resource type="Theme" uid="uid://bpp0q38rfd1ms" path="res://Assets/Themes/Lobster.tres" id="1_uctpo"]
-[ext_resource type="Script" path="res://src/UI/TopicButton.cs" id="1_wco5i"]
+[ext_resource type="Script" uid="uid://b2tdhvoj8cokw" path="res://src/UI/TopicButton.cs" id="1_wco5i"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t81bd"]
 

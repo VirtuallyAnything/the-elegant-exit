@@ -1,11 +1,11 @@
 [gd_scene load_steps=11 format=3 uid="uid://dqpcyi5i0xyjh"]
 
-[ext_resource type="Script" path="res://src/SceneCode/EncounterStartScene.cs" id="1_fo1sk"]
+[ext_resource type="Script" uid="uid://mhxv5s1qt55h" path="res://src/SceneCode/EncounterStartScene.cs" id="1_fo1sk"]
 [ext_resource type="Texture2D" uid="uid://b1on62evvvcee" path="res://Assets/UI/EncounterStartScreen.png" id="2_j3cag"]
 [ext_resource type="Texture2D" uid="uid://bof3wrxapds3v" path="res://Assets/Textures/MainCharacters.png" id="3_5u531"]
 [ext_resource type="LabelSettings" uid="uid://bx6i6eo3rklk8" path="res://Assets/Themes/LobsterLabelSettings.tres" id="4_oqcpl"]
 [ext_resource type="Texture2D" uid="uid://ibsb083f86ee" path="res://Assets/UI/VS_withFlame.png" id="5_diw5j"]
-[ext_resource type="Script" path="res://src/SceneCode/SceneSwapButton.cs" id="6_tdx1t"]
+[ext_resource type="Script" uid="uid://diy0f8mk31o2x" path="res://src/SceneCode/SceneSwapButton.cs" id="6_tdx1t"]
 
 [sub_resource type="Theme" id="Theme_bya7o"]
 default_font_size = 85
@@ -67,8 +67,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vr1mx"]
 _data = {
-"FlyIn": SubResource("Animation_gx8tl"),
-"RESET": SubResource("Animation_8u2kd")
+&"FlyIn": SubResource("Animation_gx8tl"),
+&"RESET": SubResource("Animation_8u2kd")
 }
 
 [node name="EncounterStartScreen" type="Control" node_paths=PackedStringArray("_enemyName", "_enemyTexture", "_animationPlayer")]
@@ -126,7 +126,7 @@ autowrap_mode = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_vr1mx")
+&"": SubResource("AnimationLibrary_vr1mx")
 }
 
 [node name="EnemyName" type="Label" parent="."]

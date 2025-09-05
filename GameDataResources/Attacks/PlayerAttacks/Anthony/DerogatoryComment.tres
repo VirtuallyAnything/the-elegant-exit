@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="TopicalPlayerAttack" load_steps=10 format=3 uid="uid://82xcndk1xvur"]
 
 [ext_resource type="Resource" uid="uid://cb1ewo23xjf2i" path="res://GameDataResources/Attacks/PlayerAttacks/BonusEffects/DerogatoryCommentEffect.tres" id="1_qbwqe"]
-[ext_resource type="Script" path="res://src/ResourceScripts/TopicDialogue.cs" id="2_708lr"]
-[ext_resource type="Script" path="res://src/ResourceScripts/Attacks/TopicalPlayerAttack.cs" id="2_goe1p"]
+[ext_resource type="Script" uid="uid://jfen4on7wfpv" path="res://src/ResourceScripts/TopicDialogue.cs" id="2_708lr"]
+[ext_resource type="Script" uid="uid://cd6g6ys33lp84" path="res://src/ResourceScripts/Attacks/TopicalPlayerAttack.cs" id="2_goe1p"]
 
 [sub_resource type="Resource" id="Resource_0621a"]
 script = ExtResource("2_708lr")
@@ -36,8 +36,8 @@ _text = "Do you know about... that thing... with... you know that actress what's
 
 [resource]
 script = ExtResource("2_goe1p")
-_topicRelatedQuotes = [SubResource("Resource_0621a"), SubResource("Resource_s3a14"), SubResource("Resource_tldry"), SubResource("Resource_rspfc"), SubResource("Resource_7rfl7"), SubResource("Resource_nn7ei")]
-UnlockedTopics = [1, 2, 3, 4, 5, 6]
+_topicRelatedQuotes = Array[ExtResource("2_708lr")]([SubResource("Resource_0621a"), SubResource("Resource_s3a14"), SubResource("Resource_tldry"), SubResource("Resource_rspfc"), SubResource("Resource_7rfl7"), SubResource("Resource_nn7ei")])
+UnlockedTopics = Array[int]([1, 2, 3, 4, 5, 6])
 _bonusEffect = ExtResource("1_qbwqe")
 OwningCharacter = 1
 ConversationInterestDamage = 2

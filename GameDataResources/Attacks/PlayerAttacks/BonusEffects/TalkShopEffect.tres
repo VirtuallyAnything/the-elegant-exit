@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="TalkShopEffect" load_steps=2 format=3 uid="uid://1gca7gi773tf"]
 
-[ext_resource type="Script" path="res://src/ResourceScripts/Attacks/BonusEffects/TalkShopEffect.cs" id="1_og50w"]
+[ext_resource type="Script" uid="uid://6t1mrb4mde8c" path="res://src/ResourceScripts/Attacks/BonusEffects/TalkShopEffect.cs" id="1_og50w"]
 
 [resource]
 script = ExtResource("1_og50w")

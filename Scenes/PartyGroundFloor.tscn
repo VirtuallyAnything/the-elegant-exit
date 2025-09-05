@@ -1,14 +1,14 @@
 [gd_scene load_steps=68 format=3 uid="uid://dmfp5lawyswyl"]
 
-[ext_resource type="Script" path="res://src/SceneCode/PartyFloorScene.cs" id="1_x3j5x"]
+[ext_resource type="Script" uid="uid://dv8xoosipxjyi" path="res://src/SceneCode/PartyFloorScene.cs" id="1_x3j5x"]
 [ext_resource type="Texture2D" uid="uid://cxsgk2jxdn3" path="res://Assets/Levels/GroundFloor.png" id="2_vuute"]
 [ext_resource type="PackedScene" uid="uid://lk1nms6ylsx0" path="res://Scenes/Subscenes/Enemy.tscn" id="3_vs0d7"]
 [ext_resource type="Resource" uid="uid://dgtmypitorji3" path="res://GameDataResources/EnemyData/AloofAcademic.tres" id="4_aoy74"]
-[ext_resource type="Script" path="res://src/Party/Map/Wall.cs" id="4_b5ob3"]
-[ext_resource type="Script" path="res://src/Party/Enemy/PartyEnemy.cs" id="5_ao272"]
+[ext_resource type="Script" uid="uid://crc1a2fki7cwd" path="res://src/Party/Map/Wall.cs" id="4_b5ob3"]
+[ext_resource type="Script" uid="uid://cqyp40usrqog3" path="res://src/Party/Enemy/PartyEnemy.cs" id="5_ao272"]
 [ext_resource type="Resource" uid="uid://dgmh740a8kil7" path="res://GameDataResources/EnemyData/Babi.tres" id="6_qnsln"]
 [ext_resource type="Resource" uid="uid://t3duk4fguusv" path="res://GameDataResources/EnemyData/Cougar.tres" id="7_2ysbw"]
-[ext_resource type="Script" path="res://src/SceneCode/SceneSwitchArea.cs" id="8_ekoj5"]
+[ext_resource type="Script" uid="uid://k2spb5yyskn7" path="res://src/SceneCode/SceneSwitchArea.cs" id="8_ekoj5"]
 [ext_resource type="Resource" uid="uid://bqgn3w6aagdea" path="res://GameDataResources/EnemyData/NeighborDave.tres" id="8_n7tcn"]
 [ext_resource type="PackedScene" uid="uid://ba07kn2ollll2" path="res://Scenes/Subscenes/fow_light.tscn" id="8_svv30"]
 [ext_resource type="Texture2D" uid="uid://cn0t6610slev" path="res://Assets/Textures/Objects/CrowdBlock.png" id="9_6c1f4"]
@@ -641,6 +641,7 @@ position = Vector2(3878, 3013)
 texture = ExtResource("23_p5qa1")
 
 [node name="FOW" parent="." instance=ExtResource("8_svv30")]
+visible = false
 offset_right = 5948.0
 offset_bottom = 4566.0
 _fowScaleFactor = 0.1
