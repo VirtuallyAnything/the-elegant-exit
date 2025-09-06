@@ -29,7 +29,7 @@ scale = Vector2(1, 0.92)
 navigation_polygon = SubResource("NavigationPolygon_ksni7")
 enabled = false
 
-[node name="AnimatableBody2D" type="AnimatableBody2D" parent="." node_paths=PackedStringArray("_sprite", "_navRegion", "_lightOccluder")]
+[node name="StaticBody2D" type="StaticBody2D" parent="." node_paths=PackedStringArray("_sprite", "_navRegion", "_lightOccluder")]
 script = ExtResource("1_d2nwp")
 _sprite = NodePath("Sprite2D")
 _navRegion = NodePath("../NavigationRegion2D")
@@ -37,15 +37,15 @@ _activeShader = SubResource("ShaderMaterial_8t0eg")
 _outlineWidth = 5.0
 _lightOccluder = NodePath("DynamicLightOccluder2D")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatableBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(88, 7.00146)
 shape = SubResource("RectangleShape2D_l2wwd")
 
-[node name="DynamicLightOccluder2D" type="LightOccluder2D" parent="AnimatableBody2D"]
+[node name="DynamicLightOccluder2D" type="LightOccluder2D" parent="StaticBody2D"]
 occluder = SubResource("OccluderPolygon2D_mmw8h")
 script = ExtResource("3_ubngv")
 
-[node name="Sprite2D" type="Sprite2D" parent="AnimatableBody2D"]
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
 position = Vector2(0, -1.39136)
 scale = Vector2(1.39126, 1)
 texture = ExtResource("3_0n4om")

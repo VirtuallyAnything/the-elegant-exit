@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class PauseScene : Control
+public partial class PauseOverlay : Control
 {
 	[Export] private Control _popup;
 	[Export] private Control _glossary;

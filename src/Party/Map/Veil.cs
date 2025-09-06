@@ -9,7 +9,6 @@ using tee;
 // Translated to C# and adapted for The Elegant Exit
 public partial class Veil : TextureRect
 {
-	private PlayerMovement _playerMovement;
 	// The texture to overlay as fog of war
 	[Export] private Texture2D _fogTexture;
 	// Fog scroll velocity
@@ -87,10 +86,12 @@ public partial class Veil : TextureRect
 		}
 	}
 
-	// To be called only after all occluders on the current floor have been initiated
+	/// <summary>
+	/// Called only after all occluders on the current floor have been initiated. 
+	/// Adds copies of the light occluders in _lightOccludersGroup to the light subviewport
+	/// </summary>
 	public void SetupOccluders()
 	{
-		// add copies of the light occluders to the light subviewport
 		foreach (LightOccluder2D occluder in GetTree().GetNodesInGroup(_lightOccluderGroup).Cast<LightOccluder2D>())
 		{
 			if (occluder is LightOccluder2D)
@@ -99,8 +100,10 @@ public partial class Veil : TextureRect
 				{
 					occluder.SetNotifyTransform(true);
 				}
-				LightOccluder2D occluderDup = (LightOccluder2D)occluder.Duplicate();
-				occluderDup.SetNotifyTransform(false);
+				LightOccluder2D occluderDup = new()
+				{
+					Occluder = occluder.Occluder
+				};
 				occluderDup.Position = occluder.GlobalPosition * _fowScaleFactor;
 				occluderDup.Rotation = occluder.GlobalRotation;
 				occluderDup.Scale = occluder.GlobalScale;
@@ -118,13 +121,20 @@ public partial class Veil : TextureRect
 		}
 	}
 
+	/// <summary>
+	/// Function to update position and rotation of Light Occluders in _lightSV if their counterparts have been transformed.
+	/// </summary>
+	/// <param name="occluder"></param>
 	private void UpdateOccluderTransform(LightOccluder2D occluder)
 	{
-		GD.Print("Passed Instance ID: " + occluder.GetInstanceId());
-		LightOccluder2D occluderDup = _occluderDupsDict[occluder.GetInstanceId()];
-		occluderDup.Rotation = occluder.GlobalRotation;
-		occluderDup.Position = occluder.GlobalPosition * _fowScaleFactor;
-		OnPlayerMoved(_playerVisionDup.GlobalPosition);
+		ulong instanceId = occluder.GetInstanceId();
+		if (_occluderDupsDict.ContainsKey(instanceId))
+		{
+			LightOccluder2D occluderDup = _occluderDupsDict[instanceId];
+			occluderDup.Rotation = occluder.GlobalRotation;
+			occluderDup.Position = occluder.GlobalPosition * _fowScaleFactor;
+		}
+
 	}
 
 	private async void InitialReveal()
@@ -135,11 +145,15 @@ public partial class Veil : TextureRect
 		OnPlayerMoved(_playerVisionDup.GlobalPosition);
 	}
 
-	// takes the instance ID and position of the in-game light to move the duplicate light and update fog
-	public void OnPlayerMoved(Vector2 position, float newRotation = 0)
+	/// <summary>
+	/// Takes the instance ID and position of the in-game light to move the duplicate light and update fog of war
+	/// </summary>
+	/// <param name="position">Position the player moved to.</param>
+	/// <param name="rotation">Rotation of the player.</param>
+	public void OnPlayerMoved(Vector2 position, float rotation = 0)
 	{
 		_playerVisionDup.Position = _fowScaleFactor * position;
-		_playerVisionDup.Rotation = newRotation;
+		_playerVisionDup.Rotation = rotation;
 		_maskImage = _maskSV.GetTexture().GetImage();
 		_maskTexture = ImageTexture.CreateFromImage(_maskImage);
 		ShaderMaterial thisMaterial = (ShaderMaterial)Material;

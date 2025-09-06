@@ -1,6 +1,4 @@
 using Godot;
-using System;
-using System.Runtime.CompilerServices;
 
 namespace tee
 {
@@ -55,10 +53,6 @@ namespace tee
 		{
 			get { return _player; }
 			set { _player = value; }
-		}
-
-		public override void _Ready()
-		{
 		}
 
 		public static void SetupGame()

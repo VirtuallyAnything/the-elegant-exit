@@ -1,13 +1,12 @@
 using Godot;
 using System;
-using System.Diagnostics;
 
 namespace tee
 {
 	public partial class PartyEnemy : PartyCharacter, IDynamicallyVisible, ITriggerActivator
 	{
 		[Export] private EnemyData _enemyData;
-		private CircleTrigger _trigger = new();
+		private CircleTrigger _trigger;
 		private CollisionShape2D _collisionShape;
 		private Sprite2D _sprite;
 		private RayCast2D _rayCast = new();
@@ -18,21 +17,27 @@ namespace tee
 		private bool _isInChase;
 		private Tween _tween;
 		private SceneManager _sceneManager;
-
 		public override void _Ready()
 		{
 			_sprite = new();
 			_sprite.Texture = _enemyData.Icon;
+			AddChild(_sprite);
 			Modulate = new Color(1, 1, 1, 0);
 
 			AddChild(_navAgent);
+			_trigger = new()
+			{
+				Range = 50,
+				Receiver = this
+			};
+			AddChild(_trigger);
 
-            _vision = new EnemyVision(_rayCast)
-            {
-                RotationDegrees = _startingRotationDeg
-            };
+			_vision = new EnemyVision(_rayCast)
+			{
+				RotationDegrees = _startingRotationDeg
+			};
 
-            AddChild(_rayCast);
+			AddChild(_rayCast);
 
 			_movement = new EnemyMovement(_navAgent, this, (EnemyVision)_vision)
 			{
@@ -55,16 +60,14 @@ namespace tee
 		}
 
 		public void OnSightConeEntered()
-        {
+		{
 			this.AppearInView(_tween);
-        }
+		}
 
 		public void OnSightConeExited()
 		{
 			this.FadeFromView(_tween);
-			// Maybe add a sprite at the last player-known location to symbolize where the enemy was last. 
-			// Sprite is deleted as soon as it or the actual enemy is in player sight cone
-        }
+		}
 
 		public void OnTriggerAreaEntered(Node2D body)
 		{
@@ -76,5 +79,5 @@ namespace tee
 				QueueFree();
 			}
 		}
-    }
+	}
 }

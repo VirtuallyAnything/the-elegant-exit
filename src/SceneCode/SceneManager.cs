@@ -2,6 +2,9 @@ using Godot;
 
 namespace tee
 {
+	/// <summary>
+	/// Master class in charge of all scene changes.
+	/// </summary>
 	public partial class SceneManager : Node
 	{
 		private static Scene _currentScene;
@@ -34,9 +37,6 @@ namespace tee
 					break;
 				case SceneName.MainScene:
 					ChangeToMainScene();
-					break;
-				case SceneName.PauseMenu:
-					ChangeToPauseScene();
 					break;
 				case SceneName.Scoreboard:
 					break;
@@ -73,6 +73,12 @@ namespace tee
 		{
 			GetTree().Paused = false;
 			GetTree().Root.CallDeferred("remove_child", _currentScene);
+
+			if (_partyGroundFloor is not null)
+			{
+				_partyGroundFloor.QueueFree();
+				_partyFirstFloor.QueueFree();
+			}
 			_currentScene.QueueFree();
 			_currentScene = _mainMenu;
 			GetTree().Root.CallDeferred("add_child", _currentScene);
@@ -110,11 +116,6 @@ namespace tee
 		private void ChangeToPartySecondFloor()
 		{
 
-		}
-
-		private void ChangeToPauseScene()
-		{
-			
 		}
 
 		private void ChangeToEncounterStartScene()
@@ -159,6 +160,7 @@ namespace tee
 			CombatManager.CombatEnded -= ExitEncounter;
 			GameManager.GameOver -= ChangeToGameOverScene;
 			_currentScene.QueueFree();
+			QueueFree();
 		}
 	}
 }

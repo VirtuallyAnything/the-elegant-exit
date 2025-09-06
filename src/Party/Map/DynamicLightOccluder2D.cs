@@ -8,12 +8,6 @@ namespace tee
     {
         public static event DynamicOccluderHandler TransformChanged;
 
-        public override void _Ready()
-        {
-            base._Ready();
-            GD.Print("Instance ID:" + GetInstanceId() + "Parent: " + GetParent());
-        }
-
         public override void _Notification(int what)
         {
             if (what == NotificationTransformChanged)

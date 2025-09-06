@@ -8,12 +8,37 @@ namespace tee
 	public partial class CircleTrigger : Area2D
 	{
 		[Export] private float _range = 10;
-		private Node _parent;
-		private Callable _activatorMethod;
+		private Node _receiver;
+		private BodyEnteredEventHandler _callOnBodyEntered;
+		private BodyExitedEventHandler _callOnBodyExited;
 		public float Range
 		{
 			get { return _range; }
 			set { _range = value; }
+		}
+		public Node Receiver
+		{
+			get { return _receiver; }
+			set
+			{
+				if (_receiver is not null)
+				{
+					DisconnectAllDelegates();
+				}
+
+				_receiver = value;
+				if (_receiver is ITriggerActivator newActivator)
+				{
+					_callOnBodyEntered = newActivator.OnTriggerAreaEntered;
+					BodyEntered += _callOnBodyEntered;
+				}
+
+				if (_receiver is ITriggerDeactivator newDeactivator)
+				{
+					_callOnBodyExited = newDeactivator.OnTriggerAreaExited;
+					BodyExited += _callOnBodyExited;
+				}
+			}
 		}
 
 		public override void _Ready()
@@ -27,31 +52,26 @@ namespace tee
 				Shape = circle
 			};
 			AddChild(collisionShape);
+		}
 
-			_parent = GetParent();
-			if (_parent is ITriggerActivator activator)
+		public void DisconnectAllDelegates()
+		{
+			if (_callOnBodyEntered is not null)
 			{
-				BodyEntered += activator.OnTriggerAreaEntered;
+				BodyEntered -= _callOnBodyEntered;
+				_callOnBodyEntered = null;
 			}
 
-			if (_parent is ITriggerDeactivator deactivator)
+			if (_callOnBodyExited is not null)
 			{
-				BodyExited += deactivator.OnTriggerAreaExited;
+				BodyExited -= _callOnBodyExited;
+				_callOnBodyExited = null;
 			}
 		}
 
 		public override void _ExitTree()
 		{
-			base._ExitTree();
-			if (_parent is ITriggerActivator activator)
-			{
-				BodyEntered -= activator.OnTriggerAreaEntered;
-			}
-
-			if (_parent is ITriggerDeactivator deactivator)
-			{
-				BodyExited -= deactivator.OnTriggerAreaExited;
-			}
+			DisconnectAllDelegates();
 		}
 	}
 }

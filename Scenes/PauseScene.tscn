@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://bkprvu4f5y5no"]
 
-[ext_resource type="Script" uid="uid://bdtclhkbxfo8s" path="res://src/SceneCode/PauseScene.cs" id="1_3bihf"]
+[ext_resource type="Script" uid="uid://bdtclhkbxfo8s" path="res://src/SceneCode/PauseOverlay.cs" id="1_xuigf"]
 [ext_resource type="Theme" uid="uid://bpp0q38rfd1ms" path="res://Assets/Themes/Lobster.tres" id="2_08iw4"]
 [ext_resource type="LabelSettings" uid="uid://bx6i6eo3rklk8" path="res://Assets/Themes/LobsterLabelSettings.tres" id="3_a8a6l"]
 [ext_resource type="Script" uid="uid://diy0f8mk31o2x" path="res://src/SceneCode/SceneSwapButton.cs" id="4_655v7"]
@@ -16,7 +16,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_3bihf")
+script = ExtResource("1_xuigf")
 _popup = NodePath("Button")
 _glossary = NodePath("Glossary")
 

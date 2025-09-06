@@ -1,12 +1,9 @@
 using Godot;
-using System;
 
 namespace tee
 {
-	public delegate void InitializationFinishedHandler();
 	public partial class MainScene : Scene
 	{
-		public static event InitializationFinishedHandler MainSceneInit;
 		[Export] private Scene _currentFloor;
 		[Export] private CanvasLayer _encounterLayer;
 		[Export] private TextureProgressBar _socialBattery;
@@ -50,6 +47,11 @@ namespace tee
 		public void UpdateUI()
 		{
 			_socialBattery.Value = GameManager.SocialBattery;
+		}
+
+		public override void _ExitTree()
+		{
+			base._ExitTree();
 		}
 	}
 }
