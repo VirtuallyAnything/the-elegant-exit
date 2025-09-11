@@ -353,9 +353,9 @@ stretch_mode = 4
 
 [node name="PlayerSprite" type="TextureRect" parent="."]
 layout_mode = 0
-offset_left = 204.0
+offset_left = 148.0
 offset_top = 164.0
-offset_right = 604.0
+offset_right = 548.0
 offset_bottom = 750.0
 texture = ExtResource("3_ibufg")
 expand_mode = 1
@@ -368,9 +368,9 @@ libraries = {
 
 [node name="ConversationInterest" type="TextureRect" parent="."]
 layout_mode = 0
-offset_left = 1489.0
+offset_left = 1440.0
 offset_top = 79.0
-offset_right = 1586.0
+offset_right = 1537.0
 offset_bottom = 164.0
 tooltip_text = "Conversation Interest"
 theme = SubResource("Theme_xfm6w")
@@ -470,9 +470,9 @@ position = Vector2(960, 540)
 
 [node name="AttackCardContainer" type="Container" parent="."]
 layout_mode = 0
-offset_left = 96.0
+offset_left = 40.0
 offset_top = 450.0
-offset_right = 136.0
+offset_right = 80.0
 offset_bottom = 490.0
 script = ExtResource("7_3ynpm")
 
@@ -529,10 +529,10 @@ anchor_left = 0.819
 anchor_top = 0.422
 anchor_right = 0.819
 anchor_bottom = 0.422
-offset_left = -945.48
-offset_top = -216.76
-offset_right = -273.48
-offset_bottom = -92.76
+offset_left = -942.48
+offset_top = -244.76
+offset_right = -270.48
+offset_bottom = -120.76
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("6_wdmna")
@@ -547,10 +547,10 @@ anchor_left = 0.819
 anchor_top = 0.422
 anchor_right = 0.819
 anchor_bottom = 0.422
-offset_left = -901.48
-offset_top = -189.76
-offset_right = -424.48
-offset_bottom = -139.76
+offset_left = -898.48
+offset_top = -217.76
+offset_right = -421.48
+offset_bottom = -167.76
 grow_horizontal = 0
 mouse_filter = 2
 mouse_default_cursor_shape = 2
@@ -784,10 +784,10 @@ _unknownIcon = ExtResource("20_h7nvp")
 
 [node name="ThoughtBubble1" type="TextureRect" parent="ThoughtBubbles"]
 layout_mode = 0
-offset_left = 1190.0
-offset_top = 444.0
-offset_right = 1349.0
-offset_bottom = 553.0
+offset_left = 1226.0
+offset_top = 399.0
+offset_right = 1385.0
+offset_bottom = 508.0
 texture = ExtResource("21_7xnx4")
 expand_mode = 1
 
@@ -821,10 +821,10 @@ stretch_mode = 4
 
 [node name="ThoughtBubble2" type="TextureRect" parent="ThoughtBubbles"]
 layout_mode = 0
-offset_left = 1205.0
-offset_top = 281.0
-offset_right = 1364.0
-offset_bottom = 390.0
+offset_left = 1234.0
+offset_top = 267.0
+offset_right = 1393.0
+offset_bottom = 376.0
 texture = ExtResource("21_7xnx4")
 expand_mode = 1
 
@@ -895,10 +895,10 @@ stretch_mode = 4
 
 [node name="ThoughtBubble4" type="TextureRect" parent="ThoughtBubbles"]
 layout_mode = 0
-offset_left = 1682.0
-offset_top = 138.0
-offset_right = 1841.0
-offset_bottom = 247.0
+offset_left = 1650.0
+offset_top = 151.0
+offset_right = 1809.0
+offset_bottom = 260.0
 texture = ExtResource("21_7xnx4")
 expand_mode = 1
 
@@ -932,10 +932,10 @@ stretch_mode = 4
 
 [node name="ThoughtBubble5" type="TextureRect" parent="ThoughtBubbles"]
 layout_mode = 0
-offset_left = 1753.0
-offset_top = 290.0
-offset_right = 1912.0
-offset_bottom = 399.0
+offset_left = 1746.0
+offset_top = 263.0
+offset_right = 1905.0
+offset_bottom = 372.0
 texture = ExtResource("21_7xnx4")
 expand_mode = 1
 
@@ -969,10 +969,10 @@ stretch_mode = 4
 
 [node name="ThoughtBubble6" type="TextureRect" parent="ThoughtBubbles"]
 layout_mode = 0
-offset_left = 1189.0
-offset_top = 594.0
-offset_right = 1348.0
-offset_bottom = 703.0
+offset_left = 1715.0
+offset_top = 603.0
+offset_right = 1874.0
+offset_bottom = 712.0
 texture = ExtResource("21_7xnx4")
 expand_mode = 1
 
@@ -996,20 +996,20 @@ TopicName = 6
 
 [node name="TextureRect2" type="TextureRect" parent="ThoughtBubbles/ThoughtBubble6"]
 layout_mode = 0
-offset_left = 132.0
-offset_top = -30.0
-offset_right = 194.0
-offset_bottom = 11.0
+offset_left = -22.0
+offset_top = -32.0
+offset_right = 40.0
+offset_bottom = 9.0
 texture = ExtResource("27_417i3")
 expand_mode = 1
 stretch_mode = 4
 
 [node name="ThoughtBubble7" type="TextureRect" parent="ThoughtBubbles"]
 layout_mode = 0
-offset_left = 1744.0
-offset_top = 462.0
-offset_right = 1903.0
-offset_bottom = 571.0
+offset_left = 1745.0
+offset_top = 472.0
+offset_right = 1904.0
+offset_bottom = 581.0
 texture = ExtResource("21_7xnx4")
 expand_mode = 1
 
@@ -1033,9 +1033,10 @@ TopicName = 7
 
 [node name="TextureRect2" type="TextureRect" parent="ThoughtBubbles/ThoughtBubble7"]
 layout_mode = 0
-offset_left = -48.0
-offset_right = 14.0
-offset_bottom = 41.0
+offset_left = -51.0
+offset_top = 24.0
+offset_right = 11.0
+offset_bottom = 65.0
 texture = ExtResource("27_417i3")
 expand_mode = 1
 stretch_mode = 4

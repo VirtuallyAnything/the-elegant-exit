@@ -17,16 +17,18 @@ public partial class AnnoyanceDisplay : Control
 	public override void _Ready()
 	{
 		_arrowLeft.Modulate = Color.Color8(255, 255, 255, 0);
+		AnnoyanceLevel.Changed += Update;
+		Update(new AnnoyanceData());
 	}
 
-	public void DisplayAnnoyance(AnnoyanceLevel annoyanceLevel)
+	public void Update(AnnoyanceData data)
 	{
-		int currentLevel = annoyanceLevel.CurrentAnnoyance;
+		int currentLevel = data.CurrentAnnoyance;
 		_annoyanceValue.Text = currentLevel.ToRomanNumerals();
 		if (currentLevel > 0)
 		{
 			_arrowLeft.Modulate = Color.Color8(255, 255, 255, 255);
-			_conversationInterestLast.Text = $"{annoyanceLevel.GetCIDeltaForDecreaseTo(currentLevel - 1).Signed()}";
+			_conversationInterestLast.Text = $"{AnnoyanceLevel.GetCIDeltaForDecreaseTo(currentLevel - 1).Signed()}";
 		}
 		else
 		{
@@ -44,8 +46,14 @@ public partial class AnnoyanceDisplay : Control
 			_arrowRightCIPlusIcon.Visible = true;
 			_arrowRightSBPlusIcon.Visible = true;
 			_maxLevelText.Visible = false;
-			_conversationInterestNext.Text = $"{annoyanceLevel.GetCIDeltaForIncreaseTo(currentLevel + 1)}";
-			_socialBatteryNext.Text = $"{annoyanceLevel.GetSocialBatteryDamageForLevel(currentLevel + 1)}";
+			_conversationInterestNext.Text = $"{AnnoyanceLevel.GetCIDeltaForIncreaseTo(currentLevel + 1)}";
+			_socialBatteryNext.Text = $"{AnnoyanceLevel.GetSocialBatteryDamageForLevel(currentLevel + 1)}";
 		}
+	}
+
+	public override void _ExitTree()
+	{
+		base._ExitTree();
+		AnnoyanceLevel.Changed -= Update;
 	}
 }

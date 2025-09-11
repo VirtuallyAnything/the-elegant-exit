@@ -152,8 +152,8 @@ namespace tee
 				_dislikes.Add(topicName);
 			}
 
-			AnnoyanceLevel.ConversationInterestChanged += UpdateConversationInterest;
-			EnthusiasmLevel.ConversationInterestChanged += UpdateConversationInterest;
+			AnnoyanceLevel.Changed += UpdateConversationInterest;
+			EnthusiasmLevel.Changed += UpdateConversationInterest;
 			EnthusiasmLevel.AnnoyanceLowered += DecreaseAnnoyance;
 		}
 
@@ -261,7 +261,7 @@ namespace tee
 			//if there is a change of topic to a topic with less than two enthusiasm, increase annoyance.
 			if (_currentTopicName != _lastTopicName && !IsIgnoreTopicSwitchAnnoyance)
 			{
-				if (currentConversationTopic.GetCurrentEnthusiasmLevel() < 2 )
+				if (currentConversationTopic.GetCurrentEnthusiasmLevel() < 2)
 				{
 					ConversationTopic lastConversationTopic = _topicPreferences[_lastTopicName].ConversationTopic;
 					int currentEnthusiasm = lastConversationTopic.GetCurrentEnthusiasmLevel();
@@ -275,7 +275,7 @@ namespace tee
 						case 4:
 						case 5:
 							_annoyance.Increase(2);
-							GD.Print($"{DisplayName} was very annoyed to be changing the topic from something they were enthusiastic about. Annoyance increases by two to {_annoyance.CurrentAnnoyance}.");
+							GD.Print($"{DisplayName} was VERY annoyed to be changing the topic from something they were enthusiastic about. Annoyance increases by two to {_annoyance.CurrentAnnoyance}.");
 							break;
 					}
 				}
@@ -327,23 +327,24 @@ namespace tee
 			GD.Print($"{DisplayName} hates {dislikedTopicName}! Stop bringing it up!");
 		}
 
-		public void UpdateConversationInterest(int summand, GodotObject changedBy)
+		public void UpdateConversationInterest(EnthusiasmData data)
 		{
-			ConversationInterest += summand;
-			ConversationInterestMax += summand;
-			if (changedBy is EnthusiasmLevel)
+			ConversationInterest += data.ConversationInterestModifier;
+			ConversationInterestMax += data.ConversationInterestModifier;
+
+			_conversationInterestModifierEnthusiasm = 0;
+			IEnumerable<TopicName> combined = Likes.Concat(Neutrals);
+			foreach (TopicName topic in combined)
 			{
-				_conversationInterestModifierEnthusiasm = 0;
-				IEnumerable<TopicName> combined = Likes.Concat(Neutrals);
-				foreach (TopicName topic in combined)
-				{
-					_conversationInterestModifierEnthusiasm += _topicPreferences[topic].ConversationTopic.GetConversationInterestModifier();
-				}
+				_conversationInterestModifierEnthusiasm += _topicPreferences[topic].ConversationTopic.GetConversationInterestModifier();
 			}
-			else if (changedBy is AnnoyanceLevel)
-			{
-				_conversationInterestModifierAnnoyance += summand;
-			}
+		}
+
+		public void UpdateConversationInterest(AnnoyanceData data)
+		{
+			ConversationInterest += data.ConversationInterestModifier;
+			ConversationInterestMax += data.ConversationInterestModifier;
+			_conversationInterestModifierAnnoyance += data.ConversationInterestModifier;
 		}
 
 		public void IncreaseEnthusiasmFor(TopicName topic)
@@ -357,10 +358,11 @@ namespace tee
 
 		public void DecreaseEnthusiasmFor(TopicName topic)
 		{
-			if(_topicPreferences.Keys.Contains(topic)){
+			if (_topicPreferences.Keys.Contains(topic))
+			{
 				_topicPreferences[topic].ConversationTopic.DecreaseEnthusiasm();
 			}
-			
+
 		}
 
 		public int GetEnthusiasmLevelFor(TopicName topic)
@@ -385,8 +387,8 @@ namespace tee
 		public override void _ExitTree()
 		{
 			base._ExitTree();
-			AnnoyanceLevel.ConversationInterestChanged -= UpdateConversationInterest;
-			EnthusiasmLevel.ConversationInterestChanged -= UpdateConversationInterest;
+			AnnoyanceLevel.Changed -= UpdateConversationInterest;
+			EnthusiasmLevel.Changed -= UpdateConversationInterest;
 			EnthusiasmLevel.AnnoyanceLowered -= DecreaseAnnoyance;
 		}
 	}

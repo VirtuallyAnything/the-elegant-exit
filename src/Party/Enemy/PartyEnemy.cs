@@ -66,7 +66,7 @@ namespace tee
 
 		public void OnSightConeExited()
 		{
-			this.FadeFromView(_tween);
+			_tween = this.FadeFromView(_tween);
 		}
 
 		public void OnTriggerAreaEntered(Node2D body)

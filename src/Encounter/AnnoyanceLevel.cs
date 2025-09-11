@@ -3,13 +3,20 @@ using System;
 
 namespace tee
 {
-    public delegate void AnnoyanceHandlerArg(int value, GodotObject godotObject);
+    public delegate void AnnoyanceHandlerObject(AnnoyanceData annoyanceData);
+    public delegate void AnnoyanceHandlerValue(int value);
     public delegate void AnnoyanceHandler();
-    
+    public struct AnnoyanceData
+    {
+        public int ConversationInterestModifier;
+        public int SocialStandingChange;
+        public int SocialBatteryDamage;
+        public int CurrentAnnoyance;
+    }
+
     public partial class AnnoyanceLevel : GodotObject
     {
-        public event AnnoyanceHandlerArg SocialBatteryChanged;
-        public static event AnnoyanceHandlerArg ConversationInterestChanged;
+        public static event AnnoyanceHandlerObject Changed;
         public event AnnoyanceHandler LevelFiveReached;
         private int _currentAnnoyance;
         private int _socialStandingChange;
@@ -79,8 +86,13 @@ namespace tee
                     LevelFiveReached?.Invoke();
                     break;
             }
-            SocialBatteryChanged?.Invoke(_socialBatteryDamage, this);
-            ConversationInterestChanged?.Invoke(_conversationInterestModifier, this);
+            Changed?.Invoke(new AnnoyanceData()
+            {
+                ConversationInterestModifier = _conversationInterestModifier,
+                SocialStandingChange = _socialStandingChange,
+                SocialBatteryDamage = _socialBatteryDamage,
+                CurrentAnnoyance = CurrentAnnoyance
+            });
             GD.Print($"Annoyance Level increased to {CurrentAnnoyance}");
         }
 
@@ -120,10 +132,15 @@ namespace tee
                     _conversationInterestModifier = 4;
                     break;
             }
-            ConversationInterestChanged?.Invoke(_conversationInterestModifier, this);
-            GD.Print($"Annoyance Level decreased to {CurrentAnnoyance}");
+            Changed?.Invoke(new AnnoyanceData()
+            {
+                ConversationInterestModifier = _conversationInterestModifier,
+                SocialStandingChange = _socialStandingChange,
+                SocialBatteryDamage = _socialBatteryDamage,
+                CurrentAnnoyance = CurrentAnnoyance
+            });
+             GD.Print($"Annoyance Level decreased to {CurrentAnnoyance}");
         }
-
 
         public void Decrease(int amount)
         {
@@ -133,11 +150,12 @@ namespace tee
             }
         }
 
-       public int GetTotalSocialStanding(){
+        public int GetTotalSocialStanding()
+        {
             return _socialStandingChange;
-       }
+        }
 
-        public int GetSocialBatteryDamageForLevel(int level)
+        public static int GetSocialBatteryDamageForLevel(int level)
         {
             switch (level)
             {
@@ -153,30 +171,34 @@ namespace tee
             return 0;
         }
 
-        public int GetCIDeltaForIncreaseTo(int level){
-            switch(level){
+        public static int GetCIDeltaForIncreaseTo(int level)
+        {
+            switch (level)
+            {
                 case 1:
-                return -1;
-                case 2: 
-                return -2;
+                    return -1;
+                case 2:
+                    return -2;
                 case 3:
-                return -3;
+                    return -3;
                 case 4:
-                return -4;
+                    return -4;
             }
             return 0;
         }
 
-        public int GetCIDeltaForDecreaseTo(int level){
-            switch(level){
+        public static int GetCIDeltaForDecreaseTo(int level)
+        {
+            switch (level)
+            {
                 case 0:
-                return 1;
+                    return 1;
                 case 1:
-                return 2;
+                    return 2;
                 case 2:
-                return 3;
+                    return 3;
                 case 3:
-                return 4;
+                    return 4;
             }
             return 0;
         }

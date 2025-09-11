@@ -6,7 +6,7 @@ namespace tee
     /// <summary>
     /// Script to attach to an object that obscurs Player Vision.
     /// </summary>
-    public abstract partial class OccludingPartyObject : StaticBody2D, IDynamicallyVisible
+    public partial class OccludingPartyObject : StaticBody2D, IDynamicallyVisible
     {
         private bool _isVisible = false;
         [Export] private LightOccluder2D _lightOccluder;

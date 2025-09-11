@@ -49,7 +49,8 @@ namespace tee
 			};
 			CollisionShape2D collisionShape = new()
 			{
-				Shape = circle
+				Shape = circle,
+				Position = Position
 			};
 			AddChild(collisionShape);
 		}

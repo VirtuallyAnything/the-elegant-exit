@@ -57,8 +57,8 @@ namespace tee
 
 		public void SetupScene(EnemyData enemyData)
 		{
-			EnthusiasmLevel.ConversationInterestChanged += UpdateConversationInterest;
-			AnnoyanceLevel.ConversationInterestChanged += UpdateConversationInterest;
+			EnthusiasmLevel.Changed += UpdateConversationInterest;
+			AnnoyanceLevel.Changed += UpdateConversationInterest;
 			_currentEnemy = enemyData;
 			_conversationInterestMax.Text = $"{_currentEnemy.ConversationInterest}";
 			_conversationInterestValue.Text = _conversationInterestMax.Text;
@@ -159,11 +159,13 @@ namespace tee
 			Tween tween = _conversationInterestMaxChange.CreateTween();
 			tween.TweenProperty(
 			_conversationInterestMaxChange, $"{Control.PropertyName.SelfModulate}", Color.Color8(255, 255, 255, 255), 1f);
+
 			// Animate change to new Value
 			int startValue = _conversationInterestValue.Text.ToInt();
 			tween.TweenMethod(Callable.From<int>(_conversationInterestValue.SetLabelText), startValue, startValue + _conversationInterestDelta, 1.0f);
 			int maxStartValue = _conversationInterestMax.Text.ToInt();
 			tween.TweenMethod(Callable.From<int>(_conversationInterestMax.SetLabelText), maxStartValue, maxStartValue + _conversationInterestDelta, 1.0f);
+
 			//Fade-Out ConversationInterestMaxChange
 			PropertyTweener propertyTweener = tween.TweenProperty(
 						_conversationInterestMaxChange, $"{Control.PropertyName.SelfModulate}", Color.Color8(255, 255, 255, 0), 1f);
@@ -175,11 +177,11 @@ namespace tee
 		public async Task PlayAnimationsForAttack(PlayerAttack playerAttack, int bonusDamage)
 		{
 			_attackAnimationsFinished = false;
-			// Add Icon to conversationInterestDamage.Text depending on
 			_conversationInterestDamage.Text = $"-{playerAttack.ConversationInterestDamage + bonusDamage}";
 			Tween tween = _conversationInterestDamage.CreateTween();
 			tween.TweenProperty(
 			_conversationInterestDamage, $"{Control.PropertyName.SelfModulate}", Color.Color8(255, 255, 255, 255), 1f);
+
 			// Animate change to new value
 			int startValue = _conversationInterestValue.Text.ToInt();
 			MethodTweener methodTween = tween.TweenMethod(Callable.From<int>(_conversationInterestValue.SetLabelText), startValue, startValue - playerAttack.ConversationInterestDamage - bonusDamage, 1.0f).SetDelay(2f);
@@ -200,12 +202,15 @@ namespace tee
 			_mentalCapacityDamage.Text = $"-{enemyAttack.MentalCapacityDamage}";
 
 			Tween tween = _mentalCapacityDamage.CreateTween();
+
 			// Fade-In Damage label
 			tween.TweenProperty(
 				_mentalCapacityDamage, $"{Control.PropertyName.SelfModulate}", Color.Color8(255, 255, 255, 255), 1f);
+
 			// Animate change to new value
 			int startValue = _mentalCapacityValue.Text.ToInt();
 			tween.TweenMethod(Callable.From<int>(_mentalCapacityValue.SetLabelText), startValue, startValue - enemyAttack.MentalCapacityDamage, 1.0f).SetDelay(2f);
+
 			// Fade-Out label
 			tween.TweenProperty(
 				_mentalCapacityDamage, $"{Control.PropertyName.SelfModulate}", Color.Color8(255, 255, 255, 0), 1f);
@@ -217,11 +222,6 @@ namespace tee
 			await ToSignal(propTweener, Tween.SignalName.Finished);			
 		}
 
-		public void UpdateAnnoyance(AnnoyanceLevel annoyanceLevel)
-		{
-			_annoyanceDisplay.DisplayAnnoyance(annoyanceLevel);
-		}
-
 		public void UpdateTopic(TopicName topicName)
 		{
 			_currentTopic.Text = topicName.ToString();
@@ -229,17 +229,25 @@ namespace tee
 
 		public void UpdateConversationInterestModifiers(int valueThroughAnnoyance, int valueThroughEnthusiasm)
 		{
-			_currentMaxCIChanges.Text = $"[font=res://Assets/Fonts/Lobster-Regular.ttf]+{valueThroughEnthusiasm}[/font] from Enthusiasm\n[font=res://Assets/Fonts/Lobster-Regular.ttf]{valueThroughAnnoyance}[/font] from Annoyance";
+			_currentMaxCIChanges.Text =
+			$"[font=res://Assets/Fonts/Lobster-Regular.ttf]+{valueThroughEnthusiasm}[/font] from Enthusiasm\n[font=res://Assets/Fonts/Lobster-Regular.ttf]{valueThroughAnnoyance}[/font] from Annoyance";
 		}
 
-		public void UpdateConversationInterest(int value, GodotObject godotObject)
+		public void UpdateConversationInterest(EnthusiasmData data)
 		{
-			_conversationInterestDelta += value;
+			_conversationInterestDelta += data.ConversationInterestModifier;
+		}
+
+		public void UpdateConversationInterest(AnnoyanceData data)
+		{
+			_conversationInterestDelta += data.ConversationInterestModifier;
 		}
 
 		public override void _ExitTree()
 		{
 			base._ExitTree();
+			EnthusiasmLevel.Changed -= UpdateConversationInterest;
+			AnnoyanceLevel.Changed -= UpdateConversationInterest;
 		}
 	}
 }

@@ -1,4 +1,4 @@
-[gd_scene load_steps=71 format=3 uid="uid://dmfp5lawyswyl"]
+[gd_scene load_steps=70 format=3 uid="uid://dmfp5lawyswyl"]
 
 [ext_resource type="Script" uid="uid://dv8xoosipxjyi" path="res://src/SceneCode/PartyFloorScene.cs" id="1_x3j5x"]
 [ext_resource type="Texture2D" uid="uid://cxsgk2jxdn3" path="res://Assets/Levels/GroundFloor.png" id="2_vuute"]
@@ -24,7 +24,6 @@
 [ext_resource type="Texture2D" uid="uid://bshflmibicrre" path="res://Assets/Textures/Objects/FruitBowl.png" id="21_3meyr"]
 [ext_resource type="Texture2D" uid="uid://dof5m0e1h7jqb" path="res://Assets/Textures/Objects/ICounter.png" id="22_dtvy5"]
 [ext_resource type="Texture2D" uid="uid://bfpdi04e8c4fu" path="res://Assets/Textures/Objects/Fridge.png" id="23_p5qa1"]
-[ext_resource type="Script" uid="uid://cecualmknw50c" path="res://src/Party/Map/OccludingPartyObject.cs" id="24_7pkmc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c47vx"]
 size = Vector2(49, 74.5001)
@@ -730,9 +729,7 @@ position = Vector2(852, 730)
 scale = Vector2(0.194338, 0.194338)
 texture = ExtResource("9_6c1f4")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Crowds" node_paths=PackedStringArray("_lightOccluder")]
-script = ExtResource("24_7pkmc")
-_lightOccluder = NodePath("LightOccluder2D")
+[node name="StaticBody2D" type="StaticBody2D" parent="Crowds"]
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="Crowds/StaticBody2D"]
 position = Vector2(2635, 3199)

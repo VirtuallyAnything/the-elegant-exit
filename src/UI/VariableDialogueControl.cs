@@ -31,8 +31,6 @@ public partial class VariableDialogueControl : Control
     {
         Vector2 newSize = Size;
         newSize.Y = _RTlabel.Size.Y + 2 * _padding.Y;
-        GD.Print($"_RTlabel.Size: {_RTlabel.Size}");
-        GD.Print($"newSize: {newSize}");
         Size = newSize; 
     }
 

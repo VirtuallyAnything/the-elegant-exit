@@ -25,10 +25,10 @@ namespace tee
 			};
 			Vector2 textureSize = _sprite.Texture.GetSize();
 			Vector2 center = textureSize / 2;
-
 			float radius = textureSize.X;
-			_trigger.Position = center;
-			_navRegion.AddChild(_trigger); 
+
+			//_trigger.Position = Position + center;
+			_navRegion.AddChild(_trigger);
 
 			CollisionCone collisionCone = new()
 			{

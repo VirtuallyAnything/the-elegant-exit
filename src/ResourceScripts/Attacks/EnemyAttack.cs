@@ -23,22 +23,27 @@ namespace tee
 			set { _mentalCapacityDamage = value; }
 		}
 		[JsonConverter(typeof(JsonStringEnumConverter))]
-		public TopicName Topic{
+		public TopicName Topic
+		{
 			get; set;
 		}
 		[JsonConverter(typeof(JsonStringEnumConverter))]
-    		public QuoteType Type{
+		public QuoteType Type
+		{
 			get; set;
 		}
 		[Export]
-		public string Quote{
-			get{return _quote;}
-			set{_quote = value;}
+		public string Quote
+		{
+			get { return _quote; }
+			set { _quote = value; }
 		}
-		public string DialogueID{
+		public string DialogueID
+		{
 			get; set;
 		}
-		public bool NeedsTransition{
+		public bool NeedsTransition
+		{
 			get; set;
 		}
 	}

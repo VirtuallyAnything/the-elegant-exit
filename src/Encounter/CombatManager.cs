@@ -43,6 +43,7 @@ namespace tee
 		public Preference PreferenceForCurrentTopic
 		{
 			get { return _preferenceForCurrentTopic; }
+			set { _preferenceForCurrentTopic = value; }
 		}
 		public EncounterEnemy Enemy
 		{
@@ -108,7 +109,6 @@ namespace tee
 
 			GameManager.SocialBattery -= _transferAmount;
 			_player.MentalCapacity = _transferAmount;
-			_encounterScene.UpdateAnnoyance(Enemy.Annoyance);
 			EnemyAttack();
 		}
 
@@ -131,13 +131,11 @@ namespace tee
 
 			_selectedAttack = playerAttack;
 			_playerLastTopicName = PlayerCurrentTopicName;
-			_preferenceForCurrentTopic = Preference.Unknown;
+			PreferenceForCurrentTopic = Preference.Unknown;
 
 			// Set the base attack damage
 			ConversationInterestDamage = _selectedAttack.ConversationInterestDamage;
 			ConversationInterestBonusDamage = 0;
-
-			_selectedAttack.BonusEffect?.Resolve(this);
 
 			TopicName topicOfAttack;
 			if (playerAttack is TopicalPlayerAttack topicalPlayerAttack)
@@ -145,34 +143,36 @@ namespace tee
 				topicOfAttack = topicalPlayerAttack.SelectedTopicName;
 				PlayerCurrentTopicName = topicOfAttack;
 				_encounterScene.UpdateTopic(PlayerCurrentTopicName);
-				_preferenceForCurrentTopic = Enemy.GetPreferenceFor(topicOfAttack);
-
-				if (!_isIgnoreCIBonusDamage)
-				{
-					switch (_preferenceForCurrentTopic)
-					{
-						// Apply damage modifiers for Preferences
-						case Preference.Like:   //TODO: Give Player feedback for why they get -1 Damage to their attack
-							ConversationInterestBonusDamage -= 1;
-							break;
-						case Preference.Dislike:
-							ConversationInterestBonusDamage += 1;
-							if (PlayerCurrentTopicName == _playerLastTopicName)
-							{
-								Enemy.Enrage(PlayerCurrentTopicName);
-							}
-							// Subtract one social Battery if the player knowingly talks about a disliked topic
-							if (_player.DiscoveredEnemyPreferences.ContainsKey(PlayerCurrentTopicName))
-							{
-								GameManager.SocialBattery -= 1;
-							}
-							break;
-					}
-				}
+				PreferenceForCurrentTopic = Enemy.GetPreferenceFor(topicOfAttack);
 			}
 			else
 			{
 				topicOfAttack = TopicName.None;
+			}
+
+			_selectedAttack.BonusEffect?.Resolve(this);
+
+			if (!_isIgnoreCIBonusDamage)
+			{
+				switch (PreferenceForCurrentTopic)
+				{
+					// Apply damage modifiers for Preferences
+					case Preference.Like:   //TODO: Give Player feedback for why they get -1 Damage to their attack
+						ConversationInterestBonusDamage -= 1;
+						break;
+					case Preference.Dislike:
+						ConversationInterestBonusDamage += 1;
+						if (PlayerCurrentTopicName == _playerLastTopicName)
+						{
+							Enemy.Enrage(PlayerCurrentTopicName);
+						}
+						// Subtract one social Battery if the player knowingly talks about a disliked topic
+						if (_player.DiscoveredEnemyPreferences.ContainsKey(PlayerCurrentTopicName))
+						{
+							GameManager.SocialBattery -= 1;
+						}
+						break;
+				}
 			}
 
 			if (PlayerCurrentTopicName == TopicName.Weather)
@@ -208,7 +208,6 @@ namespace tee
 			}
 			EnthusiasmChanged?.Invoke(PlayerCurrentTopicName, Enemy.GetEnthusiasmLevelFor(PlayerCurrentTopicName));
 
-			_encounterScene.UpdateAnnoyance(Enemy.Annoyance);
 			_encounterScene.UpdateConversationInterestModifiers(Enemy.ConversationInterestModifierAnnoyance, Enemy.ConversationInterestModifierEnthusiasm);
 
 			if (Enemy.ConversationInterest <= 0)
@@ -285,7 +284,6 @@ namespace tee
 
 		public override void _ExitTree()
 		{
-			//NumberedButton.OnButtonPressed -= PlayerAttack;
 			_encounterScene.SetupCompleted -= StartCombat;
 			EncounterScene.PlayerTurnComplete -= EnemyAttack;
 			EnemyTurnComplete -= SetupNewAttack;
