@@ -57,8 +57,9 @@ namespace tee
 
 		public void SetupScene(EnemyData enemyData)
 		{
-			EnthusiasmLevel.Changed += UpdateConversationInterest;
+			ConversationTopic.EnthusiasmChangedForTopic += UpdateConversationInterest;
 			AnnoyanceLevel.Changed += UpdateConversationInterest;
+			EncounterCharacter.TopicChanged += UpdateTopic;
 			_currentEnemy = enemyData;
 			_conversationInterestMax.Text = $"{_currentEnemy.ConversationInterest}";
 			_conversationInterestValue.Text = _conversationInterestMax.Text;
@@ -194,7 +195,7 @@ namespace tee
 			PropertyTweener propTweener = tween.TweenProperty(
 				_conversationInterestDamage, $"{Control.PropertyName.SelfModulate}", Color.Color8(255, 255, 255, 0), 1f);
 			await ToSignal(propTweener, Tween.SignalName.Finished);
-			_attackAnimationsFinished = true;	
+			_attackAnimationsFinished = true;
 		}
 
 		public async Task PlayAnimationsForAttack(EnemyAttack enemyAttack)
@@ -219,12 +220,15 @@ namespace tee
 			Tween batteryTween = _socialBatteryProgress.CreateTween();
 			PropertyTweener propTweener = batteryTween.TweenProperty(
 				_socialBatteryProgress, $"{TextureProgressBar.PropertyName.Value}", _socialBatteryProgress.Value + enemyAttack.SocialBatteryChange, 1f);
-			await ToSignal(propTweener, Tween.SignalName.Finished);			
+			await ToSignal(propTweener, Tween.SignalName.Finished);
 		}
 
 		public void UpdateTopic(TopicName topicName)
 		{
-			_currentTopic.Text = topicName.ToString();
+			if (topicName != TopicName.None)
+			{
+				_currentTopic.Text = topicName.ToString();
+			}
 		}
 
 		public void UpdateConversationInterestModifiers(int valueThroughAnnoyance, int valueThroughEnthusiasm)
@@ -233,9 +237,9 @@ namespace tee
 			$"[font=res://Assets/Fonts/Lobster-Regular.ttf]+{valueThroughEnthusiasm}[/font] from Enthusiasm\n[font=res://Assets/Fonts/Lobster-Regular.ttf]{valueThroughAnnoyance}[/font] from Annoyance";
 		}
 
-		public void UpdateConversationInterest(EnthusiasmData data)
+		public void UpdateConversationInterest(EnthusiasmData data, TopicName topicName)
 		{
-			_conversationInterestDelta += data.ConversationInterestModifier;
+			_conversationInterestDelta += data.ConversationInterestModDelta;
 		}
 
 		public void UpdateConversationInterest(AnnoyanceData data)
@@ -246,7 +250,7 @@ namespace tee
 		public override void _ExitTree()
 		{
 			base._ExitTree();
-			EnthusiasmLevel.Changed -= UpdateConversationInterest;
+			ConversationTopic.EnthusiasmChangedForTopic -= UpdateConversationInterest;
 			AnnoyanceLevel.Changed -= UpdateConversationInterest;
 		}
 	}

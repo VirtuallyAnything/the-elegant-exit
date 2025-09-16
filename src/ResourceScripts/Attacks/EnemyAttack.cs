@@ -7,7 +7,7 @@ namespace tee
 	[GlobalClass]
 	public partial class EnemyAttack : Attack
 	{
-		private float _mentalCapacityDamage;
+		private int _mentalCapacityDamage;
 		private int _socialBatteryChange;
 		private string _quote;
 		[Export]
@@ -17,7 +17,7 @@ namespace tee
 			set { _socialBatteryChange = value; }
 		}
 		[Export]
-		public float MentalCapacityDamage
+		public int MentalCapacityDamage
 		{
 			get { return _mentalCapacityDamage; }
 			set { _mentalCapacityDamage = value; }

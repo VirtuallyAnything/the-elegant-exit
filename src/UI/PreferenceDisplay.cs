@@ -17,7 +17,7 @@ public partial class PreferenceDisplay : Control
 			$"[hint='Preference: {topicLabel.Preference}'][center]{topicLabel.TopicName}[img=30]{_unknownIcon.ResourcePath}[/img][/center]";
 		}
 		CombatManager.PreferenceDiscovered += UpdatePreference;
-		CombatManager.EnthusiasmChanged += UpdateEnthusiasm;
+		ConversationTopic.EnthusiasmChangedForTopic += UpdateEnthusiasm;
 	}
 
 	public void UpdatePreference(TopicName topicName, Preference preference)
@@ -48,15 +48,15 @@ public partial class PreferenceDisplay : Control
 		}
 	}
 
-	public void UpdateEnthusiasm(TopicName topicName, int enthusiasmLevel)
+	public void UpdateEnthusiasm(EnthusiasmData data, TopicName topicName)
 	{
 		foreach (TopicRichTextLabel label in _topicLabels)
 		{
 			if (label.TopicName == topicName)
 			{
-				label.EnthusiasmNumber = enthusiasmLevel;
+				label.EnthusiasmNumber = data.CurrentEnthusiasm;
 				string enthusiasmRomanNumeral = "\n";
-				enthusiasmRomanNumeral += enthusiasmLevel.ToRomanNumerals();
+				enthusiasmRomanNumeral += data.CurrentEnthusiasm.ToRomanNumerals();
 				label.EnthusiasmLevel = enthusiasmRomanNumeral;
 				label.Text = $"[hint='Preference: {label.Preference}\nEnthusiasm: {label.EnthusiasmNumber}" + $"'][center]{topicName}" + label.IconPath + enthusiasmRomanNumeral + "[/center]";
 			}
@@ -67,7 +67,7 @@ public partial class PreferenceDisplay : Control
 	{
 		base._ExitTree();
 		CombatManager.PreferenceDiscovered -= UpdatePreference;
-		CombatManager.EnthusiasmChanged -= UpdateEnthusiasm;
+		ConversationTopic.EnthusiasmChangedForTopic -= UpdateEnthusiasm;
 	}
 
 }

@@ -1,12 +1,11 @@
-using System.Collections.Generic;
 using Godot;
 using Godot.Collections;
 
 namespace tee
 {
-    public partial class EncounterPlayer : GodotObject
+    public partial class EncounterPlayer : EncounterCharacter
     {
-        private float _mentalCapacity = 10;
+        private int _mentalCapacity = 10;
         private Array<PlayerAttack> _allPlayerAttacks;
         private Array<PlayerAttack> _attackPool;
         private Array<PlayerAttack> _currentAttacks = new();
@@ -15,7 +14,7 @@ namespace tee
         {
             get { return _discoveredEnemyPreferences; }
         }
-        public float MentalCapacity
+        public int MentalCapacity
         {
             get { return _mentalCapacity; }
             set
@@ -37,7 +36,7 @@ namespace tee
         public EncounterPlayer(Array<PlayerAttack> playerAttacks)
         {
             _allPlayerAttacks = playerAttacks;
-            _attackPool = new Array<PlayerAttack>(_allPlayerAttacks);
+            _attackPool = new(_allPlayerAttacks);
             CombatManager.PreferenceDiscovered += AddEnemyPreference;
         }
 

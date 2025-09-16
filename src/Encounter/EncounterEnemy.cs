@@ -1,11 +1,12 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using Godot;
 using Godot.Collections;
 
 namespace tee
 {
-	struct TopicPreference
+	readonly struct TopicPreference
 	{
 		public ConversationTopic ConversationTopic
 		{
@@ -23,7 +24,7 @@ namespace tee
 		}
 	}
 	public delegate void EncounterEnemyHandler(int value);
-	public partial class EncounterEnemy : Node
+	public partial class EncounterEnemy : EncounterCharacter
 	{
 		public static event EncounterEnemyHandler ConversationInterestChanged;
 		private string _displayName;
@@ -35,11 +36,9 @@ namespace tee
 		private int _conversationInterestModifierEnthusiasm;
 		private AnnoyanceLevel _annoyance = new();
 		private System.Collections.Generic.Dictionary<TopicName, TopicPreference> _topicPreferences;
-		private List<TopicName> _likes = new();
-		private List<TopicName> _neutrals = new();
-		private List<TopicName> _dislikes = new();
-		private TopicName _lastTopicName = TopicName.None;
-		private TopicName _currentTopicName = TopicName.None;
+		private List<TopicName> _likes;
+		private List<TopicName> _neutrals;
+		private List<TopicName> _dislikes;
 		private bool _switchTopic = false;
 		public string DisplayName
 		{
@@ -113,14 +112,6 @@ namespace tee
 		{
 			get; set;
 		}
-		public TopicName CurrentTopicName
-		{
-			get { return _currentTopicName; }
-		}
-		public TopicName LastTopicName
-		{
-			get { return _lastTopicName; }
-		}
 
 		public EncounterEnemy(EnemyData data)
 		{
@@ -131,30 +122,25 @@ namespace tee
 			ConversationInterestMax = _conversationInterest;
 
 			_topicPreferences = new();
-			foreach (TopicName topicName in data.Likes)
-			{
-				TopicPreference topicPreference = new(new ConversationTopic(topicName), Preference.Like);
-				_topicPreferences.Add(topicName, topicPreference);
-				_likes.Add(topicName);
-			}
-
-			foreach (TopicName topicName in data.Neutrals)
-			{
-				TopicPreference topicPreference = new(new ConversationTopic(topicName), Preference.Neutral);
-				_topicPreferences.Add(topicName, topicPreference);
-				_neutrals.Add(topicName);
-			}
-
-			foreach (TopicName topicName in data.Dislikes)
-			{
-				TopicPreference topicPreference = new(new ConversationTopic(topicName), Preference.Dislike);
-				_topicPreferences.Add(topicName, topicPreference);
-				_dislikes.Add(topicName);
-			}
+			_likes = SetupPreferences(data.Likes, Preference.Like);
+			_neutrals = SetupPreferences(data.Neutrals, Preference.Neutral);
+			_dislikes = SetupPreferences(data.Dislikes, Preference.Dislike);
 
 			AnnoyanceLevel.Changed += UpdateConversationInterest;
-			EnthusiasmLevel.Changed += UpdateConversationInterest;
+			ConversationTopic.EnthusiasmChangedForTopic += UpdateConversationInterest;
 			EnthusiasmLevel.AnnoyanceLowered += DecreaseAnnoyance;
+		}
+
+		private List<TopicName> SetupPreferences(Array<TopicName> dataArray, Preference preference)
+		{
+			List<TopicName> result = new();
+			foreach (TopicName topicName in dataArray)
+			{
+				TopicPreference topicPreference = new(new ConversationTopic(topicName), preference);
+				_topicPreferences.Add(topicName, topicPreference);
+				result.Add(topicName);
+			}
+			return result;
 		}
 
 		public void SwitchTopicNextTurn()
@@ -196,15 +182,14 @@ namespace tee
 				}
 			}
 			// If the list is empty, there must be no more attacks for this topic in the pool.
-			// Call function recursively with different topic???
 			if (potentialAttacks.Count == 0)
 			{
 				GD.Print($"No more attacks for topic {topicName} available. Choosing different topic.");
 				return ChooseAttack(ChooseTopic());
 			}
 			// Update last and current topic and their weights
-			_lastTopicName = _currentTopicName;
-			_currentTopicName = topicName;
+			_lastTopicName = CurrentTopicName;
+			CurrentTopicName = topicName;
 
 			ConversationTopic chosenTopic = _topicPreferences[topicName].ConversationTopic;
 
@@ -216,7 +201,7 @@ namespace tee
 			}
 			else
 			{
-				if (_currentTopicName != _lastTopicName)
+				if (CurrentTopicName != _lastTopicName)
 				{
 					chosenTopic.Weight += 5;
 					if (_lastTopicName != TopicName.None && _lastTopicName != TopicName.Weather)
@@ -240,8 +225,8 @@ namespace tee
 				return;
 			}
 
-			_lastTopicName = _currentTopicName;
-			_currentTopicName = topicName;
+			_lastTopicName = CurrentTopicName;
+			CurrentTopicName = topicName;
 
 			if (topicName == TopicName.Weather)
 			{
@@ -249,17 +234,17 @@ namespace tee
 				return;
 			}
 
-			ConversationTopic currentConversationTopic = _topicPreferences[_currentTopicName].ConversationTopic;
+			ConversationTopic currentConversationTopic = _topicPreferences[CurrentTopicName].ConversationTopic;
 			// Current Topic gets +5 Weight, last Topic loses the extra Weight.
 			// If they're the same topic, the Weight doesn't need to be changed.
-			if (_currentTopicName != _lastTopicName)
+			if (CurrentTopicName != _lastTopicName)
 			{
 				_topicPreferences[_lastTopicName].ConversationTopic.Weight -= 5;
 				currentConversationTopic.Weight += 5;
 			}
 
 			//if there is a change of topic to a topic with less than two enthusiasm, increase annoyance.
-			if (_currentTopicName != _lastTopicName && !IsIgnoreTopicSwitchAnnoyance)
+			if (CurrentTopicName != _lastTopicName && !IsIgnoreTopicSwitchAnnoyance)
 			{
 				if (currentConversationTopic.GetCurrentEnthusiasmLevel() < 2)
 				{
@@ -283,7 +268,7 @@ namespace tee
 
 			// Increase Enthusiasm for the topic if the topic is liked or neutral in preference, 
 			// otherwise increase annoyance
-			Preference preference = GetPreferenceFor(_currentTopicName);
+			Preference preference = GetPreferenceFor(CurrentTopicName);
 			switch (preference)
 			{
 				// Missing content: Reaction dialogue based on preference for topic
@@ -301,7 +286,7 @@ namespace tee
 					}
 					break;
 			}
-			GD.Print($"{DisplayName} Preference for {_currentTopicName}: {preference}");
+			GD.Print($"{DisplayName} Preference for {CurrentTopicName}: {preference}");
 
 			// Reset all one-time effect booleans
 			IsIgnoreNextAnnoyance = false;
@@ -319,7 +304,6 @@ namespace tee
 			{
 				return Preference.Unknown;
 			}
-
 		}
 
 		public void Enrage(TopicName dislikedTopicName)
@@ -327,17 +311,11 @@ namespace tee
 			GD.Print($"{DisplayName} hates {dislikedTopicName}! Stop bringing it up!");
 		}
 
-		public void UpdateConversationInterest(EnthusiasmData data)
+		public void UpdateConversationInterest(EnthusiasmData data, TopicName topicName)
 		{
-			ConversationInterest += data.ConversationInterestModifier;
-			ConversationInterestMax += data.ConversationInterestModifier;
-
-			_conversationInterestModifierEnthusiasm = 0;
-			IEnumerable<TopicName> combined = Likes.Concat(Neutrals);
-			foreach (TopicName topic in combined)
-			{
-				_conversationInterestModifierEnthusiasm += _topicPreferences[topic].ConversationTopic.GetConversationInterestModifier();
-			}
+			ConversationInterest += data.ConversationInterestModDelta;
+			ConversationInterestMax += data.ConversationInterestModDelta;
+			_conversationInterestModifierEnthusiasm += data.ConversationInterestModDelta;
 		}
 
 		public void UpdateConversationInterest(AnnoyanceData data)
@@ -362,16 +340,6 @@ namespace tee
 			{
 				_topicPreferences[topic].ConversationTopic.DecreaseEnthusiasm();
 			}
-
-		}
-
-		public int GetEnthusiasmLevelFor(TopicName topic)
-		{
-			if (_topicPreferences.Keys.Contains(topic))
-			{
-				return _topicPreferences[topic].ConversationTopic.GetCurrentEnthusiasmLevel();
-			}
-			return 0;
 		}
 
 		public void DecreaseAnnoyance()
@@ -384,12 +352,27 @@ namespace tee
 			_annoyance.Increase();
 		}
 
-		public override void _ExitTree()
+		public int GetTotalSocialStanding()
 		{
-			base._ExitTree();
-			AnnoyanceLevel.Changed -= UpdateConversationInterest;
-			EnthusiasmLevel.Changed -= UpdateConversationInterest;
-			EnthusiasmLevel.AnnoyanceLowered -= DecreaseAnnoyance;
+			int result = 0;
+			IEnumerable<TopicName> likesNeutrals = _likes.Concat(_neutrals);
+			foreach (TopicName topicName in likesNeutrals)
+			{
+				result += _topicPreferences[topicName].ConversationTopic.GetCurrentSocialStanding();
+			}
+			return result + Annoyance.GetCurrentSocialStanding();
+			
+
+		}
+
+		public override void _Notification(int what)
+		{
+			if (what == NotificationPredelete)
+			{
+				AnnoyanceLevel.Changed -= UpdateConversationInterest;
+				ConversationTopic.EnthusiasmChangedForTopic -= UpdateConversationInterest;
+				EnthusiasmLevel.AnnoyanceLowered -= DecreaseAnnoyance;
+			}
 		}
 	}
 }

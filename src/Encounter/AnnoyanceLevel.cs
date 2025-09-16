@@ -150,7 +150,7 @@ namespace tee
             }
         }
 
-        public int GetTotalSocialStanding()
+        public int GetCurrentSocialStanding()
         {
             return _socialStandingChange;
         }

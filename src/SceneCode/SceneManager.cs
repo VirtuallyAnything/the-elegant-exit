@@ -19,7 +19,7 @@ namespace tee
 		// Called when the node enters the scene tree for the first time.
 		public override void _Ready()
 		{
-			CombatManager.CombatEnded += ChangeToEncounterFinishedScene;
+			CombatManager.CombatWon += ChangeToEncounterFinishedScene;
 			GameManager.GameOver += ChangeToGameOverScene;
 			_mainMenu = GetTree().Root.GetChild<StartScene>(3);
 			_currentScene = _mainMenu;
@@ -56,9 +56,6 @@ namespace tee
 					break;
 				case SceneName.Encounter:
 					ChangeToEncounterScene();
-					break;
-				case SceneName.EncounterFinished:
-					ChangeToEncounterFinishedScene();
 					break;
 				case SceneName.CurrentPartyFloor:
 					ExitEncounter();
@@ -135,7 +132,7 @@ namespace tee
 			_encounterScene.SetupScene(GameManager.CurrentEnemy);
 		}
 
-		private void ChangeToEncounterFinishedScene()
+		private void ChangeToEncounterFinishedScene(bool hasPlayerWon)
 		{
 			_encounterFinishedScene = (EncounterFinishedScene)ResourceLoader.Load<PackedScene>("res://Scenes/EncounterFinishedScene.tscn").Instantiate();
 			_mainScene.EncounterLayer.RemoveChild(_encounterScene);
@@ -157,7 +154,7 @@ namespace tee
 
 		public override void _ExitTree()
 		{
-			CombatManager.CombatEnded -= ExitEncounter;
+			CombatManager.CombatWon -= ChangeToEncounterFinishedScene;
 			GameManager.GameOver -= ChangeToGameOverScene;
 			_currentScene.QueueFree();
 			QueueFree();

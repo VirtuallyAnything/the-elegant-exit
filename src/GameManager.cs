@@ -57,9 +57,16 @@ namespace tee
 
 		public static void SetupGame()
 		{
-			_availableAttacks = _player.Data.AvailableAttacks;
-			_socialStandingOverall = _player.Data.SocialStandingOverall;
-			_socialBattery = _player.Data.SocialBattery;
+			AvailableAttacks = _player.Data.AvailableAttacks;
+			SocialStandingOverall = _player.Data.SocialStandingOverall;
+			SocialBattery = _player.Data.SocialBattery;
+			CombatManager.FinalValuesDecided += UpdateStats;
+		}
+
+		private static void UpdateStats(int socialStanding, int socialBattery)
+		{
+			SocialStandingOverall += socialStanding;
+			SocialBattery += socialBattery;
 		}
 
 		public static void EndGame()
@@ -70,6 +77,7 @@ namespace tee
 		public override void _ExitTree()
 		{
 			base._ExitTree();
+			CombatManager.FinalValuesDecided -= UpdateStats;
 			QueueFree();
 		}
 	}

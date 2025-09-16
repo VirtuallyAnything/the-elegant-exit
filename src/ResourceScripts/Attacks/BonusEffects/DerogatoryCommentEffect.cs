@@ -8,7 +8,7 @@ namespace tee
         public override void Resolve(CombatManager combatManager){
             combatManager.IgnoreNextEnthusiasm();
             Preference preference = combatManager.PreferenceForCurrentTopic;
-            combatManager.ConversationInterestBonusDamage *= -1;
+            combatManager.IgnoreCIBonusDamage();
             switch (preference)
             {
                 case Preference.Like:

@@ -4,31 +4,27 @@ using Godot.Collections;
 namespace tee
 {
 	public delegate void CombatEventHandler();
-	public delegate void EnthusiasmEventHandler(TopicName topicName, int enthusiasm);
+	public delegate void CombatEndHandler(bool value);
+	public delegate void CombatOutcomeHandler(int socialStanding, int socialBattery);
 	public delegate void PreferenceEventHandler(TopicName topicName, Preference preference);
 	public partial class CombatManager : Node
 	{
-		public static event CombatEventHandler CombatEnded;
-		public static event CombatEventHandler CombatLost;
+		public static event CombatEndHandler CombatWon;
+		public static event CombatOutcomeHandler FinalValuesDecided;
 		public static event CombatEventHandler EnemyTurnComplete;
-		public static event EnthusiasmEventHandler EnthusiasmChanged;
 		public static event PreferenceEventHandler PreferenceDiscovered;
 		[Export] private EncounterScene _encounterScene;
 		private EncounterPlayer _player;
-		private int _conversationInterestDamage;
-		private int _conversationInterestBonusDamage;
-		private TopicName _playerCurrentTopicName;
-		private TopicName _playerLastTopicName;
 		private PlayerAttack _selectedAttack;
-		private int _transferAmount = 10;
-		private bool _isFirstTurn = true;
-
 		private EncounterEnemy _enemy;
 		private Preference _preferenceForCurrentTopic;
 		private TopicName _nextTopicName;
+		private int _conversationInterestDamage;
+		private int _conversationInterestBonusDamage;
+		private int _transferAmount = 10;
+		private bool _isFirstTurn = true;
 		private bool _isBlockNextEnemyAttack;
 		private bool _isIgnoreCIBonusDamage;
-
 		public int ConversationInterestDamage
 		{
 			get { return _conversationInterestDamage; }
@@ -49,14 +45,9 @@ namespace tee
 		{
 			get { return _enemy; }
 		}
-		public TopicName PlayerCurrentTopicName
+		public EncounterPlayer Player
 		{
-			get { return _playerCurrentTopicName; }
-			set { _playerCurrentTopicName = value; }
-		}
-		public TopicName PlayerLastTopicName
-		{
-			get { return _playerLastTopicName; }
+			get { return _player; }
 		}
 		public PlayerAttack SelectedAttack
 		{
@@ -98,7 +89,7 @@ namespace tee
 			PlayerAttack randomAttack;
 			for (int i = 0; i <= 3; i++)
 			{
-				randomAttack = _player.ChooseRandomAttack();
+				randomAttack = Player.ChooseRandomAttack();
 
 				_encounterScene.AttackCardContainer.AddNewAttackCard(randomAttack);
 			}
@@ -108,20 +99,13 @@ namespace tee
 			await _encounterScene.PlayCombatStartAnimation(_transferAmount);
 
 			GameManager.SocialBattery -= _transferAmount;
-			_player.MentalCapacity = _transferAmount;
+			Player.MentalCapacity = _transferAmount;
 			EnemyAttack();
 		}
 
 		private void SetupNewAttack()
 		{
-			if (_player.MentalCapacity <= 0)
-			{
-				CombatEnded?.Invoke();
-				//GameManager.SocialStandingOverall += SocialStandingCombat;
-				return;
-			}
-
-			PlayerAttack newAttack = _player.SwapAttackOut(_selectedAttack);
+			PlayerAttack newAttack = Player.SwapAttackOut(_selectedAttack);
 			_encounterScene.AttackCardContainer.SwapAttackCardOutFor(newAttack);
 		}
 
@@ -130,7 +114,8 @@ namespace tee
 			_isFirstTurn = false;
 
 			_selectedAttack = playerAttack;
-			_playerLastTopicName = PlayerCurrentTopicName;
+			Player.LastTopicName = Player.CurrentTopicName;
+			Player.CurrentTopicName = TopicName.None;
 			PreferenceForCurrentTopic = Preference.Unknown;
 
 			// Set the base attack damage
@@ -141,9 +126,30 @@ namespace tee
 			if (playerAttack is TopicalPlayerAttack topicalPlayerAttack)
 			{
 				topicOfAttack = topicalPlayerAttack.SelectedTopicName;
-				PlayerCurrentTopicName = topicOfAttack;
-				_encounterScene.UpdateTopic(PlayerCurrentTopicName);
+				Player.CurrentTopicName = topicOfAttack;
 				PreferenceForCurrentTopic = Enemy.GetPreferenceFor(topicOfAttack);
+				if (!_isIgnoreCIBonusDamage)
+				{
+					switch (PreferenceForCurrentTopic)
+					{
+						// Apply damage modifiers for Preferences
+						case Preference.Like:   //TODO: Give Player feedback for why they get -1 Damage to their attack
+							ConversationInterestBonusDamage -= 1;
+							break;
+						case Preference.Dislike:
+							ConversationInterestBonusDamage += 1;
+							if (Player.CurrentTopicName == Player.LastTopicName)
+							{
+								Enemy.Enrage(Player.CurrentTopicName);
+							}
+							// Subtract one social Battery if the player knowingly talks about a disliked topic
+							if (Player.DiscoveredEnemyPreferences.ContainsKey(Player.CurrentTopicName))
+							{
+								GameManager.SocialBattery -= 1;
+							}
+							break;
+					}
+				}
 			}
 			else
 			{
@@ -152,32 +158,9 @@ namespace tee
 
 			_selectedAttack.BonusEffect?.Resolve(this);
 
-			if (!_isIgnoreCIBonusDamage)
+			if (Player.CurrentTopicName == TopicName.Weather)
 			{
-				switch (PreferenceForCurrentTopic)
-				{
-					// Apply damage modifiers for Preferences
-					case Preference.Like:   //TODO: Give Player feedback for why they get -1 Damage to their attack
-						ConversationInterestBonusDamage -= 1;
-						break;
-					case Preference.Dislike:
-						ConversationInterestBonusDamage += 1;
-						if (PlayerCurrentTopicName == _playerLastTopicName)
-						{
-							Enemy.Enrage(PlayerCurrentTopicName);
-						}
-						// Subtract one social Battery if the player knowingly talks about a disliked topic
-						if (_player.DiscoveredEnemyPreferences.ContainsKey(PlayerCurrentTopicName))
-						{
-							GameManager.SocialBattery -= 1;
-						}
-						break;
-				}
-			}
-
-			if (PlayerCurrentTopicName == TopicName.Weather)
-			{
-				Enemy.ReactTo(PlayerCurrentTopicName);
+				Enemy.ReactTo(Player.CurrentTopicName);
 			}
 			else
 			{
@@ -185,9 +168,9 @@ namespace tee
 			}
 
 			// Add newly discovered preference
-			if (PlayerCurrentTopicName != TopicName.None)
+			if (Player.CurrentTopicName != TopicName.None)
 			{
-				PreferenceDiscovered?.Invoke(PlayerCurrentTopicName, _preferenceForCurrentTopic);
+				PreferenceDiscovered?.Invoke(Player.CurrentTopicName, _preferenceForCurrentTopic);
 			}
 
 			// Actually subtract the damages from Conversation Interest
@@ -201,21 +184,13 @@ namespace tee
 			await _encounterScene.PlayAnimationsForAttack(_selectedAttack, ConversationInterestBonusDamage);
 			await _encounterScene.UpdateConversationInterestMax();
 
-			// Invoke events to update UI on Enthusiasm
-			if (PlayerCurrentTopicName != Enemy.CurrentTopicName)
-			{
-				EnthusiasmChanged?.Invoke(Enemy.LastTopicName, Enemy.GetEnthusiasmLevelFor(Enemy.LastTopicName));
-			}
-			EnthusiasmChanged?.Invoke(PlayerCurrentTopicName, Enemy.GetEnthusiasmLevelFor(PlayerCurrentTopicName));
-
 			_encounterScene.UpdateConversationInterestModifiers(Enemy.ConversationInterestModifierAnnoyance, Enemy.ConversationInterestModifierEnthusiasm);
 
 			if (Enemy.ConversationInterest <= 0)
 			{
-				GameManager.SocialBattery += (int)_player.MentalCapacity;
-				GameManager.SocialStandingOverall += SocialStanding;
-				GameManager.SocialStandingOverall += Enemy.Annoyance.GetTotalSocialStanding();
-				CombatEnded?.Invoke();
+				SocialStanding += Enemy.GetTotalSocialStanding();
+				FinalValuesDecided?.Invoke(SocialStanding, Player.MentalCapacity);
+				CombatWon?.Invoke(true);
 				return;
 			}
 		}
@@ -244,15 +219,17 @@ namespace tee
 			else
 			{
 				GameManager.SocialBattery += enemyAttack.SocialBatteryChange;
-				_player.MentalCapacity -= enemyAttack.MentalCapacityDamage;
+				Player.MentalCapacity -= enemyAttack.MentalCapacityDamage;
 				await _encounterScene.PlayAnimationsForAttack(enemyAttack);
+				if (Player.MentalCapacity <= 0)
+				{
+					FinalValuesDecided?.Invoke(SocialStanding, 0);
+					CombatWon?.Invoke(false);
+				}
 			}
 			Enemy.IncreaseEnthusiasmFor(chosenTopicName);
-			EnthusiasmChanged?.Invoke(chosenTopicName, Enemy.GetEnthusiasmLevelFor(chosenTopicName));
-			_encounterScene.UpdateConversationInterestModifiers(_enemy.ConversationInterestModifierAnnoyance, _enemy.ConversationInterestModifierEnthusiasm);
+			_encounterScene.UpdateConversationInterestModifiers(Enemy.ConversationInterestModifierAnnoyance, Enemy.ConversationInterestModifierEnthusiasm);
 			await _encounterScene.UpdateConversationInterestMax();
-
-			_encounterScene.UpdateTopic(chosenTopicName);
 
 			EnemyTurnComplete?.Invoke();
 		}
@@ -269,17 +246,17 @@ namespace tee
 
 		public void IgnoreNextAnnoyance()
 		{
-			_enemy.IsIgnoreNextAnnoyance = true;
+			Enemy.IsIgnoreNextAnnoyance = true;
 		}
 
 		public void IgnoreTopicSwitchAnnoyance()
 		{
-			_enemy.IsIgnoreTopicSwitchAnnoyance = true;
+			Enemy.IsIgnoreTopicSwitchAnnoyance = true;
 		}
 
 		public void IgnoreNextEnthusiasm()
 		{
-			_enemy.IsIgnoreNextEnthusiasm = true;
+			Enemy.IsIgnoreNextEnthusiasm = true;
 		}
 
 		public override void _ExitTree()

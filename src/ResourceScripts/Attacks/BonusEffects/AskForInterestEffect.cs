@@ -9,7 +9,7 @@ namespace tee
             combatManager.IgnoreCIBonusDamage();
             combatManager.IgnoreNextAnnoyance();
             combatManager.IgnoreNextEnthusiasm();
-            combatManager.NextTopicName = combatManager.PlayerCurrentTopicName;
+            combatManager.NextTopicName = combatManager.Player.CurrentTopicName;
             Preference preference = combatManager.PreferenceForCurrentTopic;
             if(preference == Preference.Like){
                 combatManager.SocialStanding += 1;

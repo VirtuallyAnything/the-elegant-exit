@@ -4,23 +4,21 @@ using System;
 namespace tee
 {
     public delegate void EnthusiasmHandler();
-    public delegate void EnthusiasmHandlerObject(EnthusiasmData enthusiasmData);
     public struct EnthusiasmData
     {
-        public int ConversationInterestModifier;
+        public int CurrentEnthusiasm;
+        public int ConversationInterestModDelta;
         public int SocialStandingChange;
-        public int EnemyMentalCapacityBonusDamage;
     }
     public partial class EnthusiasmLevel : GodotObject
     {
         public static event EnthusiasmHandler AnnoyanceLowered;
-        public static event EnthusiasmHandlerObject Changed;
         private bool _levelThreeReached;
         private bool _levelFiveReached;
         private int _currentEnthusiasm;
         private int _socialStandingChange;
-        private int _conversationInterestModifier;
-        private int _conversationInterestModifierTotal;
+        private int _conversationInterestModTotal;
+        private int _conversationInterestModDelta;
         private int _enemyMentalCapacityBonusDamage;
         public int CurrentEnthusiasm
         {
@@ -32,7 +30,17 @@ namespace tee
         }
         public int ConversationInterestModifierTotal
         {
-            get { return _conversationInterestModifierTotal; }
+            get { return _conversationInterestModTotal; }
+        }
+
+        public EnthusiasmData PackageCurrentData()
+        {
+            return new EnthusiasmData()
+            {
+                CurrentEnthusiasm = CurrentEnthusiasm,
+                ConversationInterestModDelta = _conversationInterestModDelta,
+                SocialStandingChange = _socialStandingChange
+            };
         }
 
         public void Increase()
@@ -42,17 +50,16 @@ namespace tee
                 return;
             }
             _currentEnthusiasm++;
-            switch (_currentEnthusiasm)
+            int prevCoversationInterestMod = _conversationInterestModTotal;
+            switch (CurrentEnthusiasm)
             {
                 case 2:
                     _socialStandingChange = 1;
-                    _conversationInterestModifier = 2;
-                    _conversationInterestModifierTotal += 2;
+                    _conversationInterestModTotal += 2;
                     break;
                 case 3:
                     _socialStandingChange = 2;
-                    _conversationInterestModifier = 1;
-                    _conversationInterestModifierTotal += 1;
+                    _conversationInterestModTotal += 1;
                     if (!_levelThreeReached)
                     {
                         AnnoyanceLowered?.Invoke();
@@ -61,14 +68,12 @@ namespace tee
                     break;
                 case 4:
                     _socialStandingChange = 4;
-                    _conversationInterestModifier = 1;
-                    _conversationInterestModifierTotal += 1;
+                    _conversationInterestModTotal += 1;
                     _enemyMentalCapacityBonusDamage += 1;
                     break;
                 case 5:
                     _socialStandingChange = 5;
-                    _conversationInterestModifier = 1;
-                    _conversationInterestModifierTotal += 1;
+                    _conversationInterestModTotal += 1;
                     if (!_levelFiveReached)
                     {
                         AnnoyanceLowered?.Invoke();
@@ -76,51 +81,38 @@ namespace tee
                     }
                     break;
             }
-            Changed?.Invoke(new EnthusiasmData()
-            {
-                ConversationInterestModifier = _conversationInterestModifier,
-                SocialStandingChange = _socialStandingChange,
-                EnemyMentalCapacityBonusDamage = _enemyMentalCapacityBonusDamage
-            });
+            _conversationInterestModDelta = _conversationInterestModTotal - prevCoversationInterestMod;
         }
 
         public void Decrease()
         {
-            if (_currentEnthusiasm == 0)
+            if (CurrentEnthusiasm == 0)
             {
                 return;
             }
             _currentEnthusiasm--;
-            switch (_currentEnthusiasm)
+            int prevCoversationInterestMod = _conversationInterestModTotal;
+            switch (CurrentEnthusiasm)
             {
                 case 1:
                     _socialStandingChange = 0;
-                    _conversationInterestModifier = -2;
-                    _conversationInterestModifierTotal -= 2;
+                    _conversationInterestModTotal -= 2;
                     break;
                 case 2:
                     _socialStandingChange = 1;
-                    _conversationInterestModifier = -1;
-                    _conversationInterestModifierTotal -= 1;
+                    _conversationInterestModTotal -= 1;
                     break;
                 case 3:
                     _socialStandingChange = 2;
-                    _conversationInterestModifier = -1;
-                    _conversationInterestModifierTotal -= 1;
+                    _conversationInterestModTotal -= 1;
                     _enemyMentalCapacityBonusDamage = 0;
                     break;
                 case 4:
                     _socialStandingChange = 4;
-                    _conversationInterestModifier = -1;
-                    _conversationInterestModifierTotal -= 1;
+                    _conversationInterestModTotal -= 1;
                     break;
             }
-            Changed?.Invoke(new EnthusiasmData()
-            {
-                ConversationInterestModifier = _conversationInterestModifier,
-                SocialStandingChange = _socialStandingChange,
-                EnemyMentalCapacityBonusDamage = _enemyMentalCapacityBonusDamage
-            });
+            _conversationInterestModDelta = _conversationInterestModTotal - prevCoversationInterestMod;
         }
     }
 }
