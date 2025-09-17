@@ -86,7 +86,7 @@ texture_progress_offset = Vector2(22.855, 23.94)
 metadata/_edit_use_anchors_ = true
 
 [node name="PointLight2D" type="PointLight2D" parent="Characters/Player" groups=["PlayerVision"]]
-shadow_enabled = true
+energy = 0.0
 shadow_filter = 1
 texture = ExtResource("6_k7ig0")
 

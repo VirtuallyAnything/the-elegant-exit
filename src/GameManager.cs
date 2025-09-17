@@ -8,6 +8,7 @@ namespace tee
 		public static event GameHandler GameOver;
 		private static PartyPlayer _player;
 		private static Godot.Collections.Array<PlayerAttack> _availableAttacks;
+		//int placeholder
 		private int[] _partyMembers;
 		private static EnemyData _currentEnemy;
 		public static EnemyData CurrentEnemy
@@ -44,11 +45,6 @@ namespace tee
 			}
 		}
 
-		public static int SocialStandingOverall
-		{
-			get { return _socialStandingOverall; }
-			set { _socialStandingOverall = value; }
-		}
 		public static PartyPlayer Player
 		{
 			get { return _player; }
@@ -58,14 +54,14 @@ namespace tee
 		public static void SetupGame()
 		{
 			AvailableAttacks = _player.Data.AvailableAttacks;
-			SocialStandingOverall = _player.Data.SocialStandingOverall;
+			_socialStandingOverall = _player.Data.SocialStandingOverall;
 			SocialBattery = _player.Data.SocialBattery;
 			CombatManager.FinalValuesDecided += UpdateStats;
 		}
 
 		private static void UpdateStats(int socialStanding, int socialBattery)
 		{
-			SocialStandingOverall += socialStanding;
+			_socialStandingOverall += socialStanding;
 			SocialBattery += socialBattery;
 		}
 

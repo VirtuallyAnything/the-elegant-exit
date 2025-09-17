@@ -69,6 +69,8 @@ public partial class Veil : TextureRect
 		_playerVision = (PointLight2D)GetTree().GetFirstNodeInGroup(_lightGroup);
 		_playerVisionDup = (PointLight2D)_playerVision.Duplicate();
 		_playerVisionDup.Color = Color.Color8(255, 255, 255, 255);
+		_playerVisionDup.Energy = 1.0f;
+		_playerVisionDup.ShadowEnabled = true;
 		_playerVisionDup.Position = _playerVision.GlobalPosition * _fowScaleFactor;
 		_playerVisionDup.ApplyScale(_fowScaleFactor * Vector2.One);
 		_lightSV.AddChild(_playerVisionDup);

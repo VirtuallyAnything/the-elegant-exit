@@ -8,7 +8,7 @@ namespace tee
 	public partial class SceneManager : Node
 	{
 		private static Scene _currentScene;
-		private static EncounterScene _encounterScene;
+		private EncounterScene _encounterScene;
 		private EncounterStartScene _encounterStartScene;
 		private EncounterFinishedScene _encounterFinishedScene;
 		private static PartyFloorScene _partyGroundFloor;
@@ -56,6 +56,10 @@ namespace tee
 					break;
 				case SceneName.Encounter:
 					ChangeToEncounterScene();
+					break;
+				// For debugging purposes
+				case SceneName.EncounterFinished:
+					ChangeToEncounterFinishedScene(true);
 					break;
 				case SceneName.CurrentPartyFloor:
 					ExitEncounter();

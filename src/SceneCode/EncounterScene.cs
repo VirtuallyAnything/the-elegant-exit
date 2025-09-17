@@ -252,6 +252,7 @@ namespace tee
 			base._ExitTree();
 			ConversationTopic.EnthusiasmChangedForTopic -= UpdateConversationInterest;
 			AnnoyanceLevel.Changed -= UpdateConversationInterest;
+			EncounterCharacter.TopicChanged -= UpdateTopic;
 		}
 	}
 }

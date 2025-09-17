@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://cv7lwki55h2ma"]
+[gd_scene load_steps=45 format=3 uid="uid://cv7lwki55h2ma"]
 
 [ext_resource type="Script" uid="uid://cxid571ug53su" path="res://src/SceneCode/EncounterScene.cs" id="1_qerod"]
 [ext_resource type="Script" uid="uid://ptv5xl7v8wlo" path="res://src/Encounter/CombatManager.cs" id="2_6eywl"]
@@ -31,6 +31,7 @@
 [ext_resource type="Texture2D" uid="uid://bmd1mdiraueso" path="res://Assets/UI/ThoughtBubbleOutlineSmall.png" id="27_417i3"]
 [ext_resource type="Texture2D" uid="uid://41xm1pwy2r8m" path="res://Assets/UI/Icons/SocialStandingIcon.png" id="27_lf1cy"]
 [ext_resource type="Texture2D" uid="uid://biiv7jthgpe0n" path="res://Assets/UI/Icons/SocialBatteryIcon_2.png" id="28_2ddgd"]
+[ext_resource type="Script" uid="uid://diy0f8mk31o2x" path="res://src/SceneCode/SceneSwapButton.cs" id="32_mvy5o"]
 
 [sub_resource type="Gradient" id="Gradient_vp34m"]
 offsets = PackedFloat32Array(0.269542, 1)
@@ -1169,5 +1170,15 @@ stretch_margin_top = 30
 stretch_margin_right = 30
 stretch_margin_bottom = 30
 texture_progress_offset = Vector2(23.165, 23.41)
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1839.0
+offset_top = 924.0
+offset_right = 1881.0
+offset_bottom = 955.0
+text = "Quit"
+script = ExtResource("32_mvy5o")
+SceneName = 12
 
 [connection signal="pressed" from="SpeechbubblePlayer" to="." method="OnSpeechBubblePressed"]

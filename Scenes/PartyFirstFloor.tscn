@@ -64,6 +64,7 @@ script = ExtResource("4_kpk03")
 _enemyData = ExtResource("5_tsw0b")
 
 [node name="FOW" parent="." instance=ExtResource("6_yuf7y")]
+light_mask = 2
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
