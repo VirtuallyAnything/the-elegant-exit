@@ -1,10 +1,9 @@
 using Godot;
 using System;
 
-public partial class OneTimePanel : Panel
+public partial class OneTimeControl : Control
 {
-
-	private void OnStartButtonPressed(){
+	private void Close(){
 		Visible = false;
 		GetTree().Paused = false;
 		QueueFree();

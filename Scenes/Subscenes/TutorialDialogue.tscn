@@ -1,0 +1,60 @@
+[gd_scene load_steps=8 format=3 uid="uid://h7n4wlg04ii6"]
+
+[ext_resource type="Theme" uid="uid://bpp0q38rfd1ms" path="res://Assets/Themes/Lobster.tres" id="1_pixgy"]
+[ext_resource type="StyleBox" uid="uid://dec3x153u0gn8" path="res://Assets/Themes/SpeechBubbleStyleBox3Blue.tres" id="2_pxu4g"]
+[ext_resource type="Script" uid="uid://bm63kwhkly242" path="res://src/UI/LinkedDialogue.cs" id="3_bnn8h"]
+[ext_resource type="Texture2D" uid="uid://dffy4bg4ggwl6" path="res://Assets/UI/Icons/Arrow_2_mirrored.png" id="4_fh4te"]
+[ext_resource type="Texture2D" uid="uid://47yltppaswhd" path="res://Assets/UI/Icons/Arrow_2_mirrored_hover.png" id="5_enaja"]
+[ext_resource type="Texture2D" uid="uid://l6pgu7u0da8x" path="res://Assets/UI/Icons/Arrow_2.png" id="6_j3s61"]
+[ext_resource type="Texture2D" uid="uid://bqg7m6jl8mk1e" path="res://Assets/UI/Icons/Arrow_2_hover.png" id="7_grnfa"]
+
+[node name="EncounterOverview3" type="PanelContainer"]
+offset_right = 334.0
+offset_bottom = 297.0
+theme = ExtResource("1_pixgy")
+theme_type_variation = &"Tutorial"
+theme_override_styles/panel = ExtResource("2_pxu4g")
+script = ExtResource("3_bnn8h")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer"]
+custom_minimum_size = Vector2(198.97, 0)
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("1_pixgy")
+theme_type_variation = &"TutorialText"
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "Your opponent has opened the conversation! Every one of their dialogues will drain your Mental Capacity [img=
+50]res://Assets/UI/Icons/MentalCapacityIcon.png[/img]."
+fit_content = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="TextureButtonPrev" type="TextureButton" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 2
+texture_normal = ExtResource("4_fh4te")
+texture_pressed = ExtResource("5_enaja")
+texture_hover = ExtResource("5_enaja")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="TextureButtonNext" type="TextureButton" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 10
+texture_normal = ExtResource("6_j3s61")
+texture_pressed = ExtResource("7_grnfa")
+texture_hover = ExtResource("7_grnfa")
+ignore_texture_size = true
+stretch_mode = 4
+
+[connection signal="button_down" from="VBoxContainer/HBoxContainer/TextureButtonPrev" to="." method="OnProgressBackward"]
+[connection signal="button_down" from="VBoxContainer/HBoxContainer/TextureButtonNext" to="." method="OnProgressForward"]

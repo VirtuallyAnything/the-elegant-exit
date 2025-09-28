@@ -14,7 +14,6 @@ namespace tee
 		private AttackCardSide _currentOpenSide;
 		private PlayerAttack _boundAttack;
 		private TopicName _boundTopic;
-		[Export] AttackValueSetter _attackValueSetter;
 		private Array<TopicButton> _topicButtonsItem = new();
 		private Array<TopicName> _itemConversationTopics = new();
 		public static event AttackHandler AttackSelected;

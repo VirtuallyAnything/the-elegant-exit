@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://cv7lwki55h2ma"]
+[gd_scene load_steps=56 format=3 uid="uid://cv7lwki55h2ma"]
 
 [ext_resource type="Script" uid="uid://cxid571ug53su" path="res://src/SceneCode/EncounterScene.cs" id="1_qerod"]
 [ext_resource type="Script" uid="uid://ptv5xl7v8wlo" path="res://src/Encounter/CombatManager.cs" id="2_6eywl"]
@@ -32,6 +32,15 @@
 [ext_resource type="Texture2D" uid="uid://41xm1pwy2r8m" path="res://Assets/UI/Icons/SocialStandingIcon.png" id="27_lf1cy"]
 [ext_resource type="Texture2D" uid="uid://biiv7jthgpe0n" path="res://Assets/UI/Icons/SocialBatteryIcon_2.png" id="28_2ddgd"]
 [ext_resource type="Script" uid="uid://diy0f8mk31o2x" path="res://src/SceneCode/SceneSwapButton.cs" id="32_mvy5o"]
+[ext_resource type="StyleBox" uid="uid://dec3x153u0gn8" path="res://Assets/Themes/SpeechBubbleStyleBox3Blue.tres" id="33_8j7xq"]
+[ext_resource type="Script" uid="uid://de77385nrcieg" path="res://src/UI/OneTimeControl.cs" id="33_vfbqr"]
+[ext_resource type="Texture2D" uid="uid://l6pgu7u0da8x" path="res://Assets/UI/Icons/Arrow_2.png" id="34_kga1d"]
+[ext_resource type="Script" uid="uid://bm63kwhkly242" path="res://src/UI/LinkedDialogue.cs" id="34_vfbqr"]
+[ext_resource type="Texture2D" uid="uid://bqg7m6jl8mk1e" path="res://Assets/UI/Icons/Arrow_2_hover.png" id="36_oou5q"]
+[ext_resource type="StyleBox" uid="uid://mvfkip85m7ih" path="res://Assets/Themes/SpeechBubbleStyleBox3Blue_mirrored.tres" id="37_s88xc"]
+[ext_resource type="Texture2D" uid="uid://dffy4bg4ggwl6" path="res://Assets/UI/Icons/Arrow_2_mirrored.png" id="38_4kums"]
+[ext_resource type="Texture2D" uid="uid://47yltppaswhd" path="res://Assets/UI/Icons/Arrow_2_mirrored_hover.png" id="39_c18qn"]
+[ext_resource type="PackedScene" uid="uid://h7n4wlg04ii6" path="res://Scenes/Subscenes/TutorialDialogue.tscn" id="40_ad0l1"]
 
 [sub_resource type="Gradient" id="Gradient_vp34m"]
 offsets = PackedFloat32Array(0.269542, 1)
@@ -123,7 +132,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Panel:material:shader_parameter/lod")
+tracks/5/path = NodePath("InitialBlur:material:shader_parameter/lod")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -135,7 +144,7 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Panel:visible")
+tracks/6/path = NodePath("InitialBlur:visible")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -147,7 +156,7 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("Panel/TextureRect2:self_modulate")
+tracks/7/path = NodePath("InitialBlur/TransferArrow:self_modulate")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -214,7 +223,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Panel:material:shader_parameter/lod")
+tracks/4/path = NodePath("InitialBlur:material:shader_parameter/lod")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -226,7 +235,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Panel:visible")
+tracks/5/path = NodePath("InitialBlur:visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -238,7 +247,7 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Panel/TextureRect2:self_modulate")
+tracks/6/path = NodePath("InitialBlur/TransferArrow:self_modulate")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -281,6 +290,16 @@ corner_radius_bottom_left = 30
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lkmg3"]
 shader = ExtResource("21_u5cww")
 shader_parameter/lod = 0.0
+
+[sub_resource type="Gradient" id="Gradient_kga1d"]
+offsets = PackedFloat32Array(0, 0.991935)
+colors = PackedColorArray(0, 0, 0.07, 0.596078, 0, 0, 0.08, 0.596078)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_dpyj4"]
+gradient = SubResource("Gradient_kga1d")
+width = 1920
+height = 1080
+fill_from = Vector2(0.939904, 0.0811966)
 
 [node name="EncounterScene" type="Control" node_paths=PackedStringArray("_playerSprite", "_playerDialogue", "_annoyanceDisplay", "_enemySprite", "_enemyDialogue", "_enemyName", "_attackCardContainer", "_animationPlayer", "_currentTopic", "_annoyanceValue", "_currentMaxCIChanges", "_mentalCapacityMax", "_mentalCapacityValue", "_mentalCapacityDamage", "_conversationInterestMax", "_conversationInterestMaxChange", "_conversationInterestValue", "_conversationInterestDamage", "_socialBatteryProgress")]
 layout_mode = 3
@@ -452,6 +471,8 @@ offset_right = 27.611
 offset_bottom = -11.34
 theme = ExtResource("6_wdmna")
 theme_override_colors/font_color = Color(0.12549, 0.0431373, 0.145098, 1)
+theme_override_colors/font_outline_color = Color(0.992157, 0.8, 0.709804, 1)
+theme_override_constants/outline_size = 1
 theme_override_fonts/font = ExtResource("6_2175l")
 text = "-4"
 
@@ -1081,7 +1102,7 @@ horizontal_alignment = 1
 layout_mode = 2
 horizontal_alignment = 1
 
-[node name="Panel" type="Panel" parent="."]
+[node name="InitialBlur" type="Panel" parent="."]
 visible = false
 material = SubResource("ShaderMaterial_lkmg3")
 layout_mode = 1
@@ -1091,7 +1112,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TextureRect2" type="TextureRect" parent="Panel"]
+[node name="TransferArrow" type="TextureRect" parent="InitialBlur"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -1172,6 +1193,7 @@ stretch_margin_bottom = 30
 texture_progress_offset = Vector2(23.165, 23.41)
 
 [node name="Button" type="Button" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 1839.0
 offset_top = 924.0
@@ -1181,4 +1203,692 @@ text = "Quit"
 script = ExtResource("32_mvy5o")
 SceneName = 12
 
+[node name="TutorialDialogue" type="Button" parent="."]
+visible = false
+layout_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Popup" type="HBoxContainer" parent="TutorialDialogue"]
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -152.0
+offset_bottom = 148.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Control2" type="Control" parent="TutorialDialogue/Popup"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.94
+
+[node name="Panel3" type="Panel" parent="TutorialDialogue/Popup"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.1
+theme = ExtResource("6_wdmna")
+
+[node name="MarginContainer" type="MarginContainer" parent="TutorialDialogue/Popup/Panel3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("6_wdmna")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TutorialDialogue/Popup/Panel3/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TutorialDialogue/Popup/Panel3/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("6_wdmna")
+theme_type_variation = &"HeaderMedium"
+text = "Return to Main Menu?"
+
+[node name="Control" type="Control" parent="TutorialDialogue/Popup/Panel3/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 4.715)
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 1.3
+
+[node name="Label2" type="Label" parent="TutorialDialogue/Popup/Panel3/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("6_wdmna")
+text = "Current progress will be lost."
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TutorialDialogue/Popup/Panel3/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Confirm" type="Button" parent="TutorialDialogue/Popup/Panel3/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Confirm"
+script = ExtResource("32_mvy5o")
+
+[node name="Control" type="Control" parent="TutorialDialogue/Popup/Panel3/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Cancel" type="Button" parent="TutorialDialogue/Popup/Panel3/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Cancel"
+
+[node name="Control" type="Control" parent="TutorialDialogue/Popup"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.94
+
+[node name="TutorialOverview" type="TextureButton" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1020.0
+mouse_filter = 1
+texture_normal = SubResource("GradientTexture2D_dpyj4")
+script = ExtResource("33_vfbqr")
+
+[node name="EncounterOverview1" type="PanelContainer" parent="TutorialOverview" node_paths=PackedStringArray("NextDialogue")]
+layout_mode = 0
+offset_left = 623.0
+offset_top = 65.0
+offset_right = 1158.0
+offset_bottom = 362.0
+theme = ExtResource("6_wdmna")
+theme_type_variation = &"Tutorial"
+theme_override_styles/panel = ExtResource("33_8j7xq")
+script = ExtResource("34_vfbqr")
+NextDialogue = NodePath("../EncounterOverview2")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TutorialOverview/EncounterOverview1"]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="TutorialOverview/EncounterOverview1/VBoxContainer"]
+custom_minimum_size = Vector2(198.97, 0)
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("6_wdmna")
+theme_type_variation = &"TutorialText"
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "Your opponent has opened the conversation! Every one of their dialogues will drain your Mental Capacity [hint=\"{Mental Capacity}\"][img=
+50]res://Assets/UI/Icons/MentalCapacityIcon.png[/img][/hint]."
+fit_content = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TutorialOverview/EncounterOverview1/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="TextureButtonNext" type="TextureButton" parent="TutorialOverview/EncounterOverview1/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 10
+texture_normal = ExtResource("34_kga1d")
+texture_pressed = ExtResource("36_oou5q")
+texture_hover = ExtResource("36_oou5q")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="EncounterOverview2" type="PanelContainer" parent="TutorialOverview" node_paths=PackedStringArray("NextDialogue", "PrevDialogue")]
+visible = false
+layout_mode = 0
+offset_left = 815.0
+offset_top = 60.0
+offset_right = 1426.0
+offset_bottom = 326.0
+theme = ExtResource("6_wdmna")
+theme_type_variation = &"Tutorial"
+theme_override_styles/panel = ExtResource("37_s88xc")
+script = ExtResource("34_vfbqr")
+NextDialogue = NodePath("../EncounterOverview3")
+PrevDialogue = NodePath("../EncounterOverview1")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TutorialOverview/EncounterOverview2"]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="TutorialOverview/EncounterOverview2/VBoxContainer"]
+custom_minimum_size = Vector2(198.97, 0)
+layout_mode = 2
+theme = ExtResource("6_wdmna")
+theme_type_variation = &"TutorialText"
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "Bring your opponent's Conversation Interest [hint=\"{Conversation Interest}\"][img=
+50]res://Assets/UI/Icons/ConversationInterestIcon.png[/img][/hint] down to 0 in order to end the Conversation smoothly and gain Social Standing [hint=\"{Social Standing}\"][img=
+40]res://Assets/UI/Icons/SocialStandingIcon.png[/img][/hint]."
+fit_content = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TutorialOverview/EncounterOverview2/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="TextureButtonPrev" type="TextureButton" parent="TutorialOverview/EncounterOverview2/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 2
+texture_normal = ExtResource("38_4kums")
+texture_pressed = ExtResource("39_c18qn")
+texture_hover = ExtResource("39_c18qn")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="TextureButtonNext" type="TextureButton" parent="TutorialOverview/EncounterOverview2/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 10
+texture_normal = ExtResource("34_kga1d")
+texture_pressed = ExtResource("36_oou5q")
+texture_hover = ExtResource("36_oou5q")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="EncounterOverview3" type="PanelContainer" parent="TutorialOverview" node_paths=PackedStringArray("NextDialogue", "PrevDialogue")]
+visible = false
+layout_mode = 0
+offset_left = 795.0
+offset_top = 60.0
+offset_right = 1426.0
+offset_bottom = 326.0
+theme = ExtResource("6_wdmna")
+theme_type_variation = &"Tutorial"
+theme_override_styles/panel = ExtResource("37_s88xc")
+script = ExtResource("34_vfbqr")
+NextDialogue = NodePath("../EncounterOverview4")
+PrevDialogue = NodePath("../EncounterOverview2")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TutorialOverview/EncounterOverview3"]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="TutorialOverview/EncounterOverview3/VBoxContainer"]
+custom_minimum_size = Vector2(198.97, 0)
+layout_mode = 2
+theme = ExtResource("6_wdmna")
+theme_type_variation = &"TutorialText"
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "If your [hint=\"{Mental Capacity}\"][img=
+50]res://Assets/UI/Icons/MentalCapacityIcon.png[/img][/hint] runs out first, you'll have a bit of a mental breakdown, losing [hint=\"{Social Standing}\"][img=
+40]res://Assets/UI/Icons/SocialStandingIcon.png[/img][/hint] and draining your Social Battery [hint=\"{Social Battery}\"][img=
+50]res://Assets/UI/Icons/SocialBatteryIcon_2.png[/img][/hint]. You don't want this social event to end in disaster, so try to keep your stats as high as possible!"
+fit_content = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TutorialOverview/EncounterOverview3/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="TextureButtonPrev" type="TextureButton" parent="TutorialOverview/EncounterOverview3/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 2
+texture_normal = ExtResource("38_4kums")
+texture_pressed = ExtResource("39_c18qn")
+texture_hover = ExtResource("39_c18qn")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="TextureButtonNext" type="TextureButton" parent="TutorialOverview/EncounterOverview3/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 10
+texture_normal = ExtResource("34_kga1d")
+texture_pressed = ExtResource("36_oou5q")
+texture_hover = ExtResource("36_oou5q")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="EncounterOverview4" parent="TutorialOverview" node_paths=PackedStringArray("PrevDialogue") instance=ExtResource("40_ad0l1")]
+visible = false
+layout_mode = 0
+offset_left = 575.0
+offset_top = 561.0
+offset_right = 1112.0
+offset_bottom = 893.0
+PrevDialogue = NodePath("../EncounterOverview3")
+
+[node name="RichTextLabel" parent="TutorialOverview/EncounterOverview4/VBoxContainer" index="0"]
+text = "Choose a card from you Dialogue Deck to say something. Cards can be Topical (T) or Special (S). Topical cards require you to choose a conversation topic."
+
+[node name="TextureButtonNext" parent="TutorialOverview/EncounterOverview4/VBoxContainer/HBoxContainer" index="1"]
+visible = false
+
+[node name="TutorialTopicalAttack" type="TextureButton" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1020.0
+mouse_filter = 1
+texture_normal = SubResource("GradientTexture2D_dpyj4")
+script = ExtResource("33_vfbqr")
+
+[node name="TopicalAttack1" type="PanelContainer" parent="TutorialTopicalAttack" node_paths=PackedStringArray("NextDialogue")]
+visible = false
+layout_mode = 0
+offset_left = 728.0
+offset_top = 345.0
+offset_right = 1278.0
+offset_bottom = 640.0
+theme = ExtResource("6_wdmna")
+theme_type_variation = &"Tutorial"
+theme_override_styles/panel = ExtResource("37_s88xc")
+script = ExtResource("34_vfbqr")
+NextDialogue = NodePath("../TopicalAttack2")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TutorialTopicalAttack/TopicalAttack1"]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="TutorialTopicalAttack/TopicalAttack1/VBoxContainer"]
+custom_minimum_size = Vector2(198.97, 0)
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("6_wdmna")
+theme_type_variation = &"TutorialText"
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "Talking about a topic uncovers your opponent's preference for it. They can like [img=40]res://Assets/UI/Icons/LikeIcon.png[/img], dislike [img=30]res://Assets/UI/Icons/DislikeIcon.png[/img] or feel neutral towards the topic."
+fit_content = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TutorialTopicalAttack/TopicalAttack1/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="TextureButtonNext" type="TextureButton" parent="TutorialTopicalAttack/TopicalAttack1/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 10
+texture_normal = ExtResource("34_kga1d")
+texture_pressed = ExtResource("36_oou5q")
+texture_hover = ExtResource("36_oou5q")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="TopicalAttack2" type="PanelContainer" parent="TutorialTopicalAttack" node_paths=PackedStringArray("NextDialogue", "PrevDialogue")]
+visible = false
+layout_mode = 0
+offset_left = 665.0
+offset_top = 344.0
+offset_right = 1276.0
+offset_bottom = 686.0
+theme = ExtResource("6_wdmna")
+theme_type_variation = &"Tutorial"
+theme_override_styles/panel = ExtResource("37_s88xc")
+script = ExtResource("34_vfbqr")
+NextDialogue = NodePath("../TopicalAttack3")
+PrevDialogue = NodePath("../TopicalAttack1")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TutorialTopicalAttack/TopicalAttack2"]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="TutorialTopicalAttack/TopicalAttack2/VBoxContainer"]
+custom_minimum_size = Vector2(198.97, 0)
+layout_mode = 2
+theme = ExtResource("6_wdmna")
+theme_type_variation = &"TutorialText"
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "The amount of damage to your opponent's [hint=\"{Conversation Interest}\"][img=
+50]res://Assets/UI/Icons/ConversationInterestIcon.png[/img][/hint] is impacted by these preferences. Disliked topics increase damage, but they also make your opponent become annoyed."
+fit_content = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TutorialTopicalAttack/TopicalAttack2/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="TextureButtonPrev" type="TextureButton" parent="TutorialTopicalAttack/TopicalAttack2/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 2
+texture_normal = ExtResource("38_4kums")
+texture_pressed = ExtResource("39_c18qn")
+texture_hover = ExtResource("39_c18qn")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="TextureButtonNext" type="TextureButton" parent="TutorialTopicalAttack/TopicalAttack2/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 10
+texture_normal = ExtResource("34_kga1d")
+texture_pressed = ExtResource("36_oou5q")
+texture_hover = ExtResource("36_oou5q")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="TopicalAttack3" parent="TutorialTopicalAttack" node_paths=PackedStringArray("PrevDialogue") instance=ExtResource("40_ad0l1")]
+visible = false
+layout_mode = 0
+offset_left = 666.0
+offset_top = 474.0
+offset_right = 1222.0
+offset_bottom = 683.0
+PrevDialogue = NodePath("../TopicalAttack2")
+
+[node name="RichTextLabel" parent="TutorialTopicalAttack/TopicalAttack3/VBoxContainer" index="0"]
+text = "Opponents will only talk about topics they like or feel neutral towards."
+
+[node name="TextureButtonNext" parent="TutorialTopicalAttack/TopicalAttack3/VBoxContainer/HBoxContainer" index="1"]
+visible = false
+
+[node name="TutorialEnthusiasm" type="TextureButton" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+mouse_filter = 1
+texture_normal = SubResource("GradientTexture2D_dpyj4")
+script = ExtResource("33_vfbqr")
+
+[node name="Enthusiasm1" type="PanelContainer" parent="TutorialEnthusiasm" node_paths=PackedStringArray("NextDialogue")]
+layout_mode = 0
+offset_left = 734.0
+offset_top = 285.0
+offset_right = 1284.0
+offset_bottom = 570.0
+theme = ExtResource("6_wdmna")
+theme_type_variation = &"Tutorial"
+theme_override_styles/panel = ExtResource("37_s88xc")
+script = ExtResource("34_vfbqr")
+NextDialogue = NodePath("../Enthusiasm2")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TutorialEnthusiasm/Enthusiasm1"]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="TutorialEnthusiasm/Enthusiasm1/VBoxContainer"]
+custom_minimum_size = Vector2(198.97, 0)
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("6_wdmna")
+theme_type_variation = &"TutorialText"
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "Talking about a topic your opponent doesn't dislike will increase their Enthusiasm for that topic."
+fit_content = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TutorialEnthusiasm/Enthusiasm1/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="TextureButtonNext" type="TextureButton" parent="TutorialEnthusiasm/Enthusiasm1/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 10
+texture_normal = ExtResource("34_kga1d")
+texture_pressed = ExtResource("36_oou5q")
+texture_hover = ExtResource("36_oou5q")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="Enthusiasm2" type="PanelContainer" parent="TutorialEnthusiasm" node_paths=PackedStringArray("NextDialogue", "PrevDialogue")]
+visible = false
+layout_mode = 0
+offset_left = 673.0
+offset_top = 285.0
+offset_right = 1284.0
+offset_bottom = 656.0
+theme = ExtResource("6_wdmna")
+theme_type_variation = &"Tutorial"
+theme_override_styles/panel = ExtResource("37_s88xc")
+script = ExtResource("34_vfbqr")
+NextDialogue = NodePath("../Enthusiasm4")
+PrevDialogue = NodePath("../Enthusiasm1")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TutorialEnthusiasm/Enthusiasm2"]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="TutorialEnthusiasm/Enthusiasm2/VBoxContainer"]
+custom_minimum_size = Vector2(198.97, 0)
+layout_mode = 2
+theme = ExtResource("6_wdmna")
+theme_type_variation = &"TutorialText"
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "They will become more likely to talk about that topic and increase their Enthusiasm for it even more. An overly enthusiastic opponent will be harder to defeat, as their Maximum Conversation Interest [hint=\"{Maximum Conversation Interest}\"][img=50]res://Assets/UI/Icons/ConversationInterestMaxIcon.png[/img][/hint] rises."
+fit_content = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TutorialEnthusiasm/Enthusiasm2/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="TextureButtonPrev" type="TextureButton" parent="TutorialEnthusiasm/Enthusiasm2/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 2
+texture_normal = ExtResource("38_4kums")
+texture_pressed = ExtResource("39_c18qn")
+texture_hover = ExtResource("39_c18qn")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="TextureButtonNext" type="TextureButton" parent="TutorialEnthusiasm/Enthusiasm2/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 10
+texture_normal = ExtResource("34_kga1d")
+texture_pressed = ExtResource("36_oou5q")
+texture_hover = ExtResource("36_oou5q")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="Enthusiasm3" parent="TutorialEnthusiasm" node_paths=PackedStringArray("NextDialogue", "PrevDialogue") instance=ExtResource("40_ad0l1")]
+visible = false
+layout_mode = 0
+offset_left = 673.0
+offset_top = 285.0
+offset_right = 1285.0
+offset_bottom = 611.0
+theme_override_styles/panel = ExtResource("37_s88xc")
+NextDialogue = NodePath("../Enthusiasm4")
+PrevDialogue = NodePath("../Enthusiasm2")
+
+[node name="RichTextLabel" parent="TutorialEnthusiasm/Enthusiasm3/VBoxContainer" index="0"]
+text = "Once an opponent has gained at least 2 Enthusiasm for a topic, they will get annoyed if you try to change the Conversation to a topic they're not that enthusiastic about."
+
+[node name="Enthusiasm4" parent="TutorialEnthusiasm" node_paths=PackedStringArray("NextDialogue", "PrevDialogue") instance=ExtResource("40_ad0l1")]
+visible = false
+layout_mode = 0
+offset_left = 550.0
+offset_top = 580.0
+offset_right = 1106.0
+offset_bottom = 871.0
+NextDialogue = NodePath("../Enthusiasm5")
+PrevDialogue = NodePath("../Enthusiasm3")
+
+[node name="RichTextLabel" parent="TutorialEnthusiasm/Enthusiasm4/VBoxContainer" index="0"]
+text = "Some Special cards have effects that can decrease Enthusiasm and make it possible to change topics without penalty."
+
+[node name="Enthusiasm5" parent="TutorialEnthusiasm" node_paths=PackedStringArray("PrevDialogue") instance=ExtResource("40_ad0l1")]
+visible = false
+layout_mode = 0
+offset_left = 729.0
+offset_top = 286.0
+offset_right = 1285.0
+offset_bottom = 571.0
+theme_override_styles/panel = ExtResource("37_s88xc")
+PrevDialogue = NodePath("../Enthusiasm4")
+
+[node name="RichTextLabel" parent="TutorialEnthusiasm/Enthusiasm5/VBoxContainer" index="0"]
+text = "Enthusiasm also has its upsides: It can make you gain  [hint=\"{Social Standing}\"][img=40]res://Assets/UI/Icons/SocialStandingIcon.png[/img][/hint] and if it reaches high levels it will lower your opponent's Annoyance."
+
+[node name="TextureButtonNext" parent="TutorialEnthusiasm/Enthusiasm5/VBoxContainer/HBoxContainer" index="1"]
+visible = false
+
+[node name="TutorialAnnoyance" type="TextureButton" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1020.0
+mouse_filter = 1
+texture_normal = SubResource("GradientTexture2D_dpyj4")
+script = ExtResource("33_vfbqr")
+
+[node name="Annoyance1" type="PanelContainer" parent="TutorialAnnoyance" node_paths=PackedStringArray("NextDialogue")]
+layout_mode = 0
+offset_left = 781.0
+offset_top = 673.0
+offset_right = 1316.0
+offset_bottom = 917.0
+theme = ExtResource("6_wdmna")
+theme_type_variation = &"Tutorial"
+theme_override_styles/panel = ExtResource("37_s88xc")
+script = ExtResource("34_vfbqr")
+NextDialogue = NodePath("../Annoyance2")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TutorialAnnoyance/Annoyance1"]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="TutorialAnnoyance/Annoyance1/VBoxContainer"]
+custom_minimum_size = Vector2(198.97, 0)
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("6_wdmna")
+theme_type_variation = &"TutorialText"
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "Some actions like talking about disliked topics increase your opponent's Annoyance."
+fit_content = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TutorialAnnoyance/Annoyance1/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="TextureButtonNext" type="TextureButton" parent="TutorialAnnoyance/Annoyance1/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 10
+texture_normal = ExtResource("34_kga1d")
+texture_pressed = ExtResource("36_oou5q")
+texture_hover = ExtResource("36_oou5q")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="Annoyance2" type="PanelContainer" parent="TutorialAnnoyance" node_paths=PackedStringArray("NextDialogue", "PrevDialogue")]
+visible = false
+layout_mode = 0
+offset_left = 704.0
+offset_top = 673.0
+offset_right = 1315.0
+offset_bottom = 1003.0
+theme = ExtResource("6_wdmna")
+theme_type_variation = &"Tutorial"
+theme_override_styles/panel = ExtResource("37_s88xc")
+script = ExtResource("34_vfbqr")
+NextDialogue = NodePath("../Annoyance3")
+PrevDialogue = NodePath("../Annoyance1")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TutorialAnnoyance/Annoyance2"]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="TutorialAnnoyance/Annoyance2/VBoxContainer"]
+custom_minimum_size = Vector2(198.97, 0)
+layout_mode = 2
+theme = ExtResource("6_wdmna")
+theme_type_variation = &"TutorialText"
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "This can be both good and bad. The more annoyed the opponent, the lower their Maximum Conversation Interest [hint=\"{Maximum Conversation Interest}\"][img=
+50]res://Assets/UI/Icons/ConversationInterestMaxIcon.png[/img][/hint]. It can help you end the Conversation faster."
+fit_content = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TutorialAnnoyance/Annoyance2/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="TextureButtonPrev" type="TextureButton" parent="TutorialAnnoyance/Annoyance2/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 2
+texture_normal = ExtResource("38_4kums")
+texture_pressed = ExtResource("39_c18qn")
+texture_hover = ExtResource("39_c18qn")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="TextureButtonNext" type="TextureButton" parent="TutorialAnnoyance/Annoyance2/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 10
+texture_normal = ExtResource("34_kga1d")
+texture_pressed = ExtResource("36_oou5q")
+texture_hover = ExtResource("36_oou5q")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="Annoyance3" parent="TutorialAnnoyance" node_paths=PackedStringArray("NextDialogue", "PrevDialogue") instance=ExtResource("40_ad0l1")]
+visible = false
+layout_mode = 0
+offset_left = 706.0
+offset_top = 672.0
+offset_right = 1313.0
+offset_bottom = 961.0
+theme_override_styles/panel = ExtResource("37_s88xc")
+NextDialogue = NodePath("../Annoyance4")
+PrevDialogue = NodePath("../Annoyance2")
+
+[node name="RichTextLabel" parent="TutorialAnnoyance/Annoyance3/VBoxContainer" index="0"]
+text = "On the downside, you lose [hint=\"{Social Standing}\"][img=
+40]res://Assets/UI/Icons/SocialStandingIcon.png[/img][/hint] with the guests of the Party. And you don't want them to talk badly about you after tonight..."
+
+[node name="Annoyance4" parent="TutorialAnnoyance" node_paths=PackedStringArray("PrevDialogue") instance=ExtResource("40_ad0l1")]
+visible = false
+layout_mode = 0
+offset_left = 706.0
+offset_top = 672.0
+offset_right = 1313.0
+offset_bottom = 1002.0
+theme_override_styles/panel = ExtResource("37_s88xc")
+PrevDialogue = NodePath("../Annoyance3")
+
+[node name="RichTextLabel" parent="TutorialAnnoyance/Annoyance4/VBoxContainer" index="0"]
+text = "The patience of your opponent will run out eventually. 
+If their Annoyance reaches level 5, they will end the conversation, damaging both your [hint=\"{Social Standing}\"][img=
+40]res://Assets/UI/Icons/SocialStandingIcon.png[/img][/hint] and [hint=\"{Social Battery}\"][img=
+50]res://Assets/UI/Icons/SocialBatteryIcon_2.png[/img][/hint]."
+
+[node name="TextureButtonNext" parent="TutorialAnnoyance/Annoyance4/VBoxContainer/HBoxContainer" index="1"]
+visible = false
+
 [connection signal="pressed" from="SpeechbubblePlayer" to="." method="OnSpeechBubblePressed"]
+[connection signal="button_up" from="TutorialOverview" to="TutorialOverview" method="Close"]
+[connection signal="button_down" from="TutorialOverview/EncounterOverview1/VBoxContainer/HBoxContainer/TextureButtonNext" to="TutorialOverview/EncounterOverview1" method="OnProgressForward"]
+[connection signal="button_down" from="TutorialOverview/EncounterOverview2/VBoxContainer/HBoxContainer/TextureButtonPrev" to="TutorialOverview/EncounterOverview2" method="OnProgressBackward"]
+[connection signal="button_down" from="TutorialOverview/EncounterOverview2/VBoxContainer/HBoxContainer/TextureButtonNext" to="TutorialOverview/EncounterOverview2" method="OnProgressForward"]
+[connection signal="button_down" from="TutorialOverview/EncounterOverview3/VBoxContainer/HBoxContainer/TextureButtonPrev" to="TutorialOverview/EncounterOverview3" method="OnProgressBackward"]
+[connection signal="button_down" from="TutorialOverview/EncounterOverview3/VBoxContainer/HBoxContainer/TextureButtonNext" to="TutorialOverview/EncounterOverview3" method="OnProgressForward"]
+[connection signal="button_up" from="TutorialTopicalAttack" to="TutorialTopicalAttack" method="Close"]
+[connection signal="button_down" from="TutorialTopicalAttack/TopicalAttack1/VBoxContainer/HBoxContainer/TextureButtonNext" to="TutorialTopicalAttack/TopicalAttack1" method="OnProgressForward"]
+[connection signal="button_down" from="TutorialTopicalAttack/TopicalAttack2/VBoxContainer/HBoxContainer/TextureButtonPrev" to="TutorialTopicalAttack/TopicalAttack2" method="OnProgressBackward"]
+[connection signal="button_down" from="TutorialTopicalAttack/TopicalAttack2/VBoxContainer/HBoxContainer/TextureButtonNext" to="TutorialTopicalAttack/TopicalAttack2" method="OnProgressForward"]
+[connection signal="button_up" from="TutorialEnthusiasm" to="TutorialEnthusiasm" method="Close"]
+[connection signal="button_down" from="TutorialEnthusiasm/Enthusiasm1/VBoxContainer/HBoxContainer/TextureButtonNext" to="TutorialEnthusiasm/Enthusiasm1" method="OnProgressForward"]
+[connection signal="button_down" from="TutorialEnthusiasm/Enthusiasm2/VBoxContainer/HBoxContainer/TextureButtonPrev" to="TutorialEnthusiasm/Enthusiasm2" method="OnProgressBackward"]
+[connection signal="button_down" from="TutorialEnthusiasm/Enthusiasm2/VBoxContainer/HBoxContainer/TextureButtonNext" to="TutorialEnthusiasm/Enthusiasm2" method="OnProgressForward"]
+[connection signal="button_up" from="TutorialAnnoyance" to="TutorialAnnoyance" method="Close"]
+[connection signal="button_down" from="TutorialAnnoyance/Annoyance1/VBoxContainer/HBoxContainer/TextureButtonNext" to="TutorialAnnoyance/Annoyance1" method="OnProgressForward"]
+[connection signal="button_down" from="TutorialAnnoyance/Annoyance2/VBoxContainer/HBoxContainer/TextureButtonPrev" to="TutorialAnnoyance/Annoyance2" method="OnProgressBackward"]
+[connection signal="button_down" from="TutorialAnnoyance/Annoyance2/VBoxContainer/HBoxContainer/TextureButtonNext" to="TutorialAnnoyance/Annoyance2" method="OnProgressForward"]
+
+[editable path="TutorialOverview/EncounterOverview4"]
+[editable path="TutorialTopicalAttack/TopicalAttack3"]
+[editable path="TutorialEnthusiasm/Enthusiasm3"]
+[editable path="TutorialEnthusiasm/Enthusiasm4"]
+[editable path="TutorialEnthusiasm/Enthusiasm5"]
+[editable path="TutorialAnnoyance/Annoyance3"]
+[editable path="TutorialAnnoyance/Annoyance4"]

@@ -2,18 +2,15 @@ using Godot;
 
 namespace tee
 {
+	public delegate void MainSceneHandler(PartyPlayer player);
 	public partial class MainScene : Scene
 	{
+		public static event MainSceneHandler SetupCompleted;
 		[Export] private Scene _currentFloor;
 		[Export] private CanvasLayer _encounterLayer;
 		[Export] private TextureProgressBar _socialBattery;
 		[Export] private Camera2D _camera;
 		[Export] private PartyPlayer _player;
-		public PartyPlayer Player
-		{
-			get { return _player; }
-			set { _player = value; }
-		}
 		public Scene CurrentFloor
 		{
 			get { return _currentFloor; }
@@ -27,10 +24,9 @@ namespace tee
 
 		public override void _Ready()
 		{
-			GameManager.Player = _player;
-			GameManager.SetupGame();
 			UpdateUI();
 			_camera.MakeCurrent();
+			SetupCompleted?.Invoke(_player);
 		}
 
 		public void ChangeSubScene(Scene scene)

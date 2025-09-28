@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bof3wrxapds3v" path="res://Assets/Textures/MainCharacters.png" id="2_lprel"]
 [ext_resource type="Theme" uid="uid://bpp0q38rfd1ms" path="res://Assets/Themes/Lobster.tres" id="3_l63qc"]
 [ext_resource type="Script" uid="uid://diy0f8mk31o2x" path="res://src/SceneCode/SceneSwapButton.cs" id="4_ktip8"]
-[ext_resource type="Texture2D" uid="uid://b12srjfl8cur2" path="res://Assets/UI/arrow.png" id="5_wngc0"]
+[ext_resource type="Texture2D" uid="uid://b12srjfl8cur2" path="res://Assets/UI/Arrow.png" id="5_wngc0"]
 [ext_resource type="Script" uid="uid://dfdhjupfrr5j1" path="res://src/SceneCode/QuitButton.cs" id="6_mtxc5"]
 
 [node name="StartScene" type="Control"]

@@ -1,0 +1,11 @@
+[gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://mvfkip85m7ih"]
+
+[ext_resource type="Texture2D" uid="uid://ci8jos5ldj2ug" path="res://Assets/UI/Speechbubble_var3_mirrored_blue.png" id="1_m0sni"]
+
+[resource]
+content_margin_top = 30.0
+texture = ExtResource("1_m0sni")
+texture_margin_left = 40.0
+texture_margin_top = 77.0
+texture_margin_right = 96.0
+texture_margin_bottom = 37.0

@@ -43,6 +43,7 @@ namespace tee
 		private int _conversationInterestDelta;
 		[Export] private Label _conversationInterestDamage;
 		[Export] private TextureProgressBar _socialBatteryProgress;
+		[Export] private Control _tutorialDialogue;
 
 		public EnemyData CurrentEnemy
 		{
@@ -68,6 +69,10 @@ namespace tee
 			_playerDialogue.Text = "";
 			_enemyDialogue.Text = "";
 			_socialBatteryProgress.Value = GameManager.SocialBattery;
+			if (GameManager.IsFirstEncounter)
+			{
+				_tutorialDialogue.Visible = true;
+			}
 			SetupCompleted?.Invoke();
 		}
 

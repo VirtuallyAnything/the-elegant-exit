@@ -18,6 +18,8 @@ namespace tee
 		}
 		private static int _socialStandingOverall;
 		private static int _socialBattery = 100;
+		private static bool _isTutorialActive = false;
+		private static bool _isFirstEncounter = false;// true;
 		public static Godot.Collections.Array<PlayerAttack> AvailableAttacks
 		{
 			get { return _availableAttacks; }
@@ -44,15 +46,26 @@ namespace tee
 				}
 			}
 		}
-
-		public static PartyPlayer Player
+		public static bool IsFirstEncounter
 		{
-			get { return _player; }
-			set { _player = value; }
+			get{ return _isFirstEncounter; }
 		}
 
-		public static void SetupGame()
+		public override void _Ready()
 		{
+			MainScene.SetupCompleted += SetupGame;
+			CombatManager.CombatWon += SetIsFirstEncounter;
+		}
+
+		private void SetIsFirstEncounter(bool outcome)
+		{
+			_isFirstEncounter = false;
+			CombatManager.CombatWon -= SetIsFirstEncounter;
+		}
+
+		private void SetupGame(PartyPlayer player)
+		{
+			_player = player;
 			AvailableAttacks = _player.Data.AvailableAttacks;
 			_socialStandingOverall = _player.Data.SocialStandingOverall;
 			SocialBattery = _player.Data.SocialBattery;
@@ -70,10 +83,16 @@ namespace tee
 			GameOver?.Invoke();
 		}
 
+		public static int GetScore()
+		{
+			return _socialStandingOverall * _socialBattery;
+		}
+
 		public override void _ExitTree()
 		{
 			base._ExitTree();
 			CombatManager.FinalValuesDecided -= UpdateStats;
+			MainScene.SetupCompleted -= SetupGame;
 			QueueFree();
 		}
 	}
