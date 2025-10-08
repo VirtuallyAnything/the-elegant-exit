@@ -1,0 +1,76 @@
+[gd_scene load_steps=6 format=3 uid="uid://0k6yfreyobqf"]
+
+[ext_resource type="Script" uid="uid://2cw685x18scd" path="res://src/UI/LinkedDialogueController.cs" id="1_yg62d"]
+[ext_resource type="StyleBox" uid="uid://mvfkip85m7ih" path="res://Assets/Themes/SpeechBubbleStyleBox3Blue_mirrored.tres" id="3_r2xrs"]
+[ext_resource type="PackedScene" uid="uid://h7n4wlg04ii6" path="res://Scenes/Subscenes/TutorialDialogue.tscn" id="9_54hdc"]
+
+[sub_resource type="Gradient" id="Gradient_kga1d"]
+offsets = PackedFloat32Array(0, 0.991935)
+colors = PackedColorArray(0, 0, 0.07, 0.596078, 0, 0, 0.08, 0.596078)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_dpyj4"]
+gradient = SubResource("Gradient_kga1d")
+width = 1920
+height = 1080
+fill_from = Vector2(0.939904, 0.0811966)
+
+[node name="TutorialTopicalAttack" type="TextureButton" node_paths=PackedStringArray("_linkedDialogues")]
+process_mode = 2
+offset_right = 1920.0
+offset_bottom = 1020.0
+texture_normal = SubResource("GradientTexture2D_dpyj4")
+script = ExtResource("1_yg62d")
+_linkedDialogues = [NodePath("TopicalAttack1"), NodePath("TopicalAttack2"), NodePath("TopicalAttack3")]
+
+[node name="TopicalAttack1" parent="." instance=ExtResource("9_54hdc")]
+layout_mode = 0
+offset_left = 729.0
+offset_top = 345.0
+offset_right = 1277.0
+offset_bottom = 640.0
+theme_override_styles/panel = ExtResource("3_r2xrs")
+
+[node name="RichTextLabel" parent="TopicalAttack1/VBoxContainer" index="0"]
+text = "Talking about a topic uncovers your opponent's preference for it. They can like [img=40]res://Assets/UI/Icons/LikeIcon.png[/img], dislike [img=30]res://Assets/UI/Icons/DislikeIcon.png[/img] or feel neutral towards the topic."
+
+[node name="TextureButtonPrev" parent="TopicalAttack1/VBoxContainer/HBoxContainer" index="0"]
+modulate = Color(1, 1, 1, 0)
+mouse_filter = 2
+
+[node name="TopicalAttack2" parent="." instance=ExtResource("9_54hdc")]
+visible = false
+layout_mode = 0
+offset_left = 665.0
+offset_top = 344.0
+offset_right = 1274.0
+offset_bottom = 686.0
+theme_override_styles/panel = ExtResource("3_r2xrs")
+
+[node name="RichTextLabel" parent="TopicalAttack2/VBoxContainer" index="0"]
+text = "The amount of damage to your opponent's [hint=\"{Conversation Interest}\"][img=
+50]res://Assets/UI/Icons/ConversationInterestIcon.png[/img][/hint] is impacted by these preferences. Disliked topics increase damage, but they also make your opponent become annoyed."
+
+[node name="TopicalAttack3" parent="." instance=ExtResource("9_54hdc")]
+visible = false
+layout_mode = 0
+offset_left = 666.0
+offset_top = 474.0
+offset_right = 1222.0
+offset_bottom = 683.0
+
+[node name="RichTextLabel" parent="TopicalAttack3/VBoxContainer" index="0"]
+text = "Opponents will only talk about topics they like or feel neutral towards."
+
+[node name="TextureButtonNext" parent="TopicalAttack3/VBoxContainer/HBoxContainer" index="2"]
+modulate = Color(1, 1, 1, 0)
+mouse_filter = 2
+
+[connection signal="pressed" from="." to="." method="OnProgressForward"]
+[connection signal="pressed" from="TopicalAttack1/VBoxContainer/HBoxContainer/TextureButtonNext" to="." method="OnProgressForward"]
+[connection signal="pressed" from="TopicalAttack2/VBoxContainer/HBoxContainer/TextureButtonPrev" to="." method="OnProgressBackward"]
+[connection signal="pressed" from="TopicalAttack2/VBoxContainer/HBoxContainer/TextureButtonNext" to="." method="OnProgressForward"]
+[connection signal="pressed" from="TopicalAttack3/VBoxContainer/HBoxContainer/TextureButtonPrev" to="." method="OnProgressBackward"]
+
+[editable path="TopicalAttack1"]
+[editable path="TopicalAttack2"]
+[editable path="TopicalAttack3"]

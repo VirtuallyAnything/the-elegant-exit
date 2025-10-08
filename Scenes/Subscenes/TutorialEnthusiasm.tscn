@@ -1,0 +1,105 @@
+[gd_scene load_steps=6 format=3 uid="uid://nlpl1sabvuvw"]
+
+[ext_resource type="Script" uid="uid://2cw685x18scd" path="res://src/UI/LinkedDialogueController.cs" id="1_ucuhv"]
+[ext_resource type="StyleBox" uid="uid://mvfkip85m7ih" path="res://Assets/Themes/SpeechBubbleStyleBox3Blue_mirrored.tres" id="3_b0swg"]
+[ext_resource type="PackedScene" uid="uid://h7n4wlg04ii6" path="res://Scenes/Subscenes/TutorialDialogue.tscn" id="9_xvpcb"]
+
+[sub_resource type="Gradient" id="Gradient_kga1d"]
+offsets = PackedFloat32Array(0, 0.991935)
+colors = PackedColorArray(0, 0, 0.07, 0.596078, 0, 0, 0.08, 0.596078)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_dpyj4"]
+gradient = SubResource("Gradient_kga1d")
+width = 1920
+height = 1080
+fill_from = Vector2(0.939904, 0.0811966)
+
+[node name="TutorialEnthusiasm" type="TextureButton" node_paths=PackedStringArray("_linkedDialogues")]
+process_mode = 2
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture_normal = SubResource("GradientTexture2D_dpyj4")
+script = ExtResource("1_ucuhv")
+_linkedDialogues = [NodePath("Enthusiasm1"), NodePath("Enthusiasm2"), NodePath("Enthusiasm3"), NodePath("Enthusiasm4"), NodePath("Enthusiasm5")]
+
+[node name="Enthusiasm1" parent="." instance=ExtResource("9_xvpcb")]
+layout_mode = 0
+offset_left = 734.0
+offset_top = 285.0
+offset_right = 1284.0
+offset_bottom = 570.0
+theme_override_styles/panel = ExtResource("3_b0swg")
+
+[node name="RichTextLabel" parent="Enthusiasm1/VBoxContainer" index="0"]
+text = "Talking about a topic your opponent doesn't dislike will increase their Enthusiasm for that topic."
+
+[node name="TextureButtonPrev" parent="Enthusiasm1/VBoxContainer/HBoxContainer" index="0"]
+modulate = Color(1, 1, 1, 0)
+mouse_filter = 2
+
+[node name="Enthusiasm2" parent="." instance=ExtResource("9_xvpcb")]
+visible = false
+layout_mode = 0
+offset_left = 673.0
+offset_top = 285.0
+offset_right = 1284.0
+offset_bottom = 656.0
+theme_override_styles/panel = ExtResource("3_b0swg")
+
+[node name="RichTextLabel" parent="Enthusiasm2/VBoxContainer" index="0"]
+text = "They will become more likely to talk about that topic and increase their Enthusiasm for it even more. An overly enthusiastic opponent will be harder to defeat, as their Maximum Conversation Interest [hint=\"{Maximum Conversation Interest}\"][img=50]res://Assets/UI/Icons/ConversationInterestMaxIcon.png[/img][/hint] rises."
+
+[node name="Enthusiasm3" parent="." instance=ExtResource("9_xvpcb")]
+visible = false
+layout_mode = 0
+offset_left = 673.0
+offset_top = 285.0
+offset_right = 1285.0
+offset_bottom = 611.0
+theme_override_styles/panel = ExtResource("3_b0swg")
+
+[node name="RichTextLabel" parent="Enthusiasm3/VBoxContainer" index="0"]
+text = "Once an opponent has gained at least 2 Enthusiasm for a topic, they will get annoyed if you try to change the Conversation to a topic they're not that enthusiastic about."
+
+[node name="Enthusiasm4" parent="." instance=ExtResource("9_xvpcb")]
+visible = false
+layout_mode = 0
+offset_left = 550.0
+offset_top = 580.0
+offset_right = 1106.0
+offset_bottom = 871.0
+
+[node name="RichTextLabel" parent="Enthusiasm4/VBoxContainer" index="0"]
+text = "Some Special cards have effects that can decrease Enthusiasm and make it possible to change topics without penalty."
+
+[node name="Enthusiasm5" parent="." instance=ExtResource("9_xvpcb")]
+visible = false
+layout_mode = 0
+offset_left = 729.0
+offset_top = 286.0
+offset_right = 1285.0
+offset_bottom = 571.0
+theme_override_styles/panel = ExtResource("3_b0swg")
+
+[node name="RichTextLabel" parent="Enthusiasm5/VBoxContainer" index="0"]
+text = "Enthusiasm also has its upsides: It can make you gain  [hint=\"{Social Standing}\"][img=40]res://Assets/UI/Icons/SocialStandingIcon.png[/img][/hint] and if it reaches high levels it will lower your opponent's Annoyance."
+
+[node name="TextureButtonNext" parent="Enthusiasm5/VBoxContainer/HBoxContainer" index="2"]
+modulate = Color(1, 1, 1, 0)
+mouse_filter = 2
+
+[connection signal="pressed" from="." to="." method="OnProgressForward"]
+[connection signal="pressed" from="Enthusiasm1/VBoxContainer/HBoxContainer/TextureButtonNext" to="." method="OnProgressForward"]
+[connection signal="pressed" from="Enthusiasm2/VBoxContainer/HBoxContainer/TextureButtonPrev" to="." method="OnProgressBackward"]
+[connection signal="pressed" from="Enthusiasm2/VBoxContainer/HBoxContainer/TextureButtonNext" to="." method="OnProgressForward"]
+[connection signal="pressed" from="Enthusiasm3/VBoxContainer/HBoxContainer/TextureButtonPrev" to="." method="OnProgressBackward"]
+[connection signal="pressed" from="Enthusiasm3/VBoxContainer/HBoxContainer/TextureButtonNext" to="." method="OnProgressForward"]
+[connection signal="pressed" from="Enthusiasm4/VBoxContainer/HBoxContainer/TextureButtonPrev" to="." method="OnProgressBackward"]
+[connection signal="pressed" from="Enthusiasm4/VBoxContainer/HBoxContainer/TextureButtonNext" to="." method="OnProgressForward"]
+[connection signal="pressed" from="Enthusiasm5/VBoxContainer/HBoxContainer/TextureButtonPrev" to="." method="OnProgressBackward"]
+
+[editable path="Enthusiasm1"]
+[editable path="Enthusiasm2"]
+[editable path="Enthusiasm3"]
+[editable path="Enthusiasm4"]
+[editable path="Enthusiasm5"]

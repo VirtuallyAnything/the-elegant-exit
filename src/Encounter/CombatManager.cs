@@ -12,6 +12,7 @@ namespace tee
 		public static event CombatEndHandler CombatWon;
 		public static event CombatOutcomeHandler FinalValuesDecided;
 		public static event CombatEventHandler EnemyTurnComplete;
+		public static event CombatEventHandler TopicalAttackActive;
 		public static event PreferenceEventHandler PreferenceDiscovered;
 		[Export] private EncounterScene _encounterScene;
 		private EncounterPlayer _player;
@@ -125,6 +126,7 @@ namespace tee
 			TopicName topicOfAttack;
 			if (playerAttack is TopicalPlayerAttack topicalPlayerAttack)
 			{
+				TopicalAttackActive?.Invoke();
 				topicOfAttack = topicalPlayerAttack.SelectedTopicName;
 				Player.CurrentTopicName = topicOfAttack;
 				PreferenceForCurrentTopic = Enemy.GetPreferenceFor(topicOfAttack);

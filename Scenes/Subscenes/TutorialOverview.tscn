@@ -1,0 +1,95 @@
+[gd_scene load_steps=6 format=3 uid="uid://bisdroyge8w5q"]
+
+[ext_resource type="Script" uid="uid://2cw685x18scd" path="res://src/UI/LinkedDialogueController.cs" id="1_shvfn"]
+[ext_resource type="StyleBox" uid="uid://mvfkip85m7ih" path="res://Assets/Themes/SpeechBubbleStyleBox3Blue_mirrored.tres" id="7_mf4tl"]
+[ext_resource type="PackedScene" uid="uid://h7n4wlg04ii6" path="res://Scenes/Subscenes/TutorialDialogue.tscn" id="10_lsasr"]
+
+[sub_resource type="Gradient" id="Gradient_kga1d"]
+offsets = PackedFloat32Array(0, 0.991935)
+colors = PackedColorArray(0, 0, 0.07, 0.596078, 0, 0, 0.08, 0.596078)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_dpyj4"]
+gradient = SubResource("Gradient_kga1d")
+width = 1920
+height = 1080
+fill_from = Vector2(0.939904, 0.0811966)
+
+[node name="TutorialOverview" type="TextureButton" node_paths=PackedStringArray("_linkedDialogues")]
+process_mode = 2
+offset_right = 1920.0
+offset_bottom = 1020.0
+texture_normal = SubResource("GradientTexture2D_dpyj4")
+script = ExtResource("1_shvfn")
+_linkedDialogues = [NodePath("EncounterOverview1"), NodePath("EncounterOverview2"), NodePath("EncounterOverview3"), NodePath("EncounterOverview4")]
+
+[node name="EncounterOverview1" parent="." instance=ExtResource("10_lsasr")]
+layout_mode = 0
+offset_left = 624.0
+offset_top = 65.0
+offset_right = 1154.0
+offset_bottom = 363.0
+
+[node name="RichTextLabel" parent="EncounterOverview1/VBoxContainer" index="0"]
+text = "Your opponent has opened the conversation! Every one of their dialogues will drain your Mental Capacity [hint=\"{Mental Capacity}\"][img=
+50]res://Assets/UI/Icons/MentalCapacityIcon.png[/img][/hint]."
+
+[node name="TextureButtonPrev" parent="EncounterOverview1/VBoxContainer/HBoxContainer" index="0"]
+modulate = Color(1, 1, 1, 0)
+mouse_filter = 2
+
+[node name="EncounterOverview2" parent="." instance=ExtResource("10_lsasr")]
+visible = false
+layout_mode = 2
+offset_left = 819.0
+offset_top = 60.0
+offset_right = 1426.0
+offset_bottom = 366.0
+theme_override_styles/panel = ExtResource("7_mf4tl")
+
+[node name="RichTextLabel" parent="EncounterOverview2/VBoxContainer" index="0"]
+text = "Bring your opponent's Conversation Interest [hint=\"{Conversation Interest}\"][img=
+50]res://Assets/UI/Icons/ConversationInterestIcon.png[/img][/hint] down to 0 in order to end the Conversation smoothly and gain Social Standing [hint=\"{Social Standing}\"][img=
+40]res://Assets/UI/Icons/SocialStandingIcon.png[/img][/hint]."
+
+[node name="EncounterOverview3" parent="." instance=ExtResource("10_lsasr")]
+visible = false
+layout_mode = 0
+offset_left = 795.0
+offset_top = 60.0
+offset_right = 1425.0
+offset_bottom = 438.0
+theme_override_styles/panel = ExtResource("7_mf4tl")
+
+[node name="RichTextLabel" parent="EncounterOverview3/VBoxContainer" index="0"]
+text = "If your [hint=\"{Mental Capacity}\"][img=
+50]res://Assets/UI/Icons/MentalCapacityIcon.png[/img][/hint] runs out first, you'll have a bit of a mental breakdown, losing [hint=\"{Social Standing}\"][img=
+40]res://Assets/UI/Icons/SocialStandingIcon.png[/img][/hint] and draining your Social Battery [hint=\"{Social Battery}\"][img=
+50]res://Assets/UI/Icons/SocialBatteryIcon_2.png[/img][/hint]. You don't want this social event to end in disaster, so try to keep your stats as high as possible!"
+
+[node name="EncounterOverview4" parent="." instance=ExtResource("10_lsasr")]
+visible = false
+layout_mode = 0
+offset_left = 575.0
+offset_top = 561.0
+offset_right = 1112.0
+offset_bottom = 893.0
+
+[node name="RichTextLabel" parent="EncounterOverview4/VBoxContainer" index="0"]
+text = "Choose a card from you Dialogue Deck to say something. Cards can be Topical (T) or Special (S). Topical cards require you to choose a conversation topic."
+
+[node name="TextureButtonNext" parent="EncounterOverview4/VBoxContainer/HBoxContainer" index="2"]
+modulate = Color(1, 1, 1, 0)
+mouse_filter = 2
+
+[connection signal="pressed" from="." to="." method="OnProgressForward"]
+[connection signal="pressed" from="EncounterOverview1/VBoxContainer/HBoxContainer/TextureButtonNext" to="." method="OnProgressForward"]
+[connection signal="pressed" from="EncounterOverview2/VBoxContainer/HBoxContainer/TextureButtonPrev" to="." method="OnProgressBackward"]
+[connection signal="pressed" from="EncounterOverview2/VBoxContainer/HBoxContainer/TextureButtonNext" to="." method="OnProgressForward"]
+[connection signal="pressed" from="EncounterOverview3/VBoxContainer/HBoxContainer/TextureButtonPrev" to="." method="OnProgressBackward"]
+[connection signal="pressed" from="EncounterOverview3/VBoxContainer/HBoxContainer/TextureButtonNext" to="." method="OnProgressForward"]
+[connection signal="pressed" from="EncounterOverview4/VBoxContainer/HBoxContainer/TextureButtonPrev" to="." method="OnProgressBackward"]
+
+[editable path="EncounterOverview1"]
+[editable path="EncounterOverview2"]
+[editable path="EncounterOverview3"]
+[editable path="EncounterOverview4"]

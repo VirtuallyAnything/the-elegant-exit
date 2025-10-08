@@ -1,0 +1,96 @@
+[gd_scene load_steps=6 format=3 uid="uid://cq6hyvw5wvnsg"]
+
+[ext_resource type="Script" uid="uid://2cw685x18scd" path="res://src/UI/LinkedDialogueController.cs" id="1_ph3o3"]
+[ext_resource type="StyleBox" uid="uid://mvfkip85m7ih" path="res://Assets/Themes/SpeechBubbleStyleBox3Blue_mirrored.tres" id="3_8edlw"]
+[ext_resource type="PackedScene" uid="uid://h7n4wlg04ii6" path="res://Scenes/Subscenes/TutorialDialogue.tscn" id="9_eoacu"]
+
+[sub_resource type="Gradient" id="Gradient_kga1d"]
+offsets = PackedFloat32Array(0, 0.991935)
+colors = PackedColorArray(0, 0, 0.07, 0.596078, 0, 0, 0.08, 0.596078)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_dpyj4"]
+gradient = SubResource("Gradient_kga1d")
+width = 1920
+height = 1080
+fill_from = Vector2(0.939904, 0.0811966)
+
+[node name="TutorialAnnoyance" type="TextureButton" node_paths=PackedStringArray("_linkedDialogues")]
+process_mode = 2
+offset_right = 1920.0
+offset_bottom = 1020.0
+texture_normal = SubResource("GradientTexture2D_dpyj4")
+script = ExtResource("1_ph3o3")
+_linkedDialogues = [NodePath("Annoyance1"), NodePath("Annoyance2"), NodePath("Annoyance3"), NodePath("Annoyance4")]
+
+[node name="Annoyance1" parent="." instance=ExtResource("9_eoacu")]
+layout_mode = 0
+offset_left = 781.0
+offset_top = 673.0
+offset_right = 1317.0
+offset_bottom = 917.0
+theme_override_styles/panel = ExtResource("3_8edlw")
+
+[node name="RichTextLabel" parent="Annoyance1/VBoxContainer" index="0"]
+text = "Some actions like talking about disliked topics increase your opponent's Annoyance."
+
+[node name="TextureButtonPrev" parent="Annoyance1/VBoxContainer/HBoxContainer" index="0"]
+modulate = Color(1, 1, 1, 0)
+mouse_filter = 2
+
+[node name="Annoyance2" parent="." instance=ExtResource("9_eoacu")]
+visible = false
+layout_mode = 0
+offset_left = 705.0
+offset_top = 672.0
+offset_right = 1314.0
+offset_bottom = 1002.0
+theme_override_styles/panel = ExtResource("3_8edlw")
+
+[node name="RichTextLabel" parent="Annoyance2/VBoxContainer" index="0"]
+text = "This can be both good and bad. The more annoyed the opponent, the lower their Maximum Conversation Interest [hint=\"{Maximum Conversation Interest}\"][img=
+50]res://Assets/UI/Icons/ConversationInterestMaxIcon.png[/img][/hint]. It can help you end the Conversation faster."
+
+[node name="Annoyance3" parent="." instance=ExtResource("9_eoacu")]
+visible = false
+layout_mode = 0
+offset_left = 706.0
+offset_top = 672.0
+offset_right = 1313.0
+offset_bottom = 961.0
+theme_override_styles/panel = ExtResource("3_8edlw")
+
+[node name="RichTextLabel" parent="Annoyance3/VBoxContainer" index="0"]
+text = "On the downside, you lose [hint=\"{Social Standing}\"][img=
+40]res://Assets/UI/Icons/SocialStandingIcon.png[/img][/hint] with the guests of the Party. And you don't want them to talk badly about you after tonight..."
+
+[node name="Annoyance4" parent="." instance=ExtResource("9_eoacu")]
+visible = false
+layout_mode = 0
+offset_left = 706.0
+offset_top = 672.0
+offset_right = 1313.0
+offset_bottom = 1002.0
+theme_override_styles/panel = ExtResource("3_8edlw")
+
+[node name="RichTextLabel" parent="Annoyance4/VBoxContainer" index="0"]
+text = "The patience of your opponent will run out eventually. 
+If their Annoyance reaches level 5, they will end the conversation, damaging both your [hint=\"{Social Standing}\"][img=
+40]res://Assets/UI/Icons/SocialStandingIcon.png[/img][/hint] and [hint=\"{Social Battery}\"][img=
+50]res://Assets/UI/Icons/SocialBatteryIcon_2.png[/img][/hint]."
+
+[node name="TextureButtonNext" parent="Annoyance4/VBoxContainer/HBoxContainer" index="2"]
+self_modulate = Color(1, 1, 1, 0)
+mouse_filter = 2
+
+[connection signal="pressed" from="." to="." method="OnProgressForward"]
+[connection signal="pressed" from="Annoyance1/VBoxContainer/HBoxContainer/TextureButtonNext" to="." method="OnProgressForward"]
+[connection signal="pressed" from="Annoyance2/VBoxContainer/HBoxContainer/TextureButtonPrev" to="." method="OnProgressBackward"]
+[connection signal="pressed" from="Annoyance2/VBoxContainer/HBoxContainer/TextureButtonNext" to="." method="OnProgressForward"]
+[connection signal="pressed" from="Annoyance3/VBoxContainer/HBoxContainer/TextureButtonPrev" to="." method="OnProgressBackward"]
+[connection signal="pressed" from="Annoyance3/VBoxContainer/HBoxContainer/TextureButtonNext" to="." method="OnProgressForward"]
+[connection signal="pressed" from="Annoyance4/VBoxContainer/HBoxContainer/TextureButtonPrev" to="." method="OnProgressBackward"]
+
+[editable path="Annoyance1"]
+[editable path="Annoyance2"]
+[editable path="Annoyance3"]
+[editable path="Annoyance4"]

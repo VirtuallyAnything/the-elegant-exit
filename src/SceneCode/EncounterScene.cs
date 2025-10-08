@@ -69,10 +69,6 @@ namespace tee
 			_playerDialogue.Text = "";
 			_enemyDialogue.Text = "";
 			_socialBatteryProgress.Value = GameManager.SocialBattery;
-			if (GameManager.IsFirstEncounter)
-			{
-				_tutorialDialogue.Visible = true;
-			}
 			SetupCompleted?.Invoke();
 		}
 

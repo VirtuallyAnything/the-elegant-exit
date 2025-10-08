@@ -18,8 +18,7 @@ namespace tee
 		}
 		private static int _socialStandingOverall;
 		private static int _socialBattery = 100;
-		private static bool _isTutorialActive = false;
-		private static bool _isFirstEncounter = false;// true;
+		private static bool _isFirstEncounter = true;
 		public static Godot.Collections.Array<PlayerAttack> AvailableAttacks
 		{
 			get { return _availableAttacks; }

@@ -15,6 +15,7 @@ namespace tee
 		private static PartyFloorScene _partyFirstFloor;
 		private static MainScene _mainScene;
 		private static StartScene _mainMenu;
+		[Export] private PackedScene _tutorial;
 
 		// Called when the node enters the scene tree for the first time.
 		public override void _Ready()
@@ -134,6 +135,11 @@ namespace tee
 			_encounterStartScene.QueueFree();
 			_mainScene.EncounterLayer.AddChild(_encounterScene);
 			_encounterScene.SetupScene(GameManager.CurrentEnemy);
+			if (GameManager.IsFirstEncounter)
+			{
+				Node tutorial = ResourceLoader.Load<PackedScene>("res://Scenes/Subscenes/TutorialConfirmationWindow.tscn").Instantiate();
+				_encounterScene.AddChild(tutorial);
+			}
 		}
 
 		private void ChangeToEncounterFinishedScene(bool hasPlayerWon)

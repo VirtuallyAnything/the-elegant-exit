@@ -1,6 +1,7 @@
 [gd_resource type="Theme" load_steps=25 format=3 uid="uid://bpp0q38rfd1ms"]
 
 [ext_resource type="StyleBox" uid="uid://clf5eknolteml" path="res://Assets/Themes/SpeechBubbleStyleBox1.tres" id="1_2tqip"]
+[ext_resource type="StyleBox" uid="uid://f4qftxg2kd10" path="res://Assets/Themes/PanelShadowStylebox.tres" id="2_n6f1t"]
 [ext_resource type="Texture2D" uid="uid://k5qkug27uxim" path="res://Assets/UI/Speechbubble_var1.png" id="3_8u22o"]
 [ext_resource type="StyleBox" uid="uid://bwy6i5wpddmsd" path="res://Assets/Themes/RegularButtonStylebox.tres" id="3_gei38"]
 [ext_resource type="StyleBox" uid="uid://cjw8odfnd15my" path="res://Assets/Themes/RegularButtonShadowStylebox.tres" id="4_8bpcw"]
@@ -61,21 +62,6 @@ font_names = PackedStringArray("Franklin Gothic Book")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fk3w6"]
 bg_color = Color(0.152941, 0.2, 0.388235, 0.866667)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_37i7e"]
-bg_color = Color(0.501961, 0.14902, 0.266667, 1)
-border_width_left = 6
-border_width_top = 6
-border_width_right = 6
-border_width_bottom = 6
-border_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 30
-corner_radius_top_right = 30
-corner_radius_bottom_right = 30
-corner_radius_bottom_left = 30
-shadow_color = Color(0.12549, 0.0431373, 0.145098, 1)
-shadow_size = 5
-shadow_offset = Vector2(8, 8)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7ebnv"]
 bg_color = Color(0.178992, 0.230457, 0.43899, 1)
@@ -162,7 +148,7 @@ OutlinedLabel/constants/outline_size = 17
 OutlinedLabel/font_sizes/font_size = 41
 Overlay/base_type = &"Panel"
 Overlay/styles/panel = SubResource("StyleBoxFlat_fk3w6")
-Panel/styles/panel = SubResource("StyleBoxFlat_37i7e")
+Panel/styles/panel = ExtResource("2_n6f1t")
 RegularButton/base_type = &"Button"
 RegularButton/colors/font_color = Color(1, 0.8, 0.701961, 1)
 RegularButton/font_sizes/font_size = 36

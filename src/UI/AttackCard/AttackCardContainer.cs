@@ -1,3 +1,4 @@
+using System.Linq;
 using Godot;
 
 namespace tee
@@ -87,7 +88,7 @@ namespace tee
 		{
 			Modulate = new Color(1, 1, 1, 1);
 			PropagateCall("set_mouse_filter", [(int)Control.MouseFilterEnum.Pass]);
-			foreach (Control child in GetChildren())
+			foreach (Control child in GetChildren().Cast<Control>())
 			{
 				child.MouseFilter = MouseFilterEnum.Stop;
 			}

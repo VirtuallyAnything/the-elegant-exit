@@ -1,0 +1,82 @@
+[gd_scene load_steps=8 format=3 uid="uid://d306ymy5fgew3"]
+
+[ext_resource type="Script" uid="uid://dycsfihxrls14" path="res://src/UI/EncounterTutorial.cs" id="1_xyr00"]
+[ext_resource type="PackedScene" uid="uid://bisdroyge8w5q" path="res://Scenes/Subscenes/TutorialOverview.tscn" id="2_k2qnj"]
+[ext_resource type="PackedScene" uid="uid://0k6yfreyobqf" path="res://Scenes/Subscenes/TutorialTopicalAttack.tscn" id="3_ee6rn"]
+[ext_resource type="PackedScene" uid="uid://cq6hyvw5wvnsg" path="res://Scenes/Subscenes/TutorialAnnoyance.tscn" id="4_q6xk2"]
+[ext_resource type="PackedScene" uid="uid://nlpl1sabvuvw" path="res://Scenes/Subscenes/TutorialEnthusiasm.tscn" id="5_3j8xv"]
+[ext_resource type="Theme" uid="uid://bpp0q38rfd1ms" path="res://Assets/Themes/Lobster.tres" id="6_xfhho"]
+[ext_resource type="StyleBox" uid="uid://f4qftxg2kd10" path="res://Assets/Themes/PanelShadowStylebox.tres" id="7_vg0mp"]
+
+[node name="Control" type="Control" node_paths=PackedStringArray("_confirmationWindow")]
+process_mode = 2
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_xyr00")
+_overviewDialogue = ExtResource("2_k2qnj")
+_topicalAttacksDialogue = ExtResource("3_ee6rn")
+_annoyanceDialogue = ExtResource("4_q6xk2")
+_enthusiasmDialogue = ExtResource("5_3j8xv")
+_confirmationWindow = NodePath("TutorialDialogue")
+
+[node name="TutorialDialogue" type="Button" parent="."]
+process_mode = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel3" type="PanelContainer" parent="TutorialDialogue"]
+layout_mode = 2
+offset_left = 723.0
+offset_top = 358.0
+offset_right = 1214.0
+offset_bottom = 621.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.1
+theme = ExtResource("6_xfhho")
+theme_override_styles/panel = ExtResource("7_vg0mp")
+
+[node name="MarginContainer" type="MarginContainer" parent="TutorialDialogue/Panel3"]
+layout_mode = 2
+theme = ExtResource("6_xfhho")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TutorialDialogue/Panel3"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Label2" type="Label" parent="TutorialDialogue/Panel3/VBoxContainer"]
+custom_minimum_size = Vector2(379.525, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+theme = ExtResource("6_xfhho")
+text = "Would you like to enable the tutorial?"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TutorialDialogue/Panel3/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Confirm" type="Button" parent="TutorialDialogue/Panel3/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+text = "Yes"
+
+[node name="Cancel" type="Button" parent="TutorialDialogue/Panel3/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "No"
+
+[connection signal="button_up" from="TutorialDialogue/Panel3/VBoxContainer/HBoxContainer/Confirm" to="." method="OnPositiveButtonPressed"]
+[connection signal="button_up" from="TutorialDialogue/Panel3/VBoxContainer/HBoxContainer/Cancel" to="." method="OnNegativeButtonPressed"]
