@@ -1,5 +1,5 @@
 public enum SceneName{
-    MainMenu,
+    Menu,
     MainScene,
     Credits,
     PauseMenu,

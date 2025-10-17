@@ -3,7 +3,13 @@ using System;
 
 public partial class OneTimeControl : Control
 {
-	private void Close(){
+	public override void _Ready()
+	{
+		GetTree().Paused = true;
+	}
+
+	private void Close()
+	{
 		Visible = false;
 		GetTree().Paused = false;
 		QueueFree();

@@ -17,7 +17,9 @@ namespace tee
 		private Array<TopicButton> _topicButtonsItem = new();
 		private Array<TopicName> _itemConversationTopics = new();
 		public static event AttackHandler AttackSelected;
-		// Emitted when an AttackCard is selected, that isn't the frontmost card
+		/// <summary>
+        /// Emitted when an AttackCard is selected, that isn't the frontmost card
+        /// </summary>
 		public event AttackCardHandler AttackCardPressed;
 		public bool IsOneSided
 		{

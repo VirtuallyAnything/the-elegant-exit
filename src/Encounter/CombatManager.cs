@@ -26,6 +26,8 @@ namespace tee
 		private bool _isFirstTurn = true;
 		private bool _isBlockNextEnemyAttack;
 		private bool _isIgnoreCIBonusDamage;
+		private static int _dynamicCIDamageLike = -1;
+		private static int _dynamicCIDamageDislike = 1;
 		public int ConversationInterestDamage
 		{
 			get { return _conversationInterestDamage; }
@@ -104,6 +106,13 @@ namespace tee
 			EnemyAttack();
 		}
 
+		private void EndCombat(bool hasPlayerWon)
+		{
+			SocialStanding += Enemy.GetTotalSocialStanding();
+			FinalValuesDecided?.Invoke(SocialStanding, Player.MentalCapacity);
+			CombatWon?.Invoke(hasPlayerWon);
+		}
+
 		private void SetupNewAttack()
 		{
 			PlayerAttack newAttack = Player.SwapAttackOut(_selectedAttack);
@@ -135,11 +144,11 @@ namespace tee
 					switch (PreferenceForCurrentTopic)
 					{
 						// Apply damage modifiers for Preferences
-						case Preference.Like:   //TODO: Give Player feedback for why they get -1 Damage to their attack
-							ConversationInterestBonusDamage -= 1;
+						case Preference.Like:   
+							ConversationInterestBonusDamage += _dynamicCIDamageLike;
 							break;
 						case Preference.Dislike:
-							ConversationInterestBonusDamage += 1;
+							ConversationInterestBonusDamage += _dynamicCIDamageDislike;
 							if (Player.CurrentTopicName == Player.LastTopicName)
 							{
 								Enemy.Enrage(Player.CurrentTopicName);
@@ -190,11 +199,15 @@ namespace tee
 
 			if (Enemy.ConversationInterest <= 0)
 			{
-				SocialStanding += Enemy.GetTotalSocialStanding();
-				FinalValuesDecided?.Invoke(SocialStanding, Player.MentalCapacity);
-				CombatWon?.Invoke(true);
+				EndCombat(true);
 				return;
 			}
+			else if (Enemy.Annoyance.CurrentAnnoyance >= 5)
+			{
+				EndCombat(false);
+				return;
+			}
+			_encounterScene.EnableInput();
 		}
 
 		public async void EnemyAttack()
@@ -223,15 +236,17 @@ namespace tee
 				GameManager.SocialBattery += enemyAttack.SocialBatteryChange;
 				Player.MentalCapacity -= enemyAttack.MentalCapacityDamage;
 				await _encounterScene.PlayAnimationsForAttack(enemyAttack);
-				if (Player.MentalCapacity <= 0)
-				{
-					FinalValuesDecided?.Invoke(SocialStanding, 0);
-					CombatWon?.Invoke(false);
-				}
 			}
+
 			Enemy.IncreaseEnthusiasmFor(chosenTopicName);
 			_encounterScene.UpdateConversationInterestModifiers(Enemy.ConversationInterestModifierAnnoyance, Enemy.ConversationInterestModifierEnthusiasm);
 			await _encounterScene.UpdateConversationInterestMax();
+
+			if (Player.MentalCapacity <= 0)
+			{
+				EndCombat(false);
+				return;
+			}
 
 			EnemyTurnComplete?.Invoke();
 		}
@@ -260,6 +275,18 @@ namespace tee
 		{
 			Enemy.IsIgnoreNextEnthusiasm = true;
 		}
+
+		public static int GetDynamicCIDamageFor(Preference preference)
+		{
+			switch (preference)
+			{
+				case Preference.Like:
+					return _dynamicCIDamageLike;
+				case Preference.Dislike:
+					return _dynamicCIDamageDislike;
+			}
+			return 0;
+        }
 
 		public override void _ExitTree()
 		{

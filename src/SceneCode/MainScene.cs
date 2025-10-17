@@ -2,16 +2,14 @@ using Godot;
 
 namespace tee
 {
-	public delegate void MainSceneHandler(PartyPlayer player);
-	public partial class MainScene : Scene
+	public partial class MainScene : Node
 	{
-		public static event MainSceneHandler SetupCompleted;
-		[Export] private Scene _currentFloor;
+		[Export] private Node _currentFloor;
 		[Export] private CanvasLayer _encounterLayer;
+		private Node _currentEncounterScene;
 		[Export] private TextureProgressBar _socialBattery;
 		[Export] private Camera2D _camera;
-		[Export] private PartyPlayer _player;
-		public Scene CurrentFloor
+		public Node CurrentFloor
 		{
 			get { return _currentFloor; }
 			set { _currentFloor = value; }
@@ -26,28 +24,47 @@ namespace tee
 		{
 			UpdateUI();
 			_camera.MakeCurrent();
-			SetupCompleted?.Invoke(_player);
 		}
 
-		public void ChangeSubScene(Scene scene)
+		public void ChangeSubScene(Node scene)
 		{
-			if (_currentFloor is not null)
+			if (scene is not null)
 			{
-				RemoveChild(_currentFloor);
+				if (_currentFloor is not null)
+				{
+					RemoveChild(_currentFloor);
+				}
+				AddChild(scene);
+				MoveChild(scene, 0);
+				_currentFloor = scene;
 			}
-			AddChild(scene);
-			MoveChild(scene, 0);
-			_currentFloor = scene;
+		}
+
+		public void ChangeEncounterScene(Node scene)
+		{
+			if (scene is not null)
+			{
+				if (_currentEncounterScene is not null)
+				{
+					_encounterLayer.RemoveChild(_currentEncounterScene);
+				}
+				_encounterLayer.AddChild(scene);
+				_currentEncounterScene = scene;
+			}
+		}
+
+		public void RemoveEncounter()
+		{
+			if (_currentEncounterScene is not null)
+			{
+				_encounterLayer.RemoveChild(_currentEncounterScene);
+			}
+			_currentEncounterScene = null;
 		}
 
 		public void UpdateUI()
 		{
 			_socialBattery.Value = GameManager.SocialBattery;
-		}
-
-		public override void _ExitTree()
-		{
-			base._ExitTree();
 		}
 	}
 }

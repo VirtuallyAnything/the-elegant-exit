@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Godot;
 
 namespace tee
@@ -7,34 +8,29 @@ namespace tee
 	/// </summary>
 	public partial class SceneManager : Node
 	{
-		private static Scene _currentScene;
-		private EncounterScene _encounterScene;
-		private EncounterStartScene _encounterStartScene;
-		private EncounterFinishedScene _encounterFinishedScene;
+		private static Node _currentScene;
 		private static PartyFloorScene _partyGroundFloor;
 		private static PartyFloorScene _partyFirstFloor;
 		private static MainScene _mainScene;
-		private static StartScene _mainMenu;
-		[Export] private PackedScene _tutorial;
 
 		// Called when the node enters the scene tree for the first time.
 		public override void _Ready()
 		{
 			CombatManager.CombatWon += ChangeToEncounterFinishedScene;
 			GameManager.GameOver += ChangeToGameOverScene;
-			_mainMenu = GetTree().Root.GetChild<StartScene>(3);
-			_currentScene = _mainMenu;
+			GameManager.GameFinished += ChangeToGameFinishedScene;
+			_currentScene = GetTree().Root.GetChild<Node>(2);
 		}
 
 		public void ChangeToScene(SceneName sceneName)
 		{
 			switch (sceneName)
 			{
-				case SceneName.MainMenu:
-					ChangeToMainMenu();
+				case SceneName.Menu:
+					RemoveAndInstantiate("res://Scenes/MenuScene.tscn");
 					break;
 				case SceneName.Credits:
-					ChangeToCreditsScene();
+					RemoveAndInstantiate("res://Scenes/CreditsScene.tscn");
 					break;
 				case SceneName.MainScene:
 					ChangeToMainScene();
@@ -71,38 +67,24 @@ namespace tee
 			}
 		}
 
-		private void ChangeToMainMenu()
+		private void RemoveAndInstantiate(string sceneToInstantiate)
 		{
-			GetTree().Paused = false;
 			GetTree().Root.CallDeferred("remove_child", _currentScene);
 
-			if (_partyGroundFloor is not null)
-			{
-				_partyGroundFloor.QueueFree();
-				_partyFirstFloor.QueueFree();
-			}
-			_currentScene.QueueFree();
-			_currentScene = _mainMenu;
+			_currentScene = ResourceLoader.Load<PackedScene>(sceneToInstantiate).Instantiate();
 			GetTree().Root.CallDeferred("add_child", _currentScene);
-		}
 
-		private void ChangeToCreditsScene()
-		{
-			GetTree().Root.RemoveChild(_currentScene);
-			_currentScene = (Scene)ResourceLoader.Load<PackedScene>("res://Scenes/CreditsScene.tscn").Instantiate();
-			GetTree().Root.AddChild(_currentScene);
 		}
 
 		private void ChangeToMainScene()
 		{
-			GetTree().Root.RemoveChild(_currentScene);
-			_mainScene = (MainScene)ResourceLoader.Load<PackedScene>("res://Scenes/MainScene.tscn").Instantiate();
-			_partyGroundFloor = (PartyFloorScene)ResourceLoader.Load<PackedScene>("res://Scenes/PartyGroundFloor.tscn").Instantiate();
-			_partyFirstFloor = (PartyFloorScene)ResourceLoader.Load<PackedScene>("res://Scenes/PartyFirstFloor.tscn").Instantiate();
+			GetTree().Root.CallDeferred("remove_child", _currentScene);
+			_mainScene = ResourceLoader.Load<PackedScene>("res://Scenes/MainScene.tscn").Instantiate<MainScene>();
+			_partyGroundFloor = ResourceLoader.Load<PackedScene>("res://Scenes/PartyGroundFloor.tscn").Instantiate<PartyFloorScene>();
+			_partyFirstFloor = ResourceLoader.Load<PackedScene>("res://Scenes/PartyFirstFloor.tscn").Instantiate<PartyFloorScene>();
 			_mainScene.Ready += ChangeToPartyGroundFloor;
-			GetTree().Root.AddChild(_mainScene);
 			_currentScene = _mainScene;
-			GetTree().Paused = true;
+			GetTree().Root.CallDeferred("add_child", _currentScene);
 		}
 
 		private void ChangeToPartyGroundFloor()
@@ -122,51 +104,57 @@ namespace tee
 
 		private void ChangeToEncounterStartScene()
 		{
-			_encounterStartScene = (EncounterStartScene)ResourceLoader.Load<PackedScene>("res://Scenes/EncounterStartScene.tscn").Instantiate();
-			_mainScene.EncounterLayer.AddChild(_encounterStartScene);
-			_mainScene.EncounterLayer.Visible = true;
-			_encounterStartScene.SetProcess(true);
+			EncounterStartScene encounterScene = ResourceLoader.Load<PackedScene>("res://Scenes/EncounterStartScene.tscn").Instantiate<EncounterStartScene>();
+			_mainScene.ChangeEncounterScene(encounterScene);
+			//_mainScene.EncounterLayer.Visible = true;
+			//_encounterStartScene.SetProcess(true);
 		}
 
 		private void ChangeToEncounterScene()
 		{
-			_encounterScene = (EncounterScene)ResourceLoader.Load<PackedScene>("res://Scenes/EncounterScene.tscn").Instantiate();
-			_mainScene.EncounterLayer.RemoveChild(_encounterStartScene);
-			_encounterStartScene.QueueFree();
-			_mainScene.EncounterLayer.AddChild(_encounterScene);
-			_encounterScene.SetupScene(GameManager.CurrentEnemy);
+			EncounterScene encounterScene = ResourceLoader.Load<PackedScene>("res://Scenes/EncounterScene.tscn").Instantiate<EncounterScene>();
+			_mainScene.ChangeEncounterScene(encounterScene);
+			encounterScene.SetupScene(GameManager.CurrentEnemy);
 			if (GameManager.IsFirstEncounter)
 			{
 				Node tutorial = ResourceLoader.Load<PackedScene>("res://Scenes/Subscenes/TutorialConfirmationWindow.tscn").Instantiate();
-				_encounterScene.AddChild(tutorial);
+				encounterScene.AddChild(tutorial);
 			}
 		}
 
 		private void ChangeToEncounterFinishedScene(bool hasPlayerWon)
 		{
-			_encounterFinishedScene = (EncounterFinishedScene)ResourceLoader.Load<PackedScene>("res://Scenes/EncounterFinishedScene.tscn").Instantiate();
-			_mainScene.EncounterLayer.RemoveChild(_encounterScene);
-			_encounterScene.QueueFree();
-			_mainScene.EncounterLayer.AddChild(_encounterFinishedScene);
+			EncounterFinishedScene encounterFinishedScene = ResourceLoader.Load<PackedScene>("res://Scenes/EncounterFinishedScene.tscn").Instantiate<EncounterFinishedScene>();
+			_mainScene.ChangeEncounterScene(encounterFinishedScene);
+			encounterFinishedScene.DisplayOutcome(hasPlayerWon);
 		}
 
 		public void ExitEncounter()
 		{
 			_mainScene.UpdateUI();
-			_mainScene.EncounterLayer.RemoveChild(_encounterFinishedScene);
-			_encounterFinishedScene.QueueFree();
+			_mainScene.RemoveEncounter();
 		}
 
 		private void ChangeToGameOverScene()
 		{
-			GetTree().CallDeferred("change_scene_to_file", "res://Scenes/GameOverScene.tscn");
+			GetTree().Root.RemoveChild(_currentScene);
+			_currentScene = ResourceLoader.Load<PackedScene>("res://Scenes/GameOverScene.tscn").Instantiate();
+			GetTree().Root.AddChild(_currentScene);
+		}
+
+		private void ChangeToGameFinishedScene(int finalScore)
+		{
+			GetTree().Root.RemoveChild(_currentScene);
+			_currentScene = ResourceLoader.Load<PackedScene>("res://Scenes/GameFinishedScene.tscn").Instantiate();
+			((GameFinishedScene)_currentScene).DisplayScore(finalScore);
+			GetTree().Root.AddChild(_currentScene);
 		}
 
 		public override void _ExitTree()
 		{
 			CombatManager.CombatWon -= ChangeToEncounterFinishedScene;
 			GameManager.GameOver -= ChangeToGameOverScene;
-			_currentScene.QueueFree();
+			GameManager.GameFinished -= ChangeToGameFinishedScene;
 			QueueFree();
 		}
 	}

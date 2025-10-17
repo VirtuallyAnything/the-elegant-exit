@@ -13,11 +13,15 @@ namespace tee
         public int SocialBatteryDamage;
         public int CurrentAnnoyance;
     }
-
+    /// <summary>
+    /// An object to keep track of an Enemy's annoyance.
+    /// </summary>
     public partial class AnnoyanceLevel : GodotObject
     {
+        /// <summary>
+        /// Invoked when CurrentAnnoyance increases or decreases. Sends out an AnnoyanceData struct containing all changes for the new level of Annoyance.
+        /// </summary>
         public static event AnnoyanceHandlerObject Changed;
-        public event AnnoyanceHandler LevelFiveReached;
         private int _currentAnnoyance;
         private int _socialStandingChange;
         private int _conversationInterestModifier;
@@ -50,6 +54,9 @@ namespace tee
             get { return _conversationInterestModifier; }
         }
 
+        /// <summary>
+        /// Increases CurrentAnnoyance by 1.
+        /// </summary>
         public void Increase()
         {
             if (CurrentAnnoyance == 5)
@@ -83,7 +90,6 @@ namespace tee
                     break;
                 case 5:
                     _socialStandingChange = -15;
-                    LevelFiveReached?.Invoke();
                     break;
             }
             Changed?.Invoke(new AnnoyanceData()
@@ -96,6 +102,10 @@ namespace tee
             GD.Print($"Annoyance Level increased to {CurrentAnnoyance}");
         }
 
+        /// <summary>
+        /// Increases CurrentAnnoyance.
+        /// </summary>
+        /// <param name="amount">Number of steps to increase.</param>
         public void Increase(int amount)
         {
             for (int i = 0; i < amount; i++)
@@ -104,6 +114,9 @@ namespace tee
             }
         }
 
+        /// <summary>
+        /// Decreases CurrentAnnoyance by 1.
+        /// </summary>
         public void Decrease()
         {
             if (CurrentAnnoyance == 0)
@@ -139,9 +152,13 @@ namespace tee
                 SocialBatteryDamage = _socialBatteryDamage,
                 CurrentAnnoyance = CurrentAnnoyance
             });
-             GD.Print($"Annoyance Level decreased to {CurrentAnnoyance}");
+            GD.Print($"Annoyance Level decreased to {CurrentAnnoyance}");
         }
 
+        /// <summary>
+        /// Decreases CurrentAnnoyance.
+        /// </summary>
+        /// <param name="amount">Number of steps to decrease.</param>
         public void Decrease(int amount)
         {
             for (int i = 0; i < amount; i++)
@@ -150,11 +167,11 @@ namespace tee
             }
         }
 
-        public int GetCurrentSocialStanding()
-        {
-            return _socialStandingChange;
-        }
-
+        /// <summary>
+        /// Helper function for UI purposes.
+        /// </summary>
+        /// <param name="level">The level for which to retrieve the value of social battery damage</param>
+        /// <returns>Social battery damage independent of CurrentAnnoyance.</returns>
         public static int GetSocialBatteryDamageForLevel(int level)
         {
             switch (level)
@@ -171,6 +188,11 @@ namespace tee
             return 0;
         }
 
+        /// <summary>
+        /// Helper function for UI purposes.
+        /// </summary>
+        /// <param name="level">The level for which to retrieve the delta value of conversation interest damage</param>
+        /// <returns>Delta conversation interest if one were to Increase Annoyance to level.</returns>
         public static int GetCIDeltaForIncreaseTo(int level)
         {
             switch (level)
@@ -187,6 +209,11 @@ namespace tee
             return 0;
         }
 
+        /// <summary>
+        /// Helper function for UI purposes.
+        /// </summary>
+        /// <param name="level">The level for which to retrieve the delta value of conversation interest damage</param>
+        /// <returns>Delta conversation interest if one were to Decrease Annoyance to level.</returns>
         public static int GetCIDeltaForDecreaseTo(int level)
         {
             switch (level)

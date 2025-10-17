@@ -14,7 +14,6 @@ namespace tee
 			time = TimeSpan.FromSeconds(timeSeconds);
 			Start(timeSeconds);
 			_displayLabel.Text = time.ToString(@"mm\:ss");
-			Timeout += GameManager.EndGame;
 		}
 
 		// Called every frame. 'delta' is the elapsed time since the previous frame.

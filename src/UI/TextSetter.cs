@@ -1,9 +1,12 @@
 using Godot;
-using System;
 
-public partial class TextSetter : Label
+namespace tee
 {
-	public void ValueChanged(float value){
-		Text = $"{value}%";
+	public partial class TextSetter : Label
+	{
+		public void ValueChanged(float value)
+		{
+			Text = $"{value}%";
+		}
 	}
 }

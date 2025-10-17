@@ -124,13 +124,9 @@ namespace tee
 
         public override void _ExitTree()
         {
-            try
-            {
-                CombatManager.TopicalAttackActive -= AddTutorial;
-                AnnoyanceLevel.Changed -= AddTutorial;
-                ConversationTopic.EnthusiasmChangedForTopic -= AddTutorial;
-            }
-            catch { }
+            CombatManager.TopicalAttackActive -= AddTutorial;
+            AnnoyanceLevel.Changed -= AddTutorial;
+            ConversationTopic.EnthusiasmChangedForTopic -= AddTutorial;
         }
 
     }

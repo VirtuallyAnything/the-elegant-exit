@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="TheElegantExit"
-run/main_scene="res://Scenes/MainMenuScene.tscn"
+run/main_scene="res://Scenes/MenuScene.tscn"
 config/features=PackedStringArray("4.4", "C#", "GL Compatibility")
 boot_splash/fullsize=false
 config/icon="res://Assets/Textures/ElegantExitLogo.png"
@@ -20,7 +20,6 @@ config/icon="res://Assets/Textures/ElegantExitLogo.png"
 
 StaticData="*res://src/StaticData.cs"
 SceneManager="*res://src/SceneCode/SceneManager.cs"
-GameManager="*res://src/GameManager.cs"
 
 [display]
 

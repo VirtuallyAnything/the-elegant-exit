@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dmyfdjltetw2d"]
+[gd_scene load_steps=19 format=3 uid="uid://dmyfdjltetw2d"]
 
 [ext_resource type="Script" uid="uid://t6642lxnuqwn" path="res://src/SceneCode/MainScene.cs" id="1_klk3w"]
 [ext_resource type="Script" uid="uid://lcb2jtbtmhll" path="res://src/Party/Player/PartyPlayer.cs" id="3_53yld"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://bkprvu4f5y5no" path="res://Scenes/PauseScene.tscn" id="12_3yaqs"]
 [ext_resource type="Script" uid="uid://de77385nrcieg" path="res://src/UI/OneTimeControl.cs" id="13_5qxwa"]
 [ext_resource type="Texture2D" uid="uid://l6pgu7u0da8x" path="res://Assets/UI/Icons/Arrow_2.png" id="14_05esd"]
+[ext_resource type="Script" uid="uid://dfn0w6pr1kxw2" path="res://src/GameManager.cs" id="15_xc4hf"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rv6dr"]
 radius = 14.6245
@@ -36,12 +37,11 @@ shadow_size = 10
 shadow_color = Color(0.12549, 0.0431373, 0.145098, 1)
 shadow_offset = Vector2(8, 8)
 
-[node name="MainScene" type="Node2D" node_paths=PackedStringArray("_encounterLayer", "_socialBattery", "_camera", "_player")]
+[node name="MainScene" type="Node2D" node_paths=PackedStringArray("_encounterLayer", "_socialBattery", "_camera")]
 script = ExtResource("1_klk3w")
 _encounterLayer = NodePath("EncounterLayer")
 _socialBattery = NodePath("Characters/Player/Camera2D/TextureProgressBar")
 _camera = NodePath("Characters/Player/Camera2D")
-_player = NodePath("Characters/Player")
 
 [node name="Characters" type="CanvasLayer" parent="."]
 follow_viewport_enabled = true
@@ -92,20 +92,19 @@ texture = ExtResource("6_k7ig0")
 
 [node name="EncounterLayer" type="CanvasLayer" parent="."]
 layer = 2
-visible = false
 
 [node name="Timer" type="Timer" parent="." node_paths=PackedStringArray("_displayLabel")]
 one_shot = true
 script = ExtResource("8_28aws")
-_displayLabel = NodePath("../CanvasLayer/Countdown")
+_displayLabel = NodePath("../PauseLayer/Countdown")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="PauseLayer" type="CanvasLayer" parent="."]
 layer = 3
 
-[node name="PauseScene" parent="CanvasLayer" instance=ExtResource("12_3yaqs")]
+[node name="PauseScene" parent="PauseLayer" instance=ExtResource("12_3yaqs")]
 visible = false
 
-[node name="PauseButton" type="TextureButton" parent="CanvasLayer"]
+[node name="PauseButton" type="TextureButton" parent="PauseLayer"]
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
@@ -116,7 +115,7 @@ texture_normal = ExtResource("8_mivmb")
 texture_pressed = ExtResource("9_tqae0")
 texture_hover = ExtResource("9_tqae0")
 
-[node name="Countdown" type="Label" parent="CanvasLayer"]
+[node name="Countdown" type="Label" parent="PauseLayer"]
 layout_direction = 2
 anchors_preset = 5
 anchor_left = 0.5
@@ -129,7 +128,7 @@ text = "0:00"
 label_settings = SubResource("LabelSettings_3w7eg")
 horizontal_alignment = 1
 
-[node name="Label" type="Label" parent="CanvasLayer/Countdown"]
+[node name="Label" type="Label" parent="PauseLayer/Countdown"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.451
@@ -144,7 +143,7 @@ theme_override_font_sizes/font_size = 22
 text = "Until Karaoke Time"
 horizontal_alignment = 1
 
-[node name="Panel" type="Panel" parent="CanvasLayer"]
+[node name="Panel" type="Panel" parent="PauseLayer"]
 process_mode = 2
 anchors_preset = 8
 anchor_left = 0.5
@@ -160,7 +159,7 @@ grow_vertical = 2
 theme = ExtResource("7_yess5")
 script = ExtResource("13_5qxwa")
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Panel"]
+[node name="MarginContainer" type="MarginContainer" parent="PauseLayer/Panel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -169,16 +168,16 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("7_yess5")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Panel/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseLayer/Panel/MarginContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="CanvasLayer/Panel/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="PauseLayer/Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("7_yess5")
 text = "Welcome to The Elegant Exit!"
 label_settings = SubResource("LabelSettings_jpcul")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Panel/MarginContainer/VBoxContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="PauseLayer/Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("7_yess5")
@@ -197,7 +196,7 @@ Hopefully nobody stops you for a Conversation. You don’t have the time nor the
 (Time pauses while pondering more extensive guides in the menu)
 Achieve The Elegant Exit!"
 
-[node name="StartButton" type="TextureButton" parent="CanvasLayer/Panel"]
+[node name="StartButton" type="TextureButton" parent="PauseLayer/Panel"]
 layout_mode = 0
 offset_left = 907.0
 offset_top = 707.0
@@ -206,5 +205,10 @@ offset_bottom = 830.0
 mouse_default_cursor_shape = 2
 texture_normal = ExtResource("14_05esd")
 
-[connection signal="pressed" from="CanvasLayer/PauseButton" to="CanvasLayer/PauseScene" method="OnPauseButtonPressed"]
-[connection signal="pressed" from="CanvasLayer/Panel/StartButton" to="CanvasLayer/Panel" method="Close"]
+[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("_gameTimer", "_player")]
+script = ExtResource("15_xc4hf")
+_gameTimer = NodePath("../Timer")
+_player = NodePath("../Characters/Player")
+
+[connection signal="pressed" from="PauseLayer/PauseButton" to="PauseLayer/PauseScene" method="OnPauseButtonPressed"]
+[connection signal="pressed" from="PauseLayer/Panel/StartButton" to="PauseLayer/Panel" method="Close"]

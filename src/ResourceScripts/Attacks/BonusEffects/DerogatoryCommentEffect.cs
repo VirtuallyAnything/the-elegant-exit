@@ -13,7 +13,7 @@ namespace tee
             {
                 case Preference.Like:
                     combatManager.Enemy.IncreaseAnnoyance();
-                    combatManager.ConversationInterestDamage += 2;
+                    combatManager.ConversationInterestBonusDamage = 2;
                     break;
                 case Preference.Dislike:
                     combatManager.Enemy.DecreaseAnnoyance();

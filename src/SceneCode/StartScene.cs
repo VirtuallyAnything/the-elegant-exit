@@ -1,14 +1,10 @@
+using System.Threading.Tasks;
 using Godot;
-using Godot.Collections;
 
 namespace tee
 {
-	public partial class StartScene : Scene
+	public partial class StartScene : Control
 	{
-		// Called when the node enters the scene tree for the first time.
-		public override void _Ready()
-		{
-			
-		}
+		
 	}
 }

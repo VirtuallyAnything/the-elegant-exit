@@ -13,7 +13,7 @@ namespace tee
             base._Ready();
         }
 
-        public void Setup(PlayerAttack attack){
+        override public void Setup(PlayerAttack attack){
             _attackName.Text = attack.AttackName;
             _conversationInterestDamage.Text = $"{attack.ConversationInterestDamage}";
             _description.Text = attack.BonusEffect?.Description;

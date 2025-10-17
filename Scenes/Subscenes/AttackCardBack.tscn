@@ -1,17 +1,18 @@
-[gd_scene load_steps=8 format=3 uid="uid://hpjm8ayi2spx"]
+[gd_scene load_steps=9 format=3 uid="uid://hpjm8ayi2spx"]
 
 [ext_resource type="Texture2D" uid="uid://b25kk6eoa8a2r" path="res://Assets/UI/ConversationCard.png" id="1_6yx0f"]
 [ext_resource type="Script" uid="uid://dkc46rsbe6xwu" path="res://src/UI/AttackCard/AttackCardBack.cs" id="2_r0ahb"]
 [ext_resource type="Theme" uid="uid://bpp0q38rfd1ms" path="res://Assets/Themes/Lobster.tres" id="3_abehn"]
 [ext_resource type="Texture2D" uid="uid://bwes58fuwh1ev" path="res://Assets/UI/Icons/ConversationInterestIcon.png" id="4_wp1ni"]
 [ext_resource type="Texture2D" uid="uid://cpjddkrool3ba" path="res://Assets/Textures/RectMask.png" id="5_1t0is"]
+[ext_resource type="Theme" uid="uid://7ps021sw2vqy" path="res://Assets/Themes/AttackCardTitle.tres" id="5_dt811"]
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_bjis1"]
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_dvs6k"]
 blend_mode = 3
 
-[sub_resource type="Theme" id="Theme_111f6"]
+[sub_resource type="Theme" id="Theme_h1k38"]
 
-[node name="AttackCardBack" type="TextureButton" node_paths=PackedStringArray("TopicGrid", "_attackName", "_conversationInterestDamage", "_attackType", "_coloredCorner")]
+[node name="AttackCardBack" type="TextureButton" node_paths=PackedStringArray("_topicGrid", "_attackName", "_conversationInterestDamage", "_dynamicCIDamage", "_attackType", "_coloredCorner")]
 clip_children = 2
 offset_right = 589.0
 offset_bottom = 363.0
@@ -19,9 +20,10 @@ pivot_offset = Vector2(295, 0)
 mouse_default_cursor_shape = 2
 texture_normal = ExtResource("1_6yx0f")
 script = ExtResource("2_r0ahb")
-TopicGrid = NodePath("GridContainer")
+_topicGrid = NodePath("GridContainer")
 _attackName = NodePath("AttackName")
 _conversationInterestDamage = NodePath("ConversationInterest/ConversationInterestDamage")
+_dynamicCIDamage = NodePath("ConversationInterest/DynamicCIDamage")
 _attackType = NodePath("AttackType")
 _coloredCorner = NodePath("CharacterColor")
 _marcColor = Color(0.32549, 0.639216, 0.796078, 1)
@@ -30,9 +32,9 @@ _anthonyColor = Color(0.701961, 0.384314, 0.52549, 1)
 [node name="AttackName" type="Label" parent="."]
 modulate = Color(0, 0, 0, 1)
 layout_mode = 0
-offset_left = 78.0
+offset_left = 74.0
 offset_top = 23.0
-offset_right = 499.0
+offset_right = 420.0
 offset_bottom = 63.0
 theme = ExtResource("3_abehn")
 theme_type_variation = &"AttackCardHeader"
@@ -63,9 +65,9 @@ anchor_left = 0.883
 anchor_top = 0.118
 anchor_right = 0.883
 anchor_bottom = 0.118
-offset_left = -59.087
+offset_left = -86.087
 offset_top = -19.834
-offset_right = -19.087
+offset_right = -46.087
 offset_bottom = 20.166
 texture = ExtResource("4_wp1ni")
 expand_mode = 1
@@ -77,8 +79,8 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -11.0
-offset_right = 29.0
+offset_left = -16.0
+offset_right = 24.0
 offset_bottom = 37.0
 grow_horizontal = 0
 theme = ExtResource("3_abehn")
@@ -86,15 +88,24 @@ theme_type_variation = &"AttackCardHeader"
 text = "5"
 horizontal_alignment = 2
 
-[node name="CharacterColor" type="TextureRect" parent="."]
-material = SubResource("CanvasItemMaterial_bjis1")
+[node name="DynamicCIDamage" type="Label" parent="ConversationInterest"]
+modulate = Color(0, 0, 0, 1)
 layout_mode = 0
-offset_left = -42.0
-offset_top = -270.0
-offset_right = 209.0
-offset_bottom = 101.0
-rotation = 0.523598
-theme = SubResource("Theme_111f6")
+offset_left = 65.0
+offset_right = 105.0
+offset_bottom = 35.0
+mouse_default_cursor_shape = 2
+theme = ExtResource("5_dt811")
+horizontal_alignment = 2
+
+[node name="CharacterColor" type="TextureRect" parent="."]
+material = SubResource("CanvasItemMaterial_dvs6k")
+layout_mode = 0
+offset_left = -185.0
+offset_top = -203.0
+offset_right = 64.0
+offset_bottom = 66.0
+theme = SubResource("Theme_h1k38")
 texture = ExtResource("5_1t0is")
 expand_mode = 1
 

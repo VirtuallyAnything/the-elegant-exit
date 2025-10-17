@@ -96,6 +96,7 @@ namespace tee
 
 		public override void _ExitTree()
 		{
+			AttackCardBack.ClearPreferences();
 			TopicButton.OnButtonPressed -= DisableInput;
 			CombatManager.EnemyTurnComplete -= EnableInput;
 		}

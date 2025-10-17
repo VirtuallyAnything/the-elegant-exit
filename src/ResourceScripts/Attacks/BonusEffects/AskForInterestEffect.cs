@@ -13,8 +13,12 @@ namespace tee
             Preference preference = combatManager.PreferenceForCurrentTopic;
             if(preference == Preference.Like){
                 combatManager.SocialStanding += 1;
+                GD.Print($"Resolved AskForInterestEffect. Bonus Social Standing +1, now at {combatManager.SocialStanding}");
             }
-            GD.Print("Resolved AskForInterestEffect.");
+            else
+            {
+                GD.Print("Resolved AskForInterestEffect.");
+            }  
         }
     }
 }

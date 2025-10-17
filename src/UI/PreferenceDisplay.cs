@@ -41,7 +41,7 @@ public partial class PreferenceDisplay : Control
 				label.IconPath = iconPath;
 
 				label.Text =
-			$"[hint='Preference: {preference}Enthusiasm: {label.EnthusiasmNumber}" + $"'][center]{topicName}" + iconPath + $"{label.EnthusiasmLevel}[/center]";
+			$"[hint='Preference: {preference}\nEnthusiasm: {label.EnthusiasmNumber}" + $"'][center]{topicName}" + iconPath + $"{label.EnthusiasmLevel}[/center]";
 			}
 		}
 	}

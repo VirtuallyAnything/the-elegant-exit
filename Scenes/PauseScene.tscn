@@ -521,5 +521,6 @@ Seeing your Enemy getting annoyed is not pleasant. Raising Annoyance also costs 
 [connection signal="pressed" from="Panel2/MarginContainer/VBoxContainer/Glossary" to="." method="OnGlossaryButtonPressed"]
 [connection signal="pressed" from="Panel2/MarginContainer/VBoxContainer/MainMenu" to="." method="OnMainMenuButtonPressed"]
 [connection signal="pressed" from="Button" to="." method="OnCancelButtonPressed"]
+[connection signal="pressed" from="Button/Popup/Panel3/MarginContainer/VBoxContainer/HBoxContainer/Confirm" to="." method="OnGameResumed"]
 [connection signal="pressed" from="Button/Popup/Panel3/MarginContainer/VBoxContainer/HBoxContainer/Cancel" to="." method="OnCancelButtonPressed"]
 [connection signal="pressed" from="Glossary" to="." method="OnGlossaryClosed"]

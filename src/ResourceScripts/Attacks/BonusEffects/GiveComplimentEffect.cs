@@ -8,7 +8,7 @@ namespace tee
         public override void Resolve(CombatManager combatManager){
             combatManager.Enemy.DecreaseAnnoyance();
             combatManager.SocialStanding++;
-            GD.Print("Resolved GiveComplimentEffect.");
+            GD.Print($"Resolved GiveComplimentEffect. Bonus Social Standing +1, now at {combatManager.SocialStanding}");
         }
     }
 }

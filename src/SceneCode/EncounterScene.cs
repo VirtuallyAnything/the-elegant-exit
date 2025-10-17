@@ -1,12 +1,10 @@
-using System;
-using System.Reflection.Metadata.Ecma335;
 using System.Threading.Tasks;
 using Godot;
 
 namespace tee
 {
 	public delegate void EncounterSceneHandler();
-	public partial class EncounterScene : Scene
+	public partial class EncounterScene : Node
 	{
 		public event EncounterSceneHandler SetupCompleted;
 		public static event EncounterSceneHandler PlayerTurnComplete;
@@ -24,8 +22,6 @@ namespace tee
 
 		private Label _labelToTweak;
 		private Tween _activeDialogueTween;
-		private bool _attackAnimationsFinished = true;
-		private bool _dialogueAnimationFinished = true;
 		[Export] private AttackCardContainer _attackCardContainer;
 		[Export] private AnimationPlayer _animationPlayer;
 
@@ -89,7 +85,7 @@ namespace tee
 
 		public async Task PlayDialogAnimation(PlayerAttack attack)
 		{
-			_dialogueAnimationFinished = false;
+			_playerDialogue.MouseFilter = Control.MouseFilterEnum.Ignore;
 			_playerDialogue.SetEntireVisibility(true);
 			_enemyDialogue.SetEntireVisibility(false);
 			_playerDialogue.RTLabel.VisibleCharacters = 0;
@@ -102,10 +98,8 @@ namespace tee
 			PropertyTweener propTweener = _activeDialogueTween.TweenProperty(
 				_playerDialogue.RTLabel, $"{Label.PropertyName.VisibleCharacters}", textLength, animationLength);
 			propTweener.From(0);
-			_activeDialogueTween.TweenCallback(Callable.From(() => _attackAnimationsFinished = true));
 			//_activeDialogueTween.TweenCallback(Callable.From(() => PlayAnimationsForAttack(attack)));
 			await ToSignal(_activeDialogueTween, Tween.SignalName.Finished);
-			_dialogueAnimationFinished = true;
 		}
 
 		public async Task PlayDialogAnimation(EnemyAttack attack)
@@ -135,21 +129,23 @@ namespace tee
 			_activeDialogueTween.Kill();
 		}
 
+		public void EnableInput()
+		{
+			_playerDialogue.MouseFilter = Control.MouseFilterEnum.Pass;
+			_playerDialogue.RTLabel.AppendText("\n[right][img=40]res://Assets/UI/Icons/Arrow_2.png[/img][/right]");
+			_playerDialogue.RTLabel.VisibleCharacters = -1;
+		}
+
 		public void OnSpeechBubblePressed()
 		{
-			if (_attackAnimationsFinished && _dialogueAnimationFinished)
-			{
-				PlayerTurnComplete?.Invoke();
-			}
+			PlayerTurnComplete?.Invoke();
 		}
 
 		public async Task UpdateConversationInterestMax()
 		{
-			_attackAnimationsFinished = false;
 			if (_conversationInterestDelta == 0)
 			{
 				_conversationInterestMaxChange.Text = "";
-				_attackAnimationsFinished = true;
 				return;
 			}
 			else
@@ -173,12 +169,10 @@ namespace tee
 						_conversationInterestMaxChange, $"{Control.PropertyName.SelfModulate}", Color.Color8(255, 255, 255, 0), 1f);
 			await ToSignal(propertyTweener, Tween.SignalName.Finished);
 			_conversationInterestDelta = 0;
-			_attackAnimationsFinished = true;
 		}
 
 		public async Task PlayAnimationsForAttack(PlayerAttack playerAttack, int bonusDamage)
 		{
-			_attackAnimationsFinished = false;
 			_conversationInterestDamage.Text = $"-{playerAttack.ConversationInterestDamage + bonusDamage}";
 			Tween tween = _conversationInterestDamage.CreateTween();
 			tween.TweenProperty(
@@ -196,7 +190,6 @@ namespace tee
 			PropertyTweener propTweener = tween.TweenProperty(
 				_conversationInterestDamage, $"{Control.PropertyName.SelfModulate}", Color.Color8(255, 255, 255, 0), 1f);
 			await ToSignal(propTweener, Tween.SignalName.Finished);
-			_attackAnimationsFinished = true;
 		}
 
 		public async Task PlayAnimationsForAttack(EnemyAttack enemyAttack)

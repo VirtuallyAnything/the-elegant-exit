@@ -1,10 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://b1e1prdfkcis5"]
+[gd_scene load_steps=6 format=3 uid="uid://b1e1prdfkcis5"]
 
-[sub_resource type="Theme" id="Theme_y24ct"]
-default_font_size = 70
-
-[sub_resource type="Theme" id="Theme_yomy4"]
-default_font_size = 95
+[ext_resource type="Theme" uid="uid://bpp0q38rfd1ms" path="res://Assets/Themes/Lobster.tres" id="1_gg0ms"]
+[ext_resource type="FontFile" uid="uid://dnj361fu4us32" path="res://Assets/Fonts/Lobster-Regular.ttf" id="2_bv81r"]
+[ext_resource type="StyleBox" uid="uid://ktpv7alcaut6" path="res://Assets/Themes/SpeechBubbleStyleBox2_hover.tres" id="3_gv64c"]
+[ext_resource type="StyleBox" uid="uid://dl3ygowiq30p5" path="res://Assets/Themes/SpeechBubbleStyleBox2.tres" id="4_jlaih"]
+[ext_resource type="Script" uid="uid://diy0f8mk31o2x" path="res://src/SceneCode/SceneSwapButton.cs" id="5_bv81r"]
 
 [node name="GameOverScene" type="Control"]
 layout_mode = 3
@@ -21,40 +21,27 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.196078, 0.254902, 0.529412, 1)
+color = Color(0.215686, 0.0980392, 0.129412, 1)
 
-[node name="Label2" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -461.0
-offset_top = 16.0
-offset_right = 466.0
-offset_bottom = 112.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = SubResource("Theme_y24ct")
-text = "Your Social Battery ran out"
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 229.0
+offset_top = 480.0
+offset_right = 1477.0
+offset_bottom = 752.0
+theme = ExtResource("1_gg0ms")
+theme_override_fonts/normal_font = ExtResource("2_bv81r")
+text = "Game Over..."
 
-[node name="Label" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -461.0
-offset_top = -123.0
-offset_right = 466.0
-offset_bottom = -27.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = SubResource("Theme_yomy4")
-text = "Game Over!"
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1224.0
+offset_top = 421.0
+offset_right = 1628.0
+offset_bottom = 537.0
+theme = ExtResource("1_gg0ms")
+theme_override_styles/hover = ExtResource("3_gv64c")
+theme_override_styles/normal = ExtResource("4_jlaih")
+text = "Retry"
+script = ExtResource("5_bv81r")
+SceneName = 1

@@ -3,7 +3,7 @@ using System;
 
 namespace tee
 {
-	public partial class CreditsScene : Scene
+	public partial class CreditsScene : Node
 	{
 		// Called when the node enters the scene tree for the first time.
 		public override void _Ready()

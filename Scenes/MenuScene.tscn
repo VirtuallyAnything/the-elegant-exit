@@ -1,11 +1,11 @@
 [gd_scene load_steps=7 format=3 uid="uid://bhl5fccx2vo6m"]
 
-[ext_resource type="Script" uid="uid://d1n5ii46divc" path="res://src/SceneCode/StartScene.cs" id="1_xh76m"]
-[ext_resource type="Texture2D" uid="uid://bof3wrxapds3v" path="res://Assets/Textures/MainCharacters.png" id="2_lprel"]
-[ext_resource type="Theme" uid="uid://bpp0q38rfd1ms" path="res://Assets/Themes/Lobster.tres" id="3_l63qc"]
-[ext_resource type="Script" uid="uid://diy0f8mk31o2x" path="res://src/SceneCode/SceneSwapButton.cs" id="4_ktip8"]
-[ext_resource type="Texture2D" uid="uid://b12srjfl8cur2" path="res://Assets/UI/Arrow.png" id="5_wngc0"]
-[ext_resource type="Script" uid="uid://dfdhjupfrr5j1" path="res://src/SceneCode/QuitButton.cs" id="6_mtxc5"]
+[ext_resource type="Script" uid="uid://d1n5ii46divc" path="res://src/SceneCode/StartScene.cs" id="1_w4qjd"]
+[ext_resource type="Texture2D" uid="uid://bof3wrxapds3v" path="res://Assets/Textures/MainCharacters.png" id="2_at33a"]
+[ext_resource type="Theme" uid="uid://bpp0q38rfd1ms" path="res://Assets/Themes/Lobster.tres" id="3_6sxrv"]
+[ext_resource type="Script" uid="uid://diy0f8mk31o2x" path="res://src/SceneCode/SceneSwapButton.cs" id="4_nmi4p"]
+[ext_resource type="Texture2D" uid="uid://b12srjfl8cur2" path="res://Assets/UI/Arrow.png" id="5_1l0d8"]
+[ext_resource type="Script" uid="uid://dfdhjupfrr5j1" path="res://src/SceneCode/QuitButton.cs" id="6_p146f"]
 
 [node name="StartScene" type="Control"]
 layout_mode = 3
@@ -14,7 +14,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_xh76m")
+script = ExtResource("1_w4qjd")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -31,7 +31,7 @@ offset_left = -108.0
 offset_top = 623.0
 offset_right = 1812.0
 offset_bottom = 1703.0
-texture = ExtResource("2_lprel")
+texture = ExtResource("2_at33a")
 
 [node name="PlayButton" type="Button" parent="."]
 layout_mode = 1
@@ -47,11 +47,11 @@ offset_bottom = 96.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_default_cursor_shape = 2
-theme = ExtResource("3_l63qc")
+theme = ExtResource("3_6sxrv")
 theme_type_variation = &"SpeechBubbleButton"
 text = "
 "
-script = ExtResource("4_ktip8")
+script = ExtResource("4_nmi4p")
 SceneName = 1
 
 [node name="Label" type="Label" parent="PlayButton"]
@@ -66,7 +66,7 @@ offset_top = -36.168
 offset_right = 57.688
 offset_bottom = 40.832
 mouse_default_cursor_shape = 2
-theme = ExtResource("3_l63qc")
+theme = ExtResource("3_6sxrv")
 theme_type_variation = &"HeaderMedium"
 text = "Play"
 
@@ -81,7 +81,7 @@ offset_left = 209.0
 offset_top = -140.199
 offset_right = 1047.0
 offset_bottom = 6.80097
-texture = ExtResource("5_wngc0")
+texture = ExtResource("5_1l0d8")
 stretch_mode = 4
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="."]
@@ -97,7 +97,7 @@ offset_right = 960.0
 offset_bottom = -78.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("3_l63qc")
+theme = ExtResource("3_6sxrv")
 bbcode_enabled = true
 text = "[center]The [font=res://Assets/Fonts/Lobster-Regular.ttf]Elegant[/font] Exit[/center]"
 
@@ -114,9 +114,9 @@ offset_right = 58.0
 offset_bottom = 232.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("3_l63qc")
+theme = ExtResource("3_6sxrv")
 theme_type_variation = &"SpeechBubbleButton2"
-script = ExtResource("4_ktip8")
+script = ExtResource("4_nmi4p")
 SceneName = 4
 
 [node name="Label" type="Label" parent="Scoreboard"]
@@ -130,7 +130,7 @@ offset_right = 216.0
 offset_bottom = -21.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("3_l63qc")
+theme = ExtResource("3_6sxrv")
 theme_type_variation = &"HeaderMedium"
 text = "Scoreboard"
 horizontal_alignment = 1
@@ -149,9 +149,9 @@ offset_right = 139.0
 offset_bottom = 408.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("3_l63qc")
+theme = ExtResource("3_6sxrv")
 theme_type_variation = &"SpeechBubbleButton3"
-script = ExtResource("4_ktip8")
+script = ExtResource("4_nmi4p")
 SceneName = 2
 
 [node name="Label" type="Label" parent="Credits"]
@@ -165,7 +165,7 @@ offset_right = 216.0
 offset_bottom = -21.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("3_l63qc")
+theme = ExtResource("3_6sxrv")
 theme_type_variation = &"HeaderMedium"
 text = "Credits"
 horizontal_alignment = 1
@@ -185,7 +185,7 @@ offset_bottom = -58.0
 grow_horizontal = 0
 grow_vertical = 0
 mouse_default_cursor_shape = 2
-theme = ExtResource("3_l63qc")
+theme = ExtResource("3_6sxrv")
 theme_type_variation = &"FlatButton"
 text = "Quit"
-script = ExtResource("6_mtxc5")
+script = ExtResource("6_p146f")

@@ -161,7 +161,7 @@ namespace tee
 			}
 			if (_switchTopic)
 			{
-				allTopics.Remove(_topicPreferences[_lastTopicName].ConversationTopic);
+				allTopics.Remove(_topicPreferences[CurrentTopicName].ConversationTopic);
 				_switchTopic = false;
 			}
 
@@ -354,15 +354,17 @@ namespace tee
 
 		public int GetTotalSocialStanding()
 		{
+			GD.Print("Retrieving Social Standing values determined by Enthusiasm and Annoyance:");
 			int result = 0;
 			IEnumerable<TopicName> likesNeutrals = _likes.Concat(_neutrals);
 			foreach (TopicName topicName in likesNeutrals)
 			{
-				result += _topicPreferences[topicName].ConversationTopic.GetCurrentSocialStanding();
+				int value = _topicPreferences[topicName].ConversationTopic.GetCurrentSocialStanding();
+				GD.Print($"Social Standing Bonus for {topicName}: {value}");
+				result += value;
 			}
-			return result + Annoyance.GetCurrentSocialStanding();
-			
-
+			GD.Print($"Social Standing Penalty for Annoyance (Level {_annoyance.CurrentAnnoyance}): {Annoyance.SocialStandingChange}");
+			return result + Annoyance.SocialStandingChange;
 		}
 
 		public override void _Notification(int what)

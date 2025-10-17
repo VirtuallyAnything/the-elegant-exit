@@ -3,10 +3,13 @@ using Godot;
 namespace tee
 {
 	public delegate void GameHandler();
+	public delegate void GameFinishedHandler(int finalScore);
 	public partial class GameManager : Node
 	{
 		public static event GameHandler GameOver;
-		private static PartyPlayer _player;
+		public static event GameFinishedHandler GameFinished;
+		[Export] private GameTimer _gameTimer;
+		[Export] private PartyPlayer _player;
 		private static Godot.Collections.Array<PlayerAttack> _availableAttacks;
 		//int placeholder
 		private int[] _partyMembers;
@@ -37,7 +40,7 @@ namespace tee
 				else if (value <= 0)
 				{
 					_socialBattery = 0;
-					EndGame();
+					EndGameAsLost();
 				}
 				else
 				{
@@ -47,13 +50,17 @@ namespace tee
 		}
 		public static bool IsFirstEncounter
 		{
-			get{ return _isFirstEncounter; }
+			get { return _isFirstEncounter; }
 		}
 
 		public override void _Ready()
 		{
-			MainScene.SetupCompleted += SetupGame;
+			AvailableAttacks = _player.Data.AvailableAttacks;
+			_socialStandingOverall = _player.Data.SocialStandingOverall;
+			SocialBattery = _player.Data.SocialBattery;
+			CombatManager.FinalValuesDecided += UpdateStats;
 			CombatManager.CombatWon += SetIsFirstEncounter;
+			_gameTimer.Timeout += EndGameAsLost;
 		}
 
 		private void SetIsFirstEncounter(bool outcome)
@@ -62,36 +69,27 @@ namespace tee
 			CombatManager.CombatWon -= SetIsFirstEncounter;
 		}
 
-		private void SetupGame(PartyPlayer player)
-		{
-			_player = player;
-			AvailableAttacks = _player.Data.AvailableAttacks;
-			_socialStandingOverall = _player.Data.SocialStandingOverall;
-			SocialBattery = _player.Data.SocialBattery;
-			CombatManager.FinalValuesDecided += UpdateStats;
-		}
-
 		private static void UpdateStats(int socialStanding, int socialBattery)
 		{
 			_socialStandingOverall += socialStanding;
 			SocialBattery += socialBattery;
 		}
 
-		public static void EndGame()
+		public static void EndGameAsLost()
 		{
 			GameOver?.Invoke();
 		}
 
 		public static int GetScore()
 		{
-			return _socialStandingOverall * _socialBattery;
+			return _socialStandingOverall;
 		}
 
 		public override void _ExitTree()
 		{
-			base._ExitTree();
+			GameFinished?.Invoke(GetScore());
 			CombatManager.FinalValuesDecided -= UpdateStats;
-			MainScene.SetupCompleted -= SetupGame;
+			_gameTimer.Timeout -= EndGameAsLost;
 			QueueFree();
 		}
 	}
