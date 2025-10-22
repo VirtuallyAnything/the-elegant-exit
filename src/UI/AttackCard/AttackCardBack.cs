@@ -10,6 +10,9 @@ namespace tee
         private TopicName _boundTopic;
         private Godot.Collections.Array<TopicButton> _topicButtonsAttack = new();
         [Export] private GridContainer _topicGrid;
+        [Export] private Color _positiveColor;
+        [Export] private Color _negativeColor;
+        [Export] private Color _unknownColor;
         private static Dictionary<TopicName, Preference> _discoveredPreferences = new();
         public event TopicHandler TopicPicked;
         public TopicName BoundTopic
@@ -75,15 +78,22 @@ namespace tee
                 if (dynamicCiDamage > 0)
                 {
                     _dynamicCIDamage.Text = $"+{dynamicCiDamage}";
+                    _dynamicCIDamage.Modulate = _positiveColor;
                 }
                 else if (dynamicCiDamage < 0)
                 {
                     _dynamicCIDamage.Text = $"{dynamicCiDamage}";
+                    _dynamicCIDamage.Modulate = _negativeColor;
                 }
                 else
                 {
                     _dynamicCIDamage.Text = "";
                 }
+            }
+            else
+            {
+                _dynamicCIDamage.Text = "±?";
+                _dynamicCIDamage.Modulate = _unknownColor;
             }
         }
 
@@ -99,10 +109,6 @@ namespace tee
 
         public override void _ExitTree()
         {
-            foreach(TopicButton button in _topicButtonsAttack)
-            {
-                button.MouseExited -= EndHover;
-            }
             CombatManager.PreferenceDiscovered -= AddPreference;
             TopicButton.OnButtonHovered -= OnHover;
         }

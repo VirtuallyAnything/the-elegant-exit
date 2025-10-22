@@ -4,8 +4,8 @@ namespace tee
 {
     public partial class GameFinishedScene : Node
     {
-        [Export] private RichTextLabel _finalScore;
-        [Export] private TextureRect _outcome;
+        [Export] private Label _finalScore;
+        [Export] private Sprite2D _outcome;
         [Export] private Texture2D _positiveOutcome;
         [Export] private Texture2D _neutralOutcome;
         [Export] private Texture2D _negativeOutcome;

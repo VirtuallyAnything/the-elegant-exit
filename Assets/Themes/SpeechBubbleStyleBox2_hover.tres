@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://ku12iaynwue2" path="res://Assets/UI/Speechbubble_var2.png" id="1_cljfx"]
 
 [resource]
+content_margin_bottom = 44.0
 texture = ExtResource("1_cljfx")
 texture_margin_left = 65.0
 texture_margin_top = 26.0

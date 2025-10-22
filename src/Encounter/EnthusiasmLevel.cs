@@ -47,6 +47,7 @@ namespace tee
         {
             if (_currentEnthusiasm == 5)
             {
+                _conversationInterestModDelta = 0;
                 return;
             }
             _currentEnthusiasm++;
@@ -88,6 +89,7 @@ namespace tee
         {
             if (CurrentEnthusiasm == 0)
             {
+                _conversationInterestModDelta = 0;
                 return;
             }
             _currentEnthusiasm--;

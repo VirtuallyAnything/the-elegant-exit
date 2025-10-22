@@ -1,4 +1,5 @@
-public enum SceneName{
+public enum SceneName
+{
     Menu,
     MainScene,
     Credits,
@@ -12,5 +13,6 @@ public enum SceneName{
     EncounterStart,
     Encounter,
     EncounterFinished,
-    GameOver
+    GameOver,
+    GameFinished
 }

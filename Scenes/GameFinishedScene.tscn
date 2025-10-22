@@ -1,8 +1,53 @@
-[gd_scene load_steps=2 format=3 uid="uid://sjl87lfyw473"]
+[gd_scene load_steps=13 format=3 uid="uid://sjl87lfyw473"]
 
 [ext_resource type="Script" uid="uid://bu2k7o16kpncw" path="res://src/SceneCode/GameFinishedScene.cs" id="1_5s8uf"]
+[ext_resource type="Texture2D" uid="uid://llt3et1j1w5a" path="res://Assets/UI/GameFinishedScreen.png" id="2_gd426"]
+[ext_resource type="Texture2D" uid="uid://bmd1mdiraueso" path="res://Assets/UI/ThoughtBubbleOutlineSmall.png" id="3_yh0j5"]
+[ext_resource type="Texture2D" uid="uid://l2h2ttnen6rl" path="res://Assets/UI/ThoughtBubbleFilled.png" id="4_7gdeo"]
+[ext_resource type="Texture2D" uid="uid://db1vr6foao3e3" path="res://Assets/Textures/Spritesheet_BadScore.png" id="5_5d8qe"]
+[ext_resource type="Theme" uid="uid://bpp0q38rfd1ms" path="res://Assets/Themes/Lobster.tres" id="5_utcy8"]
+[ext_resource type="StyleBox" uid="uid://6fg2ln633237" path="res://Assets/Themes/SpeechBubbleStyleBox1_mirrored.tres" id="6_5d8qe"]
+[ext_resource type="LabelSettings" uid="uid://bx6i6eo3rklk8" path="res://Assets/Themes/LobsterLabelSettings.tres" id="9_igkah"]
+[ext_resource type="Script" uid="uid://diy0f8mk31o2x" path="res://src/SceneCode/SceneSwapButton.cs" id="9_utcy8"]
 
-[node name="GameFinishedScene" type="Control" node_paths=PackedStringArray("_finalScore")]
+[sub_resource type="Animation" id="Animation_hetea"]
+resource_name = "ScoreAnimation"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ThoughtBubbleFilled/OutcomeAnim:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0, 9, 0]
+}
+
+[sub_resource type="Animation" id="Animation_u613n"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ThoughtBubbleFilled/OutcomeAnim:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tukvv"]
+_data = {
+&"RESET": SubResource("Animation_u613n"),
+&"ScoreAnimation": SubResource("Animation_hetea")
+}
+
+[node name="GameFinishedScene" type="Control" node_paths=PackedStringArray("_finalScore", "_outcome")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -10,24 +55,89 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_5s8uf")
-_finalScore = NodePath("RichTextLabel")
+_finalScore = NodePath("Label/Label")
+_outcome = NodePath("ThoughtBubbleFilled/OutcomeAnim")
+_negativeOutcome = ExtResource("5_5d8qe")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.12549, 0.0431373, 0.145098, 1)
+texture = ExtResource("2_gd426")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 0
+[node name="ThoughtBubbleOutlineSmall" type="Sprite2D" parent="."]
+position = Vector2(1034, 601)
+scale = Vector2(0.880952, 0.880952)
+texture = ExtResource("3_yh0j5")
+
+[node name="ThoughtBubbleOutlineSmall2" type="Sprite2D" parent="."]
+position = Vector2(1132, 533)
+scale = Vector2(1.21429, 1.21429)
+texture = ExtResource("3_yh0j5")
+
+[node name="ThoughtBubbleFilled" type="Sprite2D" parent="."]
+clip_children = 2
+position = Vector2(1511.49, 210.75)
+scale = Vector2(0.82676, 0.826759)
+texture = ExtResource("4_7gdeo")
+
+[node name="OutcomeAnim" type="Sprite2D" parent="ThoughtBubbleFilled"]
+position = Vector2(-243.716, 124.885)
+scale = Vector2(1.28669, 1.28669)
+hframes = 2
+vframes = 5
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_left = 179.0
+offset_top = 487.0
+offset_right = 493.0
+offset_bottom = 707.0
+theme = ExtResource("5_utcy8")
+theme_override_styles/panel = ExtResource("6_5d8qe")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer"]
+layout_mode = 2
+theme = ExtResource("5_utcy8")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
+theme_override_font_sizes/normal_font_size = 40
+text = "Do you think they liked us?"
 fit_content = true
-horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 177.0
+offset_top = 74.0
+offset_right = 833.0
+offset_bottom = 254.0
+text = "Your Score:"
+label_settings = ExtResource("9_igkah")
+
+[node name="Label" type="Label" parent="Label"]
+offset_left = -1.0
+offset_top = 159.0
+offset_right = 647.0
+offset_bottom = 339.0
+text = "300"
+label_settings = ExtResource("9_igkah")
+horizontal_alignment = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_tukvv")
+}
+autoplay = "ScoreAnimation"
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1639.0
+offset_top = 765.0
+offset_right = 1874.0
+offset_bottom = 835.0
+theme = ExtResource("5_utcy8")
+theme_override_font_sizes/font_size = 30
+text = "Back to Menu"
+script = ExtResource("9_utcy8")

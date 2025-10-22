@@ -87,7 +87,6 @@ namespace tee
 
 		public override void _ExitTree()
 		{
-			GameFinished?.Invoke(GetScore());
 			CombatManager.FinalValuesDecided -= UpdateStats;
 			_gameTimer.Timeout -= EndGameAsLost;
 			QueueFree();

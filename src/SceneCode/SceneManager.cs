@@ -18,7 +18,6 @@ namespace tee
 		{
 			CombatManager.CombatWon += ChangeToEncounterFinishedScene;
 			GameManager.GameOver += ChangeToGameOverScene;
-			GameManager.GameFinished += ChangeToGameFinishedScene;
 			_currentScene = GetTree().Root.GetChild<Node>(2);
 		}
 
@@ -63,6 +62,9 @@ namespace tee
 					break;
 				case SceneName.GameOver:
 					ChangeToGameOverScene();
+					break;
+				case SceneName.GameFinished:
+					ChangeToGameFinishedScene();
 					break;
 			}
 		}
@@ -142,11 +144,11 @@ namespace tee
 			GetTree().Root.AddChild(_currentScene);
 		}
 
-		private void ChangeToGameFinishedScene(int finalScore)
+		private void ChangeToGameFinishedScene()
 		{
 			GetTree().Root.RemoveChild(_currentScene);
 			_currentScene = ResourceLoader.Load<PackedScene>("res://Scenes/GameFinishedScene.tscn").Instantiate();
-			((GameFinishedScene)_currentScene).DisplayScore(finalScore);
+			((GameFinishedScene)_currentScene).DisplayScore(GameManager.GetScore());
 			GetTree().Root.AddChild(_currentScene);
 		}
 
@@ -154,7 +156,6 @@ namespace tee
 		{
 			CombatManager.CombatWon -= ChangeToEncounterFinishedScene;
 			GameManager.GameOver -= ChangeToGameOverScene;
-			GameManager.GameFinished -= ChangeToGameFinishedScene;
 			QueueFree();
 		}
 	}

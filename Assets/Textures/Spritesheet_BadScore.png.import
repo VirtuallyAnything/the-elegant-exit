@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b1on62evvvcee"
-path="res://.godot/imported/EncounterStartScreen.png-7af73379b20e63a9d6e7f79ec531f04a.ctex"
+uid="uid://db1vr6foao3e3"
+path="res://.godot/imported/Spritesheet_BadScore.png-1b3074a9d1cfac61935c6379ce27bded.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/UI/EncounterStartScreen.png"
-dest_files=["res://.godot/imported/EncounterStartScreen.png-7af73379b20e63a9d6e7f79ec531f04a.ctex"]
+source_file="res://Assets/Textures/Spritesheet_BadScore.png"
+dest_files=["res://.godot/imported/Spritesheet_BadScore.png-1b3074a9d1cfac61935c6379ce27bded.ctex"]
 
 [params]
 
