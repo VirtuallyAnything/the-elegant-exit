@@ -8,14 +8,7 @@ namespace tee
 		[Export] private int _sightConeSegments;
 		[Export] private float _sightConeAngleDegrees;
 		[Export] private float _sightConeRadius;
-		[Export] protected float _movementSpeed;
-		protected Movement _movement;
-		protected Vision _vision;
-
-		public Movement Movement
-		{
-			get { return _movement; }
-		}
+		[Export] protected Vision _vision;
 
 		public override void _Ready()
 		{
@@ -27,8 +20,6 @@ namespace tee
 			};
 
 			_vision.AddChild(collisionCone);
-			AddChild(_vision);
-            AddChild(_movement);
 		}
 	}
 }

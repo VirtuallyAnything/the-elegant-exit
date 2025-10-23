@@ -5,10 +5,6 @@ namespace tee
 	{
 		public static event MovementHandler NodeMoved;
 
-		public PlayerMovement(NavigationAgent2D navAgent, Node2D nodeToMove, Node2D nodeToRotate = null) : base(navAgent, nodeToMove, nodeToRotate)
-		{
-		}
-
 		protected override void OnNavigationAgent2DVelocityComputed(Vector2 safeVelocity)
 		{
 			base.OnNavigationAgent2DVelocityComputed(safeVelocity);

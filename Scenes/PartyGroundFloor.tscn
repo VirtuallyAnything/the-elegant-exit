@@ -1,18 +1,16 @@
-[gd_scene load_steps=70 format=3 uid="uid://dmfp5lawyswyl"]
+[gd_scene load_steps=68 format=3 uid="uid://dmfp5lawyswyl"]
 
 [ext_resource type="Script" uid="uid://dv8xoosipxjyi" path="res://src/SceneCode/PartyFloorScene.cs" id="1_x3j5x"]
 [ext_resource type="Texture2D" uid="uid://cxsgk2jxdn3" path="res://Assets/Levels/GroundFloor.png" id="2_vuute"]
-[ext_resource type="PackedScene" uid="uid://lk1nms6ylsx0" path="res://Scenes/Subscenes/Enemy.tscn" id="3_vs0d7"]
 [ext_resource type="Resource" uid="uid://dgtmypitorji3" path="res://GameDataResources/EnemyData/AloofAcademic.tres" id="4_aoy74"]
 [ext_resource type="Script" uid="uid://crc1a2fki7cwd" path="res://src/Party/Map/Wall.cs" id="4_b5ob3"]
-[ext_resource type="Script" uid="uid://cqyp40usrqog3" path="res://src/Party/Enemy/PartyEnemy.cs" id="5_ao272"]
 [ext_resource type="Resource" uid="uid://dgmh740a8kil7" path="res://GameDataResources/EnemyData/Babi.tres" id="6_qnsln"]
 [ext_resource type="Resource" uid="uid://t3duk4fguusv" path="res://GameDataResources/EnemyData/Cougar.tres" id="7_2ysbw"]
 [ext_resource type="Script" uid="uid://k2spb5yyskn7" path="res://src/SceneCode/SceneSwitchArea.cs" id="8_ekoj5"]
 [ext_resource type="Resource" uid="uid://bqgn3w6aagdea" path="res://GameDataResources/EnemyData/NeighborDave.tres" id="8_n7tcn"]
 [ext_resource type="PackedScene" uid="uid://ba07kn2ollll2" path="res://Scenes/Subscenes/fow_light.tscn" id="8_svv30"]
 [ext_resource type="Texture2D" uid="uid://cn0t6610slev" path="res://Assets/Textures/Objects/CrowdBlock.png" id="9_6c1f4"]
-[ext_resource type="Resource" uid="uid://d4mv565km1snp" path="res://GameDataResources/EnemyData/JohnParker.tres" id="9_wohom"]
+[ext_resource type="PackedScene" uid="uid://xv4de3gekli8" path="res://Scenes/Subscenes/PartyEnemy.tscn" id="9_f8a1u"]
 [ext_resource type="Resource" uid="uid://c5u31lombgby3" path="res://GameDataResources/EnemyData/BeautyInfluencer.tres" id="10_lsurk"]
 [ext_resource type="PackedScene" uid="uid://bxv5wxeuo28nj" path="res://Scenes/Subscenes/Door.tscn" id="14_4biyx"]
 [ext_resource type="Texture2D" uid="uid://cljajbfrck442" path="res://Assets/Textures/Objects/PottedPlant.png" id="16_kgqe5"]
@@ -214,49 +212,155 @@ position = Vector2(2974, 2283)
 scale = Vector2(1.48704, 1.48704)
 texture = ExtResource("2_vuute")
 
-[node name="AloofAcademic" parent="." instance=ExtResource("3_vs0d7")]
-process_mode = 4
-position = Vector2(1880, 2897)
-_enemyData = ExtResource("4_aoy74")
-_movementSpeed = 150.0
-
-[node name="KaraokeFanGirl" type="CharacterBody2D" parent="."]
-process_mode = 4
-position = Vector2(1534, 3365)
-script = ExtResource("5_ao272")
+[node name="KaraokeFanGirl" parent="." instance=ExtResource("9_f8a1u")]
+position = Vector2(1535, 3368)
 _enemyData = ExtResource("6_qnsln")
-_startingRotationDeg = 130.0
-_sightConeSegments = 16
-_sightConeAngleDegrees = 120.0
-_sightConeRadius = 600.0
-_movementSpeed = 150.0
 
-[node name="DesperateCougar" type="CharacterBody2D" parent="."]
-process_mode = 4
-position = Vector2(191, 2308)
-script = ExtResource("5_ao272")
-_enemyData = ExtResource("7_2ysbw")
-_startingRotationDeg = 5.0
+[node name="Movement" parent="KaraokeFanGirl" index="0" node_paths=PackedStringArray("_patrolPath")]
+_patrolPath = [NodePath("../../PatrolPath1/Node2D"), NodePath("../../PatrolPath1/Node2D2"), NodePath("../../PatrolPath1/Node2D3"), NodePath("../../PatrolPath1/Node2D4")]
 
-[node name="NeighborDave" type="CharacterBody2D" parent="."]
-process_mode = 4
-position = Vector2(4149, 4173)
-script = ExtResource("5_ao272")
+[node name="PatrolPath1" type="Node2D" parent="."]
+
+[node name="Node2D" type="Node2D" parent="PatrolPath1"]
+position = Vector2(1535, 3368)
+
+[node name="Node2D2" type="Node2D" parent="PatrolPath1"]
+position = Vector2(1408, 3569)
+
+[node name="Node2D3" type="Node2D" parent="PatrolPath1"]
+position = Vector2(1292, 3274)
+
+[node name="Node2D4" type="Node2D" parent="PatrolPath1"]
+position = Vector2(1344, 2955)
+
+[node name="AloofAcademic" parent="." instance=ExtResource("9_f8a1u")]
+position = Vector2(1879, 2892)
+_enemyData = ExtResource("4_aoy74")
+
+[node name="Movement" parent="AloofAcademic" index="0" node_paths=PackedStringArray("_patrolPath")]
+_patrolPath = [NodePath("../../PatrolPath2/Node2D"), NodePath("../../PatrolPath2/Node2D2"), NodePath("../../PatrolPath2/Node2D3"), NodePath("../../PatrolPath2/Node2D4"), NodePath("../../PatrolPath2/Node2D5"), NodePath("../../PatrolPath2/Node2D6")]
+
+[node name="PatrolPath2" type="Node2D" parent="."]
+position = Vector2(1879, 2892)
+
+[node name="Node2D" type="Node2D" parent="PatrolPath2"]
+
+[node name="Node2D2" type="Node2D" parent="PatrolPath2"]
+position = Vector2(151, -277)
+
+[node name="Node2D3" type="Node2D" parent="PatrolPath2"]
+position = Vector2(309, 65)
+
+[node name="Node2D4" type="Node2D" parent="PatrolPath2"]
+position = Vector2(627, 348)
+
+[node name="Node2D5" type="Node2D" parent="PatrolPath2"]
+position = Vector2(1452, -155)
+
+[node name="Node2D6" type="Node2D" parent="PatrolPath2"]
+position = Vector2(837, 691)
+
+[node name="CryptoBro" parent="." instance=ExtResource("9_f8a1u")]
+position = Vector2(4155, 4178)
+
+[node name="Movement" parent="CryptoBro" index="0" node_paths=PackedStringArray("_patrolPath")]
+_patrolPath = [NodePath("../../PatrolPath3/Node2D"), NodePath("../../PatrolPath3/Node2D2"), NodePath("../../PatrolPath3/Node2D3"), NodePath("../../PatrolPath3/Node2D4"), NodePath("../../PatrolPath3/Node2D5")]
+
+[node name="PatrolPath3" type="Node2D" parent="."]
+position = Vector2(4151, 4171)
+
+[node name="Node2D" type="Node2D" parent="PatrolPath3"]
+position = Vector2(0, 2)
+
+[node name="Node2D2" type="Node2D" parent="PatrolPath3"]
+position = Vector2(872, -59)
+
+[node name="Node2D3" type="Node2D" parent="PatrolPath3"]
+position = Vector2(1504, -361)
+
+[node name="Node2D4" type="Node2D" parent="PatrolPath3"]
+position = Vector2(1430, -1208)
+
+[node name="Node2D5" type="Node2D" parent="PatrolPath3"]
+position = Vector2(657, -930)
+
+[node name="NeighborDave" parent="." instance=ExtResource("9_f8a1u")]
+position = Vector2(4873, 2006)
 _enemyData = ExtResource("8_n7tcn")
-_startingRotationDeg = -90.0
 
-[node name="CryptoBro" type="CharacterBody2D" parent="."]
-position = Vector2(5134, 1995)
-script = ExtResource("5_ao272")
-_enemyData = ExtResource("9_wohom")
-_startingRotationDeg = 180.0
+[node name="Movement" parent="NeighborDave" index="0" node_paths=PackedStringArray("_patrolPath")]
+_patrolPath = [NodePath("../../PatrolPath4/Node2D"), NodePath("../../PatrolPath4/Node2D2"), NodePath("../../PatrolPath4/Node2D3"), NodePath("../../PatrolPath4/Node2D4"), NodePath("../../PatrolPath4/Node2D5"), NodePath("../../PatrolPath4/Node2D6")]
 
-[node name="BeautyInfluencer" type="CharacterBody2D" parent="."]
-process_mode = 4
-position = Vector2(2873, 1537)
-script = ExtResource("5_ao272")
+[node name="PatrolPath4" type="Node2D" parent="."]
+position = Vector2(4873, 2006)
+
+[node name="Node2D" type="Node2D" parent="PatrolPath4"]
+
+[node name="Node2D2" type="Node2D" parent="PatrolPath4"]
+position = Vector2(-661, -273)
+
+[node name="Node2D3" type="Node2D" parent="PatrolPath4"]
+position = Vector2(-699, -1092)
+
+[node name="Node2D4" type="Node2D" parent="PatrolPath4"]
+position = Vector2(-1163, -1468)
+
+[node name="Node2D5" type="Node2D" parent="PatrolPath4"]
+position = Vector2(-81, -1501)
+
+[node name="Node2D6" type="Node2D" parent="PatrolPath4"]
+position = Vector2(583, -737)
+
+[node name="BeautyInfluencer" parent="." instance=ExtResource("9_f8a1u")]
+position = Vector2(2872, 1530)
 _enemyData = ExtResource("10_lsurk")
-_startingRotationDeg = -90.0
+
+[node name="Movement" parent="BeautyInfluencer" index="0" node_paths=PackedStringArray("_patrolPath")]
+_patrolPath = [NodePath("../../PatrolPath5/Node2D"), NodePath("../../PatrolPath5/Node2D2"), NodePath("../../PatrolPath5/Node2D3"), NodePath("../../PatrolPath5/Node2D4"), NodePath("../../PatrolPath5/Node2D5"), NodePath("../../PatrolPath5/Node2D6")]
+
+[node name="PatrolPath5" type="Node2D" parent="."]
+position = Vector2(2872, 1530)
+
+[node name="Node2D" type="Node2D" parent="PatrolPath5"]
+
+[node name="Node2D2" type="Node2D" parent="PatrolPath5"]
+position = Vector2(207, -394)
+
+[node name="Node2D3" type="Node2D" parent="PatrolPath5"]
+position = Vector2(210, 555)
+
+[node name="Node2D4" type="Node2D" parent="PatrolPath5"]
+position = Vector2(-591, 483)
+
+[node name="Node2D5" type="Node2D" parent="PatrolPath5"]
+position = Vector2(-1102, -214)
+
+[node name="Node2D6" type="Node2D" parent="PatrolPath5"]
+position = Vector2(-467, -497)
+
+[node name="DesperateCougar" parent="." instance=ExtResource("9_f8a1u")]
+position = Vector2(185, 2311)
+_enemyData = ExtResource("7_2ysbw")
+
+[node name="Movement" parent="DesperateCougar" index="0" node_paths=PackedStringArray("_patrolPath")]
+_patrolPath = [NodePath("../../PatrolPath6/Node2D"), NodePath("../../PatrolPath6/Node2D2"), NodePath("../../PatrolPath6/Node2D3"), NodePath("../../PatrolPath6/Node2D4"), NodePath("../../PatrolPath6/Node2D5")]
+
+[node name="PatrolPath6" type="Node2D" parent="."]
+position = Vector2(185, 2311)
+
+[node name="Node2D" type="Node2D" parent="PatrolPath6"]
+
+[node name="Node2D2" type="Node2D" parent="PatrolPath6"]
+position = Vector2(1095, -139)
+
+[node name="Node2D3" type="Node2D" parent="PatrolPath6"]
+position = Vector2(617, -317)
+
+[node name="Node2D4" type="Node2D" parent="PatrolPath6"]
+position = Vector2(1501, -678)
+
+[node name="Node2D5" type="Node2D" parent="PatrolPath6"]
+position = Vector2(161, -1089)
 
 [node name="Walls" type="Node2D" parent="."]
 
@@ -818,3 +922,10 @@ theme_override_font_sizes/normal_font_size = 102
 bbcode_enabled = true
 text = "[center]The
  [font=res://Assets/Fonts/Lobster-Regular.ttf]Elegant[/font] Exit[/center]"
+
+[editable path="KaraokeFanGirl"]
+[editable path="AloofAcademic"]
+[editable path="CryptoBro"]
+[editable path="NeighborDave"]
+[editable path="BeautyInfluencer"]
+[editable path="DesperateCougar"]

@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://xv4de3gekli8"]
+
+[ext_resource type="Script" uid="uid://cqyp40usrqog3" path="res://src/Party/Enemy/PartyEnemy.cs" id="1_syt6j"]
+[ext_resource type="Resource" uid="uid://d4mv565km1snp" path="res://GameDataResources/EnemyData/JohnParker.tres" id="2_4k5ra"]
+[ext_resource type="Script" uid="uid://di5m42h3gdkdb" path="res://src/Party/Enemy/EnemyMovement.cs" id="3_m4tbd"]
+[ext_resource type="Texture2D" uid="uid://b6h02xnwx4s5l" path="res://Assets/Textures/Characters/GenericCharacterIcon.png" id="4_u60uq"]
+[ext_resource type="Script" uid="uid://bknsnkc863m8a" path="res://src/Party/Enemy/EnemyVision.cs" id="5_4k5ra"]
+
+[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("_sprite", "_vision")]
+script = ExtResource("1_syt6j")
+_enemyData = ExtResource("2_4k5ra")
+_sprite = NodePath("Sprite2D")
+_sightConeSegments = 16
+_sightConeAngleDegrees = 120.0
+_sightConeRadius = 600.0
+_vision = NodePath("Vision")
+
+[node name="Movement" type="Node" parent="." node_paths=PackedStringArray("_enemyVision", "_navAgent", "_nodeToMove", "_nodeToRotate")]
+script = ExtResource("3_m4tbd")
+_isPatrolCyclic = true
+_enemyVision = NodePath("../Vision")
+_navAgent = NodePath("../NavigationAgent2D")
+_nodeToMove = NodePath("..")
+_nodeToRotate = NodePath("../Vision")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("4_u60uq")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+
+[node name="Vision" type="Area2D" parent="." node_paths=PackedStringArray("_rayCast")]
+script = ExtResource("5_4k5ra")
+_rayCast = NodePath("../RayCast2D")

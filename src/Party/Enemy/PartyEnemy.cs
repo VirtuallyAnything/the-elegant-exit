@@ -1,5 +1,4 @@
 using Godot;
-using System;
 
 namespace tee
 {
@@ -8,43 +7,20 @@ namespace tee
 		[Export] private EnemyData _enemyData;
 		private CircleTrigger _trigger;
 		private CollisionShape2D _collisionShape;
-		private Sprite2D _sprite;
-		private RayCast2D _rayCast = new();
-		private NavigationAgent2D _navAgent = new();
-		[Export] private float _playerFollowSeconds = 3;
-		[Export] private float _turnSpeed = (float)Math.Tau;
-		[Export] private float _startingRotationDeg;
-		private bool _isInChase;
+		[Export] private Sprite2D _sprite;
 		private Tween _tween;
 		private SceneManager _sceneManager;
 		public override void _Ready()
 		{
-			_sprite = new();
 			_sprite.Texture = _enemyData.Icon;
-			AddChild(_sprite);
 			Modulate = new Color(1, 1, 1, 0);
 
-			AddChild(_navAgent);
 			_trigger = new()
 			{
 				Range = 50,
 				Receiver = this
 			};
 			AddChild(_trigger);
-
-			_vision = new EnemyVision(_rayCast)
-			{
-				RotationDegrees = _startingRotationDeg
-			};
-
-			AddChild(_rayCast);
-
-			_movement = new EnemyMovement(_navAgent, this, (EnemyVision)_vision)
-			{
-				PlayerFollowSeconds = _playerFollowSeconds,
-				Speed = _movementSpeed,
-				TurnSpeed = _turnSpeed
-			};
 
 			_collisionShape = new()
 			{

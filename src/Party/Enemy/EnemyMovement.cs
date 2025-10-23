@@ -1,18 +1,20 @@
 using Godot;
-using System;
 
 namespace tee
 {
 	public partial class EnemyMovement : Movement
 	{
+		[Export] private Godot.Collections.Array<Node2D> _patrolPath = new();
+		private int _patrolPathIndex;
+		[Export] private bool _isPatrolCyclic;
 		private PartyPlayer _player;
-		private float _playerFollowSeconds = 10;
+		[Export] private float _playerFollowSeconds = 3;
 		private double _playerFollowSecondsLeft;
 		private float _correctionMargin = 30;
 		private Vector2 _lastPlayerPosition;
 		private bool _isSeeingPlayer;
 		private bool _isPlayerInSightCone;
-		private EnemyVision _enemyVision;
+		[Export] private EnemyVision _enemyVision;
 
 		public PartyPlayer Player
 		{
@@ -28,11 +30,6 @@ namespace tee
 		{
 			get { return _correctionMargin; }
 			set { _correctionMargin = value; }
-		}
-
-		public EnemyMovement(NavigationAgent2D navAgent, Node2D nodeToMove, EnemyVision enemyVision) : base(navAgent, nodeToMove, enemyVision)
-		{
-			_enemyVision = enemyVision;
 		}
 
 		public override void _Ready()
@@ -63,8 +60,32 @@ namespace tee
 			}
 			else
 			{
-				_navAgent.TargetPosition = _nodeToMove.GlobalPosition;
+				Patrol();
 			}
 		}
+
+		private void Patrol()
+		{
+			if(_patrolPath.Count == 0)
+            {
+				_navAgent.TargetPosition = _nodeToMove.GlobalPosition;
+				return;
+            }
+            if (_navAgent.IsNavigationFinished())
+            {
+				_navAgent.TargetPosition = _patrolPath[_patrolPathIndex].GlobalPosition;
+				if(_patrolPathIndex < _patrolPath.Count - 1)
+                {
+					_patrolPathIndex++;
+                }else if(_isPatrolCyclic)
+                {
+					_patrolPathIndex = 0;
+                }
+                else
+                {
+					_patrolPathIndex--;
+                }
+            }	
+        }
 	}
 }

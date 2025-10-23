@@ -5,7 +5,7 @@ namespace tee
 {
 	public partial class EnemyVision : Vision
 	{
-		private RayCast2D _rayCast;
+		[Export] private RayCast2D _rayCast;
 		private PartyPlayer _player;
 		private Vector2 _lastPlayerPosition;
 		private bool _isRayHittingPlayer;
@@ -15,11 +15,6 @@ namespace tee
 		}
 		public Vector2 CurrentPlayerPosition{
 			get{return _player.Position;}
-		}
-
-		// Called when the node enters the scene tree for the first time.
-		public EnemyVision(RayCast2D raycast){
-			_rayCast = raycast;
 		}
 
 		// Called every frame. 'delta' is the elapsed time since the previous frame.

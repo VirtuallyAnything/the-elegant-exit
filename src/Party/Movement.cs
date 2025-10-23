@@ -1,18 +1,17 @@
 using Godot;
 using System;
-using System.Diagnostics;
 
 namespace tee
 {
 	public delegate void MovementHandler(Vector2 position, float rotation);
 	public partial class Movement : Node
 	{
-		protected NavigationAgent2D _navAgent;
-		protected Node2D _nodeToMove;
+		[Export] protected NavigationAgent2D _navAgent;
+		[Export] protected Node2D _nodeToMove;
 		private Vector2 _movementVector;
-		private float _speed = 100;
-		protected Node2D _nodeToRotate;
-		protected float _turnSpeed = (float)Math.Tau;
+		[Export] private float _speed = 100;
+		[Export] protected Node2D _nodeToRotate;
+		[Export] protected float _turnSpeed = (float)Math.Tau;
 		private float _movementDelta;
 		private Vector2 _safeVelocity;
 		public float Speed
@@ -24,18 +23,6 @@ namespace tee
 		{
 			get { return _turnSpeed; }
 			set { _turnSpeed = value; }
-		}
-
-		public Movement(NavigationAgent2D navAgent, Node2D nodeToMove, Node2D nodeToRotate = null)
-		{
-			_navAgent = navAgent;
-			_nodeToMove = nodeToMove;
-			if(nodeToRotate is null){
-				_nodeToRotate = nodeToMove;
-			}else{
-				_nodeToRotate = nodeToRotate;
-			}
-
 		}
 
 		// Called when the node enters the scene tree for the first time.
@@ -68,6 +55,11 @@ namespace tee
 					OnNavigationAgent2DVelocityComputed(newVelocity);
 				}
 			}
+		}
+
+		public override void _ExitTree()
+		{
+			_navAgent.VelocityComputed -= OnNavigationAgent2DVelocityComputed;
 		}
 	}
 }

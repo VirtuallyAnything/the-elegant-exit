@@ -10,4 +10,3 @@ _enemyData = ExtResource("2_07e81")
 _sightConeSegments = 16
 _sightConeAngleDegrees = 135.0
 _sightConeRadius = 800.0
-_triggerRange = 1.0

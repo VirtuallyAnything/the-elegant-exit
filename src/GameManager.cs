@@ -3,11 +3,9 @@ using Godot;
 namespace tee
 {
 	public delegate void GameHandler();
-	public delegate void GameFinishedHandler(int finalScore);
 	public partial class GameManager : Node
 	{
 		public static event GameHandler GameOver;
-		public static event GameFinishedHandler GameFinished;
 		[Export] private GameTimer _gameTimer;
 		[Export] private PartyPlayer _player;
 		private static Godot.Collections.Array<PlayerAttack> _availableAttacks;
