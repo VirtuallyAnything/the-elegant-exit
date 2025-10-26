@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bchtcw35gtmyu"]
 
-[ext_resource type="Script" uid="uid://b5x4lg5qi33ne" path="res://src/SceneCode/CreditsScene.cs" id="1_c7kg7"]
+[ext_resource type="Script" uid="uid://b5lkxc4mcj2ke" path="res://src/SceneCode/Scene.cs" id="1_jaf4j"]
 [ext_resource type="Texture2D" uid="uid://6owi28lr85hn" path="res://Assets/UI/Icons/Arrow.png" id="2_ay43u"]
 [ext_resource type="Script" uid="uid://diy0f8mk31o2x" path="res://src/SceneCode/SceneSwapButton.cs" id="3_8ikyv"]
 [ext_resource type="Theme" uid="uid://bpp0q38rfd1ms" path="res://Assets/Themes/Lobster.tres" id="7_2e176"]
@@ -12,7 +12,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_c7kg7")
+script = ExtResource("1_jaf4j")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1

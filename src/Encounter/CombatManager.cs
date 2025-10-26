@@ -4,7 +4,7 @@ using Godot.Collections;
 namespace tee
 {
 	public delegate void CombatEventHandler();
-	public delegate void CombatEndHandler(bool value);
+	public delegate void CombatEndHandler(EncounterOutcome outcome);
 	public delegate void CombatOutcomeHandler(int socialStanding, int socialBattery);
 	public delegate void PreferenceEventHandler(TopicName topicName, Preference preference);
 	public partial class CombatManager : Node
@@ -22,10 +22,10 @@ namespace tee
 		private TopicName _nextTopicName;
 		private int _conversationInterestDamage;
 		private int _conversationInterestBonusDamage;
-		private int _transferAmount = 10;
 		private bool _isFirstTurn = true;
 		private bool _isBlockNextEnemyAttack;
 		private bool _isIgnoreCIBonusDamage;
+		[Export] private int _socialBatteryPenalty = 5;
 		private static int _dynamicCIDamageLike = -1;
 		private static int _dynamicCIDamageDislike = 1;
 		public int ConversationInterestDamage
@@ -85,6 +85,7 @@ namespace tee
 			EncounterScene.PlayerTurnComplete += EnemyAttack;
 			EnemyTurnComplete += SetupNewAttack;
 			AttackCard.AttackSelected += PlayerAttack;
+			AnnoyanceLevel.Changed += EndCombat;
 		}
 
 		public async void StartCombat()
@@ -99,18 +100,36 @@ namespace tee
 			_enemy = new(_encounterScene.CurrentEnemy);
 
 			_encounterScene.AttackCardContainer.DisableInput();
-			await _encounterScene.PlayCombatStartAnimation(_transferAmount);
+			await _encounterScene.PlayCombatStartAnimation(Player.MaxMentalCapacity);
 
-			GameManager.SocialBattery -= _transferAmount;
-			Player.MentalCapacity = _transferAmount;
+			GameManager.SocialBattery -= Player.MaxMentalCapacity;
+			Player.MentalCapacity = Player.MaxMentalCapacity;
 			EnemyAttack();
 		}
 
-		private void EndCombat(bool hasPlayerWon)
+		/// <summary>
+		/// Called when either the Player's MentalCapacity or the Enemy's Conversation Interest runs out
+		/// </summary>
+		/// <param name="hasPlayerWon">true, if the Enemy stats are depleted before the Player's.</param>
+		private void EndCombat(EncounterOutcome outcome)
 		{
 			SocialStanding += Enemy.GetTotalSocialStanding();
-			FinalValuesDecided?.Invoke(SocialStanding, Player.MentalCapacity);
-			CombatWon?.Invoke(hasPlayerWon);
+			int socialBatteryPenalty = 0;
+            if (outcome == EncounterOutcome.PlayerDefeated)
+            {
+				socialBatteryPenalty = _socialBatteryPenalty;
+            }
+			FinalValuesDecided?.Invoke(SocialStanding, Player.MentalCapacity - socialBatteryPenalty);
+			CombatWon?.Invoke(outcome);
+		}
+
+		private void EndCombat(AnnoyanceData data)
+		{
+			if (data.CurrentAnnoyance == AnnoyanceLevel.MaxAnnoyance)
+			{
+				FinalValuesDecided?.Invoke(data.SocialStandingChange, Player.MentalCapacity);
+				CombatWon?.Invoke(EncounterOutcome.MaxAnnoyanceReached);
+			}
 		}
 
 		private void SetupNewAttack()
@@ -144,7 +163,7 @@ namespace tee
 					switch (PreferenceForCurrentTopic)
 					{
 						// Apply damage modifiers for Preferences
-						case Preference.Like:   
+						case Preference.Like:
 							ConversationInterestBonusDamage += _dynamicCIDamageLike;
 							break;
 						case Preference.Dislike:
@@ -199,14 +218,10 @@ namespace tee
 
 			if (Enemy.ConversationInterest <= 0)
 			{
-				EndCombat(true);
+				EndCombat(EncounterOutcome.EnemyDefeated);
 				return;
 			}
-			else if (Enemy.Annoyance.CurrentAnnoyance >= 5)
-			{
-				EndCombat(false);
-				return;
-			}
+
 			_encounterScene.EnableInput();
 		}
 
@@ -244,7 +259,7 @@ namespace tee
 
 			if (Player.MentalCapacity <= 0)
 			{
-				EndCombat(false);
+				EndCombat(EncounterOutcome.PlayerDefeated);
 				return;
 			}
 
@@ -286,7 +301,7 @@ namespace tee
 					return _dynamicCIDamageDislike;
 			}
 			return 0;
-        }
+		}
 
 		public override void _ExitTree()
 		{
@@ -294,6 +309,7 @@ namespace tee
 			EncounterScene.PlayerTurnComplete -= EnemyAttack;
 			EnemyTurnComplete -= SetupNewAttack;
 			AttackCard.AttackSelected -= PlayerAttack;
+			AnnoyanceLevel.Changed -= EndCombat;
 		}
 	}
 }

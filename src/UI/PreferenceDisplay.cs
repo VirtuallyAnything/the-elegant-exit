@@ -5,7 +5,7 @@ using tee;
 public partial class PreferenceDisplay : Control
 {
 	[Export] private Array<TopicRichTextLabel> _topicLabels;
-	[Export] private Texture2D _likeIcon, _dislikeIcon, _unknownIcon;
+	[Export] private Texture2D _likeIcon, _dislikeIcon, _neutralIcon, _unknownIcon;
 
 	public override void _Ready()
 	{
@@ -33,6 +33,9 @@ public partial class PreferenceDisplay : Control
 						break;
 					case Preference.Dislike:
 						iconPath += _dislikeIcon.ResourcePath + "[/img]";
+						break;
+					case Preference.Neutral:
+						iconPath += _neutralIcon.ResourcePath + "[/img]";
 						break;
 					default:
 						iconPath = "";

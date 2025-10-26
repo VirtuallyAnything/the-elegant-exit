@@ -5,7 +5,8 @@ namespace tee
 {
     public partial class EncounterPlayer : EncounterCharacter
     {
-        private int _mentalCapacity = 10;
+        private int _mentalCapacity;
+        private int _maxMentalCapacity = 10;
         private Array<PlayerAttack> _allPlayerAttacks;
         private Array<PlayerAttack> _attackPool;
         private Array<PlayerAttack> _currentAttacks = new();
@@ -23,9 +24,9 @@ namespace tee
                 {
                     _mentalCapacity = 0;
                 }
-                else if (value > 10)
+                else if (value > _maxMentalCapacity)
                 {
-                    _mentalCapacity = 10;
+                    _mentalCapacity = _maxMentalCapacity;
                 }
                 else
                 {
@@ -33,6 +34,11 @@ namespace tee
                 }
             }
         }
+        public int MaxMentalCapacity
+        {
+            get { return _maxMentalCapacity; }
+        }
+        
         public EncounterPlayer(Array<PlayerAttack> playerAttacks)
         {
             _allPlayerAttacks = playerAttacks;

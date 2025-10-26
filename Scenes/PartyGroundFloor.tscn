@@ -180,9 +180,9 @@ source_geometry_group_name = &"navigation_polygon_source_group"
 agent_radius = 35.0
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_mpj6m"]
-vertices = PackedVector2Array(4608.03, 2456, 5822, 2456, 5822, 4234.92, 4900.56, 4232.93, 4609, 3775.99, 4609.89, 4237, 4609, 3963, 4769.41, 4237, 4897.51, 4261.32, 4771.38, 4262.65)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4), PackedInt32Array(5, 6, 4, 3, 7), PackedInt32Array(7, 3, 8, 9)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(4575, 4272, 4737, 4272, 4739, 4298, 4929, 4296, 4932, 4268, 5857, 4270, 5857, 2421, 4573, 2421, 4574, 3776, 4574, 3963), PackedVector2Array(4840, 2810, 4840, 3006, 5036, 3007, 5035, 2812), PackedVector2Array(5296, 3559, 5296, 3753, 5493, 3753, 5494, 3559)])
+vertices = PackedVector2Array(5822, 2456, 5822, 4234.92, 5528.18, 3788, 5526.82, 3521.46, 5072.36, 3043, 5069.64, 2777, 5263.18, 3525.53, 4608.03, 2456, 4804, 2777, 4609, 3775.99, 4804, 3043, 4900.56, 4232.93, 5261.82, 3788, 4769.41, 4237, 4609.89, 4237, 4609, 3963, 4897.51, 4261.32, 4771.38, 4262.65)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 0, 3, 6), PackedInt32Array(7, 0, 5, 8), PackedInt32Array(9, 7, 8, 10), PackedInt32Array(2, 1, 11, 12), PackedInt32Array(4, 6, 12, 11, 13, 14, 15, 9, 10), PackedInt32Array(16, 17, 13, 11)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(4575, 4272, 4737, 4272, 4739, 4298, 4929, 4296, 4932, 4268, 5857, 4270, 5857, 2421, 4573, 2421, 4574, 3776, 4574, 3963), PackedVector2Array(5035, 2812, 5037, 3008, 4839, 3008, 4839, 2812), PackedVector2Array(5492, 3557, 5493, 3753, 5297, 3753, 5298, 3560)])
 source_geometry_group_name = &"navigation_polygon_source_group"
 agent_radius = 35.0
 
@@ -694,7 +694,7 @@ navigation_polygon = SubResource("NavigationPolygon_elywe")
 [node name="Area2D" type="Area2D" parent="."]
 process_mode = 4
 script = ExtResource("8_ekoj5")
-_sceneName = 7
+_sceneName = 6
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
 polygon = PackedVector2Array(3452, 1810, 3454, 2022, 3740, 2022, 3740, 1812)
@@ -703,7 +703,7 @@ polygon = PackedVector2Array(3452, 1810, 3454, 2022, 3740, 2022, 3740, 1812)
 process_mode = 4
 position = Vector2(-60, 2447)
 script = ExtResource("8_ekoj5")
-_sceneName = 7
+_sceneName = 6
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D2"]
 position = Vector2(140, 0)
@@ -751,7 +751,6 @@ position = Vector2(3878, 3013)
 texture = ExtResource("23_p5qa1")
 
 [node name="FOW" parent="." instance=ExtResource("8_svv30")]
-visible = false
 light_mask = 2
 offset_right = 5948.0
 offset_bottom = 4566.0
@@ -898,7 +897,7 @@ texture = ExtResource("9_6c1f4")
 [node name="Area2D3" type="Area2D" parent="."]
 position = Vector2(191, 3900)
 script = ExtResource("8_ekoj5")
-_sceneName = 14
+_sceneName = 13
 
 [node name="Panel" type="Panel" parent="Area2D3"]
 offset_left = -95.0

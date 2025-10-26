@@ -2,7 +2,7 @@ using Godot;
 
 namespace tee
 {
-    public partial class GameFinishedScene : Node
+    public partial class GameFinishedScene : Scene
     {
         [Export] private Label _finalScore;
         [Export] private Sprite2D _outcome;

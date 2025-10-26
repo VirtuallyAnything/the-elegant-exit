@@ -1,7 +1,9 @@
-[gd_scene load_steps=21 format=3 uid="uid://dmyfdjltetw2d"]
+[gd_scene load_steps=23 format=3 uid="uid://dmyfdjltetw2d"]
 
 [ext_resource type="Script" uid="uid://t6642lxnuqwn" path="res://src/SceneCode/MainScene.cs" id="1_klk3w"]
+[ext_resource type="PackedScene" uid="uid://dmfp5lawyswyl" path="res://Scenes/PartyGroundFloor.tscn" id="2_i0j58"]
 [ext_resource type="Script" uid="uid://lcb2jtbtmhll" path="res://src/Party/Player/PartyPlayer.cs" id="3_53yld"]
+[ext_resource type="PackedScene" uid="uid://damjwt0d5a1y8" path="res://Scenes/PartyFirstFloor.tscn" id="3_c1ier"]
 [ext_resource type="Resource" uid="uid://d0bu2gll3u4xb" path="res://GameDataResources/Attacks/PlayerData.tres" id="4_iwfah"]
 [ext_resource type="Texture2D" uid="uid://k4q8rnj22dsh" path="res://Assets/Textures/MainCharacterIcon.png" id="4_mph3w"]
 [ext_resource type="PackedScene" uid="uid://d21hljw8t080d" path="res://Scenes/Subscenes/SocialBattery.tscn" id="5_t55tw"]
@@ -39,9 +41,14 @@ shadow_size = 10
 shadow_color = Color(0.12549, 0.0431373, 0.145098, 1)
 shadow_offset = Vector2(8, 8)
 
-[node name="MainScene" type="Node2D" node_paths=PackedStringArray("_encounterLayer", "_socialBattery", "_camera")]
+[node name="MainScene" type="Control" node_paths=PackedStringArray("_encounterLayer", "_pauseLayer", "_socialBattery", "_camera")]
+layout_mode = 3
+anchors_preset = 0
+mouse_filter = 1
 script = ExtResource("1_klk3w")
+_floorsPacked = Array[PackedScene]([ExtResource("2_i0j58"), ExtResource("3_c1ier")])
 _encounterLayer = NodePath("EncounterLayer")
+_pauseLayer = NodePath("PauseLayer")
 _socialBattery = NodePath("Characters/Player/Camera2D/TextureProgressBar")
 _camera = NodePath("Characters/Player/Camera2D")
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://cv7lwki55h2ma"]
+[gd_scene load_steps=46 format=3 uid="uid://cv7lwki55h2ma"]
 
 [ext_resource type="Script" uid="uid://cxid571ug53su" path="res://src/SceneCode/EncounterScene.cs" id="1_qerod"]
 [ext_resource type="Script" uid="uid://ptv5xl7v8wlo" path="res://src/Encounter/CombatManager.cs" id="2_6eywl"]
@@ -25,6 +25,7 @@
 [ext_resource type="Shader" uid="uid://dbtab1afypd3l" path="res://Assets/Shaders/simple_blur.gdshader" id="21_u5cww"]
 [ext_resource type="Texture2D" uid="uid://6owi28lr85hn" path="res://Assets/UI/Icons/Arrow.png" id="22_nhamm"]
 [ext_resource type="Script" uid="uid://jchlbum4ftrw" path="res://src/UI/TopicRichTextLabel.cs" id="22_ufc0k"]
+[ext_resource type="Texture2D" uid="uid://buhw88wqufn7g" path="res://Assets/UI/Icons/NeutralIcon.png" id="24_5tyb4"]
 [ext_resource type="Script" uid="uid://dmfvkrq3e013t" path="res://src/UI/AnnoyanceDisplay.cs" id="24_wl100"]
 [ext_resource type="Texture2D" uid="uid://csf0lc06m8cu0" path="res://Assets/UI/BigArrow.png" id="25_6brt4"]
 [ext_resource type="Texture2D" uid="uid://dujhcmisqeo3g" path="res://Assets/UI/Icons/ConversationInterestMaxIcon.png" id="26_nbp65"]
@@ -783,6 +784,7 @@ script = ExtResource("17_de043")
 _topicLabels = [NodePath("ThoughtBubble1/RichTextLabel"), NodePath("ThoughtBubble2/RichTextLabel"), NodePath("ThoughtBubble3/RichTextLabel"), NodePath("ThoughtBubble4/RichTextLabel"), NodePath("ThoughtBubble5/RichTextLabel"), NodePath("ThoughtBubble6/RichTextLabel"), NodePath("ThoughtBubble7/RichTextLabel")]
 _likeIcon = ExtResource("18_vqv50")
 _dislikeIcon = ExtResource("19_bhsfw")
+_neutralIcon = ExtResource("24_5tyb4")
 _unknownIcon = ExtResource("20_h7nvp")
 
 [node name="ThoughtBubble1" type="TextureRect" parent="ThoughtBubbles"]

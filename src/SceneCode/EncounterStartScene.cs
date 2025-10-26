@@ -2,7 +2,7 @@ using Godot;
 
 namespace tee
 {
-	public partial class EncounterStartScene : Node
+	public partial class EncounterStartScene : Scene
 	{
 		[Export] private Label _enemyName;
 		[Export] private TextureRect _enemyTexture;

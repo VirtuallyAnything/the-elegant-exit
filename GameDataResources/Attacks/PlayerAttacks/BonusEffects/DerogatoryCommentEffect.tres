@@ -4,4 +4,4 @@
 
 [resource]
 script = ExtResource("1_pepfc")
-_description = "[ul]If LIKE: +2 CI, +1 Annoyance[/ul][ul]If NEUTRAL: -[/ul][ul]If DISLIKE: -1 Annoyance[/ul]"
+_description = "[ul]If [img=30]res://Assets/UI/Icons/LikeIcon.png[/img]: +2 damage to [img=30]res://Assets/UI/Icons/ConversationInterestIcon.png[/img], +1 Annoyance[/ul][ul]If [img=30]res://Assets/UI/Icons/NeutralIcon.png[/img]: -[/ul][ul]If [img=30]res://Assets/UI/Icons/DislikeIcon.png[/img]: -1 Annoyance[/ul]"

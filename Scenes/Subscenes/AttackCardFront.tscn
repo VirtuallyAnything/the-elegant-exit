@@ -41,7 +41,6 @@ theme = ExtResource("2_g2rnx")
 text = "Awkward Anecdote"
 
 [node name="Description" type="RichTextLabel" parent="."]
-modulate = Color(0, 0, 0, 1)
 layout_mode = 0
 offset_left = 75.0
 offset_top = 69.0
@@ -51,6 +50,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 2
 theme = ExtResource("4_bpp6j")
 theme_type_variation = &"RichTextRegular"
+theme_override_colors/default_color = Color(0, 0, 0, 1)
 bbcode_enabled = true
 text = "[ul]
 Description Description

@@ -4,4 +4,4 @@
 
 [resource]
 script = ExtResource("1_wpbkn")
-_description = "[ul]Block next Enemy Dialogue[/ul]"
+_description = "[ul]Block damage from next Opponent Dialogue[/ul]"

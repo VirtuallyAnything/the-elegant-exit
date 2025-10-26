@@ -4,4 +4,4 @@
 
 [resource]
 script = ExtResource("1_18spa")
-_description = "[ul]Ignores Topic Change Penalty[/ul][ul]-2 Enthusiasm from Current Topic[/ul]"
+_description = "[ul]Ignores Topic Change Penalty[/ul][ul]-2 Enthusiasm for Current Topic[/ul]"

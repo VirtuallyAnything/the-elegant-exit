@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://bhl5fccx2vo6m"]
 
-[ext_resource type="Script" uid="uid://d1n5ii46divc" path="res://src/SceneCode/StartScene.cs" id="1_w4qjd"]
+[ext_resource type="Script" uid="uid://b5lkxc4mcj2ke" path="res://src/SceneCode/Scene.cs" id="1_w4qjd"]
 [ext_resource type="Texture2D" uid="uid://bof3wrxapds3v" path="res://Assets/Textures/MainCharacters.png" id="2_at33a"]
 [ext_resource type="Theme" uid="uid://bpp0q38rfd1ms" path="res://Assets/Themes/Lobster.tres" id="3_6sxrv"]
 [ext_resource type="Script" uid="uid://diy0f8mk31o2x" path="res://src/SceneCode/SceneSwapButton.cs" id="4_nmi4p"]

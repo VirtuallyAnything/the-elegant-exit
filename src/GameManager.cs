@@ -1,8 +1,9 @@
+using System.Threading.Tasks;
 using Godot;
 
 namespace tee
 {
-	public delegate void GameHandler();
+	public delegate Task GameHandler(SceneName sceneName);
 	public partial class GameManager : Node
 	{
 		public static event GameHandler GameOver;
@@ -18,7 +19,8 @@ namespace tee
 			set { _currentEnemy = value; }
 		}
 		private static int _socialStandingOverall;
-		private static int _socialBattery = 100;
+		private static int _socialBattery;
+		private static int _maxSocialBattery;
 		private static bool _isFirstEncounter = true;
 		public static Godot.Collections.Array<PlayerAttack> AvailableAttacks
 		{
@@ -31,9 +33,9 @@ namespace tee
 			get { return _socialBattery; }
 			set
 			{
-				if (value > 100)
+				if (value > _maxSocialBattery)
 				{
-					_socialBattery = 100;
+					_socialBattery = _maxSocialBattery;
 				}
 				else if (value <= 0)
 				{
@@ -55,13 +57,14 @@ namespace tee
 		{
 			AvailableAttacks = _player.Data.AvailableAttacks;
 			_socialStandingOverall = _player.Data.SocialStandingOverall;
-			SocialBattery = _player.Data.SocialBattery;
+			_maxSocialBattery = _player.Data.SocialBattery;
+			SocialBattery = _maxSocialBattery;
 			CombatManager.FinalValuesDecided += UpdateStats;
 			CombatManager.CombatWon += SetIsFirstEncounter;
 			_gameTimer.Timeout += EndGameAsLost;
 		}
 
-		private void SetIsFirstEncounter(bool outcome)
+		private void SetIsFirstEncounter(EncounterOutcome outcome)
 		{
 			_isFirstEncounter = false;
 			CombatManager.CombatWon -= SetIsFirstEncounter;
@@ -75,7 +78,7 @@ namespace tee
 
 		public static void EndGameAsLost()
 		{
-			GameOver?.Invoke();
+			GameOver?.Invoke(SceneName.GameOver);
 		}
 
 		public static int GetScore()

@@ -4,7 +4,7 @@ using Godot;
 namespace tee
 {
 	public delegate void EncounterSceneHandler();
-	public partial class EncounterScene : Node
+	public partial class EncounterScene : Scene
 	{
 		public event EncounterSceneHandler SetupCompleted;
 		public static event EncounterSceneHandler PlayerTurnComplete;

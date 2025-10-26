@@ -22,6 +22,7 @@ namespace tee
         /// Invoked when CurrentAnnoyance increases or decreases. Sends out an AnnoyanceData struct containing all changes for the new level of Annoyance.
         /// </summary>
         public static event AnnoyanceHandlerObject Changed;
+        private static int _maxAnnoyance = 5;
         private int _currentAnnoyance;
         private int _socialStandingChange;
         private int _conversationInterestModifier;
@@ -31,9 +32,9 @@ namespace tee
             get { return _currentAnnoyance; }
             set
             {
-                if (value > 5)
+                if (value > MaxAnnoyance)
                 {
-                    _currentAnnoyance = 5;
+                    _currentAnnoyance = MaxAnnoyance;
                 }
                 else if (value < 0)
                 {
@@ -44,6 +45,10 @@ namespace tee
                     _currentAnnoyance = value;
                 }
             }
+        }
+        public static int MaxAnnoyance
+        {
+            get { return _maxAnnoyance; }
         }
         public int SocialStandingChange
         {
@@ -59,7 +64,7 @@ namespace tee
         /// </summary>
         public void Increase()
         {
-            if (CurrentAnnoyance == 5)
+            if (CurrentAnnoyance == MaxAnnoyance)
             {
                 GD.Print("Highest Annoyance Level already reached.");
                 return;

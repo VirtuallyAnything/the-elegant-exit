@@ -4,4 +4,4 @@
 
 [resource]
 script = ExtResource("1_qj3xp")
-_description = "[ul]-1 Annoyance[/ul][ul]+1 SSC[/ul]"
+_description = "[ul]-1 Annoyance[/ul][ul]+1 [img=30]res://Assets/UI/Icons/SocialStandingIcon.png[/img][/ul]"

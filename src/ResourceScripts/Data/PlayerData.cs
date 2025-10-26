@@ -9,7 +9,7 @@ namespace tee
 		[Export] private Godot.Collections.Array<PlayerAttack> _availableAttacks;
 		private int[] _partyMembers;
 		private int _socialStandingOverall;
-		private int _socialBattery = 100;
+		private int _socialBattery = 50;
 
 		public Godot.Collections.Array<PlayerAttack> AvailableAttacks
 		{
