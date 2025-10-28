@@ -42,7 +42,7 @@
     "MentalCapacityDamage": 1,
     "SocialBatteryChange": 0,
     "NeedsTransition": true,
-    "Quote": "Did you buy your season tickets for Badger matches yet. With the Carlo brothers as our newest defenders, I'd like to see them try scoring a single goal against us this season."
+    "Quote": "Did you buy your season tickets for Badger matches yet? With the Carlo brothers as our newest defenders, I'd like to see them try scoring a single goal against us this season."
   },
   {
     "Type": "MainLine",
@@ -69,7 +69,7 @@
     "MentalCapacityDamage": 1,
     "SocialBatteryChange": 0,
     "NeedsTransition": true,
-    "Quote": "In my youth I also used to play for the Badgers. I was the goalie. The enemy team didn't even wanted to come close to our goal."
+    "Quote": "In my youth I also used to play for the Badgers. I was the goalie. The enemy team didn't even want to come close to our goal."
   },
   {
     "Type": "MainLine",
@@ -87,7 +87,7 @@
     "MentalCapacityDamage": 1,
     "SocialBatteryChange": 0,
     "NeedsTransition": true,
-    "Quote": "3 tips for the best beard care routine: 1.Water is the enemy. 2. Food scraps, especially of animal origin, give the beard its healthy shine and luster. 3 Home-made special lotion."
+    "Quote": "3 tips for the best beard care routine: 1. Water is the enemy. 2. Food scraps, especially of animal origin, give the beard its healthy shine and luster. 3. Home-made special lotion."
   },
   {
     "Type": "MainLine",
@@ -105,7 +105,7 @@
     "MentalCapacityDamage": 1,
     "SocialBatteryChange": 0,
     "NeedsTransition": true,
-    "Quote": "I honestly don't mind this 5G scaremongering. I've documented a growth spurt in most of my plants since the satellites when online. Good for plants, good for humans, right?"
+    "Quote": "I honestly don't mind this 5G scaremongering. I've documented a growth spurt in most of my plants since the satellites went online. Good for plants, good for humans, right?"
   },
   {
     "Type": "MainLine",
@@ -141,7 +141,7 @@
     "MentalCapacityDamage": 1,
     "SocialBatteryChange": 0,
     "NeedsTransition": true,
-    "Quote": "Did you know that fracking accidents are an upper class ploy to prevent us from sustainable gardening."
+    "Quote": "Did you know that fracking accidents are an upper class ploy to prevent us from sustainable gardening?"
   },
   {
     "Type": "MainLine",
@@ -150,7 +150,7 @@
     "MentalCapacityDamage": 1,
     "SocialBatteryChange": 0,
     "NeedsTransition": true,
-    "Quote": "I hate our milkman. The milk always arrives barely chilled, just because he spends so much time at Mrs. Thompsons house."
+    "Quote": "I hate our milkman. The milk always arrives barely chilled, just because he spends so much time at Mrs. Thompson's house."
   },
   {
     "Type": "MainLine",
@@ -168,7 +168,7 @@
     "MentalCapacityDamage": 1,
     "SocialBatteryChange": 1,
     "NeedsTransition": true,
-    "Quote": "I heard someone say ugly stuff behind your back, but not I. I think you're cute together."
+    "Quote": "I heard someone say ugly stuff behind your back, but not me. I think you're cute together."
   },
   {
     "Type": "MainLine",
@@ -177,24 +177,6 @@
     "MentalCapacityDamage": 1,
     "SocialBatteryChange": 0,
     "NeedsTransition": true,
-    "Quote": "Have you seen a crisp, extravagantly clothed women my age? She's really cought my interest, but she has been avoiding me everytime I look her way."
-  },
-  {
-    "Type": "Enrage",
-    "Topic": "Economy",
-    "DialogueID": "nd_enrage_economy",
-    "MentalCapacityDamage": 2,
-    "SocialBatteryChange": -1,
-    "NeedsTransition": false,
-    "Quote": "Keep that governmental mumbo jumbo away from me!"
-  },
-  {
-    "Type": "Enrage",
-    "Topic": "Art",
-    "DialogueID": "nd_enrage_art",
-    "MentalCapacityDamage": 2,
-    "SocialBatteryChange": -1,
-    "NeedsTransition": false,
-    "Quote": "Art is just an excuse not to do any real work!"
+    "Quote": "Have you seen a crisp, extravagantly clothed women my age? She's really caught my interest, but she has been avoiding me everytime I look her way."
   }
 ]

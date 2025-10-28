@@ -15,7 +15,7 @@
     "MentalCapacityDamage": 1,
     "SocialBatteryChange": 0,
     "NeedsTransition": true,
-    "Quote": "You must be exceedingly popular with the young ladies. But let me show that experience outweighs whatever they have to offer."
+    "Quote": "You must be exceedingly popular with the young ladies. But let me show you that experience outweighs whatever they have to offer."
   },
   {
     "Type": "MainLine",
@@ -60,7 +60,7 @@
     "MentalCapacityDamage": 1,
     "SocialBatteryChange": 0,
     "NeedsTransition": true,
-    "Quote": "Did you know Olympians average 2,5 condoms per day. Kind of makes you wish you could compete yourself."
+    "Quote": "Did you know Olympians average 2.5 condoms per day? Kind of makes you wish you could compete yourself."
   },
   {
     "Type": "MainLine",
@@ -96,7 +96,7 @@
     "MentalCapacityDamage": 1,
     "SocialBatteryChange": 0,
     "NeedsTransition": true,
-    "Quote": "I really hate inheritance tax. My first husband left me finacially secure nonetheless. But that was the last time I'll have anything to do with an old guy."
+    "Quote": "I really hate inheritance tax. My first husband left me financially secure nonetheless. But that was the last time I'll have anything to do with an old guy."
   },
   {
     "Type": "MainLine",
@@ -105,7 +105,7 @@
     "MentalCapacityDamage": 1,
     "SocialBatteryChange": 0,
     "NeedsTransition": true,
-    "Quote": "I got myself some finance tips from John Parker. These Stacey Coins could really be next big thing."
+    "Quote": "I got myself some finance tips from John Parker. These Stacey Coins could really be the next big thing."
   },
   {
     "Type": "MainLine",
@@ -123,7 +123,7 @@
     "MentalCapacityDamage": 2,
     "SocialBatteryChange": -1,
     "NeedsTransition": true,
-    "Quote": "Oh, I am sooo prepared for Karaoke. I usually go for Ageless Fire. But I am also great in duet singing Whispered Promises by Lila Rose & Marcus Grey."
+    "Quote": "Oh, I am sooo prepared for Karaoke. I usually go for Ageless Fire. But I am also great in a duet singing Whispered Promises by Lila Rose & Marcus Grey."
   },
   {
     "Type": "MainLine",
@@ -141,7 +141,7 @@
     "MentalCapacityDamage": 1,
     "SocialBatteryChange": 0,
     "NeedsTransition": true,
-    "Quote": "I'm so close to reaching the critical drunkeness limit, afterwards I am not liable for my actions anymore"
+    "Quote": "I'm so close to reaching the critical drunkeness limit, afterwards I am not liable for my actions anymore."
   },
   {
     "Type": "MainLine",
@@ -168,7 +168,7 @@
     "MentalCapacityDamage": 1,
     "SocialBatteryChange": 0,
     "NeedsTransition": true,
-    "Quote": "I just vote for whoever is hot. Off course I also try to get to know them first. More intimate than the average voter would."
+    "Quote": "I just vote for whoever is hot. Of course I also try to get to know them first. More intimately than the average voter would."
   },
   {
     "Type": "MainLine",
@@ -177,24 +177,6 @@
     "MentalCapacityDamage": 1,
     "SocialBatteryChange": 0,
     "NeedsTransition": true,
-    "Quote": "Fuck those birth control extremist! Oh you want to fuck me back? Too bad I don't have any contraceptives."
-  },
-  {
-    "Type": "Enrage",
-    "Topic": "Art",
-    "DialogueID": "ddc_enrage_art",
-    "MentalCapacityDamage": 2,
-    "SocialBatteryChange": 1,
-    "NeedsTransition": false,
-    "Quote": "Gng, I'm trying to hook up so stop talking about minor matters like Art! Where were we?"
-  },
-  {
-    "Type": "Enrage",
-    "Topic": "Gossip",
-    "DialogueID": "ddc_enrage_gossip",
-    "MentalCapacityDamage": 2,
-    "SocialBatteryChange": 1,
-    "NeedsTransition": false,
-    "Quote": "I'm not for interesting myself in the matters of the common folk. There's this gross dwarf that has been following me all evening. Somebody should tell him that water can also be used on humans."
+    "Quote": "Fuck those birth control extremists! Oh you want to fuck me back? Too bad I don't have any contraceptives."
   }
 ]

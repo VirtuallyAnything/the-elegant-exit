@@ -1,5 +1,4 @@
 using Godot;
-using System;
 
 namespace tee
 {
@@ -11,6 +10,5 @@ namespace tee
                         _veil = this.GetFirstChildOfType<Veil>();
                         _veil.SetupOccluders();
                 }
-
         }
 }

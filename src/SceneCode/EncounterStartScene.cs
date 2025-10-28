@@ -1,8 +1,10 @@
+using System;
+using System.Threading.Tasks;
 using Godot;
 
 namespace tee
 {
-	public partial class EncounterStartScene : Scene
+	public partial class EncounterStartScene : TempScene
 	{
 		[Export] private Label _enemyName;
 		[Export] private TextureRect _enemyTexture;
@@ -10,10 +12,10 @@ namespace tee
 
 		public override void _EnterTree()
 		{
+			base._EnterTree();
 			_enemyName.Text = GameManager.CurrentEnemy.DisplayName;
 			_enemyTexture.Texture = GameManager.CurrentEnemy.Texture;
 
-			GetTree().CreateTimer(2);
 			_animationPlayer.Play("FlyIn");
 		}
 	}

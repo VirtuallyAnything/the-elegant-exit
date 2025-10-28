@@ -10,20 +10,25 @@ namespace tee
 	public partial class SceneManager : Node
 	{
 		private static Scene _currentScene;
-		private static PartyFloorScene _partyGroundFloor;
-		private static PartyFloorScene _partyFirstFloor;
 		private static MainScene _mainScene;
+		private static bool _isSceneChanging;
+		public static bool IsSceneChanging
+		{
+			get { return _isSceneChanging; }
+		}
 
 		// Called when the node enters the scene tree for the first time.
 		public override void _Ready()
 		{
-			CombatManager.CombatWon += ChangeToEncounterFinishedScene;
+			CombatManager.CombatEnded += ChangeToEncounterFinishedScene;
 			GameManager.GameOver += ChangeToScene;
+			TempScene.SceneTimerFinished += ChangeToScene;
 			_currentScene = GetTree().Root.GetChild<Scene>(2);
 		}
 
 		public async Task ChangeToScene(SceneName sceneName)
 		{
+			_isSceneChanging = true;
 			await _currentScene.TransitionOut();
 			switch (sceneName)
 			{
@@ -39,8 +44,6 @@ namespace tee
 					break;
 				case SceneName.Scoreboard:
 					break;
-				case SceneName.NicknameScreen:
-					break;
 				case SceneName.PartyFloorUp:
 					_mainScene.ChangeFloorUp();
 					break;
@@ -48,14 +51,14 @@ namespace tee
 					_mainScene.ChangeFloorDown();
 					break;
 				case SceneName.EncounterStart:
-					ChangeToEncounterStartScene();
+					await ChangeToEncounterStartScene();
 					break;
 				case SceneName.Encounter:
-					ChangeToEncounterScene();
+					await ChangeToEncounterScene();
 					break;
 				// For debugging purposes
 				case SceneName.EncounterFinished:
-					ChangeToEncounterFinishedScene(EncounterOutcome.EnemyDefeated);
+					ChangeToEncounterFinishedScene(EncounterOutcome.EnemyDefeated, 0, 0);
 					break;
 				case SceneName.CurrentPartyFloor:
 					ExitEncounter();
@@ -69,6 +72,7 @@ namespace tee
 					break;
 			}
 			await _currentScene.TransitionIn();
+			_isSceneChanging = false;
 		}
 
 		private void RemoveAndInstantiate(string sceneToInstantiate)
@@ -78,30 +82,29 @@ namespace tee
 			GetTree().Root.CallDeferred("add_child", _currentScene);
 		}
 
-		private void ChangeToEncounterStartScene()
+		private async Task ChangeToEncounterStartScene()
 		{
-			EncounterStartScene encounterScene = ResourceLoader.Load<PackedScene>("res://Scenes/EncounterStartScene.tscn").Instantiate<EncounterStartScene>();
-			_mainScene.ChangeEncounterScene(encounterScene);
+            EncounterStartScene encounterScene = ResourceLoader.Load<PackedScene>("res://Scenes/EncounterStartScene.tscn").Instantiate<EncounterStartScene>();
+            await _mainScene.ChangeEncounterScene(encounterScene);
 		}
 
-		private void ChangeToEncounterScene()
+		private async Task ChangeToEncounterScene()
 		{
 			EncounterScene encounterScene = ResourceLoader.Load<PackedScene>("res://Scenes/EncounterScene.tscn").Instantiate<EncounterScene>();
-			_mainScene.ChangeEncounterScene(encounterScene);
+			await _mainScene.ChangeEncounterScene(encounterScene);
 			encounterScene.SetupScene(GameManager.CurrentEnemy);
 			if (GameManager.IsFirstEncounter)
 			{
 				Node tutorial = ResourceLoader.Load<PackedScene>("res://Scenes/Subscenes/TutorialConfirmationWindow.tscn").Instantiate();
 				_mainScene.PauseLayer.AddChild(tutorial);
-			}
+			}	
 		}
 
-		private void ChangeToEncounterFinishedScene(EncounterOutcome outcome)
+		private void ChangeToEncounterFinishedScene(EncounterOutcome outcome, int socialStanding, int socialBattery)
 		{
 			EncounterFinishedScene encounterFinishedScene = ResourceLoader.Load<PackedScene>("res://Scenes/EncounterFinishedScene.tscn").Instantiate<EncounterFinishedScene>();
-
+			encounterFinishedScene.DisplayOutcome(outcome, socialStanding, socialBattery);
 			_mainScene.ChangeEncounterScene(encounterFinishedScene);
-			encounterFinishedScene.DisplayOutcome(outcome);
 		}
 
 		public void ExitEncounter()
@@ -112,8 +115,11 @@ namespace tee
 
 		public override void _ExitTree()
 		{
-			CombatManager.CombatWon -= ChangeToEncounterFinishedScene;
+			CombatManager.CombatEnded -= ChangeToEncounterFinishedScene;
 			GameManager.GameOver -= ChangeToScene;
+			TempScene.SceneTimerFinished -= ChangeToScene;
+			_mainScene = null;
+			_currentScene = null;
 		}
 	}
 }

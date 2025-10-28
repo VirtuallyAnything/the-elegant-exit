@@ -4,13 +4,12 @@ using Godot.Collections;
 namespace tee
 {
 	public delegate void CombatEventHandler();
-	public delegate void CombatEndHandler(EncounterOutcome outcome);
-	public delegate void CombatOutcomeHandler(int socialStanding, int socialBattery);
+	public delegate void CombatEndHandler(EncounterOutcome outcome, int socialStanding, int socialBattery);
+	public delegate void CombatOutcomeHandler();
 	public delegate void PreferenceEventHandler(TopicName topicName, Preference preference);
 	public partial class CombatManager : Node
 	{
-		public static event CombatEndHandler CombatWon;
-		public static event CombatOutcomeHandler FinalValuesDecided;
+		public static event CombatEndHandler CombatEnded;
 		public static event CombatEventHandler EnemyTurnComplete;
 		public static event CombatEventHandler TopicalAttackActive;
 		public static event PreferenceEventHandler PreferenceDiscovered;
@@ -115,20 +114,18 @@ namespace tee
 		{
 			SocialStanding += Enemy.GetTotalSocialStanding();
 			int socialBatteryPenalty = 0;
-            if (outcome == EncounterOutcome.PlayerDefeated)
-            {
+			if (outcome == EncounterOutcome.PlayerDefeated)
+			{
 				socialBatteryPenalty = _socialBatteryPenalty;
-            }
-			FinalValuesDecided?.Invoke(SocialStanding, Player.MentalCapacity - socialBatteryPenalty);
-			CombatWon?.Invoke(outcome);
+			}
+			CombatEnded?.Invoke(outcome, SocialStanding, Player.MentalCapacity - socialBatteryPenalty);
 		}
 
 		private void EndCombat(AnnoyanceData data)
 		{
 			if (data.CurrentAnnoyance == AnnoyanceLevel.MaxAnnoyance)
 			{
-				FinalValuesDecided?.Invoke(data.SocialStandingChange, Player.MentalCapacity);
-				CombatWon?.Invoke(EncounterOutcome.MaxAnnoyanceReached);
+				CombatEnded?.Invoke(EncounterOutcome.MaxAnnoyanceReached, data.SocialStandingChange, Player.MentalCapacity);
 			}
 		}
 
@@ -158,6 +155,7 @@ namespace tee
 				topicOfAttack = topicalPlayerAttack.SelectedTopicName;
 				Player.CurrentTopicName = topicOfAttack;
 				PreferenceForCurrentTopic = Enemy.GetPreferenceFor(topicOfAttack);
+				_selectedAttack.BonusEffect?.Resolve(this);
 				if (!_isIgnoreCIBonusDamage)
 				{
 					switch (PreferenceForCurrentTopic)
@@ -184,9 +182,8 @@ namespace tee
 			else
 			{
 				topicOfAttack = TopicName.None;
+				_selectedAttack.BonusEffect?.Resolve(this);
 			}
-
-			_selectedAttack.BonusEffect?.Resolve(this);
 
 			if (Player.CurrentTopicName == TopicName.Weather)
 			{
@@ -310,6 +307,7 @@ namespace tee
 			EnemyTurnComplete -= SetupNewAttack;
 			AttackCard.AttackSelected -= PlayerAttack;
 			AnnoyanceLevel.Changed -= EndCombat;
+			_enemy.Free();
 		}
 	}
 }

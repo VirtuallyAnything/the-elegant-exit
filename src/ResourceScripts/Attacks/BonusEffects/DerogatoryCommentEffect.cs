@@ -7,6 +7,7 @@ namespace tee
     {
         public override void Resolve(CombatManager combatManager){
             combatManager.IgnoreNextEnthusiasm();
+            combatManager.IgnoreNextAnnoyance();
             Preference preference = combatManager.PreferenceForCurrentTopic;
             combatManager.IgnoreCIBonusDamage();
             switch (preference)

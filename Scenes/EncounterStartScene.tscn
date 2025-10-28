@@ -81,6 +81,8 @@ script = ExtResource("1_fo1sk")
 _enemyName = NodePath("EnemyName")
 _enemyTexture = NodePath("EnemyName/TextureRect")
 _animationPlayer = NodePath("AnimationPlayer")
+TimerSeconds = 3.0
+RequestedScene = 10
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -160,6 +162,7 @@ texture = ExtResource("5_diw5j")
 stretch_mode = 4
 
 [node name="Button" type="Button" parent="."]
+visible = false
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 15

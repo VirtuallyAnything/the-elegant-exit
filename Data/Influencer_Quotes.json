@@ -15,7 +15,7 @@
     "MentalCapacityDamage": 1,
     "SocialBatteryChange": 0,
     "NeedsTransition": true,
-    "Quote": "It's hard being an lnfluencer you know. My routine takes ages now, so I can incorporate all the sponsorings."
+    "Quote": "It's hard being an lnfluencer, you know. My routine takes ages now, so I can incorporate all the sponsorings."
   },
   {
     "Type": "MainLine",
@@ -42,7 +42,7 @@
     "MentalCapacityDamage": 1,
     "SocialBatteryChange": 0,
     "NeedsTransition": true,
-    "Quote": "Long Nights? Can't sleep? Taste of yesterday's energy drink bullshit still lingers on your tounge? Then I have something for you. ZENergy and tonight's waking hours are the sleep of tomorrow!"
+    "Quote": "Long Nights? Can't sleep? Taste of yesterday's energy drink bullshit still lingers on your tongue? Then I have something for you. ZENergy and tonight's waking hours are the sleep of tomorrow!"
   },
   {
     "Type": "MainLine",
@@ -51,7 +51,7 @@
     "MentalCapacityDamage": 2,
     "SocialBatteryChange": 1,
     "NeedsTransition": true,
-    "Quote": "Have you ever tried the Inversed Bavarian Bretzel? I know it's a little advanced, but it really helps me relax. Plus it really loosens those joints."
+    "Quote": "Have you ever tried the Inversed Bavarian Pretzel? I know it's a little advanced, but it really helps me relax. Plus it really loosens those joints."
   },
   {
     "Type": "MainLine",
@@ -60,7 +60,7 @@
     "MentalCapacityDamage": 1,
     "SocialBatteryChange": 0,
     "NeedsTransition": true,
-    "Quote": "You wanny buy my relaxation CD? 2 hours of uncut ASMR of yours truly, Gloria. A capella or with soothing turtle song. Your mind will simply relax away."
+    "Quote": "You wanny buy my relaxation CD? 2 hours of uncut ASMR of yours truly, Gloria. A-capella or with soothing turtle song. Your mind will simply relax away."
   },
   {
     "Type": "MainLine",
@@ -96,7 +96,7 @@
     "MentalCapacityDamage": 1,
     "SocialBatteryChange": 0,
     "NeedsTransition": true,
-    "Quote": "Have you tried SilkSheen Hair Elixir. \"For Lustrous Hair, No Money I Spare. SilkSheen!\""
+    "Quote": "Have you tried SilkSheen Hair Elixir? \"For Lustrous Hair, No Money I Spare. SilkSheen!\""
   },
   {
     "Type": "MainLine",
@@ -105,7 +105,7 @@
     "MentalCapacityDamage": 1,
     "SocialBatteryChange": 0,
     "NeedsTransition": true,
-    "Quote": "Have you tried AquaPure Hydrating Mist. \"Instant Hydration, Refreshes The Nation\" \"Thirst's Best Cure, AquaPure\""
+    "Quote": "Have you tried AquaPure Hydrating Mist? \"Instant Hydration, Refreshes The Nation!\" \"Thirst's Best Cure, AquaPure.\""
   },
   {
     "Type": "MainLine",
@@ -114,7 +114,7 @@
     "MentalCapacityDamage": 1,
     "SocialBatteryChange": 0,
     "NeedsTransition": true,
-    "Quote": "I'm not the greatest fan of this older art styles, but that painting in the living room. Amazing! Already made a reel about it."
+    "Quote": "I'm not the greatest fan of these older art styles, but that painting in the living room - Amazing! Already made a reel about it."
   },
   {
     "Type": "MainLine",
@@ -123,7 +123,7 @@
     "MentalCapacityDamage": 1,
     "SocialBatteryChange": 0,
     "NeedsTransition": true,
-    "Quote": "My tattoo artist is the bestest. He excells in making miniature designs. I have to keep their size little. To not ruin the canvas you know."
+    "Quote": "My tattoo artist is the bestest. He excells in making miniature designs. I have to keep their size little. To not ruin the canvas, you know."
   },
   {
     "Type": "MainLine",
@@ -141,7 +141,7 @@
     "MentalCapacityDamage": 1,
     "SocialBatteryChange": 0,
     "NeedsTransition": true,
-    "Quote": "Makeup is a type of art too you know. That means I'm an artist too. And not just in the stupid way other influencers use the therm."
+    "Quote": "Makeup is a type of art too, you know. That means I'm an artist too. And not just in the stupid way other influencers use the term."
   },
   {
     "Type": "MainLine",
@@ -150,7 +150,7 @@
     "MentalCapacityDamage": 1,
     "SocialBatteryChange": 0,
     "NeedsTransition": true,
-    "Quote": "InvidiaCosmetics has been trying to also get a product placement deal with Jackson & Jackson. But tough luck for her. I am the their face for social media marketing and it's gonna stay this way."
+    "Quote": "InvidiaCosmetics has been trying to also get a product placement deal with Jackson & Jackson. But tough luck for her. I am the face for their social media marketing and it's gonna stay that way."
   },
   {
     "Type": "MainLine",
@@ -177,24 +177,6 @@
     "MentalCapacityDamage": 1,
     "SocialBatteryChange": 0,
     "NeedsTransition": true,
-    "Quote": "I've heard weird noices from the western room of the 1st floor. Surely something naughty is going on in there."
-  },
-  {
-    "Type": "Enrage",
-    "Topic": "Economy",
-    "DialogueID": "bi_enrage_economy",
-    "MentalCapacityDamage": 2,
-    "SocialBatteryChange": -1,
-    "NeedsTransition": false,
-    "Quote": "I honestly don't know why everybody is always so worried about money. You just swipe your card and then there is more. It's soo simple."
-  },
-  {
-    "Type": "Enrage",
-    "Topic": "Politics",
-    "DialogueID": "bi_enrage_politics",
-    "MentalCapacityDamage": 2,
-    "SocialBatteryChange": -1,
-    "NeedsTransition": false,
-    "Quote": "Girl. Repeat after me. Politics. Are. Boring."
+    "Quote": "I've heard weird noises from the western room of the 1st floor. Surely something naughty is going on in there."
   }
 ]

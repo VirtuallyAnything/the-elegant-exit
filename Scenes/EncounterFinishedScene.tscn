@@ -1,10 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://jpedgvm5olo1"]
+[gd_scene load_steps=5 format=3 uid="uid://jpedgvm5olo1"]
 
 [ext_resource type="Script" uid="uid://bl2ojc4mqmd85" path="res://src/SceneCode/EncounterFinishedScene.cs" id="1_bfikk"]
 [ext_resource type="LabelSettings" uid="uid://bx6i6eo3rklk8" path="res://Assets/Themes/LobsterLabelSettings.tres" id="2_m70y3"]
+[ext_resource type="Theme" uid="uid://bpp0q38rfd1ms" path="res://Assets/Themes/Lobster.tres" id="3_25yoq"]
 [ext_resource type="Script" uid="uid://diy0f8mk31o2x" path="res://src/SceneCode/SceneSwapButton.cs" id="3_56eoo"]
 
-[node name="EncounterFinishedScene" type="Control" node_paths=PackedStringArray("_outcome")]
+[node name="EncounterFinishedScene" type="Control" node_paths=PackedStringArray("_flavourText", "_outcome")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -12,7 +13,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_bfikk")
-_outcome = NodePath("Label")
+_flavourText = NodePath("Label")
+_outcome = NodePath("RichTextLabel")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -35,13 +37,35 @@ text = "Escaped from Conversation!"
 label_settings = ExtResource("2_m70y3")
 horizontal_alignment = 1
 
-[node name="Button" type="Button" parent="."]
-self_modulate = Color(1, 1, 1, 0)
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = 14
+anchor_top = 0.5
 anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("3_25yoq")
+theme_override_font_sizes/normal_font_size = 75
+bbcode_enabled = true
+text = "Result"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -105.5
+offset_top = 168.0
+offset_right = 105.5
+offset_bottom = 244.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_25yoq")
+text = "Continue"
 script = ExtResource("3_56eoo")
 SceneName = 8

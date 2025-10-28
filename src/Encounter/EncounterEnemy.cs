@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 using Godot;
 using Godot.Collections;
 
@@ -87,18 +86,6 @@ namespace tee
 		public AnnoyanceLevel Annoyance
 		{
 			get { return _annoyance; }
-		}
-		public List<TopicName> Likes
-		{
-			get { return _likes; }
-		}
-		public List<TopicName> Neutrals
-		{
-			get { return _neutrals; }
-		}
-		public List<TopicName> Dislikes
-		{
-			get { return _dislikes; }
 		}
 		public bool IsIgnoreNextAnnoyance
 		{
@@ -271,7 +258,6 @@ namespace tee
 			Preference preference = GetPreferenceFor(CurrentTopicName);
 			switch (preference)
 			{
-				// Missing content: Reaction dialogue based on preference for topic
 				case Preference.Like:
 				case Preference.Neutral:
 					if (!IsIgnoreNextEnthusiasm)
@@ -320,9 +306,9 @@ namespace tee
 
 		public void UpdateConversationInterest(AnnoyanceData data)
 		{
-			ConversationInterest += data.ConversationInterestModifier;
-			ConversationInterestMax += data.ConversationInterestModifier;
-			_conversationInterestModifierAnnoyance += data.ConversationInterestModifier;
+			ConversationInterest += data.ConversationInterestModDelta;
+			ConversationInterestMax += data.ConversationInterestModDelta;
+			_conversationInterestModifierAnnoyance += data.ConversationInterestModDelta;
 		}
 
 		public void IncreaseEnthusiasmFor(TopicName topic)

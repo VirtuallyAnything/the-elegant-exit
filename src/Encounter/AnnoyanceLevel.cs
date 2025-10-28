@@ -8,7 +8,7 @@ namespace tee
     public delegate void AnnoyanceHandler();
     public struct AnnoyanceData
     {
-        public int ConversationInterestModifier;
+        public int ConversationInterestModDelta;
         public int SocialStandingChange;
         public int SocialBatteryDamage;
         public int CurrentAnnoyance;
@@ -25,7 +25,7 @@ namespace tee
         private static int _maxAnnoyance = 5;
         private int _currentAnnoyance;
         private int _socialStandingChange;
-        private int _conversationInterestModifier;
+        private int _conversationInterestModDelta;
         private int _socialBatteryDamage;
         public int CurrentAnnoyance
         {
@@ -56,7 +56,7 @@ namespace tee
         }
         public int ConversationInterestModifier
         {
-            get { return _conversationInterestModifier; }
+            get { return _conversationInterestModDelta; }
         }
 
         /// <summary>
@@ -75,31 +75,32 @@ namespace tee
             {
                 case 1:
                     _socialStandingChange = -1;
-                    _conversationInterestModifier = -1;
+                    _conversationInterestModDelta = -1;
                     _socialBatteryDamage = -1;
                     break;
                 case 2:
                     _socialStandingChange = -3;
-                    _conversationInterestModifier = -2;
+                    _conversationInterestModDelta = -2;
                     _socialBatteryDamage = -1;
                     break;
                 case 3:
                     _socialStandingChange = -6;
-                    _conversationInterestModifier = -3;
+                    _conversationInterestModDelta = -3;
                     _socialBatteryDamage = -2;
                     break;
                 case 4:
                     _socialStandingChange = -10;
-                    _conversationInterestModifier = -4;
+                    _conversationInterestModDelta = -4;
                     _socialBatteryDamage = -2;
                     break;
                 case 5:
                     _socialStandingChange = -15;
+                    _socialBatteryDamage = 0;
                     break;
             }
             Changed?.Invoke(new AnnoyanceData()
             {
-                ConversationInterestModifier = _conversationInterestModifier,
+                ConversationInterestModDelta = _conversationInterestModDelta,
                 SocialStandingChange = _socialStandingChange,
                 SocialBatteryDamage = _socialBatteryDamage,
                 CurrentAnnoyance = CurrentAnnoyance
@@ -135,26 +136,26 @@ namespace tee
             {
                 case 0:
                     _socialStandingChange = 0;
-                    _conversationInterestModifier = 1;
+                    _conversationInterestModDelta = 1;
                     break;
                 case 1:
                     _socialStandingChange = -1;
-                    _conversationInterestModifier = 2;
+                    _conversationInterestModDelta = 2;
                     break;
                 case 2:
                     _socialStandingChange = -3;
-                    _conversationInterestModifier = 3;
+                    _conversationInterestModDelta = 3;
                     break;
                 case 3:
                     _socialStandingChange = -6;
-                    _conversationInterestModifier = 4;
+                    _conversationInterestModDelta = 4;
                     break;
             }
             Changed?.Invoke(new AnnoyanceData()
             {
-                ConversationInterestModifier = _conversationInterestModifier,
+                ConversationInterestModDelta = _conversationInterestModDelta,
                 SocialStandingChange = _socialStandingChange,
-                SocialBatteryDamage = _socialBatteryDamage,
+                SocialBatteryDamage = 0,
                 CurrentAnnoyance = CurrentAnnoyance
             });
             GD.Print($"Annoyance Level decreased to {CurrentAnnoyance}");

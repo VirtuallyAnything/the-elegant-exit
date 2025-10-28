@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using Godot;
 
 namespace tee
@@ -9,7 +10,7 @@ namespace tee
 		private Godot.Collections.Array<PartyFloorScene> _floors = new();
 		[Export] private CanvasLayer _encounterLayer;
 		[Export] private CanvasLayer _pauseLayer;
-		private Node _currentEncounterScene;
+		private Scene _currentEncounterScene;
 		[Export] private TextureProgressBar _socialBattery;
 		[Export] private Camera2D _camera;
 
@@ -56,17 +57,19 @@ namespace tee
 			}
 		}
 
-		public void ChangeEncounterScene(Node scene)
+		public async Task ChangeEncounterScene(Scene scene)
 		{
 			if (scene is not null)
 			{
 				_floors[_currentFloorIndex].ProcessMode = ProcessModeEnum.Disabled;
 				if (_currentEncounterScene is not null)
 				{
+					await _currentEncounterScene.TransitionOut();
 					_encounterLayer.RemoveChild(_currentEncounterScene);
 				}
 				_encounterLayer.AddChild(scene);
 				_currentEncounterScene = scene;
+				await _currentEncounterScene.TransitionIn();
 			}
 		}
 
@@ -83,6 +86,14 @@ namespace tee
 		public void UpdateUI()
 		{
 			_socialBattery.Value = GameManager.SocialBattery;
+		}
+
+		public override void _ExitTree() {
+			foreach(PartyFloorScene floor in _floors)
+            {
+				floor.QueueFree();
+            }
+			base._ExitTree();
 		}
 	}
 }

@@ -6,7 +6,7 @@
     "MentalCapacityDamage": 1,
     "SocialBatteryChange": 0,
     "NeedsTransition": true,
-    "Quote": "Mr Bradshaw, have you been thinking about going into education. Your talents must surely be wasted working as a mere librarian."
+    "Quote": "Mr Bradshaw, have you been thinking about going into education? Your talents must surely be wasted working as a mere librarian."
   },
   {
     "Type": "MainLine",
@@ -15,7 +15,7 @@
     "MentalCapacityDamage": 1,
     "SocialBatteryChange": 0,
     "NeedsTransition": true,
-    "Quote": "My promotion to Housemaster of Stirling Hall unfortunately left me with little time for actual teaching. I miss it on somedays when the paperwork piles up in my office."
+    "Quote": "My promotion to Housemaster of Stirling Hall unfortunately left me with little time for actual teaching. I miss it on some days when the paperwork piles up in my office."
   },
   {
     "Type": "MainLine",
@@ -24,7 +24,7 @@
     "MentalCapacityDamage": 2,
     "SocialBatteryChange": -1,
     "NeedsTransition": true,
-    "Quote": "Do you remember the incident with Ms. Gooding. Officialy the culprit was never found, but we both know what really happened that April."
+    "Quote": "Do you remember the incident with Ms. Gooding? Officially the culprit was never found, but we both know what really happened that April."
   },
   {
     "Type": "MainLine",
@@ -33,7 +33,7 @@
     "MentalCapacityDamage": 1,
     "SocialBatteryChange": 1,
     "NeedsTransition": true,
-    "Quote": "From all the classes I've taught I haven't grow quite so attached to any than yours. And not only because my daughter was in it. Glad to see you've outgrown your ruffian stage."
+    "Quote": "From all the classes I've taught I haven't grown quite so attached to any like yours. And not only because my daughter was in it. Glad to see you've outgrown your ruffian stage."
   },
   {
     "Type": "MainLine",
@@ -60,7 +60,7 @@
     "MentalCapacityDamage": 1,
     "SocialBatteryChange": 0,
     "NeedsTransition": true,
-    "Quote": "I'm usually dubious of these modern sport inventions, but chess boxing majesticaly combines two disciplines I excelled in in my youth. Just ask the other teachers from our staff league."
+    "Quote": "I'm usually dubious of these modern sport inventions, but chess boxing majestically combines two disciplines I excelled at in my youth. Just ask the other teachers from our staff league."
   },
   {
     "Type": "MainLine",
@@ -87,7 +87,7 @@
     "MentalCapacityDamage": 2,
     "SocialBatteryChange": -1,
     "NeedsTransition": true,
-    "Quote": "Mr Bradshaw, would you like to join our Alumni program for teaching life experience to our young pupils. It is a quite honorable position, not to forget the monetary compensation."
+    "Quote": "Mr Bradshaw, would you like to join our Alumni program for teaching life experience to our young pupils? It is a quite honorable position, not to mention the monetary compensation."
   },
   {
     "Type": "MainLine",
@@ -123,7 +123,7 @@
     "MentalCapacityDamage": 1,
     "SocialBatteryChange": 0,
     "NeedsTransition": true,
-    "Quote": "Lydia Monroe latest reveal Morning over Milford Marsh has shook the art world. She is a true embodiment of our schools artistic values! And a proud honour student of Stirling Hall."
+    "Quote": "Lydia Monroe's latest reveal \"Morning over Milford Marsh\" has shook the art world. She is a true embodiment of our school's artistic values! And a proud honour student of Stirling Hall."
   },
   {
     "Type": "MainLine",
@@ -132,7 +132,7 @@
     "MentalCapacityDamage": 1,
     "SocialBatteryChange": 0,
     "NeedsTransition": true,
-    "Quote": "The self portrait of Arthur Belmont, our honourable founder, still brings tears to my eyes whenever I pass it in the entrance hall. A true masterpiece."
+    "Quote": "The self-portrait of Arthur Belmont, our honourable founder, still brings tears to my eyes whenever I pass it in the entrance hall. A true masterpiece."
   },
   {
     "Type": "MainLine",
@@ -159,7 +159,7 @@
     "MentalCapacityDamage": 1,
     "SocialBatteryChange": 0,
     "NeedsTransition": true,
-    "Quote": "Have you heard that Vaughn is running for the Regressive Ideology Party. His platform is an honest disgrace of our schools values. But what more can you expect from Langley Hall."
+    "Quote": "Have you heard that Vaughn is running for the Regressive Ideology Party? His platform is an honest disgrace to our school's values. But what more can you expect from Langley Hall."
   },
   {
     "Type": "MainLine",
@@ -177,24 +177,6 @@
     "MentalCapacityDamage": 1,
     "SocialBatteryChange": 0,
     "NeedsTransition": true,
-    "Quote": "Most politicians misuse their rhetorical talents to convince people to vote against their better interests. In that way they are just like any con artist you might find at a carnival. I'm not angry at them, just very dissapointed."
-  },
-  {
-    "Type": "Enrage",
-    "Topic": "Lifestyle",
-    "DialogueID": "aa_enrage_lifestyle",
-    "MentalCapacityDamage": 2,
-    "SocialBatteryChange": -1,
-    "NeedsTransition": false,
-    "Quote": "Don't waste your time on such insignificance. There are grander topics at hand."
-  },
-  {
-    "Type": "Enrage",
-    "Topic": "Gossip",
-    "DialogueID": "aa_enrage_gossip",
-    "MentalCapacityDamage": 2,
-    "SocialBatteryChange": -1,
-    "NeedsTransition": false,
-    "Quote": "Don't waste your time on such insignificance. There are grander topics at hand."
+    "Quote": "Most politicians misuse their rhetorical talents to convince people to vote against their better interests. In that way they are just like any con artist you might find at a carnival. I'm not angry at them, just very disappointed."
   }
 ]

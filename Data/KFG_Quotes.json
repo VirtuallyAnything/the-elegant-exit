@@ -1,200 +1,182 @@
 [
   {
-	"Type": "MainLine",
-	"Topic": "SpecialInterest",
-	"DialogueID": "kfg_topic_karaoke_01",
-	"MentalCapacityDamage": 1,
-	"SocialBatteryChange": 0,
-	"NeedsTransition": true,
-	"Quote": "I'm the president of our local karaoke girl club. We have been competing in some minor leagues to scarcely any results. Personally I think someone... Tiffany... is holding us back."
+    "Type": "MainLine",
+    "Topic": "SpecialInterest",
+    "DialogueID": "kfg_topic_karaoke_01",
+    "MentalCapacityDamage": 1,
+    "SocialBatteryChange": 0,
+    "NeedsTransition": true,
+    "Quote": "I'm the president of our local karaoke girl club. We have been competing in some minor leagues to scarcely any results. Personally I think someone... Tiffany... is holding us back."
   },
   {
-	"Type": "MainLine",
-	"Topic": "SpecialInterest",
-	"DialogueID": "kfg_topic_karaoke_02",
-	"MentalCapacityDamage": 2,
-	"SocialBatteryChange": 1,
-	"NeedsTransition": true,
-	"Quote": "Have you seen the stage in the garden? Everyone will be able to see your performance, let alone hear. Not only the guests in the garden, also the upper floors and neighbours."
+    "Type": "MainLine",
+    "Topic": "SpecialInterest",
+    "DialogueID": "kfg_topic_karaoke_02",
+    "MentalCapacityDamage": 2,
+    "SocialBatteryChange": 1,
+    "NeedsTransition": true,
+    "Quote": "Have you seen the stage in the garden? Everyone will be able to see your performance, let alone hear. Not only the guests in the garden, also the upper floors and neighbours."
   },
   {
-	"Type": "MainLine",
-	"Topic": "SpecialInterest",
-	"DialogueID": "kfg_topic_karaoke_03",
-	"MentalCapacityDamage": 1,
-	"SocialBatteryChange": 0,
-	"NeedsTransition": true,
-	"Quote": "Don't tell anyone, but lately I did some secret training in a Japanese karaoke bar in West End. My sensei says I'll soon be ready for the blue Dan."
+    "Type": "MainLine",
+    "Topic": "SpecialInterest",
+    "DialogueID": "kfg_topic_karaoke_03",
+    "MentalCapacityDamage": 1,
+    "SocialBatteryChange": 0,
+    "NeedsTransition": true,
+    "Quote": "Don't tell anyone, but lately I did some secret training in a Japanese karaoke bar in West End. My sensei says I'll soon be ready for the blue Dan."
   },
   {
-	"Type": "MainLine",
-	"Topic": "SpecialInterest",
-	"DialogueID": "kfg_topic_karaoke_04",
-	"MentalCapacityDamage": 2,
-	"SocialBatteryChange": -1,
-	"NeedsTransition": true,
-	"Quote": "So what song are you gonna sing? I could really see you rocking ABCs of Love as a duet. Especially Marc, you totally fit Tim'id Tim's part."
+    "Type": "MainLine",
+    "Topic": "SpecialInterest",
+    "DialogueID": "kfg_topic_karaoke_04",
+    "MentalCapacityDamage": 2,
+    "SocialBatteryChange": -1,
+    "NeedsTransition": true,
+    "Quote": "So what song are you gonna sing? I could really see you rocking ABCs of Love as a duet. Especially Marc, you totally fit Tim'id Tim's part."
   },
   {
-	"Type": "MainLine",
-	"Topic": "Economy",
-	"DialogueID": "kfg_topic_economy_01",
-	"MentalCapacityDamage": 1,
-	"SocialBatteryChange": 0,
-	"NeedsTransition": true,
-	"Quote": "John Parker told me about an investment opportunity. Maybe if I pour my savings into Stacey Coin, I will have enough to quit in a few years and follow my passion."
+    "Type": "MainLine",
+    "Topic": "Economy",
+    "DialogueID": "kfg_topic_economy_01",
+    "MentalCapacityDamage": 1,
+    "SocialBatteryChange": 0,
+    "NeedsTransition": true,
+    "Quote": "John Parker told me about an investment opportunity. Maybe if I pour my savings into Stacey Coin, I will have enough to quit in a few years and follow my passion."
   },
   {
-	"Type": "MainLine",
-	"Topic": "Economy",
-	"DialogueID": "kfg_topic_economy_02",
-	"MentalCapacityDamage": 1,
-	"SocialBatteryChange": 0,
-	"NeedsTransition": true,
-	"Quote": "I hate my job, if only I could live off Karaoke. That would be my dream."
+    "Type": "MainLine",
+    "Topic": "Economy",
+    "DialogueID": "kfg_topic_economy_02",
+    "MentalCapacityDamage": 1,
+    "SocialBatteryChange": 0,
+    "NeedsTransition": true,
+    "Quote": "I hate my job, if only I could live off Karaoke. That would be my dream."
   },
   {
-	"Type": "MainLine",
-	"Topic": "Economy",
-	"DialogueID": "kfg_topic_economy_03",
-	"MentalCapacityDamage": 1,
-	"SocialBatteryChange": 0,
-	"NeedsTransition": true,
-	"Quote": "Maybe I should start my own karaoke bar. WIth my expertise success should be guaranteed."
+    "Type": "MainLine",
+    "Topic": "Economy",
+    "DialogueID": "kfg_topic_economy_03",
+    "MentalCapacityDamage": 1,
+    "SocialBatteryChange": 0,
+    "NeedsTransition": true,
+    "Quote": "Maybe I should start my own karaoke bar. With my expertise success should be guaranteed."
   },
   {
-	"Type": "MainLine",
-	"Topic": "Economy",
-	"DialogueID": "kfg_topic_economy_04",
-	"MentalCapacityDamage": 1,
-	"SocialBatteryChange": 0,
-	"NeedsTransition": true,
-	"Quote": "I found a collector's edition of Wishney Sing-Along 2. The one where the subtitles were in Scottish. Only a few hundred of those in the world. What a steal."
+    "Type": "MainLine",
+    "Topic": "Economy",
+    "DialogueID": "kfg_topic_economy_04",
+    "MentalCapacityDamage": 1,
+    "SocialBatteryChange": 0,
+    "NeedsTransition": true,
+    "Quote": "I found a collector's edition of Wishney's Sing-Along 2. The one where the subtitles were in Scottish. Only a few hundred of those in the world. What a steal."
   },
   {
-	"Type": "MainLine",
-	"Topic": "Lifestyle",
-	"DialogueID": "kfg_topic_lifestyle_01",
-	"MentalCapacityDamage": 1,
-	"SocialBatteryChange": 0,
-	"NeedsTransition": true,
-	"Quote": "I foud this local shop where they sell Serpens Oleum, and it has been doing wonders for my voice. Highly recommend it."
+    "Type": "MainLine",
+    "Topic": "Lifestyle",
+    "DialogueID": "kfg_topic_lifestyle_01",
+    "MentalCapacityDamage": 1,
+    "SocialBatteryChange": 0,
+    "NeedsTransition": true,
+    "Quote": "I found this local shop where they sell Serpens Oleum, and it has been doing wonders for my voice. Highly recommend it."
   },
   {
-	"Type": "MainLine",
-	"Topic": "Lifestyle",
-	"DialogueID": "kfg_topic_lifestyle_02",
-	"MentalCapacityDamage": 2,
-	"SocialBatteryChange": -1,
-	"NeedsTransition": true,
-	"Quote": "Anthony! Finally I get to meet you! You have to tell me all about you. Marc's messages leave much to be desired. I know you went to the same college, but other than that. Tell me everything."
+    "Type": "MainLine",
+    "Topic": "Lifestyle",
+    "DialogueID": "kfg_topic_lifestyle_02",
+    "MentalCapacityDamage": 2,
+    "SocialBatteryChange": -1,
+    "NeedsTransition": true,
+    "Quote": "Anthony! Finally I get to meet you! You have to tell me all about you. Marc's messages leave much to be desired. I know you went to the same college, but other than that... Tell me everything."
   },
   {
-	"Type": "MainLine",
-	"Topic": "Lifestyle",
-	"DialogueID": "kfg_topic_lifestyle_03",
-	"MentalCapacityDamage": 1,
-	"SocialBatteryChange": 0,
-	"NeedsTransition": true,
-	"Quote": "Lately I have adjusted my whole wardrobe to boost my karaoke and singing stats. I'm really starting to feel the effects."
+    "Type": "MainLine",
+    "Topic": "Lifestyle",
+    "DialogueID": "kfg_topic_lifestyle_03",
+    "MentalCapacityDamage": 1,
+    "SocialBatteryChange": 0,
+    "NeedsTransition": true,
+    "Quote": "Lately I have adjusted my whole wardrobe to boost my karaoke and singing stats. I'm really starting to feel the effects."
   },
   {
-	"Type": "MainLine",
-	"Topic": "Lifestyle",
-	"DialogueID": "kfg_topic_lifestyle_04",
-	"MentalCapacityDamage": 1,
-	"SocialBatteryChange": 1,
-	"NeedsTransition": true,
-	"Quote": "Marc! You wanna meet up for a coffee sometime? It has been ages since I've last seen you and I want to do some catching up."
+    "Type": "MainLine",
+    "Topic": "Lifestyle",
+    "DialogueID": "kfg_topic_lifestyle_04",
+    "MentalCapacityDamage": 1,
+    "SocialBatteryChange": 1,
+    "NeedsTransition": true,
+    "Quote": "Marc! You wanna meet up for a coffee sometime? It has been ages since I've last seen you and I want to do some catching up."
   },
   {
-	"Type": "MainLine",
-	"Topic": "Art",
-	"DialogueID": "kfg_topic_art_01",
-	"MentalCapacityDamage": 1,
-	"SocialBatteryChange": 0,
-	"NeedsTransition": true,
-	"Quote": "I went to the Musicals last week.Tiger Prince is just so good! My favourite part is when he sings about wishing for his dad's death. Always gets me."
+    "Type": "MainLine",
+    "Topic": "Art",
+    "DialogueID": "kfg_topic_art_01",
+    "MentalCapacityDamage": 1,
+    "SocialBatteryChange": 0,
+    "NeedsTransition": true,
+    "Quote": "I went to the Musicals last week.Tiger Prince is just so good! My favourite part is when he sings about wishing for his dad's death. Always gets me."
   },
   {
-	"Type": "MainLine",
-	"Topic": "Art",
-	"DialogueID": "kfg_topic_art_02",
-	"MentalCapacityDamage": 1,
-	"SocialBatteryChange": 0,
-	"NeedsTransition": true,
-	"Quote": "You know who I hate? Filly Zanilli, what a despicable subversion of the high art of Karaoke. I just can't."
+    "Type": "MainLine",
+    "Topic": "Art",
+    "DialogueID": "kfg_topic_art_02",
+    "MentalCapacityDamage": 1,
+    "SocialBatteryChange": 0,
+    "NeedsTransition": true,
+    "Quote": "You know who I hate? Filly Zanilli, what a despicable subversion of the high art of Karaoke. I just can't."
   },
   {
-	"Type": "MainLine",
-	"Topic": "Art",
-	"DialogueID": "kfg_topic_art_03",
-	"MentalCapacityDamage": 2,
-	"SocialBatteryChange": -1,
-	"NeedsTransition": true,
-	"Quote": "I made it into the qualifiers of Karaoke Ninja Warrior. It would be great if I could get your call-in vote so I can make it into the show."
+    "Type": "MainLine",
+    "Topic": "Art",
+    "DialogueID": "kfg_topic_art_03",
+    "MentalCapacityDamage": 2,
+    "SocialBatteryChange": -1,
+    "NeedsTransition": true,
+    "Quote": "I made it into the qualifiers of Karaoke Ninja Warrior. It would be great if I could get your call-in vote so I can make it into the show."
   },
   {
-	"Type": "MainLine",
-	"Topic": "Art",
-	"DialogueID": "kfg_topic_art_04",
-	"MentalCapacityDamage": 2,
-	"SocialBatteryChange": -1,
-	"NeedsTransition": true,
-	"Quote": "Last week a friend and I went to a singalong viewing of Chilled at the cinema. The aura in the hall when everyone did the high pitch for Let Them Walk - Magical. You just needed to have been there."
+    "Type": "MainLine",
+    "Topic": "Art",
+    "DialogueID": "kfg_topic_art_04",
+    "MentalCapacityDamage": 2,
+    "SocialBatteryChange": -1,
+    "NeedsTransition": true,
+    "Quote": "Last week a friend and I went to a singalong viewing of Chilled at the cinema. The aura in the hall when everyone did the high pitch for Let Them Walk - Magical. You just needed to have been there."
   },
   {
-	"Type": "MainLine",
-	"Topic": "Gossip",
-	"DialogueID": "kfg_topic_gossip_01",
-	"MentalCapacityDamage": 1,
-	"SocialBatteryChange": 0,
-	"NeedsTransition": true,
-	"Quote": "Have you seen Carla? I was looking all over for them since we split on the first floor. I wonder what she is doing right now?"
+    "Type": "MainLine",
+    "Topic": "Gossip",
+    "DialogueID": "kfg_topic_gossip_01",
+    "MentalCapacityDamage": 1,
+    "SocialBatteryChange": 0,
+    "NeedsTransition": true,
+    "Quote": "Have you seen Carla? I was looking all over for them since we split on the first floor. I wonder what she is doing right now?"
   },
   {
-	"Type": "MainLine",
-	"Topic": "Gossip",
-	"DialogueID": "kfg_topic_gossip_02",
-	"MentalCapacityDamage": 2,
-	"SocialBatteryChange": -1,
-	"NeedsTransition": true,
-	"Quote": "Have you seen that weirdo on the north balcony? Apparently she doesn't speak a word, let alone sing. Can you imagine that?"
+    "Type": "MainLine",
+    "Topic": "Gossip",
+    "DialogueID": "kfg_topic_gossip_02",
+    "MentalCapacityDamage": 2,
+    "SocialBatteryChange": -1,
+    "NeedsTransition": true,
+    "Quote": "Have you seen that weirdo on the north balcony? Apparently she doesn't speak a word, let alone sing. Can you imagine that?"
   },
   {
-	"Type": "MainLine",
-	"Topic": "Gossip",
-	"DialogueID": "kfg_topic_gossip_03",
-	"MentalCapacityDamage": 1,
-	"SocialBatteryChange": 0,
-	"NeedsTransition": true,
-	"Quote": "There is this one really unkempt tramp creeping around. Who let him in? He has a magnificient beard though."
+    "Type": "MainLine",
+    "Topic": "Gossip",
+    "DialogueID": "kfg_topic_gossip_03",
+    "MentalCapacityDamage": 1,
+    "SocialBatteryChange": 0,
+    "NeedsTransition": true,
+    "Quote": "There is this one really unkempt tramp creeping around. Who let him in? He has a magnificient beard though."
   },
   {
-	"Type": "MainLine",
-	"Topic": "Gossip",
-	"DialogueID": "kfg_topic_gossip_04",
-	"MentalCapacityDamage": 2,
-	"SocialBatteryChange": -1,
-	"NeedsTransition": true,
-	"Quote": "Have you seen Gloria Venetti? She is so amazing! OMG, I hope she enjoys my performance later."
-  },
-  {
-	"Type": "Enrage",
-	"Topic": "Sport",
-	"DialogueID": "kfg_enrage_sports",
-	"MentalCapacityDamage": 2,
-	"SocialBatteryChange": -1,
-	"NeedsTransition": false,
-	"Quote": "I know my GP said I should move more, but that doesn't mean that you have to remind me of that!"
-  },
-  {
-	"Type": "Enrage",
-	"Topic": "Politics",
-	"DialogueID": "kfg_enrage_politics",
-	"MentalCapacityDamage": 2,
-	"SocialBatteryChange": -1,
-	"NeedsTransition": false,
-	"Quote": "Girl. Repeat after me. Politics. Are. Boring. Heeee, that felt so good to say that!"
+    "Type": "MainLine",
+    "Topic": "Gossip",
+    "DialogueID": "kfg_topic_gossip_04",
+    "MentalCapacityDamage": 2,
+    "SocialBatteryChange": -1,
+    "NeedsTransition": true,
+    "Quote": "Have you seen Gloria Venetti? She is so amazing! OMG, I hope she enjoys my performance later."
   }
 ]

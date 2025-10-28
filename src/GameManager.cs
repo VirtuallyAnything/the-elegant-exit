@@ -59,21 +59,21 @@ namespace tee
 			_socialStandingOverall = _player.Data.SocialStandingOverall;
 			_maxSocialBattery = _player.Data.SocialBattery;
 			SocialBattery = _maxSocialBattery;
-			CombatManager.FinalValuesDecided += UpdateStats;
-			CombatManager.CombatWon += SetIsFirstEncounter;
+			AnnoyanceLevel.Changed += UpdateSocialBattery;
+			CombatManager.CombatEnded += UpdateStats;
 			_gameTimer.Timeout += EndGameAsLost;
 		}
 
-		private void SetIsFirstEncounter(EncounterOutcome outcome)
+		private static void UpdateStats(EncounterOutcome outcome, int socialStanding, int socialBattery)
 		{
 			_isFirstEncounter = false;
-			CombatManager.CombatWon -= SetIsFirstEncounter;
-		}
-
-		private static void UpdateStats(int socialStanding, int socialBattery)
-		{
 			_socialStandingOverall += socialStanding;
 			SocialBattery += socialBattery;
+		}
+
+		private static void UpdateSocialBattery(AnnoyanceData data)
+		{
+			SocialBattery += data.SocialBatteryDamage;
 		}
 
 		public static void EndGameAsLost()
@@ -88,7 +88,8 @@ namespace tee
 
 		public override void _ExitTree()
 		{
-			CombatManager.FinalValuesDecided -= UpdateStats;
+			AnnoyanceLevel.Changed -= UpdateSocialBattery;
+			CombatManager.CombatEnded -= UpdateStats;
 			_gameTimer.Timeout -= EndGameAsLost;
 			QueueFree();
 		}

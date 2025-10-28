@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://b1e1prdfkcis5"]
+[gd_scene load_steps=7 format=3 uid="uid://b1e1prdfkcis5"]
 
 [ext_resource type="Theme" uid="uid://bpp0q38rfd1ms" path="res://Assets/Themes/Lobster.tres" id="1_gg0ms"]
+[ext_resource type="Script" uid="uid://b5lkxc4mcj2ke" path="res://src/SceneCode/Scene.cs" id="1_gv64c"]
 [ext_resource type="FontFile" uid="uid://dnj361fu4us32" path="res://Assets/Fonts/Lobster-Regular.ttf" id="2_bv81r"]
 [ext_resource type="StyleBox" uid="uid://ktpv7alcaut6" path="res://Assets/Themes/SpeechBubbleStyleBox2_hover.tres" id="3_gv64c"]
 [ext_resource type="StyleBox" uid="uid://dl3ygowiq30p5" path="res://Assets/Themes/SpeechBubbleStyleBox2.tres" id="4_jlaih"]
@@ -13,6 +14,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_gv64c")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1

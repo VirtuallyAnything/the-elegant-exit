@@ -8,15 +8,25 @@ namespace tee
         public virtual async Task TransitionIn()
         {
             Tween tween = CreateTween();
-            tween.TweenProperty(this, $"{PropertyName.Modulate}", new Color(1, 1, 1, 1), .5);
+            tween.TweenProperty
+            (
+                this, $"{PropertyName.Modulate}", new Color(1, 1, 1, 1), .5
+            ).From(new Color(0, 0, 0, 1));
             await ToSignal(tween, Tween.SignalName.Finished);
         }
 
         public virtual async Task TransitionOut()
         {
             Tween tween = CreateTween();
-            tween.TweenProperty(this, $"{PropertyName.Modulate}", new Color(0, 0, 0, 1), .5);
+            tween.TweenProperty
+            (
+                this, $"{PropertyName.Modulate}", new Color(0, 0, 0, 1), .5
+            ).From(new Color(1, 1, 1, 1));
             await ToSignal(tween, Tween.SignalName.Finished);
+        }
+
+        public override void _ExitTree() {
+            QueueFree();
         }
     }
 }
