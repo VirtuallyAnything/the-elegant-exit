@@ -1,5 +1,6 @@
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using Godot;
-using Godot.Collections;
 
 namespace tee
 {
@@ -21,7 +22,6 @@ namespace tee
 		private TopicName _nextTopicName;
 		private int _conversationInterestDamage;
 		private int _conversationInterestBonusDamage;
-		private bool _isFirstTurn = true;
 		private bool _isBlockNextEnemyAttack;
 		private bool _isIgnoreCIBonusDamage;
 		[Export] private int _socialBatteryPenalty = 5;
@@ -32,7 +32,6 @@ namespace tee
 			get { return _conversationInterestDamage; }
 			set { _conversationInterestDamage = value; }
 		}
-
 		public int ConversationInterestBonusDamage
 		{
 			get { return _conversationInterestBonusDamage; }
@@ -78,11 +77,10 @@ namespace tee
 
 		public override void _Ready()
 		{
-			_player = new(GameManager.AvailableAttacks);
+			_player = new(new List<PlayerAttack>(GameManager.AvailableAttacks));
 
 			_encounterScene.SetupCompleted += StartCombat;
-			EncounterScene.PlayerTurnComplete += EnemyAttack;
-			EnemyTurnComplete += SetupNewAttack;
+			EncounterScene.PlayerTurnComplete += OnPlayerTurnComplete;
 			AttackCard.AttackSelected += PlayerAttack;
 			AnnoyanceLevel.Changed += EndCombat;
 		}
@@ -93,18 +91,24 @@ namespace tee
 			for (int i = 0; i <= 3; i++)
 			{
 				randomAttack = Player.ChooseRandomAttack();
-
 				_encounterScene.AttackCardContainer.AddNewAttackCard(randomAttack);
 			}
 			_enemy = new(_encounterScene.CurrentEnemy);
-
+			Player.UpdateCurrentAttacks(this);
+			_encounterScene.AttackCardContainer.Update();
 			_encounterScene.AttackCardContainer.DisableInput();
 			await _encounterScene.PlayCombatStartAnimation(Player.MaxMentalCapacity);
 
 			GameManager.SocialBattery -= Player.MaxMentalCapacity;
 			Player.MentalCapacity = Player.MaxMentalCapacity;
-			EnemyAttack();
+			await EnemyAttack();
+			EnemyTurnComplete += SetupNewAttack;
 		}
+		
+		public void OnPlayerTurnComplete()
+        {
+			EnemyAttack();
+        }
 
 		/// <summary>
 		/// Called when either the Player's MentalCapacity or the Enemy's Conversation Interest runs out
@@ -132,13 +136,12 @@ namespace tee
 		private void SetupNewAttack()
 		{
 			PlayerAttack newAttack = Player.SwapAttackOut(_selectedAttack);
+			Player.UpdateCurrentAttacks(this);
 			_encounterScene.AttackCardContainer.SwapAttackCardOutFor(newAttack);
 		}
 
 		public async void PlayerAttack(PlayerAttack playerAttack)
 		{
-			_isFirstTurn = false;
-
 			_selectedAttack = playerAttack;
 			Player.LastTopicName = Player.CurrentTopicName;
 			Player.CurrentTopicName = TopicName.None;
@@ -219,10 +222,10 @@ namespace tee
 				return;
 			}
 
-			_encounterScene.EnableInput();
+			_encounterScene.EnableInput(); //DO I even need this
 		}
 
-		public async void EnemyAttack()
+		public async Task EnemyAttack()
 		{
 			TopicName chosenTopicName;
 			//Check if next topic was already determined by player
@@ -303,7 +306,7 @@ namespace tee
 		public override void _ExitTree()
 		{
 			_encounterScene.SetupCompleted -= StartCombat;
-			EncounterScene.PlayerTurnComplete -= EnemyAttack;
+			EncounterScene.PlayerTurnComplete -= OnPlayerTurnComplete;
 			EnemyTurnComplete -= SetupNewAttack;
 			AttackCard.AttackSelected -= PlayerAttack;
 			AnnoyanceLevel.Changed -= EndCombat;

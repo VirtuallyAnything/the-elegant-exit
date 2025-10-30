@@ -16,6 +16,7 @@ namespace tee
 			CombatManager.EnemyTurnComplete += EnableInput;
 			_attackCardFront = GD.Load<PackedScene>("res://Scenes/Subscenes/AttackCardFront.tscn");
 			_attackCardBack = GD.Load<PackedScene>("res://Scenes/Subscenes/AttackCardBack.tscn");
+			DisableInput();
 		}
 
 		public override void _Notification(int what)
@@ -47,7 +48,16 @@ namespace tee
 			RemoveChild(_frontMostAttackCard);
 			_frontMostAttackCard.QueueFree();
 			AddNewAttackCard(newAttack);
+			Update();
 		}
+
+		public void Update()
+        {
+            foreach (AttackCard child in GetChildren())
+			{
+				child.Update();
+			}
+        }
 
 		private void OnAttackCardPressed(AttackCard attackCard)
 		{

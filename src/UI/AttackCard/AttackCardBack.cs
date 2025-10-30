@@ -34,8 +34,10 @@ namespace tee
                     TopicButton button = new()
                     {
                         Text = conversationTopic.ToString(),
-                        ConversationTopic = conversationTopic,
-                        Parent = this
+                        TopicName = conversationTopic,
+                        Parent = this,
+                        Theme = GD.Load<Theme>("res://Assets/Themes/Lobster.tres"),
+                        ThemeTypeVariation = "TopicButton"
                     };
                     button.MouseExited += EndHover;
                     _topicButtonsAttack.Add(button);
@@ -57,17 +59,32 @@ namespace tee
             }
         }
 
+        public void Update(List<TopicName> topicNames)
+        {
+            foreach (TopicButton button in _topicButtonsAttack)
+            {
+                if (topicNames.Contains(button.TopicName))
+                {
+                    button.Disabled = false;
+                }
+                else
+                {
+                    button.Disabled = true;
+                }
+            }
+        }
+
         private static void AddPreference(TopicName topicName, Preference preference)
         {
             if (!_discoveredPreferences.ContainsKey(topicName))
             {
                 _discoveredPreferences.Add(topicName, preference);
-            } 
+            }
         }
 
         public void ChildPressed(TopicButton topicButton)
         {
-            TopicPicked?.Invoke(topicButton.ConversationTopic);
+            TopicPicked?.Invoke(topicButton.TopicName);
         }
 
         public void OnHover(TopicName topicName)

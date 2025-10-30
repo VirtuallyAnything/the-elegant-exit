@@ -21,8 +21,8 @@ _text = "I tried that once, but it really didn't fit well into my work-life-bala
 
 [resource]
 script = ExtResource("1_rc41w")
+_unlockedTopics = Array[int]([1, 2, 4])
 _topicRelatedQuotes = Array[ExtResource("2_5evve")]([SubResource("Resource_vjuay"), SubResource("Resource_76r51"), SubResource("Resource_mvvw4")])
-UnlockedTopics = Array[int]([1, 4, 2])
 _bonusEffect = ExtResource("1_3r1wh")
 OwningCharacter = 1
 ConversationInterestDamage = 3

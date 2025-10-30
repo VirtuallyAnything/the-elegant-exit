@@ -64,5 +64,14 @@ namespace tee
 			return _enthusiasmLevel.SocialStandingChange;
 		}
 
+        public override void _Notification(int what)
+        {
+            if(what == NotificationPredelete)
+            {
+				_enthusiasmLevel.Free();
+            }
+        }
+
+
 	}
 }

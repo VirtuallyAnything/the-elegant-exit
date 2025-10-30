@@ -35,8 +35,8 @@ _text = "I once wrote a reader contribution for Boulevard Weekly and it actually
 
 [resource]
 script = ExtResource("1_k3tcf")
+_unlockedTopics = Array[int]([3, 5, 6])
 _topicRelatedQuotes = Array[ExtResource("1_tc2q1")]([SubResource("Resource_qu76f"), SubResource("Resource_jbel5"), SubResource("Resource_8tm4w"), SubResource("Resource_fxjs7"), SubResource("Resource_bmdxm"), SubResource("Resource_j1u7t")])
-UnlockedTopics = Array[int]([5, 3, 6])
 OwningCharacter = 0
 ConversationInterestDamage = 3
 IsFromItem = false

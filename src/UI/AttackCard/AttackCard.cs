@@ -14,8 +14,6 @@ namespace tee
 		private AttackCardSide _currentOpenSide;
 		private PlayerAttack _boundAttack;
 		private TopicName _boundTopic;
-		private Array<TopicButton> _topicButtonsItem = new();
-		private Array<TopicName> _itemConversationTopics = new();
 		public static event AttackHandler AttackSelected;
 		/// <summary>
         /// Emitted when an AttackCard is selected, that isn't the frontmost card
@@ -80,6 +78,14 @@ namespace tee
 			AttackCardPressed?.Invoke(this);
 		}
 
+		public void Update()
+        {
+			if (BoundAttack is TopicalPlayerAttack topicalPlayerAttack)
+            {
+				_back.Update(topicalPlayerAttack.AvailableTopics);
+            }
+        }
+
 		public void Flip()
 		{
 			Tween tween = GetTree().CreateTween();
@@ -115,9 +121,11 @@ namespace tee
 
 		public override void _ExitTree()
 		{
+			_front.Pressed -= OnAttackCardPressed;
 			if (_back != null)
 			{
 				_back.TopicPicked -= OnTopicButtonChildPressed;
+				_back.Pressed -= OnAttackCardPressed;
 			}
 		}
 	}

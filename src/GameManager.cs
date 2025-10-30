@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Godot;
 
@@ -10,14 +11,7 @@ namespace tee
 		[Export] private GameTimer _gameTimer;
 		[Export] private PartyPlayer _player;
 		private static Godot.Collections.Array<PlayerAttack> _availableAttacks;
-		//int placeholder
-		private int[] _partyMembers;
 		private static EnemyData _currentEnemy;
-		public static EnemyData CurrentEnemy
-		{
-			get { return _currentEnemy; }
-			set { _currentEnemy = value; }
-		}
 		private static int _socialStandingOverall;
 		private static int _socialBattery;
 		private static int _maxSocialBattery;
@@ -27,7 +21,11 @@ namespace tee
 			get { return _availableAttacks; }
 			set { _availableAttacks = value; }
 		}
-
+		public static EnemyData CurrentEnemy
+		{
+			get { return _currentEnemy; }
+			set { _currentEnemy = value; }
+		}
 		public static int SocialBattery
 		{
 			get { return _socialBattery; }

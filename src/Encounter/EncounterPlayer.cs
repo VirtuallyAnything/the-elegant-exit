@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using Godot;
 using Godot.Collections;
 
@@ -7,9 +9,9 @@ namespace tee
     {
         private int _mentalCapacity;
         private int _maxMentalCapacity = 10;
-        private Array<PlayerAttack> _allPlayerAttacks;
-        private Array<PlayerAttack> _attackPool;
-        private Array<PlayerAttack> _currentAttacks = new();
+        private List<PlayerAttack> _allPlayerAttacks;
+        private List<PlayerAttack> _attackPool;
+        private List<PlayerAttack> _currentAttacks = new();
         private System.Collections.Generic.Dictionary<TopicName, Preference> _discoveredEnemyPreferences = new();
         public System.Collections.Generic.Dictionary<TopicName, Preference> DiscoveredEnemyPreferences
         {
@@ -39,7 +41,7 @@ namespace tee
             get { return _maxMentalCapacity; }
         }
         
-        public EncounterPlayer(Array<PlayerAttack> playerAttacks)
+        public EncounterPlayer(List<PlayerAttack> playerAttacks)
         {
             _allPlayerAttacks = playerAttacks;
             _attackPool = new(_allPlayerAttacks);
@@ -50,13 +52,14 @@ namespace tee
         {
             if (_attackPool.Count == 0)
             {
-                _attackPool = new Array<PlayerAttack>(_allPlayerAttacks);
+                _attackPool = new List<PlayerAttack>(_allPlayerAttacks);
                 foreach (PlayerAttack attack in _currentAttacks)
                 {
                     _attackPool.Remove(attack);
                 }
             }
-            PlayerAttack randomAttack = _attackPool.PickRandom();
+            var index = new Random().Next(_attackPool.Count);
+            PlayerAttack randomAttack = _attackPool[index];
             _attackPool.Remove(randomAttack);
             _currentAttacks.Add(randomAttack);
             return randomAttack;
@@ -66,8 +69,18 @@ namespace tee
         {
             _currentAttacks.Remove(attack);
             PlayerAttack newAttack = ChooseRandomAttack();
-            _currentAttacks.Add(newAttack);
             return newAttack;
+        }
+
+        public void UpdateCurrentAttacks(CombatManager combatManager)
+        {
+            foreach(PlayerAttack attack in _currentAttacks)
+            {
+                if(attack is TopicalPlayerAttack topicalAttack)
+                {
+                    topicalAttack.UpdateAvailableTopics(combatManager);
+                }
+            }
         }
 
         public void AddEnemyPreference(TopicName topicName, Preference preference)

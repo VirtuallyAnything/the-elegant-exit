@@ -360,6 +360,7 @@ namespace tee
 				AnnoyanceLevel.Changed -= UpdateConversationInterest;
 				ConversationTopic.EnthusiasmChangedForTopic -= UpdateConversationInterest;
 				EnthusiasmLevel.AnnoyanceLowered -= DecreaseAnnoyance;
+				Annoyance.Free();
 			}
 		}
 	}

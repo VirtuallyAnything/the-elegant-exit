@@ -10,17 +10,17 @@ namespace tee
 	{
 		public static event TopicButtonHandler OnButtonPressed;
 		public static event TopicButtonHoverHandler OnButtonHovered;
-		private TopicName _conversationTopic;
+		private TopicName _topicName;
 		private AttackCardBack _parent;
 		public AttackCardBack Parent
 		{
 			get { return _parent; }
 			set { _parent = value; }
 		}
-		public TopicName ConversationTopic
+		public TopicName TopicName
 		{
-			get { return _conversationTopic; }
-			set { _conversationTopic = value; }
+			get { return _topicName; }
+			set { _topicName = value; }
 		}
 
 		public override void _Ready()
@@ -37,7 +37,7 @@ namespace tee
 
 		public void OnHover()
 		{
-			OnButtonHovered?.Invoke(_conversationTopic);
+			OnButtonHovered?.Invoke(_topicName);
 		}
 
 		public override void _Notification(int what)

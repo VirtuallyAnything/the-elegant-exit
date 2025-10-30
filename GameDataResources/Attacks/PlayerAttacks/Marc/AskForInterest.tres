@@ -46,8 +46,8 @@ _text = "Have you read the latest issue of Boulevard Weekly? Astounding revelati
 
 [resource]
 script = ExtResource("2_acqkp")
+_unlockedTopics = Array[int]([1, 2, 3, 4, 5, 6])
 _topicRelatedQuotes = Array[ExtResource("2_8eu0u")]([SubResource("Resource_3wlry"), SubResource("Resource_jj2nv"), SubResource("Resource_8rquq"), SubResource("Resource_yseda"), SubResource("Resource_g25bt"), SubResource("Resource_1s6x3"), SubResource("Resource_7ss17"), SubResource("Resource_3cdyi")])
-UnlockedTopics = Array[int]([1, 2, 3, 4, 5, 6])
 _bonusEffect = ExtResource("1_7j4yf")
 OwningCharacter = 0
 ConversationInterestDamage = 2

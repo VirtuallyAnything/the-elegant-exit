@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=25 format=3 uid="uid://bpp0q38rfd1ms"]
+[gd_resource type="Theme" load_steps=27 format=3 uid="uid://bpp0q38rfd1ms"]
 
 [ext_resource type="StyleBox" uid="uid://clf5eknolteml" path="res://Assets/Themes/SpeechBubbleStyleBox1.tres" id="1_2tqip"]
 [ext_resource type="StyleBox" uid="uid://f4qftxg2kd10" path="res://Assets/Themes/PanelShadowStylebox.tres" id="2_n6f1t"]
@@ -7,6 +7,7 @@
 [ext_resource type="StyleBox" uid="uid://cjw8odfnd15my" path="res://Assets/Themes/RegularButtonShadowStylebox.tres" id="4_8bpcw"]
 [ext_resource type="StyleBox" uid="uid://dl3ygowiq30p5" path="res://Assets/Themes/SpeechBubbleStyleBox2.tres" id="5_mggr6"]
 [ext_resource type="StyleBox" uid="uid://df0i6qdd6mfnl" path="res://Assets/Themes/SpeechBubbleStyleBox3.tres" id="6_funpq"]
+[ext_resource type="StyleBox" uid="uid://c1jgxmgmi7pj7" path="res://Assets/Themes/EmptyFrameStylebox.tres" id="8_sj1pl"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8umx0"]
 bg_color = Color(0.501961, 0.14902, 0.266667, 1)
@@ -89,6 +90,22 @@ modulate_color = Color(0.8277, 0.89, 0.89, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x5kvr"]
 bg_color = Color(0.235294, 0.298039, 0.54902, 0.701961)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sj1pl"]
+content_margin_left = 20.0
+content_margin_top = 20.0
+content_margin_right = 20.0
+content_margin_bottom = 20.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(0.22126, 0.1863, 0.23, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ipytr"]
 
@@ -194,6 +211,14 @@ SpeechBubbleButton3/styles/hover = ExtResource("6_funpq")
 SpeechBubbleButton3/styles/normal = ExtResource("6_funpq")
 SpeechBubbleButton3/styles/pressed = ExtResource("6_funpq")
 TabContainer/styles/panel = SubResource("StyleBoxFlat_x5kvr")
+TopicButton/base_type = &"Button"
+TopicButton/colors/font_color = Color(0.12549, 0.0431373, 0.145098, 1)
+TopicButton/colors/font_disabled_color = Color(0.22126, 0.1863, 0.23, 1)
+TopicButton/colors/font_hover_color = Color(0.501961, 0.14902, 0.266667, 1)
+TopicButton/styles/disabled = SubResource("StyleBoxFlat_sj1pl")
+TopicButton/styles/hover = ExtResource("8_sj1pl")
+TopicButton/styles/normal = ExtResource("8_sj1pl")
+TopicButton/styles/pressed = ExtResource("8_sj1pl")
 VerticalTabContainer/base_type = &"TabContainer"
 VerticalTabContainer/styles/panel = SubResource("StyleBoxFlat_ipytr")
 Window/colors/title_color = Color(1, 0.8, 0.701961, 1)

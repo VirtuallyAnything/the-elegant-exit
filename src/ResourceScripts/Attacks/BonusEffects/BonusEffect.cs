@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using Godot;
 
 namespace tee
@@ -12,5 +14,10 @@ namespace tee
         }
 
         public abstract void Resolve(CombatManager combatManager);
+
+        public virtual List<TopicName> GetValidTopics(CombatManager combatManager, ref List<TopicName> currentTopics)
+        {
+            return currentTopics;
+        }
     }
 }

@@ -35,8 +35,8 @@ _text = "This summer I've really been into watermelons. Post-Lunch: Watermelon! 
 
 [resource]
 script = ExtResource("1_eoj8r")
+_unlockedTopics = Array[int]([1, 4, 2])
 _topicRelatedQuotes = Array[ExtResource("1_3xqc2")]([SubResource("Resource_qfs3w"), SubResource("Resource_n4sff"), SubResource("Resource_d84e2"), SubResource("Resource_co7a8"), SubResource("Resource_mnngg"), SubResource("Resource_lv8hi")])
-UnlockedTopics = Array[int]([1, 4, 2])
 OwningCharacter = 1
 ConversationInterestDamage = 3
 IsFromItem = false

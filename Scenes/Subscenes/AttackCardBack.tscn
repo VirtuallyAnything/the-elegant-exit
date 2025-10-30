@@ -44,10 +44,10 @@ theme_type_variation = &"AttackCardHeader"
 text = "Some Attack"
 
 [node name="GridContainer" type="GridContainer" parent="."]
-layout_mode = 1
-offset_left = 78.0
-offset_top = 148.0
-offset_right = 530.0
+layout_mode = 2
+offset_left = 80.0
+offset_top = 107.0
+offset_right = 504.0
 offset_bottom = 307.0
 columns = 3
 

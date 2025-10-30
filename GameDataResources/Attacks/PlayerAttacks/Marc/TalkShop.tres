@@ -21,8 +21,8 @@ _text = "The scandals are around Stanley Ashton just won't end. He's now been fe
 
 [resource]
 script = ExtResource("2_3jir0")
+_unlockedTopics = Array[int]([3, 5, 6])
 _topicRelatedQuotes = Array[ExtResource("2_c2q3w")]([SubResource("Resource_r4546"), SubResource("Resource_0i1yf"), SubResource("Resource_q26hk")])
-UnlockedTopics = Array[int]([5, 3, 6])
 _bonusEffect = ExtResource("1_5dlx5")
 OwningCharacter = 0
 ConversationInterestDamage = 2

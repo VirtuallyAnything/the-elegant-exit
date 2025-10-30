@@ -4,4 +4,4 @@
 
 [resource]
 script = ExtResource("1_og50w")
-_description = "[ul]If LIKE: +1 SSC, -1 Annoyance[/ul][ul]If NEUTRAL: -[/ul][ul]If DISLIKE: +2 CI, +1 Annoyance[/ul]"
+_description = "[ul]If LIKE: +1 [img=30]res://Assets/UI/Icons/SocialStandingIcon.png[/img], -1 Annoyance[/ul][ul]If [img=30]res://Assets/UI/Icons/NeutralIcon.png[/img]: -[/ul][ul]If [img=30]res://Assets/UI/Icons/DislikeIcon.png[/img]: +2 [img=30]res://Assets/UI/Icons/ConversationInterestIcon.png[/img], +1 Annoyance[/ul]"
