@@ -7,7 +7,9 @@
 [resource]
 script = ExtResource("9_hjvbu")
 _greeting = "Anthony! Mark! Amazing Party! Great decision to come with you guys."
-DisplayName = "Neighbor Dave"
+_title = "Your Neighbour"
+_specialInterestName = "Neighbours"
+DisplayName = "Neighbour Dave"
 EnemyAttacks = Array[Resource]([])
 Icon = ExtResource("1_oydse")
 Texture = ExtResource("2_mt5xt")

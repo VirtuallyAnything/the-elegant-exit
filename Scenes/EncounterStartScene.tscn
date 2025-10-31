@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://dqpcyi5i0xyjh"]
+[gd_scene load_steps=12 format=3 uid="uid://dqpcyi5i0xyjh"]
 
 [ext_resource type="Script" uid="uid://mhxv5s1qt55h" path="res://src/SceneCode/EncounterStartScene.cs" id="1_fo1sk"]
 [ext_resource type="Texture2D" uid="uid://bof3wrxapds3v" path="res://Assets/Textures/MainCharacters.png" id="3_5u531"]
 [ext_resource type="LabelSettings" uid="uid://bx6i6eo3rklk8" path="res://Assets/Themes/LobsterLabelSettings.tres" id="4_oqcpl"]
+[ext_resource type="FontFile" uid="uid://dnj361fu4us32" path="res://Assets/Fonts/Lobster-Regular.ttf" id="4_xfa07"]
 [ext_resource type="Texture2D" uid="uid://ibsb083f86ee" path="res://Assets/UI/VS_withFlame.png" id="5_diw5j"]
 [ext_resource type="Script" uid="uid://diy0f8mk31o2x" path="res://src/SceneCode/SceneSwapButton.cs" id="6_tdx1t"]
 
@@ -70,7 +71,18 @@ _data = {
 &"RESET": SubResource("Animation_8u2kd")
 }
 
-[node name="EncounterStartScreen" type="Control" node_paths=PackedStringArray("_enemyName", "_enemyTexture", "_animationPlayer")]
+[sub_resource type="LabelSettings" id="LabelSettings_chqai"]
+line_spacing = -35.0
+font = ExtResource("4_xfa07")
+font_size = 105
+font_color = Color(1, 0.8, 0.701961, 1)
+outline_size = 10
+outline_color = Color(0.12549, 0.0431373, 0.145098, 1)
+shadow_size = 10
+shadow_color = Color(0.12549, 0.0431373, 0.145098, 1)
+shadow_offset = Vector2(8, 8)
+
+[node name="EncounterStartScreen" type="Control" node_paths=PackedStringArray("_enemyName", "_enemyTexture", "_enemyTitle", "_animationPlayer")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -80,6 +92,7 @@ grow_vertical = 2
 script = ExtResource("1_fo1sk")
 _enemyName = NodePath("EnemyName")
 _enemyTexture = NodePath("EnemyName/TextureRect")
+_enemyTitle = NodePath("EnemyName/Label")
 _animationPlayer = NodePath("AnimationPlayer")
 TimerSeconds = 3.0
 RequestedScene = 10
@@ -144,6 +157,17 @@ layout_mode = 0
 offset_top = 335.0
 offset_right = 579.0
 offset_bottom = 986.0
+
+[node name="Label" type="Label" parent="EnemyName"]
+layout_mode = 0
+offset_left = -106.0
+offset_top = 666.0
+offset_right = 695.0
+offset_bottom = 895.0
+label_settings = SubResource("LabelSettings_chqai")
+horizontal_alignment = 1
+vertical_alignment = 2
+autowrap_mode = 3
 
 [node name="TextureRect3" type="TextureRect" parent="."]
 layout_mode = 1

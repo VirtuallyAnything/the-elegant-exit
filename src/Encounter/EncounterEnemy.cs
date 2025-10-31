@@ -27,6 +27,7 @@ namespace tee
 	{
 		public static event EncounterEnemyHandler ConversationInterestChanged;
 		private string _displayName;
+		private string _specialInterestName;
 		private Array<EnemyAttack> _enemyAttacks;
 		private Array<EnemyAttack> _attackPool;
 		private int _conversationInterest;
@@ -103,6 +104,7 @@ namespace tee
 		public EncounterEnemy(EnemyData data)
 		{
 			_displayName = data.DisplayName;
+			_specialInterestName = data.SpecialInterestName;
 			_enemyAttacks = StaticData.LoadJsonFile(data.PathToAttacks);
 			_attackPool = new(_enemyAttacks);
 			ConversationInterest = data.ConversationInterest;

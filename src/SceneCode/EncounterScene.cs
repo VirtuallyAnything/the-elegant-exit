@@ -23,6 +23,7 @@ namespace tee
 		private Label _labelToTweak;
 		private Tween _activeDialogueTween;
 		[Export] private AttackCardContainer _attackCardContainer;
+		[Export] private PreferenceDisplay _preferenceDisplay;
 		[Export] private AnimationPlayer _animationPlayer;
 
 		[Export] private Label _currentTopic;
@@ -34,12 +35,11 @@ namespace tee
 		[Export] private Label _mentalCapacityDamage;
 
 		[Export] private TweenableLabel _conversationInterestMax;
-		[Export] private Label _conversationInterestMaxChange;
+		[Export] private Label _conversationInterestMaxDelta;
 		[Export] private TweenableLabel _conversationInterestValue;
 		private int _conversationInterestDelta;
 		[Export] private Label _conversationInterestDamage;
 		[Export] private TextureProgressBar _socialBatteryProgress;
-		[Export] private Control _tutorialDialogue;
 		public EnemyData CurrentEnemy
 		{
 			get { return _currentEnemy; }
@@ -63,6 +63,7 @@ namespace tee
 			_playerDialogue.Text = "";
 			_enemyDialogue.Text = "";
 			_socialBatteryProgress.Value = GameManager.SocialBattery;
+			_preferenceDisplay.SetSpecialInterest(CurrentEnemy.SpecialInterestName);
 			SetupCompleted?.Invoke();
 		}
 
@@ -163,19 +164,19 @@ namespace tee
 		{
 			if (_conversationInterestDelta == 0)
 			{
-				_conversationInterestMaxChange.Text = "";
+				_conversationInterestMaxDelta.Text = "";
 				return;
 			}
 			else
 			{
-				_conversationInterestMaxChange.Text = $"{_conversationInterestDelta}";
+				_conversationInterestMaxDelta.Text = $"{_conversationInterestDelta}";
 			}
 
 			//Fade-In ConversationInterestMaxChange
-			Tween tween = _conversationInterestMaxChange.CreateTween();
+			Tween tween = _conversationInterestMaxDelta.CreateTween();
 			tween.TweenProperty
 			(
-				_conversationInterestMaxChange,
+				_conversationInterestMaxDelta,
 				$"{Control.PropertyName.SelfModulate}",
 				Color.Color8(255, 255, 255, 255),
 				1.0f
@@ -198,7 +199,7 @@ namespace tee
 			//Fade-Out ConversationInterestMaxChange
 			PropertyTweener propertyTweener = tween.TweenProperty
 			(
-				_conversationInterestMaxChange,
+				_conversationInterestMaxDelta,
 				$"{Control.PropertyName.SelfModulate}",
 				Color.Color8(255, 255, 255, 0),
 				1.0f
@@ -294,7 +295,14 @@ namespace tee
 		{
 			if (topicName != TopicName.None)
 			{
-				_currentTopic.Text = topicName.ToString();
+				if(topicName == TopicName.SpecialInterest)
+                {
+					_currentTopic.Text = CurrentEnemy.SpecialInterestName;
+                }
+                else
+                {
+                    _currentTopic.Text = topicName.ToString();
+                }	
 			}
 		}
 

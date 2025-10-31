@@ -7,6 +7,8 @@
 [resource]
 script = ExtResource("1_aftnq")
 _greeting = "Mr Bradshaw. Mr Sanders. Happy to see you two still being affiliated with my daughter."
+_title = "The Aloof Academic"
+_specialInterestName = "Education"
 DisplayName = "Reginald Ambrose"
 EnemyAttacks = null
 Icon = ExtResource("1_bs0g8")

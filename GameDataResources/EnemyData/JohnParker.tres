@@ -7,6 +7,8 @@
 [resource]
 script = ExtResource("9_7amvr")
 _greeting = "Anthony! So nice to see you here. And who is that? Marc, I thought you never leave the house, good to see ya. I suppose this means more ladies for the rest of us tonight."
+_title = "The Crypto Bro"
+_specialInterestName = "Crypto"
 DisplayName = "John Parker"
 EnemyAttacks = Array[Resource]([])
 Icon = ExtResource("1_qkp4f")

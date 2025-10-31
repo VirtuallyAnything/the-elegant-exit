@@ -1,3 +1,4 @@
+using System.Linq;
 using Godot;
 using Godot.Collections;
 using tee;
@@ -6,6 +7,7 @@ public partial class PreferenceDisplay : Control
 {
 	[Export] private Array<TopicRichTextLabel> _topicLabels;
 	[Export] private Texture2D _likeIcon, _dislikeIcon, _neutralIcon, _unknownIcon;
+	private string _specialInterestName;
 
 	public override void _Ready()
 	{
@@ -16,6 +18,19 @@ public partial class PreferenceDisplay : Control
 		}
 		CombatManager.PreferenceDiscovered += UpdatePreference;
 		ConversationTopic.EnthusiasmChangedForTopic += UpdateEnthusiasm;
+	}
+
+	public void SetSpecialInterest(string specialInterestName)
+	{
+		_specialInterestName = specialInterestName;
+		foreach (TopicRichTextLabel topicLabel in _topicLabels)
+		{
+			if (topicLabel.TopicName == TopicName.SpecialInterest)
+			{
+				topicLabel.Text =
+				$"[hint='Preference: {topicLabel.Preference}'][center]{specialInterestName}[img=30]{_unknownIcon.ResourcePath}[/img][/center]";
+			}
+		}
 	}
 
 	public void UpdatePreference(TopicName topicName, Preference preference)
@@ -59,7 +74,16 @@ public partial class PreferenceDisplay : Control
 				string enthusiasmRomanNumeral = "\n";
 				enthusiasmRomanNumeral += data.CurrentEnthusiasm.ToRomanNumerals();
 				label.EnthusiasmLevel = enthusiasmRomanNumeral;
-				label.Text = $"[hint='Preference: {label.Preference}\nEnthusiasm: {label.EnthusiasmNumber}" + $"'][center]{topicName}" + label.IconPath + enthusiasmRomanNumeral + "[/center]";
+				string displayName;
+				if(topicName == TopicName.SpecialInterest)
+                {
+					displayName = _specialInterestName;
+                }
+                else
+                {
+					displayName = topicName.ToString();
+                }
+				label.Text = $"[hint='Preference: {label.Preference}\nEnthusiasm: {label.EnthusiasmNumber}" + $"'][center]{displayName}" + label.IconPath + enthusiasmRomanNumeral + "[/center]";
 			}
 		}
 	}

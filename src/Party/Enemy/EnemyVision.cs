@@ -10,11 +10,13 @@ namespace tee
 		private Vector2 _lastPlayerPosition;
 		private bool _isRayHittingPlayer;
 		private bool _isPlayerInSightCone;
-		public Vector2 LastPlayerPosition{
-			get{return _lastPlayerPosition;}
+		public Vector2 LastPlayerPosition
+		{
+			get { return _lastPlayerPosition; }
 		}
-		public Vector2 CurrentPlayerPosition{
-			get{return _player.Position;}
+		public Vector2 CurrentPlayerPosition
+		{
+			get { return _player.Position; }
 		}
 
 		// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -54,7 +56,7 @@ namespace tee
 					_isRayHittingPlayer = false;
 					return;
 				}
-				_isRayHittingPlayer = true;	
+				_isRayHittingPlayer = true;
 			}
 		}
 
@@ -67,7 +69,8 @@ namespace tee
 			}
 		}
 
-		public bool IsSeeingPlayer(){
+		public bool IsSeeingPlayer()
+		{
 			return _isPlayerInSightCone && _isRayHittingPlayer;
 		}
 	}

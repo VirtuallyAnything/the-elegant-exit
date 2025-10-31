@@ -10,6 +10,7 @@
 script = ExtResource("1_syt6j")
 _enemyData = ExtResource("2_4k5ra")
 _sprite = NodePath("Sprite2D")
+_visionConeColor = Color(0.78, 0.0312, 0.10608, 0.341176)
 _sightConeSegments = 16
 _sightConeAngleDegrees = 120.0
 _sightConeRadius = 600.0

@@ -7,6 +7,8 @@
 [resource]
 script = ExtResource("9_casv8")
 _greeting = "Marc! Anthony! Isn't it great? We are all gonna sing Karaoke! Are you ready to party?!"
+_title = "The Karaoke Fan Girl"
+_specialInterestName = "Karaoke"
 DisplayName = "Chloe Antary"
 EnemyAttacks = Array[Resource]([])
 Icon = ExtResource("1_6t2hv")

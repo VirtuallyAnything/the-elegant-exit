@@ -18,7 +18,8 @@ namespace tee
 			if (body.IsInGroup("Player"))
 			{
 				_sceneManager = GetNode("/root/SceneManager") as SceneManager;
-				_sceneManager.CallDeferred("ChangeToScene", (int)_sceneName);
+				_sceneManager.ChangeToScene(_sceneName);
+				//_sceneManager.CallDeferred("ChangeToScene", (int)_sceneName);
 			}
 		}
 	}

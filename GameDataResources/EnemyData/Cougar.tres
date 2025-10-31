@@ -7,6 +7,8 @@
 [resource]
 script = ExtResource("1_esdx5")
 _greeting = "Hello, hello darlings! What brought you two youngsters to talk to me?"
+_title = "The Drunk, Desperate Cougar"
+_specialInterestName = "Dating"
 DisplayName = "Anita Menow"
 EnemyAttacks = null
 Icon = ExtResource("1_i8lb1")

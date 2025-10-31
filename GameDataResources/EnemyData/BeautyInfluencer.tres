@@ -7,6 +7,8 @@
 [resource]
 script = ExtResource("3_ju5lt")
 _greeting = "Oh my god. You two! I want you in my reel!"
+_title = "The Beauty Influencer"
+_specialInterestName = "Influencing"
 DisplayName = "Gloria Venetti"
 EnemyAttacks = null
 Icon = ExtResource("1_rnt37")

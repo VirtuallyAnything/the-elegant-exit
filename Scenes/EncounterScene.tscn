@@ -283,7 +283,7 @@ corner_radius_bottom_left = 30
 shader = ExtResource("21_u5cww")
 shader_parameter/lod = 0.0
 
-[node name="EncounterScene" type="Control" node_paths=PackedStringArray("_playerSprite", "_playerDialogue", "_annoyanceDisplay", "_enemySprite", "_enemyDialogue", "_enemyName", "_attackCardContainer", "_animationPlayer", "_currentTopic", "_annoyanceValue", "_currentMaxCIChanges", "_mentalCapacityMax", "_mentalCapacityValue", "_mentalCapacityDamage", "_conversationInterestMax", "_conversationInterestMaxChange", "_conversationInterestValue", "_conversationInterestDamage", "_socialBatteryProgress")]
+[node name="EncounterScene" type="Control" node_paths=PackedStringArray("_playerSprite", "_playerDialogue", "_annoyanceDisplay", "_enemySprite", "_enemyDialogue", "_enemyName", "_attackCardContainer", "_preferenceDisplay", "_animationPlayer", "_currentTopic", "_annoyanceValue", "_currentMaxCIChanges", "_mentalCapacityMax", "_mentalCapacityValue", "_mentalCapacityDamage", "_conversationInterestMax", "_conversationInterestMaxDelta", "_conversationInterestValue", "_conversationInterestDamage", "_socialBatteryProgress")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -300,6 +300,7 @@ _enemyDialogueColor = Color(0.807913, 0.00169103, 0.000926806, 1)
 _enemyDialogue = NodePath("SpeechbubbleEnemy")
 _enemyName = NodePath("EnemyName")
 _attackCardContainer = NodePath("AttackCardContainer")
+_preferenceDisplay = NodePath("ThoughtBubbles")
 _animationPlayer = NodePath("AnimationPlayer")
 _currentTopic = NodePath("CurrentTopicBox/MarginContainer/VBoxContainer/CurrentTopic")
 _annoyanceValue = NodePath("AnnoyanceDisplay/AnnoyanceValue")
@@ -308,7 +309,7 @@ _mentalCapacityMax = NodePath("MentalCapacity/HBoxContainer/MentalCapacityMax")
 _mentalCapacityValue = NodePath("MentalCapacity/HBoxContainer/MentalCapacityValue")
 _mentalCapacityDamage = NodePath("MentalCapacity/MentalCapacityDamage")
 _conversationInterestMax = NodePath("ConversationInterest/HBoxContainer/ConversationInterestMax")
-_conversationInterestMaxChange = NodePath("ConversationInterest/ConversationInterestMaxChange")
+_conversationInterestMaxDelta = NodePath("ConversationInterest/ConversationInterestMaxChange")
 _conversationInterestValue = NodePath("ConversationInterest/HBoxContainer/ConversationInterestValue")
 _conversationInterestDamage = NodePath("ConversationInterest/ConversationInterestDamage")
 _socialBatteryProgress = NodePath("TextureProgressBar")
@@ -1184,6 +1185,6 @@ offset_right = 1881.0
 offset_bottom = 955.0
 text = "Quit"
 script = ExtResource("32_mvy5o")
-SceneName = 12
+SceneName = 11
 
 [connection signal="pressed" from="SpeechbubblePlayer" to="." method="OnSpeechBubblePressed"]

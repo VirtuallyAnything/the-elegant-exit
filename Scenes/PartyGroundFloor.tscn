@@ -894,27 +894,29 @@ position = Vector2(3598, 2207)
 scale = Vector2(0.194338, 0.194338)
 texture = ExtResource("9_6c1f4")
 
-[node name="Area2D3" type="Area2D" parent="."]
-position = Vector2(191, 3900)
+[node name="Exit" type="Area2D" parent="."]
+position = Vector2(188, 3829)
 script = ExtResource("8_ekoj5")
 _sceneName = 13
 
-[node name="Panel" type="Panel" parent="Area2D3"]
+[node name="Panel" type="Panel" parent="Exit"]
 offset_left = -95.0
 offset_top = -47.0
 offset_right = 483.0
 offset_bottom = 254.0
+mouse_filter = 1
 theme = ExtResource("18_ysrxs")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D3"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Exit"]
 position = Vector2(196, 103.5)
 shape = SubResource("RectangleShape2D_vojli")
 
-[node name="Label" type="RichTextLabel" parent="Area2D3"]
+[node name="Label" type="RichTextLabel" parent="Exit"]
 offset_left = -80.0
 offset_top = -27.0
 offset_right = 465.0
 offset_bottom = 337.0
+mouse_filter = 1
 theme = ExtResource("18_ysrxs")
 theme_override_constants/line_separation = 0
 theme_override_font_sizes/normal_font_size = 102

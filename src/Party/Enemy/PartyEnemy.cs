@@ -8,6 +8,7 @@ namespace tee
 		private CircleTrigger _trigger;
 		private CollisionShape2D _collisionShape;
 		[Export] private Sprite2D _sprite;
+		[Export] private Color _visionConeColor;
 		private Tween _tween;
 		private SceneManager _sceneManager;
 		public override void _Ready()
@@ -33,6 +34,12 @@ namespace tee
 
 			_sceneManager = GetNode("/root/SceneManager") as SceneManager;
 			base._Ready();
+			Polygon2D playerVisibleVision = new()
+			{
+				Polygon = _vision.GetChild<CollisionCone>(0).Polygon,
+				Color = _visionConeColor
+			};
+			_vision.AddChild(playerVisibleVision);
 		}
 
 		public void OnSightConeEntered()

@@ -1,5 +1,4 @@
 using Godot;
-using System;
 
 namespace tee
 {
@@ -9,13 +8,15 @@ namespace tee
 		private string _displayName;
 		private Godot.Collections.Array<EnemyAttack> _enemyAttacks;
 		[Export] private string _greeting;
+		[Export] private string _title;
+		[Export] private string _specialInterestName;
 		private Godot.Collections.Array<TopicName> _likes = new([TopicName.SpecialInterest]);
 		private Godot.Collections.Array<TopicName> _neutrals = new([
-			TopicName.Art, 
-			TopicName.Economy, 
-			TopicName.Gossip, 
-			TopicName.Lifestyle, 
-			TopicName.Politics, 
+			TopicName.Art,
+			TopicName.Economy,
+			TopicName.Gossip,
+			TopicName.Lifestyle,
+			TopicName.Politics,
 			TopicName.Sport,
 			TopicName.Weather
 			]);
@@ -24,6 +25,14 @@ namespace tee
 		private Texture2D _icon;
 		private Texture2D _sprite;
 		private int _conversationInterest = 20;
+		public string SpecialInterestName
+		{
+			get { return _specialInterestName; }
+		}
+		public string Title
+        {
+            get{ return _title; }
+        }
 		[Export]
 		public string DisplayName
 		{
@@ -72,7 +81,9 @@ namespace tee
 			get { return _dislikes; }
 			set { _dislikes = value; }
 		}
-		[Export] public string PathToAttacks{
+		[Export]
+		public string PathToAttacks
+		{
 			get; set;
 		}
 	}
