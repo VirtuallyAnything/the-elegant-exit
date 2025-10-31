@@ -61,9 +61,8 @@ offset_bottom = 438.0
 theme_override_styles/panel = ExtResource("7_mf4tl")
 
 [node name="RichTextLabel" parent="EncounterOverview3/VBoxContainer" index="0"]
-text = "If your [hint=\"{Mental Capacity}\"][img=
-50]res://Assets/UI/Icons/MentalCapacityIcon.png[/img][/hint] runs out first, you'll have a bit of a mental breakdown, losing [hint=\"{Social Standing}\"][img=
-40]res://Assets/UI/Icons/SocialStandingIcon.png[/img][/hint] and draining your Social Battery [hint=\"{Social Battery}\"][img=
+text = "If your [hint=\"Mental Capacity\"][img=
+50]res://Assets/UI/Icons/MentalCapacityIcon.png[/img][/hint] runs out first, you'll have a bit of a mental breakdown, draining your Social Battery [hint=\"Social Battery\"][img=
 50]res://Assets/UI/Icons/SocialBatteryIcon_2.png[/img][/hint]. You don't want this social event to end in disaster, so try to keep your stats as high as possible!"
 
 [node name="EncounterOverview4" parent="." instance=ExtResource("10_lsasr")]

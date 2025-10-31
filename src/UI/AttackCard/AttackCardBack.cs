@@ -124,10 +124,13 @@ namespace tee
             _discoveredPreferences.Clear();
         }
 
-        public override void _ExitTree()
+        public override void _Notification(int what)
         {
-            CombatManager.PreferenceDiscovered -= AddPreference;
-            TopicButton.OnButtonHovered -= OnHover;
+            if (what == NotificationPredelete)
+            {
+                CombatManager.PreferenceDiscovered -= AddPreference;
+                TopicButton.OnButtonHovered -= OnHover;
+            }
         }
     }
 }

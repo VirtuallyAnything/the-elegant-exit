@@ -47,7 +47,7 @@ offset_bottom = 656.0
 theme_override_styles/panel = ExtResource("3_b0swg")
 
 [node name="RichTextLabel" parent="Enthusiasm2/VBoxContainer" index="0"]
-text = "They will become more likely to talk about that topic and increase their Enthusiasm for it even more. An overly enthusiastic opponent will be harder to defeat, as their Maximum Conversation Interest [hint=\"{Maximum Conversation Interest}\"][img=50]res://Assets/UI/Icons/ConversationInterestMaxIcon.png[/img][/hint] rises."
+text = "They will become more likely to talk about that topic and increase their Enthusiasm for it even more. An overly enthusiastic opponent will be harder to defeat, as their Maximum Conversation Interest [hint=\"Maximum Conversation Interest\"][img=50]res://Assets/UI/Icons/ConversationInterestMaxIcon.png[/img][/hint] rises."
 
 [node name="Enthusiasm3" parent="." instance=ExtResource("9_xvpcb")]
 visible = false
@@ -82,7 +82,7 @@ offset_bottom = 571.0
 theme_override_styles/panel = ExtResource("3_b0swg")
 
 [node name="RichTextLabel" parent="Enthusiasm5/VBoxContainer" index="0"]
-text = "Enthusiasm also has its upsides: It can make you gain  [hint=\"{Social Standing}\"][img=40]res://Assets/UI/Icons/SocialStandingIcon.png[/img][/hint] and if it reaches high levels it will lower your opponent's Annoyance."
+text = "Enthusiasm also has its upsides: It can make you gain  [hint=\"Social Standing\"][img=40]res://Assets/UI/Icons/SocialStandingIcon.png[/img][/hint] and if it reaches high levels it will lower your opponent's Annoyance."
 
 [node name="TextureButtonNext" parent="Enthusiasm5/VBoxContainer/HBoxContainer" index="2"]
 modulate = Color(1, 1, 1, 0)

@@ -94,21 +94,22 @@ namespace tee
 				_encounterScene.AttackCardContainer.AddNewAttackCard(randomAttack);
 			}
 			_enemy = new(_encounterScene.CurrentEnemy);
-			Player.UpdateCurrentAttacks(this);
-			_encounterScene.AttackCardContainer.Update();
+
 			_encounterScene.AttackCardContainer.DisableInput();
 			await _encounterScene.PlayCombatStartAnimation(Player.MaxMentalCapacity);
 
 			GameManager.SocialBattery -= Player.MaxMentalCapacity;
 			Player.MentalCapacity = Player.MaxMentalCapacity;
 			await EnemyAttack();
+			Player.UpdateCurrentAttacks(this);
+			_encounterScene.AttackCardContainer.Update();
 			EnemyTurnComplete += SetupNewAttack;
 		}
-		
+
 		public void OnPlayerTurnComplete()
-        {
+		{
 			EnemyAttack();
-        }
+		}
 
 		/// <summary>
 		/// Called when either the Player's MentalCapacity or the Enemy's Conversation Interest runs out

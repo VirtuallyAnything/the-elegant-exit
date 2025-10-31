@@ -47,7 +47,7 @@ offset_bottom = 1002.0
 theme_override_styles/panel = ExtResource("3_8edlw")
 
 [node name="RichTextLabel" parent="Annoyance2/VBoxContainer" index="0"]
-text = "This can be both good and bad. The more annoyed the opponent, the lower their Maximum Conversation Interest [hint=\"{Maximum Conversation Interest}\"][img=
+text = "This can be both good and bad. The more annoyed the opponent, the lower their Maximum Conversation Interest [hint=\"Maximum Conversation Interest\"][img=
 50]res://Assets/UI/Icons/ConversationInterestMaxIcon.png[/img][/hint]. It can help you end the Conversation faster."
 
 [node name="Annoyance3" parent="." instance=ExtResource("9_eoacu")]
@@ -60,7 +60,7 @@ offset_bottom = 961.0
 theme_override_styles/panel = ExtResource("3_8edlw")
 
 [node name="RichTextLabel" parent="Annoyance3/VBoxContainer" index="0"]
-text = "On the downside, you lose [hint=\"{Social Standing}\"][img=
+text = "On the downside, you lose [hint=\"Social Standing\"][img=
 40]res://Assets/UI/Icons/SocialStandingIcon.png[/img][/hint] with the guests of the Party. And you don't want them to talk badly about you after tonight..."
 
 [node name="Annoyance4" parent="." instance=ExtResource("9_eoacu")]
@@ -74,8 +74,8 @@ theme_override_styles/panel = ExtResource("3_8edlw")
 
 [node name="RichTextLabel" parent="Annoyance4/VBoxContainer" index="0"]
 text = "The patience of your opponent will run out eventually. 
-If their Annoyance reaches level 5, they will end the conversation, damaging both your [hint=\"{Social Standing}\"][img=
-40]res://Assets/UI/Icons/SocialStandingIcon.png[/img][/hint] and [hint=\"{Social Battery}\"][img=
+If their Annoyance reaches level 5, they will end the conversation, damaging both your [hint=\"Social Standing\"][img=
+40]res://Assets/UI/Icons/SocialStandingIcon.png[/img][/hint] and [hint=\"Social Battery\"][img=
 50]res://Assets/UI/Icons/SocialBatteryIcon_2.png[/img][/hint]."
 
 [node name="TextureButtonNext" parent="Annoyance4/VBoxContainer/HBoxContainer" index="2"]

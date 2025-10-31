@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=27 format=3 uid="uid://bpp0q38rfd1ms"]
+[gd_resource type="Theme" load_steps=28 format=3 uid="uid://bpp0q38rfd1ms"]
 
 [ext_resource type="StyleBox" uid="uid://clf5eknolteml" path="res://Assets/Themes/SpeechBubbleStyleBox1.tres" id="1_2tqip"]
 [ext_resource type="StyleBox" uid="uid://f4qftxg2kd10" path="res://Assets/Themes/PanelShadowStylebox.tres" id="2_n6f1t"]
@@ -101,7 +101,23 @@ border_width_left = 6
 border_width_top = 6
 border_width_right = 6
 border_width_bottom = 6
-border_color = Color(0.22126, 0.1863, 0.23, 1)
+border_color = Color(0.3423, 0.3115, 0.35, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k54qh"]
+content_margin_left = 20.0
+content_margin_top = 20.0
+content_margin_right = 20.0
+content_margin_bottom = 20.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(0.501961, 0.14902, 0.266667, 1)
 corner_radius_top_left = 30
 corner_radius_top_right = 30
 corner_radius_bottom_right = 30
@@ -216,7 +232,9 @@ TopicButton/colors/font_color = Color(0.12549, 0.0431373, 0.145098, 1)
 TopicButton/colors/font_disabled_color = Color(0.22126, 0.1863, 0.23, 1)
 TopicButton/colors/font_hover_color = Color(0.501961, 0.14902, 0.266667, 1)
 TopicButton/styles/disabled = SubResource("StyleBoxFlat_sj1pl")
-TopicButton/styles/hover = ExtResource("8_sj1pl")
+TopicButton/styles/focus = ExtResource("8_sj1pl")
+TopicButton/styles/hover = SubResource("StyleBoxFlat_k54qh")
+TopicButton/styles/hover_pressed = ExtResource("8_sj1pl")
 TopicButton/styles/normal = ExtResource("8_sj1pl")
 TopicButton/styles/pressed = ExtResource("8_sj1pl")
 VerticalTabContainer/base_type = &"TabContainer"

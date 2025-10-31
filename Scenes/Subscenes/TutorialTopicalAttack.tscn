@@ -31,7 +31,7 @@ offset_bottom = 640.0
 theme_override_styles/panel = ExtResource("3_r2xrs")
 
 [node name="RichTextLabel" parent="TopicalAttack1/VBoxContainer" index="0"]
-text = "Talking about a topic uncovers your opponent's preference for it. They can like [img=40]res://Assets/UI/Icons/LikeIcon.png[/img], dislike [img=30]res://Assets/UI/Icons/DislikeIcon.png[/img] or feel neutral towards the topic."
+text = "Talking about a topic uncovers your opponent's preference for it. They can like [img=40]res://Assets/UI/Icons/LikeIcon.png[/img], dislike [img=30]res://Assets/UI/Icons/DislikeIcon.png[/img] or feel neutral [img=30]res://Assets/UI/Icons/NeutralIcon.png[/img] towards the topic."
 
 [node name="TextureButtonPrev" parent="TopicalAttack1/VBoxContainer/HBoxContainer" index="0"]
 modulate = Color(1, 1, 1, 0)
@@ -47,7 +47,7 @@ offset_bottom = 686.0
 theme_override_styles/panel = ExtResource("3_r2xrs")
 
 [node name="RichTextLabel" parent="TopicalAttack2/VBoxContainer" index="0"]
-text = "The amount of damage to your opponent's [hint=\"{Conversation Interest}\"][img=
+text = "The amount of damage to your opponent's [hint=\"Conversation Interest\"][img=
 50]res://Assets/UI/Icons/ConversationInterestIcon.png[/img][/hint] is impacted by these preferences. Disliked topics increase damage, but they also make your opponent become annoyed."
 
 [node name="TopicalAttack3" parent="." instance=ExtResource("9_54hdc")]
