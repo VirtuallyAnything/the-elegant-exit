@@ -56,7 +56,7 @@ _camera = NodePath("Characters/Player/Camera2D")
 follow_viewport_enabled = true
 
 [node name="Player" type="CharacterBody2D" parent="Characters" node_paths=PackedStringArray("_vision") groups=["Player"]]
-position = Vector2(925, 4148)
+position = Vector2(6838, 1076)
 script = ExtResource("3_53yld")
 _data = ExtResource("4_iwfah")
 _sightConeSegments = 10
