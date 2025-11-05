@@ -28,7 +28,7 @@ public partial class PreferenceDisplay : Control
 			if (topicLabel.TopicName == TopicName.SpecialInterest)
 			{
 				topicLabel.Text =
-				$"[hint='Preference: {topicLabel.Preference}'][center]{specialInterestName}[img=30]{_unknownIcon.ResourcePath}[/img][/center]";
+				$"[hint='Preference: {Preference.Like}'][center]{specialInterestName}[img=30]{_likeIcon.ResourcePath}[/img][/center]";
 			}
 		}
 	}

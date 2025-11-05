@@ -37,7 +37,8 @@ namespace tee
                         TopicName = conversationTopic,
                         Parent = this,
                         Theme = GD.Load<Theme>("res://Assets/Themes/Lobster.tres"),
-                        ThemeTypeVariation = "TopicButton"
+                        ThemeTypeVariation = "TopicButton",
+                        SizeFlagsHorizontal = SizeFlags.ExpandFill
                     };
                     button.MouseExited += EndHover;
                     _topicButtonsAttack.Add(button);

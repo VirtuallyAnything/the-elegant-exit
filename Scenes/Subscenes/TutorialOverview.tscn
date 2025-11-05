@@ -30,7 +30,7 @@ offset_right = 1154.0
 offset_bottom = 363.0
 
 [node name="RichTextLabel" parent="EncounterOverview1/VBoxContainer" index="0"]
-text = "Your opponent has opened the conversation! Every one of their dialogues will drain your Mental Capacity [hint=\"{Mental Capacity}\"][img=
+text = "Your opponent has opened the conversation! Every one of their dialogues will drain your Mental Capacity [hint=\"Mental Capacity\"][img=
 50]res://Assets/UI/Icons/MentalCapacityIcon.png[/img][/hint]."
 
 [node name="TextureButtonPrev" parent="EncounterOverview1/VBoxContainer/HBoxContainer" index="0"]
@@ -47,8 +47,8 @@ offset_bottom = 366.0
 theme_override_styles/panel = ExtResource("7_mf4tl")
 
 [node name="RichTextLabel" parent="EncounterOverview2/VBoxContainer" index="0"]
-text = "Bring your opponent's Conversation Interest [hint=\"{Conversation Interest}\"][img=
-50]res://Assets/UI/Icons/ConversationInterestIcon.png[/img][/hint] down to 0 in order to end the Conversation smoothly and gain Social Standing [hint=\"{Social Standing}\"][img=
+text = "Bring your opponent's Conversation Interest [hint=\"Conversation Interest\"][img=
+50]res://Assets/UI/Icons/ConversationInterestIcon.png[/img][/hint] down to 0 in order to end the Conversation smoothly and gain Social Standing [hint=\"Social Standing\"][img=
 40]res://Assets/UI/Icons/SocialStandingIcon.png[/img][/hint]."
 
 [node name="EncounterOverview3" parent="." instance=ExtResource("10_lsasr")]

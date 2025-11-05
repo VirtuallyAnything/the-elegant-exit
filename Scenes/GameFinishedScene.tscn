@@ -1,12 +1,15 @@
-[gd_scene load_steps=13 format=3 uid="uid://sjl87lfyw473"]
+[gd_scene load_steps=16 format=3 uid="uid://sjl87lfyw473"]
 
 [ext_resource type="Script" uid="uid://bu2k7o16kpncw" path="res://src/SceneCode/GameFinishedScene.cs" id="1_5s8uf"]
 [ext_resource type="Texture2D" uid="uid://llt3et1j1w5a" path="res://Assets/UI/GameFinishedScreen.png" id="2_gd426"]
+[ext_resource type="Texture2D" uid="uid://c5bd45kfywy0a" path="res://Assets/Textures/Spritesheet_ScorePositive.png" id="2_igkah"]
+[ext_resource type="Texture2D" uid="uid://bp3p17xp2os3m" path="res://Assets/Textures/Spritesheet_ScoreNeutral.png" id="3_hetea"]
 [ext_resource type="Texture2D" uid="uid://bmd1mdiraueso" path="res://Assets/UI/ThoughtBubbleOutlineSmall.png" id="3_yh0j5"]
 [ext_resource type="Texture2D" uid="uid://l2h2ttnen6rl" path="res://Assets/UI/ThoughtBubbleFilled.png" id="4_7gdeo"]
-[ext_resource type="Texture2D" uid="uid://db1vr6foao3e3" path="res://Assets/Textures/Spritesheet_BadScore.png" id="5_5d8qe"]
+[ext_resource type="Texture2D" uid="uid://c2qly4ay4duj3" path="res://Assets/Textures/Spritesheet_ScoreNegative.png" id="4_u613n"]
 [ext_resource type="Theme" uid="uid://bpp0q38rfd1ms" path="res://Assets/Themes/Lobster.tres" id="5_utcy8"]
 [ext_resource type="StyleBox" uid="uid://6fg2ln633237" path="res://Assets/Themes/SpeechBubbleStyleBox1_mirrored.tres" id="6_5d8qe"]
+[ext_resource type="Texture2D" uid="uid://bbxn5qj2hsgki" path="res://Assets/UI/ThoughtBubbleLarge.png" id="8_tukvv"]
 [ext_resource type="LabelSettings" uid="uid://bx6i6eo3rklk8" path="res://Assets/Themes/LobsterLabelSettings.tres" id="9_igkah"]
 [ext_resource type="Script" uid="uid://diy0f8mk31o2x" path="res://src/SceneCode/SceneSwapButton.cs" id="9_utcy8"]
 
@@ -27,6 +30,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_hetea"]
 resource_name = "ScoreAnimation"
+length = 1.5
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -35,7 +39,7 @@ tracks/0/path = NodePath("ThoughtBubbleFilled/OutcomeAnim:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
+"times": PackedFloat32Array(0, 0.75, 1.5),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [0, 9, 0]
@@ -57,7 +61,9 @@ grow_vertical = 2
 script = ExtResource("1_5s8uf")
 _finalScore = NodePath("Label/Label")
 _outcome = NodePath("ThoughtBubbleFilled/OutcomeAnim")
-_negativeOutcome = ExtResource("5_5d8qe")
+_positiveOutcome = ExtResource("2_igkah")
+_neutralOutcome = ExtResource("3_hetea")
+_negativeOutcome = ExtResource("4_u613n")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
@@ -74,21 +80,26 @@ scale = Vector2(0.880952, 0.880952)
 texture = ExtResource("3_yh0j5")
 
 [node name="ThoughtBubbleOutlineSmall2" type="Sprite2D" parent="."]
-position = Vector2(1132, 533)
+position = Vector2(1099, 533)
 scale = Vector2(1.21429, 1.21429)
 texture = ExtResource("3_yh0j5")
 
 [node name="ThoughtBubbleFilled" type="Sprite2D" parent="."]
 clip_children = 2
-position = Vector2(1511.49, 210.75)
+position = Vector2(1479.49, 210.75)
 scale = Vector2(0.82676, 0.826759)
 texture = ExtResource("4_7gdeo")
 
 [node name="OutcomeAnim" type="Sprite2D" parent="ThoughtBubbleFilled"]
-position = Vector2(-243.716, 124.885)
-scale = Vector2(1.28669, 1.28669)
+position = Vector2(-4.05701, 55.7977)
+scale = Vector2(1.06669, 1.06669)
 hframes = 2
 vframes = 5
+
+[node name="ThoughtBubbleLarge" type="Sprite2D" parent="ThoughtBubbleFilled"]
+position = Vector2(0.000244141, 0)
+scale = Vector2(1.00029, 1.00029)
+texture = ExtResource("8_tukvv")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 0

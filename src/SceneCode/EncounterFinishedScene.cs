@@ -11,7 +11,7 @@ namespace tee
          {
             case EncounterOutcome.PlayerDefeated:
                _flavourText.Text = "This Conversation took its toll...";
-               _outcome.Text = $"{socialBattery}[img]res://Assets/UI/Icons/SocialBatteryIcon_2.png[/img]";
+               _outcome.Text = $"{socialBattery} [img]res://Assets/UI/Icons/SocialBatteryIcon_2.png[/img]";
                break;
             case EncounterOutcome.EnemyDefeated:
                _flavourText.Text = "You survived the Conversation!";
@@ -19,7 +19,7 @@ namespace tee
                break;
             case EncounterOutcome.MaxAnnoyanceReached:
                _flavourText.Text = "Your conversation partner was fed up with you and left.";
-               _outcome.Text = "-?[img]res://Assets/UI/Icons/SocialStandingIcon.png[/img]";
+               _outcome.Text = "-? [img]res://Assets/UI/Icons/SocialStandingIcon.png[/img]";
                break;
          }
       }

@@ -1,16 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://b5phjd7gfq25u"]
+[gd_scene load_steps=3 format=3 uid="uid://b5phjd7gfq25u"]
 
 [ext_resource type="Theme" uid="uid://bpp0q38rfd1ms" path="res://Assets/Themes/Lobster.tres" id="1_uctpo"]
 [ext_resource type="Script" uid="uid://b2tdhvoj8cokw" path="res://src/UI/TopicButton.cs" id="1_wco5i"]
-[ext_resource type="StyleBox" uid="uid://c1jgxmgmi7pj7" path="res://Assets/Themes/EmptyFrameStylebox.tres" id="2_nqw03"]
 
 [node name="TopicButton" type="Button"]
-offset_right = 120.0
-offset_bottom = 45.0
+offset_right = 127.0
+offset_bottom = 86.0
 theme = ExtResource("1_uctpo")
 theme_type_variation = &"TopicButton"
-theme_override_colors/font_hover_color = Color(0.486275, 0.145098, 0.258824, 1)
-theme_override_colors/font_color = Color(0.12549, 0.0431373, 0.145098, 1)
-theme_override_styles/normal = ExtResource("2_nqw03")
 text = "Topic"
 script = ExtResource("1_wco5i")
